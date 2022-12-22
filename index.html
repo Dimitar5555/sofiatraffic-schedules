@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper p-2">
+		<nav class="nav nav-pills nav-justified" id="nav-main" role="tablist">
+			<a data-bs-toggle="pill" data-bs-target="#schedule" class="nav-item nav-link active" href="#schedule">Разписание</a>
+			<a data-bs-toggle="pill" data-bs-target="#favorite_stops" class="nav-item nav-link" href="#favorite_stops">Любими спирки</a>
+		</nav>
+		<div class="tab-content" id="nav-mainContent">
+			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedule">
+				<div id="line_selector"></div>
+				<div id="schedule_display" class="d-none">
+					<button onclick="line_selector_div.classList.remove('d-none');schedule_display.classList.add('d-none');" class="btn btn-primary"><i class="bi bi-arrow-left"></i> Назад</button>
+					<br>
+					<div class="row m-2">
+						<div class="col col-4 col-md-3">
+							<label for="line">Линия:</label>
+						</div>
+						<div class="col col-8 col-md-4">
+							<span id="line"></span>
+						</div>
+					</div>
+					<div class="row m-2">
+						<div class="col col-4 col-md-3">
+							<label for="date_type">Разписание:</label>
+						</div>
+						<div class="col col-8 col-md-4">
+							<select class="form-select" onchange="configure_direction_selector()" id="date_type"></select>
+						</div>
+					</div>
+					<div class="row m-2">
+						<div class="col col-4 col-md-3">
+							<label for="date_type">Валидно от:</label>
+						</div>
+						<div class="col col-8 col-md-4">
+							<span id="valid_from"></span>
+						</div>
+					</div>
+					<div class="row m-2">
+						<div class="col col-4 col-md-3">
+							<label for="direction">Посока</label>
+						</div>
+						<div class="col col-8 col-md-4">
+							<select class="form-select" onchange="configure_stop_selector()" id="direction"></select>
+						</div>
+					</div>
+					<div class="row m-2">
+						<div class="col col-4 col-md-3">
+							<label for="stops">Спирка</label>
+						</div>
+						<div class="col col-8 col-md-4">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-1 px-0 text-center align-middle" style="line-height: 37.6px;">
+										<i class="bi bi-star h5 text-warning" onmouseover="if(this.dataset.style=='none'){this.classList.remove('bi-star');this.classList.add('bi-star-fill');}else{this.classList.add('bi-star');this.classList.remove('bi-star-fill');}" onmouseout="if(this.dataset.style=='none'){this.classList.add('bi-star');this.classList.remove('bi-star-fill');}else{this.classList.remove('bi-star');this.classList.add('bi-star-fill');}" onclick="add_remove_favourite_stop(this.previousElementSibling.value.toString().padStart(4, '0'))"></i>
+									</div>
+									<div class="col-11 ps-0">
+										<select class="form-select" onchange="display_schedule(); configure_favourite_stop_button();" id="stops"></select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row m-2">
+						<div class="col col-4 col-md-3">
+							<label for="display_by_car">Покажи разписанието по коли</label>
+						</div>
+						<div class="col col-8 col-md-4">
+							<input class="form-check-input" onchange="display_schedule()" type="checkbox" id="display_by_car">
+						</div>
+					</div>
+					<table class="table table-bordered table-responsive table-striped-columns" id="schedule_table">
+						<tbody></tbody>
+					</table>
+					<p>Непълните курсове са отбелязани с червен заден фон.</p>
+					<div class="modal fade" id="schedule_modal" tabindex="-1" aria-labelledby="schedule_modal" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<button>Предишен курс на тази кола</button>
+								<button>Следващ курс на тази кола</button>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Спирка</th>
+											<th>Време на потегляне</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+							</div>
+						  </div>
+						</div>
+					  </div>
+				</div>
+			</div>
+			<div class="tab-pane p-2 fade" id="favorite_stops" role="tabpanel">
+				<table class="table table-bordered">
+					<thead></thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.js"></script>
+	<script src="js/schedules.js"></script>
+	<script src="js/favourite_stops.js"></script>
+</body>
+</html>
