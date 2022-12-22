@@ -1,5 +1,5 @@
-@font-face { font-family: SofiaSans; src: url('/fonts/SofiaSans-Medium.ttf'); } 
-@font-face { font-family: SofiaSans; font-weight: bold; src: url('/fonts/SofiaSans-Bold.ttf');}
+@font-face { font-family: SofiaSans; src: url('fonts/SofiaSans-Medium.ttf'); } 
+@font-face { font-family: SofiaSans; font-weight: bold; src: url('fonts/SofiaSans-Bold.ttf');}
 * {
 	font-family: SofiaSans;
 }
