@@ -39,7 +39,7 @@ init();
 
 //register service worker
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/sw.js', { scope: '/' })
+	navigator.serviceWorker.register('sw.js')
 		.then((registration) => {
 			const data = {
 				type: 'CACHE_URLS',
