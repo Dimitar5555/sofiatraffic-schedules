@@ -31,7 +31,9 @@ function init(){
 			init_favourtie_stops();
 		});
 	});
-
+	if(!localStorage.getItem('favourite_stops')){
+		localStorage.setItem('favourite_stops', '[]');
+	}
 }
 init();
 
