@@ -81,6 +81,9 @@ span:after {
 	line-height: 37.6px;
 	text-align: center;
 }
-.bg-danger::after {
+.bg-danger::after, .bg-warning::after {
 	background-color: white;
 }
+/* .table-text-left > tbody > tr > td:first-of-type {
+	text-align: right;
+} */

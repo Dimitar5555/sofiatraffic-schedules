@@ -231,7 +231,7 @@ function display_vehicle_schedule(time){
 			var new_tbody = html_comp('tbody');
 			correct_car.forEach((time, index) => {
 				var tr = html_comp('tr');
-				tr.appendChild(html_comp('td', {text: `[${stops[index]}] ${get_stop_name(stops[index])}`}));
+				tr.appendChild(html_comp('td', {text: `[${stops[index].toString().padStart(4, '0')}] ${get_stop_name(stops[index])}`}));
 				tr.appendChild(html_comp('td', {text: mins_to_time(time)}));
 				new_tbody.append(tr);
 			});
