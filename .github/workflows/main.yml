@@ -2,9 +2,6 @@
 name: Generate schedules and deploy content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["master"]
   schedule:
     - cron: '0 4 */1 * *'
 
