@@ -7,7 +7,7 @@ const sofiatraffic_url = "sofiatraffic.bg";
 const schedules_url = `${protocol}schedules.${sofiatraffic_url}/`;
 const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 
-const ROUTES_LIMIT = 0;
+const ROUTES_LIMIT = 1;
 var current_routes = 0;
 
 var routes = [];
