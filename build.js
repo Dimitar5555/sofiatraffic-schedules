@@ -7,7 +7,7 @@ const sofiatraffic_url = "sofiatraffic.bg";
 const schedules_url = `${protocol}schedules.${sofiatraffic_url}/`;
 const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 
-const ROUTES_LIMIT = 1;
+const ROUTES_LIMIT = 0;
 var current_routes = 0;
 
 var routes = [];
@@ -192,7 +192,6 @@ function get_schedules(id){
 			get_schedules(id+1);
 		}
 		else{
-			console.log(schedules_urls);
 			get_times(0);
 		}
 	});
@@ -231,7 +230,6 @@ function get_times(id){
 get_routes();
 function finalise() {
 	var M1_M2_index = routes.findIndex(route1 => route1 && route1.line=='M1-M2');
-	console.log(M1_M2_index);
 	var res = split_M1_M2(routes[M1_M2_index]);
 	delete routes[M1_M2_index];
 	
@@ -313,9 +311,6 @@ function split_M1_M2(route) {
 								actual_routes[route_index].schedules[valid_thru_index].cars[car_index] = [];
 							}
 							car.forEach(time => {
-								if(time==null){
-									console.log('test');
-								}
 								actual_routes[route_index].schedules[valid_thru_index].cars[car_index].push(time);
 							})
 						})
