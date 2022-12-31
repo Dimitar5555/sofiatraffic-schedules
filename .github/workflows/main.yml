@@ -39,8 +39,8 @@ jobs:
       with:
         message: 'Update schedules'
         add: '*.json'
-        remove: './data/*'
-        cwd: '/data/'
+        remove: '.data/*'
+        cwd: 'data/'
         pull: '--rebase --autostash'
   # Build job
   build:
