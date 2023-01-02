@@ -25,13 +25,13 @@
 	},
 	"weekdays": {
 	  "weekday": "делник",
-	  "pre_holiday": "Предпразник",
+	  "pre_holiday": "предпразник",
 	  "holiday": "празник"
 	},
 	"schedules": {
 	  "back": " Назад",
 	  "line": "Линия:",
-	  "schedule": "Важи за:",
+	  "schedule": "Разписание:",
 	  "valid_from": "Валиден от:",
 	  "direction": "Посока",
 	  "stop": "Спирка",
