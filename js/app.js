@@ -2,7 +2,7 @@ const schedule_div = document.querySelector('#schedule');
 const line_selector_div = document.querySelector('#line_selector');
 const schedule_display_div = document.querySelector('#schedule_display');
 
-const allowed_language = ['bg'];
+const allowed_language = ['en', 'bg'];
 
 var current_route_index;
 
@@ -27,7 +27,7 @@ function init(){
 	if(!localStorage.getItem('favourite_stops')){
 		localStorage.setItem('favourite_stops', '[]');
 	}
-	fetch(`/i18n/${localStorage.lang}.json`)
+	fetch(`i18n/${localStorage.lang}.json`)
 	.then(response => response.text())
 	.then(response => lang = JSON.parse(response))
 	.then(() => {
@@ -59,21 +59,21 @@ if ('serviceWorker' in navigator) {
 				type: 'CACHE_URLS',
 				payload: [
 					location.href,
-					'/data/schedule.json',
-					'/data/stops.json',
-					'/js/app.js',
-					'/js/schedules.js',
-					'/js/virtual_sign.js',
-					'/js/bootstrap.bundle.min.js',
+					'data/schedule.json',
+					'data/stops.json',
+					'js/app.js',
+					'js/schedules.js',
+					'js/virtual_sign.js',
+					'js/bootstrap.bundle.min.js',
 					'sw.js',
-					'/i18n/bg.json',
-					'/i18n/en.json',
-					'/css/bootstrap.min.css',
-					'/css/bootstrap-icons.css',
-					'/css/style.css',
-					'/fonts/SofiaSan-Bold.ttf',
-					'/fonts/SofiaSan-Medium.ttf',
-					'/fonts/SofiaSan-Regular.ttf',
+					'i18n/bg.json',
+					'i18n/en.json',
+					'css/bootstrap.min.css',
+					'css/bootstrap-icons.css',
+					'css/style.css',
+					'fonts/SofiaSan-Bold.ttf',
+					'fonts/SofiaSan-Medium.ttf',
+					'fonts/SofiaSan-Regular.ttf',
 					'fonts/bootstrap-icons.woff',
 					'fonts/bootstrap-icons.woff2'
 				]
