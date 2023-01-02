@@ -56,15 +56,14 @@ init();
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js')
 		.then((registration) => {
-			const data = {
-				type: 'CACHE_URLS',
-				payload: [
+			caches.open("pwa-assets")
+			.then(cache => {
+				var add_to_cache = [
 					location.href,
 					'data/schedule.json',
 					'data/stops.json',
 					'js/app.js',
 					'js/schedules.js',
-					'js/virtual_sign.js',
 					'js/bootstrap.bundle.min.js',
 					'sw.js',
 					'i18n/bg.json',
@@ -72,13 +71,14 @@ if ('serviceWorker' in navigator) {
 					'css/bootstrap.min.css',
 					'css/bootstrap-icons.css',
 					'css/style.css',
-					'fonts/SofiaSan-Bold.ttf',
-					'fonts/SofiaSan-Medium.ttf',
-					'fonts/SofiaSan-Regular.ttf',
+					'fonts/SofiaSans-Bold.ttf',
+					'fonts/SofiaSans-Medium.ttf',
+					'fonts/SofiaSans-Regular.ttf',
 					'fonts/bootstrap-icons.woff',
 					'fonts/bootstrap-icons.woff2'
-				]
-			};
+				];
+				cache.addAll(add_to_cache);
+			});
 		})
 		.catch((err) => alert('Service worker registration FAIL:', err));
 }
