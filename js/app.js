@@ -2,7 +2,7 @@ const schedule_div = document.querySelector('#schedule');
 const line_selector_div = document.querySelector('#line_selector');
 const schedule_display_div = document.querySelector('#schedule_display');
 
-const allowed_language = ['en', 'bg'];
+const allowed_language = ['bg'];
 
 var current_route_index;
 
