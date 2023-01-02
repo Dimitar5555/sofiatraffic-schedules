@@ -2,7 +2,7 @@ const schedule_div = document.querySelector('#schedule');
 const line_selector_div = document.querySelector('#line_selector');
 const schedule_display_div = document.querySelector('#schedule_display');
 
-const allowed_language = ['en', 'bg'];
+const allowed_languages = ['bg'];
 
 var current_route_index;
 
@@ -22,7 +22,8 @@ function replace_child(new_child, old_child){
 }
 function init(){
 	if(!localStorage.getItem('lang')){
-		localStorage.setItem('lang', navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_language.indexOf(lang)!==-1));
+		var cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.indexOf(lang)!==-1);
+		localStorage.setItem('lang', cur_lang?cur_lang:'bg');
 	}
 	if(!localStorage.getItem('favourite_stops')){
 		localStorage.setItem('favourite_stops', '[]');
