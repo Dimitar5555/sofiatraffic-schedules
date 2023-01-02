@@ -145,7 +145,7 @@ function configure_favourite_stop_button(favourite_stops=false){
 		star.classList.add('text-secondary');
 		return;
 	}
-	if(star.dataset.style=='disabled'){
+	else{
 		star.setAttribute('onmouseover', "if(this.dataset.style=='none'){this.classList.remove('bi-star');this.classList.add('bi-star-fill');}else{this.classList.add('bi-star');this.classList.remove('bi-star-fill');}");
 		star.setAttribute('onmouseout', "if(this.dataset.style=='none'){this.classList.add('bi-star');this.classList.remove('bi-star-fill');}else{this.classList.remove('bi-star');this.classList.add('bi-star-fill');}");
 		star.setAttribute('onclick', "add_remove_favourite_stop(this.parentElement.nextElementSibling.querySelector('select').value.toString().padStart(4, '0'))");		
