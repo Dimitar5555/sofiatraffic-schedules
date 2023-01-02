@@ -62,7 +62,8 @@ function get_routes() {
 				res[stop.c].name_en = stop.n;
 			});
 			res[3336] = {
-				name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ"
+				name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ",
+				name_en: "GORNA BANYA METROSTATION"
 			};
 			res[3335] = {
 				name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ"

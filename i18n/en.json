@@ -1,0 +1,49 @@
+{
+	"code": "en",
+	"title": "Sofia schedules",
+	"nav": {
+		"schedules": "Schedules",
+		"favourites": "Favourite stops"
+	},
+	"line_types": {
+		"metros": "Metrolines", 
+		"tramways": "Tramways", 
+		"trolleybuses": "Trolleybuses",
+		"electrobuses": "Electric buses",
+		"autobuses": "Buses",
+		"temporary": "Temporary buses",
+		"night": "Night buses"
+	},
+	"line_type": {
+		"metro": "Metroline", 
+		"tramway": "Tramway", 
+		"trolleybus": "Trolleybus",
+		"electrobus": "Electric bus",
+		"autobus": "Bus",
+		"temporary": "Temporary bus",
+		"night": "Night bus"
+	},
+	"weekdays": {
+		"weekday": "Weekday",
+		"pre_holiday": "Pre-holiday",
+		"holiday": "Holiday"
+	},
+	"schedules": {
+		"back": " Back",
+		"line": "Line:",
+		"schedule": "Valid thru:",
+		"valid_from": "Valid from:",
+		"direction": "Direction",
+		"stop": "Stop",
+		"show_by_cars": "Show schedule by cars",
+		"modal_title": "Course schedule",
+		"departure_time": "Departure time",
+		"close": "Close",
+		"note": "Incomplete courses are marked with a red/yellow background."
+	},
+	"favourites": {
+		"stop": "Stop",
+		"actions": "Actions",
+		"virtual_table": "Virtual table"
+	}
+}

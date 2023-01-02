@@ -1,0 +1,49 @@
+{
+	"code": "bg",
+	"title": "Разписание на софийския МГТ",
+	"nav": {
+	  "schedules": "Разписание",
+	  "favourites": "Любими спирки"
+	},
+	"line_types": {
+	  "metros": "Метролинии",
+	  "tramways": "Трамвайни линии",
+	  "trolleybuses": "Тролейбуси",
+	  "electrobuses": "Електробуси",
+	  "autobuses": "Автобуси",
+	  "temporary": "Заместващи автобуси",
+	  "night": "Нощни автобуси"
+	},
+	"line_type": {
+	  "metro": "Метролиния",
+	  "tramway": "Трамвай",
+	  "trolleybus": "Тролейбус",
+	  "electrobus": "Електробус",
+	  "autobus": "Автобус",
+	  "temporary": "Заместващ автобус",
+	  "night": "Нощен автобус"
+	},
+	"weekdays": {
+	  "weekday": "делник",
+	  "pre_holiday": "Предпразник",
+	  "holiday": "празник"
+	},
+	"schedules": {
+	  "back": " Назад",
+	  "line": "Линия:",
+	  "schedule": "Важи за:",
+	  "valid_from": "Валиден от:",
+	  "direction": "Посока",
+	  "stop": "Спирка",
+	  "show_by_cars": "Показване на разписанието по коли",
+	  "modal_title": "Разписание на курса",
+	  "departure_time": "Час на потегляне",
+	  "close": "Затвори",
+	  "note": "Непълните курсове са маркирани с червен/жълт фон."
+	},
+	"favourites": {
+	  "stop": "Спирка",
+	  "actions": "Действия",
+	  "virtual_table": "Виртуално табло"
+	}
+  }
