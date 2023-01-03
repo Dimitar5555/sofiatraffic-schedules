@@ -253,7 +253,7 @@ function display_schedule(){
 				});
 				td1.appendChild(el);
 				td1.appendChild(html_comp('span', {class: 'line-break'}));
-			})
+			});
 			tr_tbody.appendChild(td1);
 		});
 	}

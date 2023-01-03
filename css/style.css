@@ -64,6 +64,105 @@ span.line-break:after {
 .bg-danger::after, .bg-warning::after {
 	background-color: white;
 }
-/* .table-text-left > tbody > tr > td:first-of-type {
-	text-align: right;
-} */
+#schedule_table > tbody > tr > td {
+	min-width: 36px;
+	min-height: 40px;
+}
+
+/*!
+// CSS only Responsive Tables
+// http://dbushell.com/2016/03/04/css-only-responsive-tables/
+// by David Bushell
+*/
+
+/* .table {
+	!
+	// IE needs inline-block to position scrolling shadows otherwise use:
+	// display: block;
+	// max-width: min-content;
+	
+	display: inline-block;
+	vertical-align: top;
+	max-width: 100%;
+	
+	overflow-x: auto;
+	
+  
+	border-collapse: collapse;
+	border-spacing: 0;
+  } */
+@media screen and (max-width:850px){
+	td > span:nth-child(even) {
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+	td {
+		text-align: left;
+		font-variant-numeric: tabular-nums;
+	}
+	span.line-break {
+		content: " ";
+		display: inline;
+	}
+  .table,
+  .table-flip tbody {
+	-webkit-overflow-scrolling: touch;
+	
+	background: radial-gradient(left, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 0 center,
+				radial-gradient(right, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 100% center;
+	background-size: 10px 100%, 10px 100%;
+	background-attachment: scroll, scroll;
+	background-repeat: no-repeat;
+  }
+  
+  .table td:first-child,
+  .table-flip tbody tr:first-child {
+	background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+	background-repeat: no-repeat;
+	background-size: 20px 100%;
+  }
+  
+  .table td:last-child,
+  .table-flip tbody tr:last-child {
+	background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	background-size: 20px 100%;
+  }
+  
+  .table-flip {
+	display: flex;
+	overflow: hidden;
+	background: none;
+  }
+  
+  .table-flip thead {
+	display: flex;
+	flex-shrink: 0;
+	min-width: min-content;
+  }
+  
+  .table-flip tbody {
+	display: flex;
+	position: relative;
+	overflow-x: auto;
+	overflow-y: hidden;
+  }
+  
+  .table-flip tr {
+	display: flex;
+	flex-direction: column;
+	min-width: min-content;
+	flex-shrink: 0;
+  }
+  
+  .table-flip td,
+  .table-flip th {
+	display: block;
+  }
+  
+  .table-flip td {
+	background-image: none !important;
+	border-left: 0;
+  }
+}
