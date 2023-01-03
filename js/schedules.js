@@ -156,11 +156,13 @@ function configure_favourite_stop_button(favourite_stops=false){
 		star.classList.remove('bi-star-fill');
 		star.classList.add('bi-star');
 		star.dataset.style = "none";
+		star.setAttribute('title', lang.schedules.add_to_favourites);
 	}
 	else{
 		star.classList.add('bi-star-fill');
 		star.classList.remove('bi-star');
 		star.dataset.style = "fill";
+		star.setAttribute('title', lang.schedules.remove_from_favourites);
 	}
 }
 function get_stop_name(id){
