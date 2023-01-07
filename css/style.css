@@ -68,6 +68,9 @@ span.line-break:after {
 	min-width: 36px;
 	min-height: 40px;
 }
+#detailed_schedule > thead > tr > th {
+	vertical-align: middle;
+}
 
 /*!
 // CSS only Responsive Tables
@@ -75,30 +78,16 @@ span.line-break:after {
 // by David Bushell
 */
 
-/* .table {
-	!
-	// IE needs inline-block to position scrolling shadows otherwise use:
-	// display: block;
-	// max-width: min-content;
-	
-	display: inline-block;
-	vertical-align: top;
-	max-width: 100%;
-	
-	overflow-x: auto;
-	
-  
-	border-collapse: collapse;
-	border-spacing: 0;
-  } */
 @media screen and (max-width:850px){
 	td > span:nth-child(even) {
 		margin-left: 3px;
 		margin-right: 3px;
 	}
 	td {
-		text-align: left;
 		font-variant-numeric: tabular-nums;
+	}
+	#schedule_table > tbody > tr >td {
+		text-align: left;
 	}
 	span.line-break {
 		content: " ";

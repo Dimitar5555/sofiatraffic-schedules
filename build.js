@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const HTMLParser = require('node-html-parser');
+const crypto = require('crypto');
 
 const protocol = "https://";
 const sofiatraffic_url = "sofiatraffic.bg";
@@ -10,10 +11,19 @@ const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 const ROUTES_LIMIT = 0;
 var current_routes = 0;
 
+var metadata = {
+	last_modification: '2023-01-07',
+	routes_hash: '',
+	stops_hash: '',
+	retrieval_date: ''
+};
 var routes = [];
 
 var routes_urls = [];
 var schedules_urls = [];
+
+var date = new Date();
+var retrieval_date = `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDay().toString().padStart(2, '0')}`;
 
 Array.prototype.find2DIndex = function(searching_for){
 	var array = this.map(item => JSON.stringify(item));
@@ -140,7 +150,9 @@ function get_routes() {
 			res[3309] = {
 				name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР"
 			};
-			fs.writeFileSync('data/stops.json', JSON.stringify(res));
+			var stops_json = JSON.stringify(res);
+			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
+			fs.writeFileSync('data/stops.json', stops_json);
 		});
 	})
 }
@@ -251,7 +263,10 @@ function finalise() {
 	routes.sort((a, b) => a.line<b.line);
 
 	console.log('Done! Writing data to schedule.json');
-	fs.writeFileSync('data/schedule.json', JSON.stringify(routes));
+	var routes_json = JSON.stringify(routes);
+	fs.writeFileSync('data/schedule.json', routes_json);
+	metadata.routes_hash = crypto.createHash('sha256').update(routes_json).digest('hex');
+	fs.writeFileSync('data/metadata.json', JSON.stringify(metadata));
 }
 function split_M1_M2(route) {
 	var actual_routes = [

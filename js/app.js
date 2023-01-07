@@ -1,6 +1,6 @@
 const schedule_div = document.querySelector('#schedule');
-const line_selector_div = document.querySelector('#line_selector');
 const schedule_display_div = document.querySelector('#schedule_display');
+var line_selector_div = document.querySelector('#line_selector');
 
 const allowed_languages = ['bg'];
 
@@ -55,30 +55,5 @@ init();
 //register service worker
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js')
-		.then((registration) => {
-			caches.open("pwa-assets")
-			.then(cache => {
-				var add_to_cache = [
-					location.href,
-					'data/schedule.json',
-					'data/stops.json',
-					'js/app.js',
-					'js/schedules.js',
-					'js/bootstrap.bundle.min.js',
-					'sw.js',
-					'i18n/bg.json',
-					'i18n/en.json',
-					'css/bootstrap.min.css',
-					'css/bootstrap-icons.css',
-					'css/style.css',
-					'fonts/SofiaSans-Bold.ttf',
-					'fonts/SofiaSans-Medium.ttf',
-					'fonts/SofiaSans-Regular.ttf',
-					'fonts/bootstrap-icons.woff',
-					'fonts/bootstrap-icons.woff2'
-				];
-				cache.addAll(add_to_cache);
-			});
-		})
-		.catch((err) => alert('Service worker registration FAIL:', err));
+	.catch((err) => alert('Service worker registration FAIL:', err));
 }

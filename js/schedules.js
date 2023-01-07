@@ -29,22 +29,32 @@ function init_schedules(){
 	var ths = modal.querySelectorAll('th');
 	ths.item(0).innerText = lang.schedules.stop;
 	ths.item(1).innerText = lang.schedules.departure_time;
-
+	var old_line_selector = line_selector_div;
+	line_selector_div = old_line_selector.cloneNode(false);
 	routes.map((route, index) => route.index = index);
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.metros}));
-	create_schedule('metro', {class: 'text-success'});
+	create_schedule('metro');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.tramways}));
 	create_schedule('tramway');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.trolleybuses}));
 	create_schedule('trolleybus');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.electrobuses}));
 	create_schedule('electrobus');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.autobuses}));
 	create_schedule('autobus');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.temporary}));
 	create_schedule('temp');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.night}));
 	create_schedule('night');
+
+	old_line_selector.parentElement.replaceChild(line_selector_div, old_line_selector);
 }
 function create_schedule(type){
 	var routes_to_process = [];
@@ -55,7 +65,11 @@ function create_schedule(type){
 		routes_to_process = routes.filter((route) => route[type]);
 	}
 	routes_to_process.sort((a, b) => Number(a.line)>Number(b.line));
-	routes_to_process.forEach(route => line_selector_div.append(html_comp('button', {text: decodeURI(route.line), 'data-route-index': route.index, class: `line_selector_btn text-light rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`, 'onclick': 'show_schedule(this.dataset.routeIndex)'})));
+	routes_to_process.forEach(route => line_selector_div.append(html_comp('button', {
+		text: decodeURI(route.line),
+		'data-route-index': route.index,
+		class: `line_selector_btn text-light rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
+		'onclick': 'show_schedule(this.dataset.routeIndex)'})));
 }
 
 
