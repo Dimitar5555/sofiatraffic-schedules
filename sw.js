@@ -7,7 +7,6 @@ const files_to_cache = [
 	'js/schedules.js',
 	'js/favourite_stops.js',
 	'js/bootstrap.bundle.min.js',
-	'sw.js',
 	'i18n/bg.json',
 	'i18n/en.json',
 	'css/bootstrap.min.css',
