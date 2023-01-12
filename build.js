@@ -11,19 +11,17 @@ const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 const ROUTES_LIMIT = 0;
 var current_routes = 0;
 
+var date = new Date();
 var metadata = {
 	app_version: '2023-01-12',
 	routes_hash: '',
 	stops_hash: '',
-	retrieval_date: ''
+	retrieval_date: `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDay().toString().padStart(2, '0')}`
 };
 var routes = [];
 
 var routes_urls = [];
 var schedules_urls = [];
-
-var date = new Date();
-var retrieval_date = `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDay().toString().padStart(2, '0')}`;
 
 Array.prototype.find2DIndex = function(searching_for){
 	var array = this.map(item => JSON.stringify(item));
