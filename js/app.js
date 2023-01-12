@@ -33,23 +33,64 @@ function init(){
 	.then(response => lang = JSON.parse(response))
 	.then(() => {
 		var nav_links = document.querySelectorAll('.nav-item');
+		document.title = lang.title;
+
 		nav_links.item(0).innerText = lang.nav.schedules;
 		nav_links.item(1).innerText = lang.nav.favourites;
-		document.title = lang.title;
-		fetch('data/schedule.json')
-		.then(response => response.json())
-		.then(routes => {
-			window.routes = routes;
-			fetch('data/stops.json')
-			.then(response => response.json())
-			.then(stops => {
-				window.stops = stops;
-				init_schedules();
-				init_favourtie_stops();
-			});
-		});
+
+		document.querySelector('#last_data_update_text').innerText = lang.footer.last_data_update;
+		document.querySelector('#last_site_update_text').innerText = lang.footer.last_site_update;
+
+		check_metadata();
 	});
 }
+function update_versions(){
+	document.querySelector('#last_data_update').innerText = localStorage.retrieval_date;
+	document.querySelector('#version').innerText = localStorage.app_version;
+}
+function check_metadata(){
+	return fetch('data/metadata.json')
+	.then(response => response.text())
+	.then(text => JSON.parse(text))
+	.then(metadata => {
+		localStorage.app_version = metadata.app_version;
+		localStorage.retrieval_date = metadata.retrieval_date;
+		update_versions();
+		return fetch_data(metadata);
+	});
+}
+function fetch_data(metadata=false){
+	var promises = [];
+	var force_stops = false;
+	var force_sched = false;
+	if(localStorage.stops_hash!==metadata.stops_hash){
+		force_stops = true;
+	}
+	if(localStorage.routes_hash!==metadata.routes_hash){
+		force_sched = true;
+	}
+
+	promises.push(fetch(`data/stops.json${force_stops?'?force_update':''}`)
+	.then(response => response.json())
+	.then(stops => {
+		window.stops = stops;
+		localStorage.stops_hash = metadata.stops_hash;
+		init_favourtie_stops();
+	}));
+	promises.push(fetch(`data/schedule.json${force_sched?'?force_update':''}`)
+	.then(response => response.json())
+	.then(routes => {
+		window.routes = routes;
+		localStorage.routes_hash = metadata.routes_hash;
+		init_schedules();
+	}));
+
+	return Promise.all(promises);
+}
+addEventListener('online', (event) => {
+	check_metadata();
+});
+
 init();
 
 //register service worker

@@ -12,7 +12,7 @@ const ROUTES_LIMIT = 0;
 var current_routes = 0;
 
 var metadata = {
-	last_modification: '2023-01-07',
+	app_version: '2023-01-12',
 	routes_hash: '',
 	stops_hash: '',
 	retrieval_date: ''

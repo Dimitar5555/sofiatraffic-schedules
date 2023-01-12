@@ -1,22 +1,16 @@
 const favorite_stops_div = document.querySelector('#favorite_stops');
 function init_favourtie_stops(){
-	show_favourite_stops();
 	var ths = favorite_stops_div.querySelectorAll('th');
 	ths.item(0).innerText = lang.favourites.stop;
 	ths.item(1).innerText = lang.favourites.actions;
+
+	show_favourite_stops();
 }
 function show_favourite_stops(favourite_stops=false){
 	if(!favourite_stops){
 		favourite_stops = JSON.parse(window.localStorage.getItem('favourite_stops'));
 	}
-	var new_thead = html_comp('thead');
-	var tr_thead = html_comp('tr');
-	tr_thead.appendChild(html_comp('th', {text: 'Спирка'}));
-	tr_thead.appendChild(html_comp('th', {text: 'Действия'}));
-	new_thead.appendChild(tr_thead);
 	var table = favorite_stops_div.querySelector('table');
-	var old_thead = table.querySelector('thead');
-	table.replaceChild(new_thead, old_thead);
 	var old_tbody = table.querySelector('tbody');
 	var new_tbody = html_comp('tbody');
 	favourite_stops.forEach(stop => {
