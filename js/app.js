@@ -91,10 +91,9 @@ addEventListener('online', (event) => {
 	check_metadata();
 });
 
-init();
-
 //register service worker
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js')
 	.catch((err) => alert('Service worker registration FAIL:', err));
 }
+init();
