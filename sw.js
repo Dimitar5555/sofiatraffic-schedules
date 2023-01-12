@@ -19,16 +19,18 @@ const files_to_cache = [
 	'fonts/bootstrap-icons.woff2'
 ];
 self.addEventListener('install', () => {
-	caches.open("pwa-assets")
-	.then(cache => {
-		cache.addAll(files_to_cache);
-	});
+	clear_cache()
+	.then(() => populate_cache())
+	.then(() => self.clients.matchAll())
+    .then((clients) => clients.forEach(client => client.navigate(client.url)));
 });
 self.addEventListener('fetch', function (event) {
 	var requested_file = event.request.url.split('/');
 	requested_file = requested_file[requested_file.length-1];
 	if(requested_file.indexOf('metadata.json')!==-1){
+		var cur_app_version = caches.match('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
 		update_file('data/metadata.json', event);
+		
 	}
 	if(requested_file.indexOf('?force_update')!==-1){
 		update_file(`data/${requested_file.split('?')[0]}`, event);
@@ -47,5 +49,19 @@ function update_file(url, event=false){
 		if(event){
 			event.respondWith(response);
 		}
+	});
+}
+function clear_cache(){
+	return caches.keys()
+	.then(function(keyList) {
+		return Promise.all(keyList.map(function(key) {
+			return caches.delete(key);
+		}));
+	})
+}
+function populate_cache(){
+	return caches.open("pwa-assets")
+	.then(cache => {
+		cache.addAll(files_to_cache);
 	});
 }
