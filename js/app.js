@@ -38,8 +38,9 @@ function init(){
 		nav_links.item(0).innerText = lang.nav.schedules;
 		nav_links.item(1).innerText = lang.nav.favourites;
 
-		document.querySelector('#last_data_update_text').innerText = lang.footer.last_data_update;
-		document.querySelector('#last_site_update_text').innerText = lang.footer.last_site_update;
+		var footer_spans = document.querySelector('footer').querySelectorAll('span');
+		footer_spans.item(0).innerText = lang.footer.last_data_update;
+		footer_spans.item(2).innerText = lang.footer.last_site_update;
 
 		check_metadata();
 	});
