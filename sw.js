@@ -19,19 +19,32 @@ const files_to_cache = [
 	'fonts/bootstrap-icons.woff2'
 ];
 self.addEventListener('install', () => {
-	clear_cache()
-	.then(() => populate_cache())
-	.then(() => self.clients.matchAll())
-    .then((clients) => clients.forEach(client => client.navigate(client.url)));
+	populate_cache();
 });
 self.addEventListener('fetch', function (event) {
 	var requested_file = event.request.url.split('/');
 	requested_file = requested_file[requested_file.length-1];
+
 	if(requested_file.indexOf('metadata.json')!==-1){
-		var cur_app_version = caches.match('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
-		update_file('data/metadata.json', event);
-		
+		check_metadata_freshness(event);/*
+		var last_app_version = caches.match('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
+		update_file('data/metadata.json', event)
+		.then(() => {
+			caches.match('data/metadata.json')
+			.then(text => JSON.parse(text))
+			.then(data => data.app_version)
+			.then(current_app_version => {
+				if(current_app_version!==last_app_version){
+					clear_cache()
+					.then(() => populate_cache())
+					//reload all tabs
+					.then(() => self.clients.matchAll())
+					.then((clients) => clients.forEach(client => client.navigate(client.url)));
+				}
+			})
+		});*/
 	}
+
 	if(requested_file.indexOf('?force_update')!==-1){
 		update_file(`data/${requested_file.split('?')[0]}`, event);
 	}
@@ -39,6 +52,24 @@ self.addEventListener('fetch', function (event) {
 		event.respondWith(caches.match(event.request) || update_file(event.request, event));
 	}
 });
+function check_metadata_freshness(event=false){
+	var last_app_version = caches.match('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
+		update_file('data/metadata.json', event)
+		.then(() => {
+			caches.match('data/metadata.json')
+			.then(text => JSON.parse(text))
+			.then(data => data.app_version)
+			.then(current_app_version => {
+				if(current_app_version!==last_app_version){
+					clear_cache()
+					.then(() => populate_cache())
+					//reload all tabs
+					.then(() => self.clients.matchAll())
+					.then((clients) => clients.forEach(client => client.navigate(client.url)));
+				}
+			})
+		});
+}
 function update_file(url, event=false){
 	return fetch(url)
 	.then(response => {

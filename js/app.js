@@ -28,6 +28,7 @@ function init(){
 	if(!localStorage.getItem('favourite_stops')){
 		localStorage.setItem('favourite_stops', '[]');
 	}
+	
 	fetch(`i18n/${localStorage.lang}.json`)
 	.then(response => response.text())
 	.then(response => lang = JSON.parse(response))
@@ -41,16 +42,9 @@ function init(){
 		var footer_spans = document.querySelector('footer').querySelectorAll('span');
 		footer_spans.item(0).innerText = lang.footer.last_data_update;
 		footer_spans.item(2).innerText = lang.footer.last_site_update;
-
-		check_metadata();
 	});
-}
-function update_versions(){
-	document.querySelector('#last_data_update').innerText = localStorage.retrieval_date;
-	document.querySelector('#version').innerText = localStorage.app_version;
-}
-function check_metadata(){
-	return fetch('data/metadata.json')
+
+	fetch('data/metadata.json')
 	.then(response => response.text())
 	.then(text => JSON.parse(text))
 	.then(metadata => {
@@ -59,6 +53,10 @@ function check_metadata(){
 		update_versions();
 		return fetch_data(metadata);
 	});
+}
+function update_versions(){
+	document.querySelector('#last_data_update').innerText = localStorage.retrieval_date;
+	document.querySelector('#version').innerText = localStorage.app_version;
 }
 function fetch_data(metadata=false){
 	var promises = [];
