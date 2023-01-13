@@ -28,7 +28,7 @@ function init(){
 	if(!localStorage.getItem('favourite_stops')){
 		localStorage.setItem('favourite_stops', '[]');
 	}
-	
+
 	fetch(`i18n/${localStorage.lang}.json`)
 	.then(response => response.text())
 	.then(response => lang = JSON.parse(response))
@@ -89,6 +89,8 @@ function fetch_data(metadata=false){
 addEventListener('online', (event) => {
 	check_metadata();
 });
+//try to update metadata every hour
+window.setInterval(()=>check_metadata(), 1000*60*60);
 
 //register service worker
 if ('serviceWorker' in navigator) {
