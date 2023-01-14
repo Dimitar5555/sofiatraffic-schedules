@@ -44,6 +44,9 @@ function init(){
 		footer_spans.item(2).innerText = lang.footer.last_site_update;
 	});
 
+	check_metadata();
+}
+function check_metadata(){
 	fetch('data/metadata.json')
 	.then(response => response.text())
 	.then(text => JSON.parse(text))
