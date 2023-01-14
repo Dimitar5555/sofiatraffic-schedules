@@ -16,7 +16,7 @@ var metadata = {
 	app_version: '2023-01-12',
 	routes_hash: '',
 	stops_hash: '',
-	retrieval_date: `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDay().toString().padStart(2, '0')}`
+	retrieval_date: `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')}`
 };
 var routes = [];
 
