@@ -19,7 +19,7 @@
 		}
 	],
 	"id": "/?source=pwa",
-	"start_url": "/?source=pwa",
+	"start_url": "/sofiatraffic-schedules/",
 	"background_color": "#3367D6",
 	"display": "standalone",
 	"scope": "/",
