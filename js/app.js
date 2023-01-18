@@ -89,11 +89,15 @@ function fetch_data(metadata=false){
 
 	return Promise.all(promises);
 }
+//try to update metadata every hour
+var update_interval;
 addEventListener('online', (event) => {
 	check_metadata();
+	update_interval = window.setInterval(()=>check_metadata(), 1000*60*60);
 });
-//try to update metadata every hour
-window.setInterval(()=>check_metadata(), 1000*60*60);
+addEventListener('offline', (event) => {
+	window.clearInterval(update_interval);
+});
 
 //register service worker
 if ('serviceWorker' in navigator) {
