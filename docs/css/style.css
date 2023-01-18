@@ -1,0 +1,157 @@
+@font-face { font-family: SofiaSans; src: url('../fonts/SofiaSans-Medium.ttf'); } 
+@font-face { font-family: SofiaSans; font-weight: bold; src: url('../fonts/SofiaSans-Bold.ttf');}
+* {
+	font-family: SofiaSans;
+}
+td, th {
+	vertical-align: top;
+	text-align: center;
+}
+#stops_list {
+	list-style: none;
+}
+#stops_list > li:hover {
+	background-color: #dedede;
+}
+#line_selector > button {
+	margin: 0 2px;
+	min-width: 45px;
+	font-weight: bold;
+}
+.M1-bg-color {
+	background-color: #ec2029;
+}
+.M2-bg-color {
+	background-color: #1077bc;
+}
+.M3-bg-color {
+	background-color: #3bb44b;
+}
+.M4-bg-color {
+	background-color: #fcd403;
+}
+.tramway-bg-color {
+	background-color: #f6921e;
+}
+.trolleybus-bg-color {
+	background-color: #26a9e0;
+}
+.electrobus-bg-color {
+	background-color: #006838;
+}
+.autobus-bg-color {
+	background-color: #be1e2d;
+}
+.btn:hover {
+	background-color: #26a9e0;
+}
+.line_selector_btn {
+	width: 60px;
+	height: 30px;
+	margin: 2.5px;
+}
+span.line-break {
+	display: block;
+}
+span.line-break:after {
+	content: none;
+}
+.bi-star, .b-star-fill {
+	vertical-align: middle;
+	line-height: 37.6px;
+	text-align: center;
+}
+.bg-danger::after, .bg-warning::after {
+	background-color: white;
+}
+#schedule_table > tbody > tr > td {
+	min-width: 36px;
+	min-height: 40px;
+}
+#detailed_schedule > thead > tr > th {
+	vertical-align: middle;
+}
+
+/*!
+// CSS only Responsive Tables
+// http://dbushell.com/2016/03/04/css-only-responsive-tables/
+// by David Bushell
+*/
+
+@media screen and (max-width:850px){
+	td > span:nth-child(even) {
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+	td {
+		font-variant-numeric: tabular-nums;
+	}
+	#schedule_table > tbody > tr >td {
+		text-align: left;
+	}
+	span.line-break {
+		content: " ";
+		display: inline;
+	}
+  .table,
+  .table-flip tbody {
+	-webkit-overflow-scrolling: touch;
+	
+	background: radial-gradient(left, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 0 center,
+				radial-gradient(right, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 100% center;
+	background-size: 10px 100%, 10px 100%;
+	background-attachment: scroll, scroll;
+	background-repeat: no-repeat;
+  }
+  
+  .table td:first-child,
+  .table-flip tbody tr:first-child {
+	background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+	background-repeat: no-repeat;
+	background-size: 20px 100%;
+  }
+  
+  .table td:last-child,
+  .table-flip tbody tr:last-child {
+	background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	background-size: 20px 100%;
+  }
+  
+  .table-flip {
+	display: flex;
+	overflow: hidden;
+	background: none;
+  }
+  
+  .table-flip thead {
+	display: flex;
+	flex-shrink: 0;
+	min-width: min-content;
+  }
+  
+  .table-flip tbody {
+	display: flex;
+	position: relative;
+	overflow-x: auto;
+	overflow-y: hidden;
+  }
+  
+  .table-flip tr {
+	display: flex;
+	flex-direction: column;
+	min-width: min-content;
+	flex-shrink: 0;
+  }
+  
+  .table-flip td,
+  .table-flip th {
+	display: block;
+  }
+  
+  .table-flip td {
+	background-image: none !important;
+	border-left: 0;
+  }
+}

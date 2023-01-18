@@ -34,8 +34,8 @@ jobs:
       with:
         message: 'Update schedules'
         add: '*.json'
-        remove: '.data/*'
-        cwd: 'data/'
+        remove: '.docs/data/*'
+        cwd: 'docs/data/'
         pull: '--rebase --autostash'
   # Build job
   build:
@@ -49,7 +49,7 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: .
+          source: ./docs
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: '.'
+          path: '/docs/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

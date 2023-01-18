@@ -1,0 +1,55 @@
+{
+	"code": "bg",
+	"title": "Разписание на МГТ - София",
+	"nav": {
+	  "schedules": "Разписание",
+	  "favourites": "Любими спирки"
+	},
+	"line_types": {
+	  "metros": "Метро",
+	  "tramways": "Трамваи",
+	  "trolleybuses": "Тролейбуси",
+	  "electrobuses": "Електробуси",
+	  "autobuses": "Автобуси",
+	  "temporary": "Заместващи автобуси",
+	  "night": "Нощни автобуси"
+	},
+	"line_type": {
+	  "metro": "Метролиния",
+	  "tramway": "Трамвай",
+	  "trolleybus": "Тролейбус",
+	  "electrobus": "Електробус",
+	  "autobus": "Автобус",
+	  "temporary": "Заместващ автобус",
+	  "night": "Нощен автобус"
+	},
+	"weekdays": {
+	  "weekday": "делник",
+	  "pre_holiday": "предпразник",
+	  "holiday": "празник"
+	},
+	"schedules": {
+	  "back": " Назад",
+	  "line": "Линия:",
+	  "schedule": "Разписание:",
+	  "valid_from": "Валидно от:",
+	  "direction": "Посока",
+	  "stop": "Спирка",
+	  "show_by_cars": "Показване на разписанието по коли",
+	  "modal_title": "Разписание на курса",
+	  "departure_time": "Час на потегляне",
+	  "close": "Затвори",
+	  "note": "Непълните курсове са маркирани с червен/жълт фон.",
+	  "add_to_favourites": "Добави към списъка с любими спирки",
+	  "remove_from_favourites": "Премахни от списъка с любими спирки"
+	},
+	"favourites": {
+	  "stop": "Спирка",
+	  "actions": "Действия",
+	  "virtual_table": "Виртуално табло"
+	},
+	"footer": {
+		"last_data_update": "Последно обновяване на разписанията",
+		"last_site_update": "Последно обновяване на сайта"
+	}
+  }
