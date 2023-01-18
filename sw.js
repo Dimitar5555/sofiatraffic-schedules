@@ -1,5 +1,6 @@
 const files_to_cache = [
 	'',
+	'manifest.json',
 	'data/schedule.json',
 	'data/stops.json',
 	'data/metadata.json',
@@ -26,23 +27,7 @@ self.addEventListener('fetch', function (event) {
 	requested_file = requested_file[requested_file.length-1];
 
 	if(requested_file.indexOf('metadata.json')!==-1){
-		check_metadata_freshness(event);/*
-		var last_app_version = caches.match('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
-		update_file('data/metadata.json', event)
-		.then(() => {
-			caches.match('data/metadata.json')
-			.then(text => JSON.parse(text))
-			.then(data => data.app_version)
-			.then(current_app_version => {
-				if(current_app_version!==last_app_version){
-					clear_cache()
-					.then(() => populate_cache())
-					//reload all tabs
-					.then(() => self.clients.matchAll())
-					.then((clients) => clients.forEach(client => client.navigate(client.url)));
-				}
-			})
-		});*/
+		check_metadata_freshness(event);
 	}
 
 	if(requested_file.indexOf('?force_update')!==-1){
@@ -61,8 +46,7 @@ function check_metadata_freshness(event=false){
 			.then(data => data.app_version)
 			.then(current_app_version => {
 				if(current_app_version!==last_app_version){
-					clear_cache()
-					.then(() => populate_cache())
+					populate_cache()
 					//reload all tabs
 					.then(() => self.clients.matchAll())
 					.then((clients) => clients.forEach(client => client.navigate(client.url)));
