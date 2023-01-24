@@ -150,7 +150,7 @@ function get_routes() {
 			};
 			var stops_json = JSON.stringify(res);
 			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
-			fs.writeFileSync('data/stops.json', stops_json);
+			fs.writeFileSync('docs/data/stops.json', stops_json);
 		});
 	})
 }
@@ -262,9 +262,9 @@ function finalise() {
 
 	console.log('Done! Writing data to schedule.json');
 	var routes_json = JSON.stringify(routes);
-	fs.writeFileSync('data/schedule.json', routes_json);
+	fs.writeFileSync('docs/data/schedule.json', routes_json);
 	metadata.routes_hash = crypto.createHash('sha256').update(routes_json).digest('hex');
-	fs.writeFileSync('data/metadata.json', JSON.stringify(metadata));
+	fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
 }
 function split_M1_M2(route) {
 	var actual_routes = [
