@@ -32,6 +32,7 @@ jobs:
     - run: npm run build
     - uses: EndBug/add-and-commit@v9
       with:
+        author_name: 'Data Updater'
         message: 'Update schedules'
         add: '*.json'
         remove: '.docs/data/*'
