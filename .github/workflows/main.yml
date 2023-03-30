@@ -34,8 +34,8 @@ jobs:
       with:
         author_name: 'Data Updater'
         message: 'Update schedules'
-        add: '*.json'
-        remove: '.docs/data/*'
+        add: 'docs/data/*'
+        remove: ''
         cwd: 'docs/data/'
         pull: '--rebase --autostash'
   # Build job
