@@ -183,7 +183,7 @@ function get_stop_name(id){
 	if(!id){
 		return '-';
 	}
-	return stops[id.toString().padStart(4, '0')][`name_${lang.code}`];
+	return stops[id.toString().padStart(4, '0')]?.[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
 }
 function display_schedule(){
 	const table = schedule_div.querySelector('#schedule_table');
@@ -299,7 +299,7 @@ function display_schedule(){
 function display_vehicle_schedule(time, is24h){
 	is24h = is24h=='true';
 	var time = (is24h?24*60:0)+parseInt(time);
-	console.log(time);
+
 	var route = routes[current_route_index];
 	var direction = parseInt(schedule_div.querySelector('#direction').value);
 	var stop = parseInt(schedule_div.querySelector('#stops').value);
@@ -314,11 +314,12 @@ function display_vehicle_schedule(time, is24h){
 		if(correct_car){
 			var modal = document.querySelector('#schedule_modal');
 			var old_tbody = modal.querySelector('tbody');
-			var new_tbody = html_comp('tbody');
+			var new_tbody = html_comp('tbody');			
 			correct_car.forEach((time, index) => {
 				var tr = html_comp('tr');
-				tr.appendChild(html_comp('td', {text: `[${stops[index].toString().padStart(4, '0')}] ${get_stop_name(stops[index])}`}));
-				tr.appendChild(html_comp('td', {text: mins_to_time(time, true)}));
+				var highlight = stops[index].toString()==document.querySelector('#stops').value;
+				tr.appendChild(html_comp('td', {text: `[${stops[index].toString().padStart(4, '0')}] ${get_stop_name(stops[index])}`.split('МЕТРОСТАНЦИЯ ').join(' '), class: `${highlight?'bg-warning':''}`}));
+				tr.appendChild(html_comp('td', {text: mins_to_time(time, true), class: `${highlight?'bg-warning':''}`}));
 				new_tbody.append(tr);
 			});
 			replace_child(new_tbody, old_tbody);

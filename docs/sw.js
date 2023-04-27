@@ -64,7 +64,8 @@ function update_file(url, event=false){
 		if(event){
 			event.respondWith(response);
 		}
-	});
+	})
+	.catch(() => caches.open("pwa-assets").then(response => response.match(url)));
 }
 function clear_cache(){
 	return caches.keys()
