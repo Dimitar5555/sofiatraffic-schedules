@@ -6,7 +6,7 @@ const files_to_cache = [
 	'data/metadata.json',
 	'js/app.js',
 	'js/schedules.js',
-	'js/favourite_stops.js',
+	'js/favourites.js',
 	'js/bootstrap.bundle.min.js',
 	'i18n/bg.json',
 	'i18n/en.json',
@@ -27,34 +27,27 @@ self.addEventListener('fetch', function (event) {
 	requested_file = requested_file[requested_file.length-1];
 
 	if(requested_file.indexOf('metadata.json')!==-1){
-		check_metadata_freshness(event);
+		if(!check_metadata_freshness()){
+			fetch_file(requested_file);
+		}
 	}
 
 	if(requested_file.indexOf('?force_update')!==-1){
-		update_file(`data/${requested_file.split('?')[0]}`, event);
+		fetch_file(`data/${requested_file.split('?')[0]}`, event);
 	}
 	else{
-		event.respondWith(caches.match(event.request) || update_file(event.request, event));
+		fetch_file(event.request, event);
 	}
 });
-function check_metadata_freshness(event=false){
-	var last_app_version = caches.match('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
-		update_file('data/metadata.json', event)
-		.then(() => {
-			caches.match('data/metadata.json')
-			.then(text => JSON.parse(text))
-			.then(data => data.app_version)
-			.then(current_app_version => {
-				if(current_app_version!==last_app_version){
-					populate_cache()
-					//reload all tabs
-					.then(() => self.clients.matchAll())
-					.then((clients) => clients.forEach(client => client.navigate(client.url)));
-				}
-			})
-		});
+async function check_metadata_freshness(){
+	var local_app_version = await fetch_file_locally('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
+	var current_app_version = await fetch_file('data/metadata.json').then(text => JSON.parse(text)).then(data => data.app_version);
+	return local_app_version!==current_app_version;
 }
-function update_file(url, event=false){
+function fetch_file_locally(url){
+	return (() => caches.open("pwa-assets").then(response => response.match(url)))
+}
+function fetch_file(url, event=false){
 	return fetch(url)
 	.then(response => {
 		caches.open("pwa-assets")
@@ -65,7 +58,7 @@ function update_file(url, event=false){
 			event.respondWith(response);
 		}
 	})
-	.catch(() => caches.open("pwa-assets").then(response => response.match(url)));
+	.catch(() => fetch_file_locally(url));
 }
 function clear_cache(){
 	return caches.keys()

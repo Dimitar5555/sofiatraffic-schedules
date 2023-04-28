@@ -40,6 +40,7 @@ function get_routes() {
 				line: split_route[1],
 				temp: decodeURI(split_route[1]).indexOf('ТМ')!==-1,
 				night: split_route[1].indexOf('N')!==-1,
+				school: decodeURI(split_route[1]).indexOf('У')!==-1,
 				type: split_route[0],
 				directions: [],
 				schedules: []

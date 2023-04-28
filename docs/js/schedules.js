@@ -1,3 +1,25 @@
+function toggle_star(star, event){
+	if(event=='over'){
+		if(star.dataset.style=='none'){
+			star.classList.remove('bi-star');
+			star.classList.add('bi-star-fill');
+		}
+		else{
+			star.classList.add('bi-star');
+			star.classList.remove('bi-star-fill');
+		}
+		return;
+	}
+	if(star.dataset.style=='none'){
+		star.classList.add('bi-star');
+		star.classList.remove('bi-star-fill');
+	}
+	else{
+		star.classList.remove('bi-star');
+		star.classList.add('bi-star-fill');
+	}
+}
+
 function mins_to_time(mins, h24_to_0=false){
 	if(!mins){
 		return '-';
@@ -51,6 +73,9 @@ function init_schedules(){
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.temporary}));
 	create_schedule('temp');
 
+	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.schoolbuses}));
+	create_schedule('school');
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.night}));
 	create_schedule('night');
 
@@ -59,7 +84,7 @@ function init_schedules(){
 function create_schedule(type){
 	var routes_to_process = [];
 	if(['metro', 'tramway', 'trolleybus', 'electrobus', 'autobus'].indexOf(type)!==-1){
-		routes_to_process = routes.filter((route) => route.type==type && !route.temp && !route.night);
+		routes_to_process = routes.filter((route) => route.type==type && !route.temp && !route.night && !route.school);
 	}
 	else{
 		routes_to_process = routes.filter((route) => route[type]);
@@ -71,7 +96,6 @@ function create_schedule(type){
 		class: `line_selector_btn text-light rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
 		'onclick': 'show_schedule(this.dataset.routeIndex)'})));
 }
-
 
 function show_schedule(route_id){
     current_route_index = route_id;
@@ -99,7 +123,7 @@ function configure_weekday_selector(){
 		return [vari, res.join(' / ')];
 	});
 	var types = lang.line_type;
-	schedule_div.querySelector('#line').innerText = `${types[route.type]} ${decodeURI(route.line)}`;
+	schedule_div.querySelector('#line').innerHTML = `<i class="h5 bi text-warning" onclick="add_remove_favourite_line()"></i> ${types[route.type]} ${decodeURI(route.line)}`;
 	var old_date_type_select = schedule_div.querySelector('#date_type');
 	var new_date_type_select = old_date_type_select.cloneNode(false);
 	variants1.forEach((variant) => {
@@ -140,13 +164,35 @@ function configure_stop_selector(){
 	}
 	replace_child(new_stop_el, old_stop_el);
 	configure_favourite_stop_button();
+	configure_favourite_line_button();
     display_schedule();
+}
+function configure_favourite_line_button(favourite_lines=false){
+	var star = schedule_div.querySelectorAll('i').item(1);
+	star.setAttribute('onmouseover', "toggle_star(this, 'over')");
+	star.setAttribute('onmouseout', "toggle_star(this, 'out')");
+	if(!favourite_lines){
+		favourite_lines = get_favourite_lines();
+	}
+	var id = gen_route_json();
+	if(favourite_lines.indexOf(id)!==-1){
+		star.classList.add('bi-star-fill');
+		star.classList.remove('bi-star');
+		star.dataset.style = "fill";
+		star.setAttribute('title', lang.schedules.remove_from_favourites);
+	}
+	else{
+		star.classList.remove('bi-star-fill');
+		star.classList.add('bi-star');
+		star.dataset.style = "none";
+		star.setAttribute('title', lang.schedules.add_to_favourites);
+	}
 }
 function configure_favourite_stop_button(favourite_stops=false){
 	var stop = schedule_div.querySelector('#stops').value;
-	var star = schedule_div.querySelectorAll('i').item(1);
+	var star = schedule_div.querySelectorAll('i').item(2);
 	if(!favourite_stops){
-		favourite_stops = JSON.parse(window.localStorage.getItem('favourite_stops'));
+		favourite_stops = get_favourite_stops();
 	}
 	if(stop==''){
 		star.classList.remove('bi-star-fill');
@@ -160,8 +206,8 @@ function configure_favourite_stop_button(favourite_stops=false){
 		return;
 	}
 	else{
-		star.setAttribute('onmouseover', "if(this.dataset.style=='none'){this.classList.remove('bi-star');this.classList.add('bi-star-fill');}else{this.classList.add('bi-star');this.classList.remove('bi-star-fill');}");
-		star.setAttribute('onmouseout', "if(this.dataset.style=='none'){this.classList.add('bi-star');this.classList.remove('bi-star-fill');}else{this.classList.remove('bi-star');this.classList.add('bi-star-fill');}");
+		star.setAttribute('onmouseover', "toggle_star(this, 'over')");
+		star.setAttribute('onmouseout', "toggle_star(this, 'out')");
 		star.setAttribute('onclick', "add_remove_favourite_stop(this.parentElement.nextElementSibling.querySelector('select').value.toString().padStart(4, '0'))");		
 		star.classList.add('text-warning');
 		star.classList.remove('text-secondary');
@@ -224,7 +270,6 @@ function display_schedule(){
 		cars.forEach((time, index) => {
 			cars[index][0] = mins_to_time(time[0]);
 		});
-		console.log(cars);
 		var arranged = [];
         cars.forEach(car => {
             var hour = parseInt(car[0].split(':'));

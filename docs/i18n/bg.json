@@ -3,7 +3,7 @@
 	"title": "Разписание на МГТ - София",
 	"nav": {
 	  "schedules": "Разписание",
-	  "favourites": "Любими спирки"
+	  "favourites": "Любими"
 	},
 	"line_types": {
 	  "metros": "Метро",
@@ -11,6 +11,7 @@
 	  "trolleybuses": "Тролейбуси",
 	  "electrobuses": "Електробуси",
 	  "autobuses": "Автобуси",
+	  "schoolbuses": "Училищни автобуси",
 	  "temporary": "Заместващи автобуси",
 	  "night": "Нощни автобуси"
 	},
@@ -40,8 +41,8 @@
 	  "departure_time": "Час на потегляне",
 	  "close": "Затвори",
 	  "note": "Непълните курсове са маркирани с червен/жълт фон.",
-	  "add_to_favourites": "Добави към списъка с любими спирки",
-	  "remove_from_favourites": "Премахни от списъка с любими спирки"
+	  "add_to_favourites": "Добави към списъка с любими",
+	  "remove_from_favourites": "Премахни от списъка с любими"
 	},
 	"favourites": {
 	  "stop": "Спирка",
