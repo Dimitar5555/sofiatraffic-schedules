@@ -90,15 +90,12 @@ function create_schedule(type){
 		routes_to_process = routes.filter((route) => route[type]);
 	}
 	routes_to_process.sort((a, b) => Number(a.line)>Number(b.line));
-	routes_to_process.forEach(route => line_selector_div.append(html_comp('button', {
-		text: decodeURI(route.line),
-		'data-route-index': route.index,
-		class: `line_selector_btn text-light rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
-		'onclick': 'show_schedule(this.dataset.routeIndex)'})));
+	routes_to_process.forEach(route => generate_line_btn(route.index, line_selector_div));
 }
 
-function show_schedule(route_id){
-    current_route_index = route_id;
+function show_schedule(el){
+	document.querySelector('[role=tab]').click();
+    current_route_index = el.dataset.routeIndex;
 	line_selector_div.classList.add('d-none');
     schedule_display_div.classList.remove('d-none');
 	configure_weekday_selector();

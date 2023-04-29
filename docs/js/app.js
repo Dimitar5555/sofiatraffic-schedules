@@ -63,31 +63,31 @@ function update_versions(){
 }
 function fetch_data(metadata=false){
 	var promises = [];
-	var force_stops = false;
-	var force_sched = false;
-	if(localStorage.stops_hash!==metadata.stops_hash){
-		force_stops = true;
-	}
-	if(localStorage.routes_hash!==metadata.routes_hash){
-		force_sched = true;
-	}
 
-	promises.push(fetch(`data/stops.json${force_stops?'?force_update':''}`)
+	promises.push(fetch('data/stops.json')
 	.then(response => response.json())
 	.then(stops => {
 		window.stops = stops;
 		localStorage.stops_hash = metadata.stops_hash;
-		init_favourtie_stops();
 	}));
-	promises.push(fetch(`data/schedule.json${force_sched?'?force_update':''}`)
+	promises.push(fetch('data/schedule.json')
 	.then(response => response.json())
 	.then(routes => {
 		window.routes = routes;
 		localStorage.routes_hash = metadata.routes_hash;
 		init_schedules();
+		init_favourites();
 	}));
 
 	return Promise.all(promises);
+}
+function generate_line_btn(route_index, parent){
+	var el = html_comp('button', {
+		text: decodeURI(routes[route_index].line),
+		'data-route-index': route_index,
+		class: `line_selector_btn text-light rounded-1 ${routes[route_index].type!=='metro'?routes[route_index].type:routes[route_index].line}-bg-color`,
+		'onclick': 'show_schedule(this)'});
+	parent.appendChild(el);
 }
 //try to update metadata every hour
 var update_interval;
