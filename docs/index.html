@@ -91,8 +91,8 @@
 						<div class="modal-dialog">
 						  <div class="modal-content">
 							<div class="modal-header">
-							  <h5 class="modal-title" id="exampleModalLabel">Разписание на курс</h5>
-							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								<h5 class="modal-title" id="exampleModalLabel">Разписание на курс</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
 								<!--<button>Предишен курс на тази кола</button>
@@ -108,11 +108,11 @@
 								</table>
 							</div>
 							<div class="modal-footer">
-							  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
 							</div>
 						  </div>
 						</div>
-					  </div>
+					</div>
 				</div>
 			</div>
 			<div class="tab-pane p-2 fade" id="favorite_stops" role="tabpanel">
@@ -125,21 +125,36 @@
 					</thead>
 					<tbody></tbody>
 				</table>
-				<table id="lines" class="table table-bordered">
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="updated_schedules" tabindex="-1" aria-labelledby="updated_schedules" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Нови разписания по дати</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<table id="updated_schedules_table" class="table table-bordered table-sm table-text-left">
 					<thead>
 						<tr>
-							<th></th>
-							<th></th>
+							<th>Дата</th>
+							<th>Линии</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
 				</table>
 			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+			</div>
+		  </div>
 		</div>
 	</div>
 	<footer class="footer p-2 border-top">
-		<span id="last_data_update_text"></span>: <span id="last_data_update"></span><br>
-		<span id="last_site_update_text"></span>: <span id="version"></span>
+		<span id="last_data_update_text"></span>: <a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a><br>
+		<span id="last_site_update_text"></span>: <span id="app_version"></span>
 	</footer>
 	<script src="js/app.js"></script>
 	<script src="js/schedules.js"></script>

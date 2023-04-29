@@ -41,7 +41,7 @@ function init(){
 
 		var footer_spans = document.querySelector('footer').querySelectorAll('span');
 		footer_spans.item(0).innerText = lang.footer.last_data_update;
-		footer_spans.item(2).innerText = lang.footer.last_site_update;
+		footer_spans.item(1).innerText = lang.footer.last_site_update;
 	});
 
 	check_metadata();
@@ -59,7 +59,7 @@ function check_metadata(){
 }
 function update_versions(){
 	document.querySelector('#last_data_update').innerText = localStorage.retrieval_date;
-	document.querySelector('#version').innerText = localStorage.app_version;
+	document.querySelector('#app_version').innerText = localStorage.app_version;
 }
 function fetch_data(metadata=false){
 	var promises = [];

@@ -33,24 +33,21 @@ function show_favourite_lines(favourite_lines=false){
 	if(!favourite_lines){
 		favourite_lines = JSON.parse(window.localStorage.getItem('favourite_lines'));
 	}
-	var table = favorite_stops_div.querySelector('table#lines');
-	var old_tbody = table.querySelector('tbody');
-	var new_tbody = html_comp('tbody');
+	var old_div = document.querySelector('div#lines');
+	var parent = old_div.parentElement;
+	var new_div = html_comp('div', {id: 'lines'});
+	var types = {'metro': 1, 'tramway': 2, 'trolleybus': 3, 'electrobus': 4, 'autobus': 5};
+	favourite_lines.sort((a, b) => {
+		var a = a.split('_');
+		var b = b.split('_');
+		return types[a[0]] - types[b[0]] || Number(a[1]) - Number(b[1])});
+	console.log(favourite_lines);
 	favourite_lines.forEach(data => {
 		var line = data.split('_');
-		var tr = html_comp('tr');
-		td0 = html_comp('td');
-		tr.appendChild(td0);
 		var route_index = routes.findIndex(a => a.line==line[1] && a.type==line[0]);
-		generate_line_btn(route_index, td0);
-		var td1 = html_comp('td');
-		td1.appendChild(html_comp('a', {href: `https://sofiatraffic.bg/bg/transport/virtual-tables/dsds`, text: lang.favourites.virtual_table, target: '_blank'}));
-		//td1.appendChild(document.createTextNode(' '));
-		//td1.appendChild(html_comp('a', {href: `"++"`, text: 'Разписание', target: '_blank'}));
-		tr.appendChild(td1);
-		new_tbody.appendChild(tr);
+		generate_line_btn(route_index, new_div);
 	});
-	table.replaceChild(new_tbody, old_tbody);
+	parent.replaceChild(new_div, old_div);
 }
 function get_favourite_lines(){
 	return JSON.parse(window.localStorage.getItem('favourite_lines')) || [];

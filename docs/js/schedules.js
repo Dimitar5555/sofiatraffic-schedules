@@ -55,6 +55,9 @@ function init_schedules(){
 	line_selector_div = old_line_selector.cloneNode(false);
 	routes.map((route, index) => route.index = index);
 
+	line_selector_div.append(html_comp('h2', {text: 'Любими'}));
+	line_selector_div.appendChild(html_comp('div', {id: 'lines'}));
+
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.metros}));
 	create_schedule('metro');
 
@@ -80,6 +83,31 @@ function init_schedules(){
 	create_schedule('night');
 
 	old_line_selector.parentElement.replaceChild(line_selector_div, old_line_selector);
+}
+function init_updated_schedules_table(){
+	var dates = {};
+	routes.forEach(route => {
+		route.schedules.forEach(schedule => {
+			var date = schedule.valid_from.split('.').reverse().join('-');
+			if(!dates[date]){
+				dates[date] = [];
+			}
+			var schd = JSON.stringify([route.type, route.line, schedule.valid_thru]);
+			if(dates[date].indexOf(schd)==-1){
+				dates[date].push(schd);
+			}
+		});
+	});
+	var tbody = document.querySelector('#updated_schedules_table').querySelector('tbody');
+	var ordered_date_keys = Object.keys(dates).sort().reverse();
+	var decode_weekdays = (weekdays="111") => weekdays.split('').map((day, index) => day==1?['делник', 'предпразник', 'празник'][index]:false).filter(a => a).join(', ');
+	var generate_lines_data = lines => lines.map(text => JSON.parse(text)).map(route => `${lang.line_type[route[0]]} ${decodeURI(route[1])}: ${decode_weekdays(route[2])}`).join('\n');
+	ordered_date_keys.forEach(key => {
+		var tr = html_comp('tr');
+		tbody.appendChild(tr);
+		tr.appendChild(html_comp('td', {text: key, class: 'align-middle'}));
+		tr.appendChild(html_comp('td', {text: generate_lines_data(dates[key])}));
+	});
 }
 function create_schedule(type){
 	var routes_to_process = [];
