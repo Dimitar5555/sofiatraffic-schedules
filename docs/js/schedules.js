@@ -384,8 +384,12 @@ function display_vehicle_schedule(time, is24h){
 		if(correct_car){
 			var modal = document.querySelector('#schedule_modal');
 			var old_tbody = modal.querySelector('tbody');
-			var new_tbody = html_comp('tbody');			
+			var new_tbody = html_comp('tbody');
 			correct_car.forEach((time, index) => {
+				//patches missing car schedules for M1 and M2
+				if(!stops[index]){
+					return;
+				}
 				var tr = html_comp('tr');
 				var highlight = stops[index].toString()==document.querySelector('#stops').value;
 				tr.appendChild(html_comp('td', {text: `[${stops[index].toString().padStart(4, '0')}] ${get_stop_name(stops[index])}`.split('МЕТРОСТАНЦИЯ ').join(' '), class: `${highlight?'bg-warning':''}`}));

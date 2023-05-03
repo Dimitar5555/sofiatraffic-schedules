@@ -41,7 +41,6 @@ function show_favourite_lines(favourite_lines=false){
 		var a = a.split('_');
 		var b = b.split('_');
 		return types[a[0]] - types[b[0]] || Number(a[1]) - Number(b[1])});
-	console.log(favourite_lines);
 	favourite_lines.forEach(data => {
 		var line = data.split('_');
 		var route_index = routes.findIndex(a => a.line==line[1] && a.type==line[0]);
