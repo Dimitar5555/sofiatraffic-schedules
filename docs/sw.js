@@ -20,20 +20,20 @@ const files_to_cache = [
 	'fonts/bootstrap-icons.woff2'
 ];
 self.addEventListener('install', () => {
-	populate_cache();
+	if(navigator.onLine){
+		populate_cache();
+	}
 });
 self.addEventListener('fetch', function (event) {
-	if(is_metadata_up_to_date()){
+	if(!is_metadata_up_to_date() && navigator.onLine){
 		fetch_file('metadata.json')
 		.finally(() => {
 			if(is_metadata_up_to_date()){
-				fetch_file('stops.json');
-				fetch_file('metadata.json');
+				populate_cache();
 			}
 		});
 	}
-	var requested_file = event.request.url.split('/');
-	requested_file = requested_file[requested_file.length-1];
+	var requested_file = event.request.url.split('/').reverse()[0];
 	fetch_file(event.request, event);
 });
 async function is_metadata_up_to_date(){
