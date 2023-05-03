@@ -26,7 +26,7 @@ self.addEventListener('install', () => {
 });
 self.addEventListener('fetch', function (event) {
 	if(!is_metadata_up_to_date() && navigator.onLine){
-		fetch_file('metadata.json')
+		fetch_file('data/metadata.json')
 		.finally(() => {
 			if(is_metadata_up_to_date()){
 				populate_cache();
@@ -37,7 +37,7 @@ self.addEventListener('fetch', function (event) {
 	fetch_file(event.request, event);
 });
 async function is_metadata_up_to_date(){
-	var local_data_version = fetch_file_locally('metadata.json').then(metadata => metadata.retrieval_date);
+	var local_data_version = fetch_file_locally('data/metadata.json').then(metadata => metadata.retrieval_date);
 	var today = new Date().toISOString().split('T')[0];
 	return today==local_data_version;
 }
