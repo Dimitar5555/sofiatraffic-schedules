@@ -28,6 +28,9 @@ function init(){
 	if(!localStorage.getItem('favourite_stops')){
 		localStorage.setItem('favourite_stops', '[]');
 	}
+	if(!localStorage.getItem('favourite_lines')){
+		localStorage.setItem('favourite_lines', '[]');
+	}
 
 	fetch(`i18n/${localStorage.lang}.json`)
 	.then(response => response.text())

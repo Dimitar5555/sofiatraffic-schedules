@@ -1,5 +1,5 @@
 const files_to_cache = [
-	'',
+	'/',
 	'manifest.json',
 	'data/schedule.json',
 	'data/stops.json',

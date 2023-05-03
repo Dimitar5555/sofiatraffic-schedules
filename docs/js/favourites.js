@@ -12,7 +12,7 @@ function init_favourites(){
 }
 function show_favourite_stops(favourite_stops=false){
 	if(!favourite_stops){
-		favourite_stops = JSON.parse(window.localStorage.getItem('favourite_stops'));
+		favourite_stops = get_favourite_stops();
 	}
 	var table = favorite_stops_div.querySelector('table#stops');
 	var old_tbody = table.querySelector('tbody');
@@ -31,7 +31,7 @@ function show_favourite_stops(favourite_stops=false){
 }
 function show_favourite_lines(favourite_lines=false){
 	if(!favourite_lines){
-		favourite_lines = JSON.parse(window.localStorage.getItem('favourite_lines'));
+		favourite_lines = get_favourite_lines();
 	}
 	var old_div = document.querySelector('div#lines');
 	var parent = old_div.parentElement;
