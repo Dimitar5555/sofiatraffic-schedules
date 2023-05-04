@@ -42,7 +42,7 @@ async function is_metadata_up_to_date(){
 	return today==local_data_version;
 }
 function fetch_file_locally(url){
-	return (() => caches.open("pwa-assets").then(response => response.match(url)));
+	return (() => caches.open("pwa-assets").then(response => response.match(url, {ignoreSearch: true})));
 }
 function fetch_file(url, event=false){
 	return fetch(url)
