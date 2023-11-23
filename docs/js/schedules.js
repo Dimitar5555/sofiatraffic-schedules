@@ -67,9 +67,6 @@ function init_schedules(){
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.trolleybuses}));
 	create_schedule('trolleybus');
 
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.electrobuses}));
-	create_schedule('electrobus');
-
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.autobuses}));
 	create_schedule('autobus');
 
@@ -111,7 +108,7 @@ function init_updated_schedules_table(){
 }
 function create_schedule(type){
 	var routes_to_process = [];
-	if(['metro', 'tramway', 'trolleybus', 'electrobus', 'autobus'].indexOf(type)!==-1){
+	if(['metro', 'tramway', 'trolleybus', 'autobus'].indexOf(type)!==-1){
 		routes_to_process = routes.filter((route) => route.type==type && !route.temp && !route.night && !route.school);
 	}
 	else{
