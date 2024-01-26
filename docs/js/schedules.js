@@ -148,13 +148,22 @@ function configure_weekday_selector(){
 	schedule_div.querySelector('#line').innerHTML = `<i class="h5 bi text-warning" onclick="add_remove_favourite_line()"></i> ${types[route.type]} ${decodeURI(route.line)}`;
 	var old_date_type_select = schedule_div.querySelector('#date_type');
 	var new_date_type_select = old_date_type_select.cloneNode(false);
-	variants1.forEach((variant) => {
-		new_date_type_select.appendChild(html_comp('option', {
-			text: `${variant[1]}`,
-			value: variant[0]
+	variants1.forEach((variant, index) => {
+		new_date_type_select.appendChild(html_comp('input', {
+			value: variant[0],
+            type: 'radio',
+            id: `schedule_type_${index}`,
+            name: 'schedule_type',
+            onchange: 'configure_direction_selector(this.value)',
+            class: 'form-check-input'
 		}));
+        new_date_type_select.appendChild(html_comp('label', {
+            text: variant[1],
+            'for': `schedule_type_${index}`
+        }));
 	});
-	replace_child(new_date_type_select, old_date_type_select)
+	replace_child(new_date_type_select, old_date_type_select);
+    document.querySelector("[name=schedule_type]").checked = true;
     configure_direction_selector();
 }
 function configure_direction_selector(){
@@ -251,14 +260,15 @@ function get_stop_name(id){
 	if(!id){
 		return '-';
 	}
+    //TEMP
     var stop = stops.find(stop => stop.code === Number(id));
-	return stop[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
+    return stop[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
 }
-function display_schedule(){
+function display_schedule(schedule_index){
 	const table = schedule_div.querySelector('#schedule_table');
 	const old_tbody = table.querySelector('tbody');
 	var route = routes[current_route_index];
-	
+
 	var new_tbody = html_comp('tbody');
     var tr_thead = html_comp('tr');
     var tr_tbody = html_comp('tr');
@@ -273,7 +283,7 @@ function display_schedule(){
 	}
 
 	var day_of_week_select = schedule_div.querySelector('#date_type');
-	var day_select = day_of_week_select.options[day_of_week_select.selectedIndex];
+	var day_select = Array.from(document.querySelectorAll("[name=schedule_type]")).find(el => el.checked);
 	var valid_thru = day_select?.value;
 
 	var direction = parseInt(schedule_div.querySelector('#direction').value);
@@ -373,7 +383,7 @@ function display_vehicle_schedule(time, is24h){
 	var stop = parseInt(schedule_div.querySelector('#stops').value);
 	var stops = route.directions[direction];
 	var stop_index = stops.indexOf(stop);
-	var valid_thru = schedule_div.querySelector('#date_type').value;
+	var valid_thru = Array.from(document.querySelectorAll('[name=schedule_type]')).find(el => el.checked).value;
 
 	var cars = route.schedules.find(a => a.direction==direction && a.valid_thru==valid_thru).cars;
 	cars.forEach((car, car_index) => {
