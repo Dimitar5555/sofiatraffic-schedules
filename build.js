@@ -60,100 +60,54 @@ function get_routes() {
 	fetch(`${routes_url}resources/stops-bg.json`)
 	.then(response => response.json())
 	.then(stops => {
-		var res = {};
+		var res = [];
 		stops.forEach(stop => {
-			res[stop.c] = {name_bg: stop.n, coords: [stop.x, stop.y]};
+			res.push({code: Number(stop.c), name_bg: stop.n, coords: [stop.y, stop.x]});
 		});
 		fetch(`${routes_url}resources/stops-en.json`)
 		.then(response => response.json())
 		.then(stops => {
-			stops.forEach(stop => {
-				res[stop.c].name_en = stop.n;
+			stops.forEach(cgm_stop => {
+				res[res.findIndex(stop => stop.code === Number(cgm_stop.c))].name_en = cgm_stop.n;
 			});
-			res[3336] = {
-				name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ",
-				name_en: "GORNA BANYA METROSTATION"
-			};
-			res[3335] = {
-				name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ"
-			};
-			res[3334] = {
-				name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II"
-			};
-			res[3333] = {
-				name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II"
-			};
-			res[3332] = {
-				name_bg: "МЕТРОСТАНЦИЯ МИЗИЯ / НБУ"
-			};
-			res[3331] = {
-				name_bg: "МЕТРОСТАНЦИЯ МИЗИЯ / НБУ"
-			};
-			res[3330] = {
-				name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ"
-			};
-			res[3329] = {
-				name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ"
-			};
-			res[3328] = {
-				name_bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО"
-			};
-			res[3327] = {
-				name_bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО"
-			};
-			res[3326] = {
-				name_bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН"
-			};
-			res[3325] = {
-				name_bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН"
-			};
-			res[3324] = {
-				name_bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ"
-			};
-			res[3323] = {
-				name_bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ"
-			};
-			res[3322] = {
-				name_bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ"
-			};
-			res[3321] = {
-				name_bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ"
-			};
-			res[3320] = {
-				name_bg: "МЕТРОСТАНЦИЯ НДК 2"
-			};
-			res[3319] = {
-				name_bg: "МЕТРОСТАНЦИЯ НДК 2"
-			};
-			res[3318] = {
-				name_bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ"
-			};
-			res[3317] = {
-				name_bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ"
-			};
-			res[3316] = {
-				name_bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ"
-			};
-			res[3315] = {
-				name_bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ"
-			};
-			res[3312] = {
-				name_bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА"
-			};
-			res[3311] = {
-				name_bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА"
-			};
-			res[3310] = {
-				name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР"
-			};
-			res[3309] = {
-				name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР"
-			};
-			var stops_json = JSON.stringify(res);
+			res.push(
+			    { code: 3336, name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", name_en: "GORNA BANYA METRO STATION" },
+			    { code: 3335, name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", name_en: "GORNA BANYA METRO STATION"  },
+			    { code: 3334, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II", name_en: "OVCHA KUPEL II METRO STATION" },
+			    { code: 3333, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II", name_en: "OVCHA KUPEL II METRO STATION" },
+			    { code: 3332, name_bg: "МЕТРОСТАНЦИЯ МОЕСИЯ / НБУ", name_en: "MOESIA / NBU METRO STATION" },
+			    { code: 3331, name_bg: "МЕТРОСТАНЦИЯ МОЕСИЯ / НБУ", name_en: "MOESIA / NBU METRO STATION" },
+			    { code: 3330, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ", name_en: "OVCHA KUPEL METRO STATION" },
+			    { code: 3329, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ", name_en: "OVCHA KUPEL METRO STATION" },
+			    { code: 3328, name_bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО", name_en: "TSAR BORIS III / KRASNO SELO METRO STATION" },
+			    { code: 3327, name_bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО", name_en: "TSAR BORIS III / KRASNO SELO METRO STATION" },
+			    { code: 3326, name_bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН", name_en: "UL. DOYRAN METRO STATION" },
+			    { code: 3325, name_bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН", name_en: "UL. DOYRAN METRO STATION" },
+			    { code: 3324, name_bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ", name_en: "BUL. BULGARIA METRO STATION" },
+			    { code: 3323, name_bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ", name_en: "BUL. BULGARIA METRO STATION" },
+			    { code: 3322, name_bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ", name_en: "MEDICAL UNIVERSITY METRO STATION" },
+			    { code: 3321, name_bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ", name_en: "MEDICAL UNIVERSITY METRO STATION" },
+			    { code: 3320, name_bg: "МЕТРОСТАНЦИЯ НДК 2", name_en: "NDK 2 METRO STATION" },
+			    { code: 3319, name_bg: "МЕТРОСТАНЦИЯ НДК 2", name_en: "NDK 2 METRO STATION" },
+			    { code: 3318, name_bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ", name_en: "ST. PATRIARCH EVTIMIY METRO STATION" },
+			    { code: 3317, name_bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ", name_en: "ST. PATRIARCH EVTIMIY METRO STATION" },
+			    { code: 3316, name_bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ", name_en: "ORLOV MOST METRO STATION" },
+			    { code: 3315, name_bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ", name_en: "ORLOV MOST METRO STATION" },
+			    { code: 3312, name_bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА", name_en: "TEATRALNA METRO STATION" },
+			    { code: 3311, name_bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА", name_en: "TEATRALNA METRO STATION" },
+			    { code: 3310, name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР", name_en: "HADZHI DIMITAR METRO STATION" },
+			    { code: 3309, name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР", name_en: "HADZHI DIMITAR METRO STATION" }
+			);
+
+			var stops_json = res.map(stop => JSON.stringify(stop)).join('\n');
 			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
 			fs.writeFileSync('docs/data/stops.json', stops_json);
 		});
 	})
+}
+function print_message(id, total, type, url){
+	var id = (id+1).toString.padStart(total.toString().length, '0');
+	console.log(`Processing ${type} ${id}/${total}: ${url}`);
 }
 function get_schedules(id){
 	var data = routes_urls[id];
@@ -163,7 +117,7 @@ function get_schedules(id){
 	.then(html => HTMLParser.parse(html))
 	.then(document => document.querySelector('#line_view'))
 	.then(line_view => {
-		console.log(`Processing route ${id+1} of ${routes_urls.length}: ${url}`);
+		print_message(id, routes_urls.length, "route", url);
 		const route_index = data[1];
 		//делник, празник, предпразник
 		var days_buttons = Array.from(line_view.querySelectorAll('.schedule_active_list_tab'));
@@ -210,7 +164,7 @@ function get_schedules(id){
 }
 function get_times(id){
 	var data = schedules_urls[id];
-	console.log(`Processing schedule ${id+1} of ${schedules_urls.length}: ${data[0]}`);
+	print_message(id, schedules_urls.length, "schedule", data[0]);
 	fetch(data[0])
 	.then(response => response.text())
 	.then(response => HTMLParser.parse(response))

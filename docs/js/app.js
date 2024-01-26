@@ -68,7 +68,8 @@ function fetch_data(metadata=false){
 	var promises = [];
 
 	promises.push(fetch('data/stops.json')
-	.then(response => response.json())
+	.then(response => response.text())
+	.then(response => response.split('\n').map(row => JSON.parse(row)))
 	.then(stops => {
 		window.stops = stops;
 		localStorage.stops_hash = metadata.stops_hash;
