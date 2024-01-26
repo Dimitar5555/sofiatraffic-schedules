@@ -149,7 +149,7 @@ function get_routes() {
 			res[3309] = {
 				name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР"
 			};
-			var stops_json = JSON.stringify(res);
+			var stops_json = res.map(stop => JSON.stringify(stop)).join('\n');
 			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
 			fs.writeFileSync('docs/data/stops.json', stops_json);
 		});
