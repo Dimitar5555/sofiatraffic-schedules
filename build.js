@@ -105,6 +105,10 @@ function get_routes() {
 		});
 	})
 }
+function print_message(id, total, type, url){
+	var id = (id+1).toString.padStart(total.toString().length, '0');
+	console.log(`Processing ${type} ${id}/${total}: ${url}`);
+}
 function get_schedules(id){
 	var data = routes_urls[id];
 	var url = data[0];
@@ -113,7 +117,7 @@ function get_schedules(id){
 	.then(html => HTMLParser.parse(html))
 	.then(document => document.querySelector('#line_view'))
 	.then(line_view => {
-		console.log(`Processing route ${id+1} of ${routes_urls.length}: ${url}`);
+		print_message(id, routes_urls.length, "route", url);
 		const route_index = data[1];
 		//делник, празник, предпразник
 		var days_buttons = Array.from(line_view.querySelectorAll('.schedule_active_list_tab'));
@@ -160,7 +164,7 @@ function get_schedules(id){
 }
 function get_times(id){
 	var data = schedules_urls[id];
-	console.log(`Processing schedule ${id+1} of ${schedules_urls.length}: ${data[0]}`);
+	print_message(id, schedules_urls.length, "schedule", data[0]);
 	fetch(data[0])
 	.then(response => response.text())
 	.then(response => HTMLParser.parse(response))
