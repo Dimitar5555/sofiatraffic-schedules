@@ -29,8 +29,8 @@ function mins_to_time(mins, h24_to_0=false){
 		hour++;
 		mins -= 60;
 	}
-	if(h24_to_0 && hour==24){
-		hour = 0;
+	if(h24_to_0 && hour>=24){
+		hour -= 24;
 	}
 	return `${hour.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
 }
@@ -251,7 +251,9 @@ function get_stop_name(id){
 	if(!id){
 		return '-';
 	}
-	return stops[id.toString().padStart(4, '0')]?.[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
+    var stop = stops.find(stop => stop.code === Number(id));
+    console.log(id, stop);
+	return stop[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
 }
 function display_schedule(){
 	const table = schedule_div.querySelector('#schedule_table');
@@ -296,8 +298,8 @@ function display_schedule(){
         cars.forEach(car => {
             var hour = parseInt(car[0].split(':'));
 			search_for_24 = false;
-			if(hour==24){
-				hour = 0;
+			if(hour>=24){
+				hour -= 24;
 				search_for_24 = true;
 			}
             if(!arranged[hour]){
