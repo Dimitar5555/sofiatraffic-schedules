@@ -62,13 +62,13 @@ function get_routes() {
 	.then(stops => {
 		var res = [];
 		stops.forEach(stop => {
-			res.push({code: stop.c, name_bg: stop.n, coords: [stop.y, stop.x]});
+			res.push({code: Number(stop.c), name_bg: stop.n, coords: [stop.y, stop.x]});
 		});
 		fetch(`${routes_url}resources/stops-en.json`)
 		.then(response => response.json())
 		.then(stops => {
 			stops.forEach(cgm_stop => {
-				res[res.findIndex(stop => stop.code == cgm_stop.c)].name_en = cgm_stop.n;
+				res[res.findIndex(stop => stop.code === Number(cgm_stop.c))].name_en = cgm_stop.n;
 			});
 			res.push(
 			    { code: 3336, name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", name_en: "GORNA BANYA METRO STATION" },
