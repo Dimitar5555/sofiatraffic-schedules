@@ -260,7 +260,6 @@ function get_stop_name(id){
 	if(!id){
 		return '-';
 	}
-    //TEMP
     var stop = stops.find(stop => stop.code === Number(id));
     return stop[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
 }
