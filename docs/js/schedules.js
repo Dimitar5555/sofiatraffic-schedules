@@ -252,14 +252,13 @@ function get_stop_name(id){
 		return '-';
 	}
     var stop = stops.find(stop => stop.code === Number(id));
-    console.log(id, stop);
 	return stop[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
 }
 function display_schedule(){
 	const table = schedule_div.querySelector('#schedule_table');
 	const old_tbody = table.querySelector('tbody');
 	var route = routes[current_route_index];
-
+	
 	var new_tbody = html_comp('tbody');
     var tr_thead = html_comp('tr');
     var tr_tbody = html_comp('tr');
