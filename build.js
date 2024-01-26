@@ -60,7 +60,7 @@ function get_routes() {
 	fetch(`${routes_url}resources/stops-bg.json`)
 	.then(response => response.json())
 	.then(stops => {
-		var res = {};
+		var res = [];
 		stops.forEach(stop => {
 			res.push({code: stop.c, name_bg: stop.n, coords: [stop.y, stop.x]});
 		});
