@@ -87,7 +87,6 @@
 {"code":1439,"name_bg":"РЕЗИДЕНЦИЯ БОЯНА - ПО ЖЕЛАНИЕ","coords":[42.648625,23.270333],"name_en":"BOYANA RESIDENCE"}
 {"code":1699,"name_bg":"СУ СВ. КЛИМЕНТ ОХРИДСКИ","coords":[42.694903,23.334938],"name_en":"UNIVERSITY OF SOFIA"}
 {"code":314,"name_bg":"БУЛ. ГОЦЕ ДЕЛЧЕВ","coords":[42.672467,23.295057],"name_en":"GOTSE DELCHEV BLVD"}
-{"code":689,"name_bg":"Ж.К. СЛАТИНА","coords":[42.68107,23.371093],"name_en":"SLATINA QR"}
 {"code":719,"name_bg":"НУ ЗА ТАНЦОВО ИЗКУСТВО","coords":[42.67836,23.365828],"name_en":"NATIONAL SCHOOL OF DANCE ART"}
 {"code":835,"name_bg":"КВ. ДРАГАЛЕВЦИ","coords":[42.62908,23.309544],"name_en":"DRAGALEVTSI QR"}
 {"code":2367,"name_bg":"ЧИТАЛИЩЕ ОТЕЦ ПАИСИЙ","coords":[42.692683,23.359956],"name_en":"OTETS PAISIY COMMUNITY CENTRE"}
@@ -158,7 +157,6 @@
 {"code":1969,"name_bg":"УЛ. ЙОСИФ ЩРОСМАЙЕР","coords":[42.711701,23.301043],"name_en":"JOSIP STROSSMEYER ST"}
 {"code":2392,"name_bg":"БЛ. 472 Ж.К. МЛАДОСТ-4","coords":[42.627205,23.378649],"name_en":"BL. 472 MLADOST 4 QR"}
 {"code":129,"name_bg":"БЛ. 108 Ж.К. ДРУЖБА-1","coords":[42.667454,23.391925],"name_en":"BL. 108 DRUZHBA 1 QR"}
-{"code":2061,"name_bg":"УЛ. Н. КОПЕРНИК","coords":[42.683474,23.361782],"name_en":"COPERNICUS ST"}
 {"code":2648,"name_bg":"КИНО АРЕНА ІІ","coords":[42.624111,23.37479],"name_en":"ARENA II CINEMA"}
 {"code":1061,"name_bg":"МЕТРОСТАНЦИЯ СЛИВНИЦА","coords":[42.726368,23.261304],"name_en":"SLIVNITSA METRO STATION"}
 {"code":2041,"name_bg":"УЛ. МАКГАХАН","coords":[42.703039,23.35127],"name_en":"MACGAHAN ST"}
@@ -322,7 +320,6 @@
 {"code":1033,"name_bg":"МГУ СВ.ИВ.РИЛСКИ","coords":[42.661126,23.351478],"name_en":"UNIVERSITY OF MINING AND GEOLOGY"}
 {"code":1977,"name_bg":"УЛ. КАМЕН АНДРЕЕВ","coords":[42.69547,23.30048],"name_en":"KAMEN ANDREEV ST"}
 {"code":1997,"name_bg":"ПЛ. ГАРИБАЛДИ","coords":[42.694337,23.322435],"name_en":"GARIBALDI SQ"}
-{"code":2007,"name_bg":"УЛ. КОСТА ЛУЛЧЕВ","coords":[42.682456,23.367138],"name_en":"KOSTA LULCHEV ST"}
 {"code":10,"name_bg":"14-ТИ ДКЦ","coords":[42.679723,23.311364],"name_en":"MEDICAL CENTRE No14"}
 {"code":2089,"name_bg":"УЛ. ОРЕХОВА ГОРА","coords":[42.669549,23.297461],"name_en":"OREHOVA GORA ST"}
 {"code":213,"name_bg":"БЛ. 427 Ж.К. МЛАДОСТ-4","coords":[42.633295,23.376693],"name_en":"BL. 427 MLADOST 4 QR"}
@@ -424,7 +421,6 @@
 {"code":347,"name_bg":"БУЛ. НИКОЛА ПЕТКОВ","coords":[42.669643,23.254401],"name_en":"NIKOLA PETKOV BLVD"}
 {"code":666,"name_bg":"Ж.К. МЛАДОСТ-3","coords":[42.638831,23.38614],"name_en":"MLADOST 3 QR"}
 {"code":1344,"name_bg":"ПК СПАРТАК","coords":[42.675467,23.314728],"name_en":"SPARTAK SWIMMING POOL"}
-{"code":1405,"name_bg":"11-ТИ ПОЩЕНСКИ КЛОН","coords":[42.684844,23.357534],"name_en":"11th POST OFFICE"}
 {"code":2146,"name_bg":"УЛ. ПРОФ. ВАЙГАНД","coords":[42.696152,23.280918],"name_en":"PROF. WEIGAND ST"}
 {"code":2319,"name_bg":"ХМС","coords":[42.655597,23.382263],"name_en":"HYDROMETRIC STATION"}
 {"code":2420,"name_bg":"УЛ. ПЛОВДИВ","coords":[42.708793,23.299669],"name_en":"PLOVDIV ST"}
@@ -535,7 +531,6 @@
 {"code":2127,"name_bg":"УЛ. ПОП ГРУЙО","coords":[42.707141,23.379221],"name_en":"POP GRUYO ST"}
 {"code":2208,"name_bg":"УЛ. Т. КАБЛЕШКОВ","coords":[42.668623,23.276434],"name_en":"T. KABLESHKOV ST"}
 {"code":6276,"name_bg":"УЛ. Г. ИЗМИРЛИЕВ","coords":[42.662896,23.292178],"name_en":"GEORGI IZMIRLIEV ST"}
-{"code":93,"name_bg":"31-ВО СУЧЕМ","coords":[42.686633,23.352796],"name_en":"SCHOOL No31"}
 {"code":178,"name_bg":"БЛ. 255 Ж.К. ДРУЖБА-2","coords":[42.651859,23.404811],"name_en":"BL. 255 DRUZHBA 2 QR"}
 {"code":247,"name_bg":"БЛ. 69 Ж.К. МЛАДОСТ-1","coords":[42.649649,23.369164],"name_en":"BL. 69 MLADOST 1 QR"}
 {"code":272,"name_bg":"БУЛ. АКАД. ИВ. ГЕШОВ","coords":[42.679588,23.303554],"name_en":"ACAD. IV. GESHOV BLVD"}
@@ -832,7 +827,6 @@
 {"code":412,"name_bg":"В.З. КИНОЦЕНТЪР","coords":[42.637816,23.297362],"name_en":"KINOTSENTAR VILLA ZONE"}
 {"code":867,"name_bg":"КВ. МАНАСТИРСКИ ЛИВАДИ","coords":[42.653281,23.294392],"name_en":"MANASTIRSKI LIVADI QR"}
 {"code":1135,"name_bg":"НДК","coords":[42.685841,23.317723],"name_en":"NATIONAL PALACE OF CULTURE"}
-{"code":1404,"name_bg":"11-ТИ ПОЩЕНСКИ КЛОН","coords":[42.684498,23.358361],"name_en":"11th POST OFFICE"}
 {"code":1506,"name_bg":"МОСТА НА СУХОДОЛСКА РЕКА","coords":[42.724219,23.325437],"name_en":"SUHODOLSKA RIVER BRIDGE"}
 {"code":1713,"name_bg":"МОСТА НА СУХАТА РЕКА","coords":[42.629296,23.333367],"name_en":"SUHATA REKA BRIDGE"}
 {"code":2087,"name_bg":"УЛ. ОПЪЛЧЕНСКА","coords":[42.705383,23.313486],"name_en":"OPALCHENSKA ST"}
@@ -1060,7 +1054,6 @@
 {"code":1753,"name_bg":"УЛ. ВИТИНЯ","coords":[42.708424,23.369672],"name_en":"VITINYA ST"}
 {"code":1936,"name_bg":"УЛ. ДОЙРАН","coords":[42.67835,23.290705],"name_en":"DOYRAN ST"}
 {"code":2052,"name_bg":"УЛ. НАДЕЖДА","coords":[42.724572,23.281374],"name_en":"NADEZHDA ST"}
-{"code":2058,"name_bg":"УЛ. Н. КОПЕРНИК","coords":[42.683145,23.362485],"name_en":"COPERNICUS ST"}
 {"code":2141,"name_bg":"УЛ. ПРОМИШЛЕНА","coords":[42.689713,23.248705],"name_en":"PROMISHLENA ST"}
 {"code":2226,"name_bg":"УЛ. ХАЙДУТ СИДЕР","coords":[42.708916,23.286832],"name_en":"HAYDUT SIDER ST"}
 {"code":46,"name_bg":"УЛ. ПОЩЕНСКА","coords":[42.721707,23.341948],"name_en":"POSHTENSKA ST"}
@@ -1254,7 +1247,6 @@
 {"code":1760,"name_bg":"115-ТИ ПОЩЕНСКИ КЛОН","coords":[42.631765,23.380314],"name_en":"115th POST OFFICE"}
 {"code":1879,"name_bg":"УЛ. ВИШНЕВА","coords":[42.678498,23.333689],"name_en":"VISHNEVA ST"}
 {"code":1899,"name_bg":"УЛ. ГЕН. НИКОЛА ЖЕКОВ","coords":[42.733541,23.308838],"name_en":"GEN. NIKOLA ZHEKOV ST"}
-{"code":2006,"name_bg":"УЛ. КОСТА ЛУЛЧЕВ","coords":[42.681913,23.368513],"name_en":"KOSTA LULCHEV ST"}
 {"code":2020,"name_bg":"УЛ. ЛАТИНКА","coords":[42.581635,23.421795],"name_en":"LATINKA ST"}
 {"code":2024,"name_bg":"АВТОСТАНЦИЯ ИЗТОК","coords":[42.703209,23.386332],"name_en":"IZTOK CAR DEPOT"}
 {"code":2260,"name_bg":"УЛ. РАЙСКА ГРАДИНА","coords":[42.660956,23.249033],"name_en":"RAYSKA GRADINA ST"}
@@ -2737,6 +2729,8 @@
 {"code":3334,"name_bg":"МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II","coords":[42.684747,23.247822],"name_en":"METROSTANTSIA OVCHA KUPEL II"}
 {"code":3335,"name_bg":"МЕТРОСТАНЦИЯ ГОРНА БАНЯ","coords":[42.684117,23.242672],"name_en":"METROSTANTSIA GORNA BANYA"}
 {"code":3336,"name_bg":"МЕТРОСТАНЦИЯ ГОРНА БАНЯ","coords":[42.684117,23.242672],"name_en":"METROSTANTSIA GORNA BANYA"}
+{"code":6019,"name_bg":"БУЛ. ШИПЧЕНСКИ ПРОХОД","coords":[42.67912,23.361758],"name_en":"BUL. SHIPCHENSKI PROHOD"}
+{"code":6020,"name_bg":"Ж.К. ГЕО МИЛЕВ","coords":[42.676993,23.368714],"name_en":"ZH.K. GEO MILEV"}
 {"code":6035,"name_bg":"АВТОСТАНЦИЯ КНЯЖЕВО","coords":[42.659005,23.241758],"name_en":"AVTOSTANTSIA KNYAZHEVO"}
 {"code":6037,"name_bg":"МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ","coords":[42.682259,23.270979],"name_en":"METROSTANTSIA OVCHA KUPEL"}
 {"code":6038,"name_bg":"МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ","coords":[42.682161,23.270629],"name_en":"METROSTANTSIA OVCHA KUPEL"}
@@ -2771,15 +2765,17 @@
 {"code":6411,"name_bg":"БУЛ. ПРАГА","coords":[42.688744,23.31311],"name_en":"PRAGUE BLVD"}
 {"code":6431,"name_bg":"ТИХИЯ КЪТ - ПО ЖЕЛАНИЕ","coords":[42.638124,23.219737],"name_en":"TIHIYA KAT"}
 {"code":6432,"name_bg":"ТИХИЯ КЪТ - ПО ЖЕЛАНИЕ","coords":[42.638176,23.219751],"name_en":"TIHIYA KAT"}
-{"code":6435,"name_bg":"ПЛОЩАД КНЯЗ АЛЕКСАНДЪР I","coords":[42.696265,23.326319],"name_en":"KN. ALEXANDER I SQ"}
+{"code":6435,"name_bg":"ПЛОЩАД КНЯЗ АЛЕКСАНДЪР I","coords":[42.696291,23.326255],"name_en":"KN. ALEXANDER I SQ"}
 {"code":6436,"name_bg":"ПЛОЩАД КНЯЗ АЛЕКСАНДЪР I","coords":[42.696482,23.326229],"name_en":"KN. ALEXANDER I SQ"}
 {"code":6439,"name_bg":"ПЛ. СВ. АЛЕКСАНДЪР НЕВСКИ","coords":[42.695587,23.334071],"name_en":"ST. ALEXANDER NEVSKY SQ"}
 {"code":6440,"name_bg":"ПЛ. СВ. АЛЕКСАНДЪР НЕВСКИ","coords":[42.69573,23.33394],"name_en":"ST. ALEXANDER NEVSKY SQ"}
 {"code":6452,"name_bg":"БУЛ. Д-Р ПЕТЪР ДЕРТЛИЕВ","coords":[42.71202,23.268789],"name_en":"DR PETAR DERTLIEV BLVD"}
 {"code":6453,"name_bg":"МЕТРОСТАНЦИЯ ВАРДАР","coords":[42.705574,23.285853],"name_en":"VARDAR METRO STATION"}
 {"code":6454,"name_bg":"МЕТРОСТАНЦИЯ СЕРДИКА","coords":[42.697943,23.320262],"name_en":"SERDIKA METRO STATION"}
+{"code":6455,"name_bg":"ПЛ. КНЯЗ АЛЕКСАНДЪР І","coords":[42.695875,23.327288],"name_en":"KN. ALEXANDER I SQ"}
 {"code":6456,"name_bg":"УЛ. 6-ТИ СЕПТЕМВРИ","coords":[42.694518,23.330797],"name_en":"SHESTI SEPTEMVRI ST"}
 {"code":6457,"name_bg":"УЛ. 6-ТИ СЕПТЕМВРИ","coords":[42.694818,23.330351],"name_en":"PARIS ST"}
+{"code":6458,"name_bg":"ПЛ. КНЯЗ АЛЕКСАНДЪР І","coords":[42.696543,23.326167],"name_en":"KN. ALEXANDER I SQ"}
 {"code":6459,"name_bg":"МЕТРОСТАНЦИЯ СЕРДИКА","coords":[42.698168,23.319986],"name_en":"SERDIKA METRO STATION"}
 {"code":6460,"name_bg":"МЕТРОСТАНЦИЯ К. ВЕЛИЧКОВ","coords":[42.702142,23.297313],"name_en":"K. VELICHKOV METRO STATION"}
 {"code":6461,"name_bg":"БУЛ. Д-Р ПЕТЪР ДЕРТЛИЕВ","coords":[42.711834,23.269569],"name_en":"DR PETAR DERTLIEV BLVD"}
@@ -2789,6 +2785,7 @@
 {"code":6568,"name_bg":"ДЕНДРАРИУМА - ПО ЖЕЛАНИЕ","coords":[42.62833,23.230307],"name_en":"DENDRARIUMA"}
 {"code":6569,"name_bg":"УЛ. БЯЛАТА ЧЕШМА - ПО ЖЕЛАНИЕ","coords":[42.645929,23.245284],"name_en":"BYALATA CHESHMA ST"}
 {"code":6575,"name_bg":"УЛ. ПЪРВА БЪЛГАРСКА АРМИЯ","coords":[42.7128,23.34389],"name_en":"PARVA BULGARSKA ARMIA ST"}
+{"code":6591,"name_bg":"РУМЪНСКО ПОСОЛСТВО","coords":[42.685065,23.351248],"name_en":"RUMANSKO POSOLSTVO"}
 {"code":6599,"name_bg":"БЛ. 28 Ж.К. ЛЕВСКИ-Г","coords":[42.713284,23.384298],"name_en":"BL. 28 ZH.K. LEVSKI-G"}
 {"code":6600,"name_bg":"Ж.К. ЛЕВСКИ Г","coords":[42.711901,23.388112],"name_en":"ZH.K. LEVSKI G"}
 {"code":6608,"name_bg":"10-ТИ ДКЦ","coords":[42.701403,23.291794],"name_en":"10-TI DKTS"}
@@ -2817,6 +2814,8 @@
 {"code":6670,"name_bg":"46-ТО ОУ КОНСТАНТИН ФОТИНОВ","coords":[42.704453,23.31724],"name_en":"46-TO OU KONSTANTIN FOTINOV"}
 {"code":6707,"name_bg":"МЕТРОСТАНЦИЯ БЕЛИ ДУНАВ","coords":[42.734913,23.293361],"name_en":"METROSTANTSIA BELI DUNAV"}
 {"code":6708,"name_bg":"МЕТРОСТАНЦИЯ БЕЛИ ДУНАВ","coords":[42.734778,23.293705],"name_en":"METROSTANTSIA BELI DUNAV"}
+{"code":6709,"name_bg":"АВТОСТАНЦИЯ ГЕО МИЛЕВ","coords":[42.678314,23.370513],"name_en":"AVTOSTANTSIA GEO MILEV"}
+{"code":6710,"name_bg":"АВТОСТАНЦИЯ ГЕО МИЛЕВ","coords":[42.677959,23.370031],"name_en":"AVTOSTANTSIA GEO MILEV"}
 {"code":3336,"name_bg":"МЕТРОСТАНЦИЯ ГОРНА БАНЯ","name_en":"GORNA BANYA METRO STATION"}
 {"code":3335,"name_bg":"МЕТРОСТАНЦИЯ ГОРНА БАНЯ","name_en":"GORNA BANYA METRO STATION"}
 {"code":3334,"name_bg":"МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II","name_en":"OVCHA KUPEL II METRO STATION"}
