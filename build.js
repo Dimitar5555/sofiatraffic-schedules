@@ -106,7 +106,7 @@ function get_routes() {
 	})
 }
 function print_message(id, total, type, url){
-	var id = (id+1).toString.padStart(total.toString().length, '0');
+	var id = (id+1).toString().padStart(total.toString().length, '0');
 	console.log(`Processing ${type} ${id}/${total}: ${url}`);
 }
 function get_schedules(id){
