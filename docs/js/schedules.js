@@ -69,10 +69,10 @@ function init_schedules(){
 
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.autobuses}));
 	create_schedule('autobus');
-
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.temporary}));
-	create_schedule('temp');
-
+	if(routes.filter(route => route.temp).length>0){
+		line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.temporary}));
+		create_schedule('temp');
+	}
 	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.schoolbuses}));
 	create_schedule('school');
 
