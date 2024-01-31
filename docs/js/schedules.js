@@ -86,7 +86,6 @@ function init_schedules(){
 function init_updated_schedules_table(){
 	var dates = {};
 	routes.forEach(route => {
-        console.log(route, route.trips);
 		route.trips.forEach(trip => {
 			var date = trip.valid_from.split('.').reverse().join('-');
 			if(!dates[date]){

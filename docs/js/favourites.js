@@ -24,7 +24,6 @@ function show_favourite_stops(favourite_stops=false){
 		var td1 = html_comp('td');
 		td1.appendChild(html_comp('button', {'data-bs-toggle':'modal', 'data-bs-target': '#sofiatraffic_live_data', 'data-url': `https://sofiatraffic.bg/bg/transport/virtual-tables/${stop.toString().padStart(4, '0')}`, text: lang.favourites.virtual_table, onclick: 'document.querySelector("iframe").setAttribute("src", this.dataset.url)', class: 'btn btn-primary'}));
         td1.appendChild(html_comp('button', {'data-bs-toggle':'modal', 'data-bs-target': '#sofiatraffic_live_data', 'data-url': `https://sofiatraffic.bg/bg/transport/virtual-tables/${stop.toString().padStart(4, '0')}`, text: lang.favourites.schedule, onclick: 'document.querySelector("iframe").setAttribute("src", this.dataset.url)', class: 'd-none'}));
-        //<span data-bs-toggle="modal" data-bs-target="#schedule_modal" type="button" data-time="355" onclick="display_vehicle_schedule(this.dataset.time)" class="">55</span>
 		//td1.appendChild(document.createTextNode(' '));
 		//td1.appendChild(html_comp('a', {href: `"++"`, text: 'Разписание', target: '_blank'}));
 		tr.appendChild(td1);
