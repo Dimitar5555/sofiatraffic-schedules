@@ -5,6 +5,8 @@ var line_selector_div = document.querySelector('#line_selector');
 const allowed_languages = ['bg'];
 
 var current_route_index;
+var current_route_direction;
+var current_stop_code;
 
 function html_comp(tag, attributes={}){
 	var el = document.createElement(tag);
@@ -68,8 +70,7 @@ function fetch_data(metadata=false){
 	var promises = [];
 
 	promises.push(fetch('data/stops.json')
-	.then(response => response.text())
-	.then(response => response.split('\n').filter(row => row).map(row => JSON.parse(row)))
+	.then(response => response.json())
 	.then(stops => {
 		window.stops = stops;
 		localStorage.stops_hash = metadata.stops_hash;

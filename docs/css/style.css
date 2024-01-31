@@ -18,6 +18,9 @@ td, th {
 	min-width: 45px;
 	font-weight: bold;
 }
+.M1-2-bg-color {
+    background: linear-gradient(to right, #ec2029 0%, #1077bc 100%);
+}
 .M1-bg-color {
 	background-color: #ec2029;
 }
@@ -70,6 +73,11 @@ span.line-break:after {
 }
 #detailed_schedule > thead > tr > th {
 	vertical-align: middle;
+}
+
+iframe {
+    width: 100%;
+    height: 30em;
 }
 
 /*!

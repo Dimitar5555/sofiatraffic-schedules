@@ -46,7 +46,9 @@ function init_schedules(){
 	labels.item(5).innerText = lang.schedules.show_by_cars;
 	
 	var modal = document.querySelector('#schedule_modal');
-	modal.querySelectorAll('button').item(1).innerText = lang.schedules.close;
+	modal.querySelectorAll('button').item(1).innerText = lang.schedules.previous_course;
+	modal.querySelectorAll('button').item(2).innerText = lang.schedules.next_course;
+	modal.querySelectorAll('button').item(3).innerText = lang.schedules.close;
 	modal.querySelector('.modal-title').innerText = lang.schedules.modal_title;
 	var ths = modal.querySelectorAll('th');
 	ths.item(0).innerText = lang.schedules.stop;
@@ -84,12 +86,13 @@ function init_schedules(){
 function init_updated_schedules_table(){
 	var dates = {};
 	routes.forEach(route => {
-		route.schedules.forEach(schedule => {
-			var date = schedule.valid_from.split('.').reverse().join('-');
+        console.log(route, route.trips);
+		route.trips.forEach(trip => {
+			var date = trip.valid_from.split('.').reverse().join('-');
 			if(!dates[date]){
 				dates[date] = [];
 			}
-			var schd = JSON.stringify([route.type, route.line, schedule.valid_thru]);
+			var schd = JSON.stringify([route.type, route.line, trip.valid_thru]);
 			if(dates[date].indexOf(schd)==-1){
 				dates[date].push(schd);
 			}
@@ -109,10 +112,10 @@ function init_updated_schedules_table(){
 function create_schedule(type){
 	var routes_to_process = [];
 	if(['metro', 'tramway', 'trolleybus', 'autobus'].indexOf(type)!==-1){
-		routes_to_process = routes.filter((route) => route.type==type && !route.temp && !route.night && !route.school);
+		routes_to_process = routes.filter((route) => route.type === type && !route.subtype);
 	}
 	else{
-		routes_to_process = routes.filter((route) => route[type]);
+		routes_to_process = routes.filter((route) => route.subtype === type);
 	}
 	routes_to_process.sort((a, b) => Number(a.line)>Number(b.line));
 	routes_to_process.forEach(route => generate_line_btn(route.index, line_selector_div));
@@ -120,17 +123,16 @@ function create_schedule(type){
 
 function show_schedule(el){
 	document.querySelector('[role=tab]').click();
-    current_route_index = el.dataset.routeIndex;
+    update_globals(el.dataset.routeIndex);
 	line_selector_div.classList.add('d-none');
     schedule_display_div.classList.remove('d-none');
 	configure_weekday_selector();
+    update_globals();
 }
 function configure_weekday_selector(){
     var route = routes[current_route_index];
-    var variants = route.schedules.map(schedule => schedule.valid_thru);
-	//filter duplicates
-	variants1 = variants
-	.filter((c, index) => variants.indexOf(c) == index)
+    var variants = route.trips.map(schedule => schedule.valid_thru)
+    .filter((c, index, list) => list.indexOf(c) == index)
 	.map(vari => {
 		var res = [];
 		if(vari[0]==='1'){
@@ -145,10 +147,10 @@ function configure_weekday_selector(){
 		return [vari, res.join(' / ')];
 	});
 	var types = lang.line_type;
-	schedule_div.querySelector('#line').innerHTML = `<i class="h5 bi text-warning" onclick="add_remove_favourite_line()"></i> ${types[route.type]} ${decodeURI(route.line)}`;
+	schedule_div.querySelector('#line').innerHTML = `<i class="lh-1 align-top h5 bi text-warning" onclick="add_remove_favourite_line()"></i> ${types[route.type]} ${decodeURI(route.line)}`;
 	var old_date_type_select = schedule_div.querySelector('#date_type');
 	var new_date_type_select = old_date_type_select.cloneNode(false);
-	variants1.forEach((variant, index) => {
+	variants.forEach((variant, index) => {
 		new_date_type_select.appendChild(html_comp('input', {
 			value: variant[0],
             type: 'radio',
@@ -191,9 +193,10 @@ function configure_stop_selector(){
 		//route has no stops
 	}
 	else{
-		route.directions[direction].forEach(stop => new_stop_el.appendChild(html_comp('option', {text: `[${stop.toString().padStart(4, '0')}] ${metro?get_stop_name(stop).replace('МЕТРОСТАНЦИЯ ', ''):get_stop_name(stop)}`, value: stop})));
+		route.directions[direction].forEach((stop, stop_index) => new_stop_el.appendChild(html_comp('option', {text: `[${stop.toString().padStart(4, '0')}] ${metro?get_stop_name(stop).replace('МЕТРОСТАНЦИЯ ', ''):get_stop_name(stop)}`, value: stop_index})));
 	}
 	replace_child(new_stop_el, old_stop_el);
+    update_globals();
 	configure_favourite_stop_button();
 	configure_favourite_line_button();
     display_schedule();
@@ -220,12 +223,11 @@ function configure_favourite_line_button(favourite_lines=false){
 	}
 }
 function configure_favourite_stop_button(favourite_stops=false){
-	var stop = schedule_div.querySelector('#stops').value;
 	var star = schedule_div.querySelectorAll('i').item(2);
 	if(!favourite_stops){
 		favourite_stops = get_favourite_stops();
 	}
-	if(stop==''){
+	if(current_stop_code==undefined){
 		star.classList.remove('bi-star-fill');
 		star.classList.add('bi-star');
 		star.dataset.style = "disabled";
@@ -239,17 +241,20 @@ function configure_favourite_stop_button(favourite_stops=false){
 	else{
 		star.setAttribute('onmouseover', "toggle_star(this, 'over')");
 		star.setAttribute('onmouseout', "toggle_star(this, 'out')");
-		star.setAttribute('onclick', "add_remove_favourite_stop(this.parentElement.nextElementSibling.querySelector('select').value.toString().padStart(4, '0'))");		
+		star.setAttribute('onclick', "add_remove_favourite_stop()");		
 		star.classList.add('text-warning');
 		star.classList.remove('text-secondary');
 	}
-	if(favourite_stops.indexOf(stop.toString().padStart(4, '0'))==-1){
+    console.log(current_stop_code, favourite_stops.indexOf(current_stop_code)!==-1)
+	if(favourite_stops.indexOf(current_stop_code)==-1){
+        //not in list, unfill star
 		star.classList.remove('bi-star-fill');
 		star.classList.add('bi-star');
 		star.dataset.style = "none";
 		star.setAttribute('title', lang.schedules.add_to_favourites);
 	}
 	else{
+        //in list, fill star
 		star.classList.add('bi-star-fill');
 		star.classList.remove('bi-star');
 		star.dataset.style = "fill";
@@ -257,17 +262,16 @@ function configure_favourite_stop_button(favourite_stops=false){
 	}
 }
 function get_stop_name(id){
-	if(!id){
+	if(!id || id==undefined){
 		return '-';
 	}
     var stop = stops.find(stop => stop.code === Number(id));
-    return stop[`name_${lang.code}`] || "(НЕИЗВЕСТНА СПИРКА)";
+    return stop.names[lang.code] || "(НЕИЗВЕСТНА СПИРКА)";
 }
 function display_schedule(schedule_index){
 	const table = schedule_div.querySelector('#schedule_table');
 	const old_tbody = table.querySelector('tbody');
 	var route = routes[current_route_index];
-
 	var new_tbody = html_comp('tbody');
     var tr_thead = html_comp('tr');
     var tr_tbody = html_comp('tr');
@@ -281,66 +285,64 @@ function display_schedule(schedule_index){
 		return;
 	}
 
-	var day_of_week_select = schedule_div.querySelector('#date_type');
-	var day_select = Array.from(document.querySelectorAll("[name=schedule_type]")).find(el => el.checked);
-	var valid_thru = day_select?.value;
+	var valid_thru = Array.from(document.querySelectorAll('[name=schedule_type]')).find(el => el.checked).value;
 
 	var direction = parseInt(schedule_div.querySelector('#direction').value);
 	var display_by_car = schedule_div.querySelector('#display_by_car').checked;
 	var route_stops = route.directions[direction];
-	var schedule = route.schedules.find(sch => sch.valid_thru===valid_thru && sch.direction===direction);
-	schedule_div.querySelector('#valid_from').innerText = schedule?.valid_from;
+	var trip_index = route.trips.findIndex(trip => trip.valid_thru === valid_thru && trip.direction === direction);
+    var route_schedules = route.stop_times.filter(stop_times => stop_times.trip === trip_index);
+	schedule_div.querySelector('#valid_from').innerText = route.trips[trip_index].valid_from;
 
-	var stop = parseInt(schedule_div.querySelector('#stops').value);
-	var stop_index = route_stops.indexOf(stop);
-	var last_stop_index = route_stops.length-1;
+	var stop_index = parseInt(schedule_div.querySelector('#stops').value);
 
 	if(!display_by_car){
-		//same as schedules.sofiatraffic.bg
-		schedule.cars = schedule.cars.filter(a => a!==null);
-        var cars = schedule.cars.map(times => times.map(time => [time[stop_index], time[0]=='', time[last_stop_index]==''])).flat().sort((a, b) => a[0]>b[0]);
-		cars.forEach((time, index) => {
-			cars[index][0] = mins_to_time(time[0]);
-		});
-		var arranged = [];
-        cars.forEach(car => {
-            var hour = parseInt(car[0].split(':'));
-			search_for_24 = false;
-			if(hour>=24){
-				hour -= 24;
-				search_for_24 = true;
-			}
-            if(!arranged[hour]){
-                arranged[hour] = [];
-            }
-            arranged[hour].push([car[0].split(':')[1], car[1], car[2], search_for_24]);
-        });
-		if(!arranged[0]){
-			arranged[0] = [];
-		}
-		if(arranged[24]){
-			arranged[0] = arranged[0].concat(arranged[24]);
-		}
-		delete arranged[24];
-		//adds empty hours
+        var times = route_schedules.map(sch => sch.times[stop_index]);//.filter(time => time != '');
+        var arranged = [];
+		//adds all hours
 		for(i=0;i<=23;i++){
-			if(!arranged[i]){
-				arranged[i] = [];
-			}
+			arranged[i] = [];
 		}
+        times.map((time, rs_index) => {
+            if(time=='' || !time){
+                return;            
+            }
+            var hour = Math.floor(time/60);
+            var after_midnight = hour>=24;
+            if(hour>=24){
+                hour -= 24;
+            }
+            console.log(time, hour);
+            arranged[hour].push({
+                mins: time,
+                incomplete_course_start: route_schedules[rs_index].times[0]=='',
+                incomplete_course_final: route_schedules[rs_index].times.toReversed()[0]==''
+            });
+        });
+        for(i=0;i<=23;i++){
+			arranged[i] = arranged[i].sort((a, b) => a.mins>b.mins);
+		}
+        console.log(arranged);
+        
         arranged.forEach((time, index) => {
 			tr_thead.appendChild(html_comp('th', {text: index==24?0:index}));
 			var td1 = html_comp('td');
 			time.forEach(time => {
+                var el_class = '';
+                if(time.incomplete_course_start){
+                    el_class = 'bg-warning';
+                }
+                else if(time.incomplete_course_final){
+                    el_class = 'text-white bg-danger';
+                }
 				var el = html_comp('span', {
-					text: time[0].toString(),
+					text: (time.mins%60).toString().padStart(2, '0'),
 					'data-bs-toggle': 'modal',
 					'data-bs-target': '#schedule_modal',
 					type: 'button',
-					'data-time': (parseInt(index*60)+parseInt(time[0])),
-					onclick: 'display_vehicle_schedule(this.dataset.time, this.dataset[\'is-24h\'])',
-					class: (time[1]?'bg-warning':(time[2]?'text-white bg-danger':'')),
-					'data-is-24h': time[3]
+					'data-time': time.mins,
+					onclick: 'display_vehicle_schedule(this.dataset.time)',
+					class: el_class
 				});
 				td1.appendChild(el);
 				td1.appendChild(html_comp('span', {class: 'line-break'}));
@@ -349,62 +351,91 @@ function display_schedule(schedule_index){
 		});
 	}
 	else{
-		//show as cars
-		schedule.cars.forEach((car, car_index) => {
-			tr_thead.appendChild(html_comp('th', {text: car_index+1}));
+		//show by cars
+        var cars = [];
+        route_schedules.map(schedule => {
+            if(!cars[schedule.car-1]){
+                cars[schedule.car-1] = [];
+            }
+            cars[schedule.car-1].push({
+                mins: schedule.times[stop_index],
+                incomplete_course_start: schedule.times[0]=='',
+                incomplete_course_final: schedule.times.toReversed()[0]==''
+            });
+        });
+        cars.map((car, car_index) => {
+            //car.sort((a, b) => a.mins>b.mins);
+            tr_thead.appendChild(html_comp('th', {text: car_index+1}));
 			var td = html_comp('td');
-			if(car!==null){
-				car.forEach((times, index) => {
-					td.appendChild(html_comp('span', {
-						text: mins_to_time(times[stop_index]),
-						'data-bs-toggle': 'modal',
-						'data-bs-target': '#schedule_modal',
-						type: 'button',
-						'data-time': parseInt(times[stop_index]),
-						onclick: 'display_vehicle_schedule(this.dataset.time, this.dataset[\'is-24h\'])',}));
-					td.appendChild(html_comp('span', {class: 'line-break'}));
-				});
-			}
-			tr_tbody.appendChild(td);
-			//tr_tbody.appendChild(html_comp('td', {text: car==null?'':car.map(times => mins_to_time(times[stop_index])).join('\n')}));
-		});
+            car.sort((a, b)=>a.mins>b.mins).forEach((times, index) => {
+                if(times.mins === ''){
+                    return;
+                }
+                var el_class = '';
+                if(times.incomplete_course_start){
+                    el_class = 'bg-warning';
+                }
+                else if(times.incomplete_course_final){
+                    el_class = 'text-white bg-danger';
+                }
+			    td.appendChild(html_comp('span', {
+				    text: mins_to_time(times.mins),
+				    'data-bs-toggle': 'modal',
+				    'data-bs-target': '#schedule_modal',
+				    type: 'button',
+				    'data-time': times.mins,
+                    'class': el_class,
+				    onclick: 'display_vehicle_schedule(this.dataset.time)',}));
+			    td.appendChild(html_comp('span', {class: 'line-break'}));
+		    });
+		    tr_tbody.appendChild(td);
+
+        });
 	}
     new_tbody.appendChild(tr_thead);
     new_tbody.appendChild(tr_tbody);
 	replace_child(new_tbody, old_tbody);
 }
-function display_vehicle_schedule(time, is24h){
-	is24h = is24h=='true';
-	var time = (is24h?24*60:0)+parseInt(time);
+function display_vehicle_schedule(time){
+	var time = parseInt(time);
 
 	var route = routes[current_route_index];
 	var direction = parseInt(schedule_div.querySelector('#direction').value);
-	var stop = parseInt(schedule_div.querySelector('#stops').value);
-	var stops = route.directions[direction];
-	var stop_index = stops.indexOf(stop);
+	var stop_index = parseInt(schedule_div.querySelector('#stops').value);
+	var route_stops = route.directions[direction];
 	var valid_thru = Array.from(document.querySelectorAll('[name=schedule_type]')).find(el => el.checked).value;
 
-	var cars = route.schedules.find(a => a.direction==direction && a.valid_thru==valid_thru).cars;
-	cars.forEach((car, car_index) => {
-		var correct_car = car
-		.find(times => times.indexOf(time)==stop_index);
-		if(correct_car){
-			var modal = document.querySelector('#schedule_modal');
-			var old_tbody = modal.querySelector('tbody');
-			var new_tbody = html_comp('tbody');
-			correct_car.forEach((time, index) => {
-				//patches missing car schedules for M1 and M2
-				if(!stops[index]){
-					return;
-				}
-				var tr = html_comp('tr');
-				var highlight = stops[index].toString()==document.querySelector('#stops').value;
-				tr.appendChild(html_comp('td', {text: `[${stops[index].toString().padStart(4, '0')}] ${get_stop_name(stops[index])}`.split('МЕТРОСТАНЦИЯ ').join(' '), class: `${highlight?'bg-warning':''}`}));
-				tr.appendChild(html_comp('td', {text: mins_to_time(time, true), class: `${highlight?'bg-warning':''}`}));
-				new_tbody.append(tr);
-			});
-			replace_child(new_tbody, old_tbody);
+	var trip_index = route.trips.findIndex(a => a.direction==direction && a.valid_thru==valid_thru);
+    var schedules = route.stop_times.filter(stop_times => stop_times.trip === trip_index);
+    var times = schedules.find(schedule => schedule.times[stop_index]===time).times;
+    console.log(schedules, times);
+	var modal = document.querySelector('#schedule_modal');
+	var old_tbody = modal.querySelector('tbody');
+	var new_tbody = html_comp('tbody');
+	times.forEach((time, cur_stop_index) => {
+		//patches missing car schedules for M1 and M2
+		/*if(!stops[cur_stop_index]){
 			return;
-		}
+		}*/
+		var tr = html_comp('tr');
+		var highlight = cur_stop_index==document.querySelector('#stops').value?'bg-warning':'';
+        const stop = stops.find(stop => stop.code===route_stops[cur_stop_index]) || false;
+        if(!stop){
+            alert(`index:${cur_stop_index}, stop:${route_stops[cur_stop_index]}`);        
+        }
+		tr.appendChild(html_comp('td', {text: stop.code.toString().padStart(4, '0'), class: `${highlight}`}));
+		tr.appendChild(html_comp('td', {text: get_stop_name(stop.code), class: `${highlight}`}));
+		tr.appendChild(html_comp('td', {text: mins_to_time(time, true), class: `${highlight}`}));
+		new_tbody.append(tr);
 	});
+	replace_child(new_tbody, old_tbody);
+}
+function update_globals(new_route_index=false){
+    if(new_route_index){
+        current_route_index = new_route_index;
+    }
+    current_route_direction = parseInt(schedule_div.querySelector('#direction').value);
+    if(schedule_div.querySelector('#stops').value!==''){
+        current_stop_code = parseInt(routes[current_route_index].directions[current_route_direction][schedule_div.querySelector('#stops').value]);
+    }
 }
