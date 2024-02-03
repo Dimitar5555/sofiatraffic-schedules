@@ -332,7 +332,7 @@
 {"code":542,"name_bg":"МОДНА КЪЩА АГРЕСИЯ","coords":[42.726623,23.312105],"name_en":"AGRESIA FASHION HOUSE"}
 {"code":138,"name_bg":"БЛ. 135 Ж.К. ЛЮЛИН-10","coords":[42.71511,23.276443],"name_en":"BL. 135 LYULIN 1 QR0"}
 {"code":176,"name_bg":"БЛ. 255 Ж.К. ДРУЖБА-2","coords":[42.652731,23.403909],"name_en":"BL. 255 DRUZHBA 2 QR"}
-{"code":349,"name_bg":"БУЛ. НИКОЛА ПЕТКОВ","coords":[42.664962,23.259751],"name_en":"NIKOLA PETKOV BLVD"}
+{"code":349,"name_bg":"БУЛ. НИКОЛА ПЕТКОВ","coords":[42.665345,23.260776],"name_en":"NIKOLA PETKOV BLVD"}
 {"code":752,"name_bg":"М-ТЕЛ","coords":[42.716508,23.296064],"name_en":"MTEL"}
 {"code":2677,"name_bg":"БЛ. 245 Ж.К. МЛАДОСТ 2","coords":[42.647042,23.368046],"name_en":"BL. 245 MLADOST 2 QR"}
 {"code":256,"name_bg":"БЛ. 98 Ж.К. ДРУЖБА-1","coords":[42.66737,23.386533],"name_en":"BL. 98 DRUZHBA 1 QR"}
@@ -2755,7 +2755,6 @@
 {"code":6246,"name_bg":"РЕМОНТНА БАЗА","coords":[42.713277,23.160144],"name_en":"REPAIR BASE"}
 {"code":6297,"name_bg":"ЦЕНТЪРА БАНКЯ","coords":[42.707589,23.146293],"name_en":"BANKYA CENTRE"}
 {"code":6298,"name_bg":"ЦЕНТЪР БАНКЯ","coords":[42.707436,23.146317],"name_en":"BANKYA CENTRE"}
-{"code":6307,"name_bg":"УЛ. МАКГАХАН","coords":[42.708342,23.350915],"name_en":"MACGAHAN ST - ON DEMAND"}
 {"code":6331,"name_bg":"УЛ. ФРИТЬОФ НАНСЕН","coords":[42.684318,23.320689],"name_en":"UL. FRITYOF NANSEN"}
 {"code":6347,"name_bg":"УЛ. УЧЕНИЧЕСКА","coords":[42.712444,23.151724],"name_en":"UCHENICHESKA ST"}
 {"code":6382,"name_bg":"УЛ. ПЪРВА БЪЛГАРСКА АРМИЯ","coords":[42.712909,23.343927],"name_en":"PARVA BULGARSKA ARMIA ST"}
