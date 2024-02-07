@@ -1661,7 +1661,6 @@
 {"code":1424,"name_bg":"НАЧАЛО КВ. МИХАЙЛОВО - ПО ЖЕЛАНИЕ","coords":[42.704037,23.127492],"name_en":"ENTRY TO MIHAYLOVO QR"}
 {"code":1499,"name_bg":"НАЧАЛО С. ВЛАДАЯ - ПО ЖЕЛАНИЕ","coords":[42.634527,23.195649],"name_en":"ENTRY TO VLADAYA VILLAGE"}
 {"code":1511,"name_bg":"СЕЛО БАЛША","coords":[42.854498,23.264394],"name_en":"BALSHA VILLAGE"}
-{"code":1540,"name_bg":"СЕЛО КОКАЛЯНЕ","coords":[42.576833,23.414271],"name_en":"KOKALYANE VILLAGE"}
 {"code":1560,"name_bg":"КВ. ЧЕЛОПЕЧЕНЕ","coords":[42.731679,23.47628],"name_en":"CHELOPECHENE QR"}
 {"code":1593,"name_bg":"СОФИЯ МЕД АД","coords":[42.65934,23.414952],"name_en":"SOFIA MED JSC"}
 {"code":1617,"name_bg":"СТАДИОНА БАНКЯ","coords":[42.712155,23.159054],"name_en":"BANKYA STADIUM"}
@@ -2473,6 +2472,7 @@
 {"code":2520,"name_bg":"ЕКОБУЛСОРТ - ПО ЖЕЛАНИЕ","coords":[42.730132,23.225435],"name_en":"ECOBULSORT - ON DEMAND"}
 {"code":2522,"name_bg":"ПО ЖЕЛАНИЕ - НОВА МАХАЛА","coords":[42.695085,23.445779],"name_en":"ON DEMAND-NOVA MAHALA"}
 {"code":2523,"name_bg":"ПО ЖЕЛАНИЕ - НОВА МАХАЛА","coords":[42.695145,23.445655],"name_en":"ON DEMAND-NOVA MAHALA"}
+{"code":2524,"name_bg":"78-МО СОУ БАНКЯ","coords":[42.711684,23.140709],"name_en":"SCHOOL No78 BANKYA"}
 {"code":2526,"name_bg":"ПРЕЧИСТВАТЕЛНА СТАНЦИЯ","coords":[42.753387,23.353237],"name_en":"WATER PURIFICATION PLANT"}
 {"code":2527,"name_bg":"КВ. РЕПУБЛИКА-2","coords":[42.744215,23.231045],"name_en":"REPUBLIKA 2 QR"}
 {"code":2529,"name_bg":"83-ТО ОУ ПАНЧАРЕВО","coords":[42.595619,23.409121],"name_en":"SCHOOL No83 PANCHAREVO"}
