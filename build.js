@@ -52,8 +52,8 @@ function get_routes() {
             else if(decodeURI(split_route[1]).indexOf('У')!==-1){
                 route_data.subtype = 'school';
             }
-	    routes.push(route_data);
-	});
+		    routes.push(route_data);
+		});
         routes.map((route, route_index) => {
 			current_routes++;
 			if(ROUTES_LIMIT!=0 && current_routes>ROUTES_LIMIT){
@@ -77,34 +77,6 @@ function get_routes() {
 			stops.forEach(cgm_stop => {
 				res[res.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
 			});
-			res.push(
-                { code: 3336, names: { bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", en: "GORNA BANYA METRO STATION" } },
-                { code: 3335, names: { bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", en: "GORNA BANYA METRO STATION" } },
-                { code: 3334, names: { bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II", en: "OVCHA KUPEL II METRO STATION" } },
-                { code: 3333, names: { bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II", en: "OVCHA KUPEL II METRO STATION" } },
-                { code: 3332, names: { bg: "МЕТРОСТАНЦИЯ МОЕСИЯ / НБУ", en: "MOESIA / NBU METRO STATION" } },
-                { code: 3331, names: { bg: "МЕТРОСТАНЦИЯ МОЕСИЯ / НБУ", en: "MOESIA / NBU METRO STATION" } },
-                { code: 3330, names: { bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ", en: "OVCHA KUPEL METRO STATION" } },
-                { code: 3329, names: { bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ", en: "OVCHA KUPEL METRO STATION" } },
-                { code: 3328, names: { bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО", en: "TSAR BORIS III / KRASNO SELO METRO STATION" } },
-                { code: 3327, names: { bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО", en: "TSAR BORIS III / KRASNO SELO METRO STATION" } },
-                { code: 3326, names: { bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН", en: "UL. DOYRAN METRO STATION" } },
-                { code: 3325, names: { bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН", en: "UL. DOYRAN METRO STATION" } },
-                { code: 3324, names: { bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ", en: "BUL. BULGARIA METRO STATION" } },
-                { code: 3323, names: { bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ", en: "BUL. BULGARIA METRO STATION" } },
-                { code: 3322, names: { bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ", en: "MEDICAL UNIVERSITY METRO STATION" } },
-                { code: 3321, names: { bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ", en: "MEDICAL UNIVERSITY METRO STATION" } },
-                { code: 3320, names: { bg: "МЕТРОСТАНЦИЯ НДК 2", en: "NDK 2 METRO STATION" } },
-                { code: 3319, names: { bg: "МЕТРОСТАНЦИЯ НДК 2", en: "NDK 2 METRO STATION" } },
-                { code: 3318, names: { bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ", en: "ST. PATRIARCH EVTIMIY METRO STATION" } },
-                { code: 3317, names: { bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ", en: "ST. PATRIARCH EVTIMIY METRO STATION" } },
-                { code: 3316, names: { bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ", en: "ORLOV MOST METRO STATION" } },
-                { code: 3315, names: { bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ", en: "ORLOV MOST METRO STATION" } },
-                { code: 3312, names: { bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА", en: "TEATRALNA METRO STATION" } },
-                { code: 3311, names: { bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА", en: "TEATRALNA METRO STATION" } },
-                { code: 3310, names: { bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР", en: "HADZHI DIMITAR METRO STATION" } },
-                { code: 3309, names: { bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР", en: "HADZHI DIMITAR METRO STATION" } }
-			);
 
 			var stops_json = JSON.stringify(res).replace(/,{"code/g, ',\n{"code');
 			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
@@ -227,8 +199,8 @@ function finalise() {
 			routes.splice(M1_M2_index+1, 0, route);
 		}
 		else{
-    	var M3_index = routes.findIndex(route1 => route1 && route1.line=='M3');
-			routes.splice(M1_M2_index+2, 0, route);
+    	    var M3_index = routes.findIndex(route1 => route1 && route1.line=='M3');
+			routes.splice(M3_index+1, 0, route);
 		}
 	});
     routes = routes.filter(route => !!route);
@@ -292,22 +264,22 @@ function split_M1_M2(fict_route) {
                         //push to act_trips and save index
                         var act_trip = {valid_from: fict_trip.trip.valid_from, valid_thru: fict_trip.trip.valid_thru, direction: act_dir_index};
                         var act_trip_index = actual_routes[act_route_index].trips.find2DIndex(act_trip);
-			if(act_trip_index == -1){
-				act_trip_index = actual_routes[act_route_index].trips.push(act_trip) - 1;
-			}
+				        if(act_trip_index == -1){
+					        act_trip_index = actual_routes[act_route_index].trips.push(act_trip) - 1;
+				        }
                         fict_trips[index].act_i = act_trip_index;
                     });
                     //get all need trips and times, then slice
                     var needed_fict_trip_ids = fict_trips.map(f => f.fict_i);
                     var times_list = fict_route.stop_times.filter(stop_time => needed_fict_trip_ids.indexOf(stop_time.trip)!==-1);
-                    times_list.map(time => {
+		    times_list.map(time => {
 			    var obj = {};
 			    obj.car = time.car;
 			    obj.times = time.times.slice(start_index, end_index+1);
 			    obj.trip = fict_trips.find(t => t.fict_i==time.trip).act_i;
 			    actual_routes[act_route_index].stop_times.push(obj);
 		    });
-		}
+                }
             });
         });
     });
