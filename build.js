@@ -307,6 +307,7 @@ function split_M1_M2(fict_route) {
 			    obj.trip = fict_trips.find(t => t.fict_i==time.trip).act_i;
 			    actual_routes[act_route_index].stop_times.push(obj);
 		    });
+		}
             });
         });
     });
