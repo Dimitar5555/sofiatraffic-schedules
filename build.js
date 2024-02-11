@@ -52,9 +52,9 @@ function get_routes() {
             else if(decodeURI(split_route[1]).indexOf('У')!==-1){
                 route_data.subtype = 'school';
             }
-			routes.push(route_data);
-		});
-		routes.map((route, route_index) => {
+	});
+	routes.push(route_data);
+        routes.map((route, route_index) => {
 			current_routes++;
 			if(ROUTES_LIMIT!=0 && current_routes>ROUTES_LIMIT){
 				return;
@@ -139,7 +139,7 @@ function get_schedules(id){
 			var all_directions_for_day_btns = Array.from(day.querySelectorAll('.schedule_view_direction_tab'));
 			all_directions_for_day_btns.forEach(button => {
 				//взимане на разписание по коли
-                var valid_thru: [
+                var valid_thru = [
 						valid_days.indexOf('делник')!==-1?'1':'0',
 						valid_days.indexOf('предпразник')!==-1?'1':'0',
 						valid_days.indexOf('празник')!==-1?'1':'0'
@@ -216,8 +216,22 @@ function get_times(id){
 get_routes();
 function finalise() {
 	var M1_M2_index = routes.findIndex(route1 => route1 && route1.line=='M1-M2');
-    routes[M1_M2_index].line = 'M1-2';
-	routes = routes.filter(route => !!route);
+    var res = split_M1_M2(JSON.parse(JSON.stringify(routes[M1_M2_index])));
+	delete routes[M1_M2_index];
+	res.forEach(route => {
+		//put routes in correct order
+		if(route.line=='M1'){
+			routes.splice(M1_M2_index, 0, route);
+		}
+		else if(route.line=='M2'){
+			routes.splice(M1_M2_index+1, 0, route);
+		}
+		else{
+    	var M3_index = routes.findIndex(route1 => route1 && route1.line=='M3');
+			routes.splice(M1_M2_index+2, 0, route);
+		}
+	});
+    routes = routes.filter(route => !!route);
 	routes.sort((a, b) => a.line<b.line);
 
 	console.log('Done! Writing data to schedule.json');
@@ -225,4 +239,76 @@ function finalise() {
 	fs.writeFileSync('docs/data/schedule.json', routes_json);
 	metadata.routes_hash = crypto.createHash('sha256').update(routes_json).digest('hex');
 	fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
+}
+function split_M1_M2(fict_route) {
+	var actual_routes = [
+		{
+			line: 'M1',
+			directions: [
+				[3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3039, 3041, 3043],
+				[3044, 3042, 3040, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002]
+			],
+			type: 'metro',
+			trips: [],
+            stop_times: []
+		},
+		{
+			line: 'M2',
+			directions: [
+				[2975, 2977, 2979, 2981, 2983, 2985, 2987, 2989, 2991, 2993, 2995, 2997, 2999],
+				[3000, 2998, 2996, 2994, 2992, 2990, 2988, 2986, 2984, 2982, 2980, 2978, 2976]
+			],
+			type: 'metro',
+			trips: [],
+            stop_times: []
+		},
+		{
+			line: 'M4',
+			directions: [
+				[2999, 3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3027, 3029, 3031, 3033, 3035, 3037],
+				[3038, 3036, 3034, 3032, 3030, 3028, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002, 3000]
+			],
+			type: 'metro',
+			trips: [],
+            stop_times: []
+		}
+	];
+
+    //for each real route
+    actual_routes.map((act_route, act_route_index) => {
+        //and each real direction
+        act_route.directions.map((act_dir, act_dir_index) => {
+            //loop through each fictional route direction
+            fict_route.directions.map((fict_dir, fict_dir_index) => {
+                //find the start and end indexes
+                var start_index = fict_dir.indexOf(act_dir[0]);
+                var end_index = fict_dir.indexOf(act_dir[act_dir.length-1]);
+                if(start_index!==-1 && end_index!==-1){
+                    //find fict trips
+                    var fict_trips = fict_route.trips
+                    .map((trip, i) => ({trip: trip, fict_i: i, act_i: 0}))
+                    .filter(trip => trip.trip.direction == fict_dir_index);
+                    fict_trips.map((fict_trip, index) => {
+                        //push to act_trips and save index
+                        var act_trip = {valid_from: fict_trip.trip.valid_from, valid_thru: fict_trip.trip.valid_thru, direction: act_dir_index};
+                        var act_trip_index = actual_routes[act_route_index].trips.find2DIndex(act_trip);
+			if(act_trip_index == -1){
+				act_trip_index = actual_routes[act_route_index].trips.push(act_trip) - 1;
+			}
+                        fict_trips[index].act_i = act_trip_index;
+                    });
+                    //get all need trips and times, then slice
+                    var needed_fict_trip_ids = fict_trips.map(f => f.fict_i);
+                    var times_list = fict_route.stop_times.filter(stop_time => needed_fict_trip_ids.indexOf(stop_time.trip)!==-1);
+                    times_list.map(time => {
+			    var obj = {};
+			    obj.car = time.car;
+			    obj.times = time.times.slice(start_index, end_index+1);
+			    obj.trip = fict_trips.find(t => t.fict_i==time.trip).act_i;
+			    actual_routes[act_route_index].stop_times.push(obj));
+                }
+            });
+        });
+    });
+	return actual_routes;
 }
