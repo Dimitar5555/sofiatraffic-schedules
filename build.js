@@ -52,8 +52,8 @@ function get_routes() {
             else if(decodeURI(split_route[1]).indexOf('У')!==-1){
                 route_data.subtype = 'school';
             }
+	    routes.push(route_data);
 	});
-	routes.push(route_data);
         routes.map((route, route_index) => {
 			current_routes++;
 			if(ROUTES_LIMIT!=0 && current_routes>ROUTES_LIMIT){
