@@ -87,10 +87,11 @@ function fetch_data(metadata=false){
 	return Promise.all(promises);
 }
 function generate_line_btn(route_index, parent){
+    var route = routes[route_index];
 	var el = html_comp('button', {
 		text: decodeURI(routes[route_index].line),
 		'data-route-index': route_index,
-		class: `line_selector_btn text-light rounded-1 ${routes[route_index].type!=='metro'?routes[route_index].type:routes[route_index].line}-bg-color`,
+		class: `line_selector_btn ${route.line=='M4'?'text-dark':'text-light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
 		'onclick': 'show_schedule(this)'});
 	parent.appendChild(el);
 }
