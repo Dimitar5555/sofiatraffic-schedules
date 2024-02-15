@@ -13,7 +13,7 @@ var current_routes = 0;
 
 var date = new Date();
 var metadata = {
-	app_version: '2023-05-04',
+	app_version: '2024-02-15',
 	routes_hash: '',
 	stops_hash: '',
 	retrieval_date: `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')}`
