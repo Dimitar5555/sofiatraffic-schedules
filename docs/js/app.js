@@ -95,8 +95,6 @@ function generate_line_btn(route_index, sibling){
 		'data-route-index': route_index,
 		class: `line_selector_btn text-${route.line=='M4'?'dark':'light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
 		'onclick': 'show_schedule(this)'});
-    //console.log(sibling);
-	//sibling.parentNode.insertBefore(el, sibling,nextSibling);
     return el;
 }
 //try to update metadata every hour
