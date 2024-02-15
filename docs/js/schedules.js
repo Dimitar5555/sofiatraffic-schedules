@@ -192,7 +192,11 @@ function configure_stop_selector(){
 		//route has no stops
 	}
 	else{
-		route.directions[direction].forEach((stop, stop_index) => new_stop_el.appendChild(html_comp('option', {text: `[${stop.toString().padStart(4, '0')}] ${get_stop_name(stop, is_metro)}`, value: stop_index})));
+		route.directions[direction]
+        .forEach((stop, stop_index) => new_stop_el.appendChild(html_comp('option', {
+            text: `[${stop.toString().padStart(4, '0')}] ${get_stop_name(stop, is_metro)}`,
+            value: stop_index
+        })));
 	}
 	replace_child(new_stop_el, old_stop_el);
     update_globals();
