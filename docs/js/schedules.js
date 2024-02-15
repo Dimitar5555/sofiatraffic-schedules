@@ -169,14 +169,14 @@ function configure_weekday_selector(){
 }
 function configure_direction_selector(){
     var route = routes[current_route_index];
-	var metro = route.type=='metro';
+	var is_metro = route.type=='metro';
     var start_end_stops = route.directions.map(direction => [direction[0], direction[direction.length-1]]);
 
 	var old_directions_select = schedule_div.querySelector('#direction');
 	var new_directions_select = old_directions_select.cloneNode(false);
 	
 	start_end_stops.forEach((pair, index) => {
-		new_directions_select.appendChild(html_comp('option', {text: pair.map(stop =>  metro?get_stop_name(stop).replace('МЕТРОСТАНЦИЯ ', ''):get_stop_name(stop)).join(' -> '), value: index}));
+		new_directions_select.appendChild(html_comp('option', {text: pair.map(stop =>  get_stop_name(stop, is_metro)).join(' -> '), value: index}));
 	});
     replace_child(new_directions_select, old_directions_select);
     configure_stop_selector();
@@ -186,13 +186,13 @@ function configure_stop_selector(){
 	var old_stop_el = schedule_div.querySelector('#stops');
     var new_stop_el = old_stop_el.cloneNode(false);
     var direction = schedule_div.querySelector('#direction').value;
-	var metro = route.type=='metro';
+	var is_metro = route.type=='metro';
 	
 	if(direction==''){
 		//route has no stops
 	}
 	else{
-		route.directions[direction].forEach((stop, stop_index) => new_stop_el.appendChild(html_comp('option', {text: `[${stop.toString().padStart(4, '0')}] ${metro?get_stop_name(stop).replace('МЕТРОСТАНЦИЯ ', ''):get_stop_name(stop)}`, value: stop_index})));
+		route.directions[direction].forEach((stop, stop_index) => new_stop_el.appendChild(html_comp('option', {text: `[${stop.toString().padStart(4, '0')}] ${get_stop_name(stop, is_metro)}`, value: stop_index})));
 	}
 	replace_child(new_stop_el, old_stop_el);
     update_globals();
@@ -260,11 +260,14 @@ function configure_favourite_stop_button(favourite_stops=false){
 		star.setAttribute('title', lang.schedules.remove_from_favourites);
 	}
 }
-function get_stop_name(id){
+function get_stop_name(id, hide_metro_part=false){
 	if(!id || id==undefined){
 		return '-';
 	}
     var stop = stops.find(stop => stop.code === Number(id));
+    if(hide_metro_part){
+        return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ ', '') || "(НЕИЗВЕСТНА СПИРКА)";
+    }
     return stop.names[lang.code] || "(НЕИЗВЕСТНА СПИРКА)";
 }
 function display_schedule(schedule_index){
@@ -403,7 +406,8 @@ function display_vehicle_schedule(time){
 	var stop_index = parseInt(schedule_div.querySelector('#stops').value);
 	var route_stops = route.directions[direction];
 	var valid_thru = Array.from(document.querySelectorAll('[name=schedule_type]')).find(el => el.checked).value;
-
+    var is_metro = route.type=='metro';    
+    
 	var trip_index = route.trips.findIndex(a => a.direction==direction && a.valid_thru==valid_thru);
     var schedules = route.stop_times.filter(stop_times => stop_times.trip === trip_index);
     var times = schedules.find(schedule => schedule.times[stop_index]===time).times;
@@ -412,10 +416,6 @@ function display_vehicle_schedule(time){
 	var old_tbody = modal.querySelector('tbody');
 	var new_tbody = html_comp('tbody');
 	times.forEach((time, cur_stop_index) => {
-		//patches missing car schedules for M1 and M2
-		/*if(!stops[cur_stop_index]){
-			return;
-		}*/
 		var tr = html_comp('tr');
 		var highlight = cur_stop_index==document.querySelector('#stops').value?'bg-warning':'';
         const stop = stops.find(stop => stop.code===route_stops[cur_stop_index]) || false;
@@ -423,7 +423,7 @@ function display_vehicle_schedule(time){
             alert(`index:${cur_stop_index}, stop:${route_stops[cur_stop_index]}`);        
         }
 		tr.appendChild(html_comp('td', {text: stop.code.toString().padStart(4, '0'), class: `${highlight}`}));
-		tr.appendChild(html_comp('td', {text: get_stop_name(stop.code), class: `${highlight}`}));
+		tr.appendChild(html_comp('td', {text: get_stop_name(stop.code, is_metro), class: `${highlight}`}));
 		tr.appendChild(html_comp('td', {text: mins_to_time(time, true), class: `${highlight}`}));
 		new_tbody.append(tr);
 	});
