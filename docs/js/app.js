@@ -91,7 +91,7 @@ function generate_line_btn(route_index, parent){
 	var el = html_comp('button', {
 		text: decodeURI(routes[route_index].line),
 		'data-route-index': route_index,
-		class: `line_selector_btn ${route.line=='M4'?'text-dark':'text-light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
+		class: `line_selector_btn text-${route.line=='M4'?'dark':'light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
 		'onclick': 'show_schedule(this)'});
 	parent.appendChild(el);
 }
