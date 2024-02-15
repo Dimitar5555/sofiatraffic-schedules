@@ -22,7 +22,7 @@ function html_comp(tag, attributes={}){
 function replace_child(new_child, old_child){
 	old_child.parentElement.replaceChild(new_child, old_child);
 }
-function init(){
+function init(debug=false){
 	if(!localStorage.getItem('lang')){
 		var cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.indexOf(lang)!==-1);
 		localStorage.setItem('lang', cur_lang?cur_lang:'bg');
@@ -35,18 +35,20 @@ function init(){
 	}
 
 	fetch(`i18n/${localStorage.lang}.json`)
-	.then(response => response.text())
-	.then(response => lang = JSON.parse(response))
-	.then(() => {
-		var nav_links = document.querySelectorAll('.nav-item');
-		document.title = lang.title;
-
-		nav_links.item(0).innerText = lang.nav.schedules;
-		nav_links.item(1).innerText = lang.nav.favourites;
-
-		var footer_spans = document.querySelector('footer').querySelectorAll('span');
-		footer_spans.item(0).innerText = lang.footer.last_data_update;
-		footer_spans.item(1).innerText = lang.footer.last_site_update;
+	.then(response => response.json())
+	.then((response) => {
+        lang = response;
+	    
+        const i18n_els = document.querySelectorAll('[data-i18n]');
+        Array.from(i18n_els)
+        .map(el => {
+            var path = el.dataset.i18n.split('.');
+            var string = path.reduce((acc, cur) => acc[cur], response);
+            if(!string){
+                alert(el.dataset.i18n);
+            }
+            el.innerHTML = debug?`{{${el.dataset.i18n}}}`:string;
+        });
 	});
 
 	check_metadata();
@@ -86,14 +88,14 @@ function fetch_data(metadata=false){
 
 	return Promise.all(promises);
 }
-function generate_line_btn(route_index, parent){
+function generate_line_btn(route_index, sibling){
     var route = routes[route_index];
 	var el = html_comp('button', {
 		text: decodeURI(routes[route_index].line),
 		'data-route-index': route_index,
 		class: `line_selector_btn text-${route.line=='M4'?'dark':'light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
 		'onclick': 'show_schedule(this)'});
-	parent.appendChild(el);
+    return el;
 }
 //try to update metadata every hour
 var update_interval;

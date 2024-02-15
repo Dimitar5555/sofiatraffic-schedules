@@ -1,49 +1,64 @@
 {
-	"code": "en",
-	"title": "Sofia schedules",
-	"nav": {
-		"schedules": "Schedules",
-		"favourites": "Favourite stops"
+	"code":"en",
+	"title":"Sofia Urban Transport Schedule",
+	"nav":{
+		"schedules":"Schedules",
+		"favourites":"Favourite stops"
 	},
-	"line_types": {
-		"metros": "Metrolines", 
-		"tramways": "Tramways", 
-		"trolleybuses": "Trolleybuses",
-		"electrobuses": "Electric buses",
-		"autobuses": "Buses",
-		"temporary": "Temporary buses",
-		"night": "Night buses"
+	"line_types":{
+		"favourite":"Favourite lines",
+		"metro":"Metrolines",
+		"tramway":"Tramways",
+		"trolleybus":"Trolleybuses",
+		"autobus":"Buses",
+		"school":"School buses",
+		"temporary":"Temporary buses",
+		"night":"Night buses"
 	},
-	"line_type": {
-		"metro": "Metroline", 
-		"tramway": "Tramway", 
-		"trolleybus": "Trolleybus",
-		"electrobus": "Electric bus",
-		"autobus": "Bus",
-		"temporary": "Temporary bus",
-		"night": "Night bus"
+	"line_type":{
+		"metro":"Metroline",
+		"tramway":"Tramway",
+		"trolleybus":"Trolleybus",
+		"autobus":"Bus",
+		"temporary":"Temporary bus",
+		"night":"Night bus"
 	},
-	"weekdays": {
-		"weekday": "Weekday",
-		"pre_holiday": "Pre-holiday",
-		"holiday": "Holiday"
+	"weekdays":{
+		"weekday":"Weekday",
+		"pre_holiday":"Pre-holiday",
+		"holiday":"Holiday"
 	},
-	"schedules": {
-		"back": " Back",
-		"line": "Line:",
-		"schedule": "Valid thru:",
-		"valid_from": "Valid from:",
-		"direction": "Direction",
-		"stop": "Stop",
-		"show_by_cars": "Show schedule by cars",
-		"modal_title": "Course schedule",
-		"departure_time": "Departure time",
-		"close": "Close",
-		"note": "Incomplete courses are marked with a red/yellow background."
+	"schedules":{
+		"back":" Back",
+		"line":"Line:",
+		"schedule":"Valid thru:",
+		"valid_from":"Valid from:",
+		"direction":"Direction",
+		"stop":"Stop",
+		"show_by_cars":"Show schedule by cars",
+		"modal_title":"Course schedule",
+		"departure_time":"Departure time",
+		"previous_course":"Previous course",
+		"next_course":"Next course",
+		"partial_trips":"Incomplete courses are marked with a red/yellow background.",
+		"add_to_favourites":"Add to favourites",
+		"remove_from_favourites":"Remove from favourites"
 	},
-	"favourites": {
-		"stop": "Stop",
-		"actions": "Actions",
-		"virtual_table": "Virtual table"
+	"favourites":{
+		"stop":"Stop",
+		"actions":"Actions",
+		"virtual_table":"Virtual departure board"
+	},
+	"footer":{
+		"last_data_update":"Last update of schedules",
+		"last_site_update":"Last site update"
+	},
+	"stats":{
+		"schedules_by_date":"New schedu;es by date",
+		"date":"Date",
+		"lines":"Line"
+	},
+	"actions":{
+		"close":"Close"
 	}
 }
