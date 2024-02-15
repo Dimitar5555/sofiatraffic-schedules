@@ -64,10 +64,10 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-2 col-xs-3 col-sm-1 px-0 text-center align-middle" style="line-height: 37.6px;">
-										<i class="bi bi-star h5 text-warning"></i>
+										<i class="lh-1 align-middle bi bi-star h5 text-warning"></i>
 									</div>
 									<div class="col-10 col-xs-9 col-sm-11 ps-0">
-										<select class="form-select" onchange="display_schedule(); configure_favourite_stop_button();" id="stops"></select>
+										<select class="form-select" onchange="display_schedule(); update_globals(); configure_favourite_stop_button();" id="stops"></select>
 									</div>
 								</div>
 							</div>
@@ -95,12 +95,12 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-								<!--<button>Предишен курс на тази кола</button>
-								<button>Следващ курс на тази кола</button>-->
+								<button class="d-none">Предишен курс</button>
+								<button class="d-none">Следващ курс</button>
 								<table id="detailed_schedule" class="table table-bordered table-sm table-text-left">
 									<thead>
 										<tr>
-											<th>Спирка</th>
+											<th colspan="2">Спирка</th>
 											<th>Време на потегляне</th>
 										</tr>
 									</thead>
@@ -119,7 +119,7 @@
 				<table id="stops" class="table table-bordered">
 					<thead>
 						<tr>
-							<th></th>
+							<th colspan="2"></th>
 							<th></th>
 						</tr>
 					</thead>
@@ -145,6 +145,22 @@
 					</thead>
 					<tbody></tbody>
 				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+    <div class="modal fade" id="sofiatraffic_live_data" tabindex="-1" aria-labelledby="sofiatraffic_live_data" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+		  <div class="modal-content">
+			<!--<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Нови разписания по дати</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>-->
+			<div class="modal-body">
+				<iframe></iframe>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>

@@ -13,7 +13,7 @@ var current_routes = 0;
 
 var date = new Date();
 var metadata = {
-	app_version: '2023-05-04',
+	app_version: '2024-02-15',
 	routes_hash: '',
 	stops_hash: '',
 	retrieval_date: `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')}`
@@ -38,16 +38,23 @@ function get_routes() {
 			var split_route = route.split('/');
 			var route_data = {
 				line: split_route[1],
-				temp: decodeURI(split_route[1]).indexOf('ТМ')!==-1,
-				night: split_route[1].indexOf('N')!==-1,
-				school: decodeURI(split_route[1]).indexOf('У')!==-1,
-				type: split_route[0],
-				directions: [],
-				schedules: []
+			    type: split_route[0],
+			    directions: [],
+				trips: [],
+                stop_times: []
 			};
-			routes.push(route_data);
+            if(decodeURI(split_route[1]).indexOf('ТМ')!==-1){
+                route_data.subtype = 'temp';
+            }
+            else if(decodeURI(split_route[1]).indexOf('N')!==-1){
+                route_data.subtype = 'night';
+            }
+            else if(decodeURI(split_route[1]).indexOf('У')!==-1){
+                route_data.subtype = 'school';
+            }
+		    routes.push(route_data);
 		});
-		routes.map((route, route_index) => {
+        routes.map((route, route_index) => {
 			current_routes++;
 			if(ROUTES_LIMIT!=0 && current_routes>ROUTES_LIMIT){
 				return;
@@ -62,44 +69,16 @@ function get_routes() {
 	.then(stops => {
 		var res = [];
 		stops.forEach(stop => {
-			res.push({code: Number(stop.c), name_bg: stop.n, coords: [stop.y, stop.x]});
+			res.push({code: Number(stop.c), coords: [stop.y, stop.x], names: {bg: stop.n}});
 		});
 		fetch(`${routes_url}resources/stops-en.json`)
 		.then(response => response.json())
 		.then(stops => {
 			stops.forEach(cgm_stop => {
-				res[res.findIndex(stop => stop.code === Number(cgm_stop.c))].name_en = cgm_stop.n;
+				res[res.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
 			});
-			res.push(
-			    { code: 3336, name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", name_en: "GORNA BANYA METRO STATION" },
-			    { code: 3335, name_bg: "МЕТРОСТАНЦИЯ ГОРНА БАНЯ", name_en: "GORNA BANYA METRO STATION"  },
-			    { code: 3334, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II", name_en: "OVCHA KUPEL II METRO STATION" },
-			    { code: 3333, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ II", name_en: "OVCHA KUPEL II METRO STATION" },
-			    { code: 3332, name_bg: "МЕТРОСТАНЦИЯ МОЕСИЯ / НБУ", name_en: "MOESIA / NBU METRO STATION" },
-			    { code: 3331, name_bg: "МЕТРОСТАНЦИЯ МОЕСИЯ / НБУ", name_en: "MOESIA / NBU METRO STATION" },
-			    { code: 3330, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ", name_en: "OVCHA KUPEL METRO STATION" },
-			    { code: 3329, name_bg: "МЕТРОСТАНЦИЯ ОВЧА КУПЕЛ", name_en: "OVCHA KUPEL METRO STATION" },
-			    { code: 3328, name_bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО", name_en: "TSAR BORIS III / KRASNO SELO METRO STATION" },
-			    { code: 3327, name_bg: "МЕТРОСТАНЦИЯ ЦАР БОРИС III / КРАСНО СЕЛО", name_en: "TSAR BORIS III / KRASNO SELO METRO STATION" },
-			    { code: 3326, name_bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН", name_en: "UL. DOYRAN METRO STATION" },
-			    { code: 3325, name_bg: "МЕТРОСТАНЦИЯ УЛ. ДОЙРАН", name_en: "UL. DOYRAN METRO STATION" },
-			    { code: 3324, name_bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ", name_en: "BUL. BULGARIA METRO STATION" },
-			    { code: 3323, name_bg: "МЕТРОСТАНЦИЯ БУЛ. БЪЛГАРИЯ", name_en: "BUL. BULGARIA METRO STATION" },
-			    { code: 3322, name_bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ", name_en: "MEDICAL UNIVERSITY METRO STATION" },
-			    { code: 3321, name_bg: "МЕТРОСТАНЦИЯ МЕДИЦИНСКИ УНИВЕРСИТЕТ", name_en: "MEDICAL UNIVERSITY METRO STATION" },
-			    { code: 3320, name_bg: "МЕТРОСТАНЦИЯ НДК 2", name_en: "NDK 2 METRO STATION" },
-			    { code: 3319, name_bg: "МЕТРОСТАНЦИЯ НДК 2", name_en: "NDK 2 METRO STATION" },
-			    { code: 3318, name_bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ", name_en: "ST. PATRIARCH EVTIMIY METRO STATION" },
-			    { code: 3317, name_bg: "МЕТРОСТАНЦИЯ СВ. ПАТРИАРХ ЕВТИМИЙ", name_en: "ST. PATRIARCH EVTIMIY METRO STATION" },
-			    { code: 3316, name_bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ", name_en: "ORLOV MOST METRO STATION" },
-			    { code: 3315, name_bg: "МЕТРОСТАНЦИЯ ОРЛОВ МОСТ", name_en: "ORLOV MOST METRO STATION" },
-			    { code: 3312, name_bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА", name_en: "TEATRALNA METRO STATION" },
-			    { code: 3311, name_bg: "МЕТРОСТАНЦИЯ ТЕАТРАЛНА", name_en: "TEATRALNA METRO STATION" },
-			    { code: 3310, name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР", name_en: "HADZHI DIMITAR METRO STATION" },
-			    { code: 3309, name_bg: "МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР", name_en: "HADZHI DIMITAR METRO STATION" }
-			);
 
-			var stops_json = res.map(stop => JSON.stringify(stop)).join('\n');
+			var stops_json = JSON.stringify(res).replace(/,{"code/g, ',\n{"code');
 			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
 			fs.writeFileSync('docs/data/stops.json', stops_json);
 		});
@@ -108,6 +87,9 @@ function get_routes() {
 function print_message(id, total, type, url){
 	var id = (id+1).toString().padStart(total.toString().length, '0');
 	console.log(`Processing ${type} ${id}/${total}: ${url}`);
+}
+function remove_new_line_chars(str){
+    return str.replace(/[\n\r\t]/g, '');
 }
 function get_schedules(id){
 	var data = routes_urls[id];
@@ -123,33 +105,44 @@ function get_schedules(id){
 		var days_buttons = Array.from(line_view.querySelectorAll('.schedule_active_list_tab'));
 		days_buttons.forEach(day_button => {
 			var day = line_view.querySelector(`#${day_button.id.replace('button', 'content')}`);
-			var valid_days = day_button.innerText.split(' / ').map(item => item.replaceAll('\n', '').replaceAll('\t', '').replaceAll(' ', ''));
+			var valid_days = day_button.innerText.split(' / ').map(item => remove_new_line_chars(item));
 			
 			//посоки на движение за съответното разписание
 			var all_directions_for_day_btns = Array.from(day.querySelectorAll('.schedule_view_direction_tab'));
 			all_directions_for_day_btns.forEach(button => {
 				//взимане на разписание по коли
-				var local_sched = {
-					valid_thru: [
+                var valid_thru = [
 						valid_days.indexOf('делник')!==-1?'1':'0',
 						valid_days.indexOf('предпразник')!==-1?'1':'0',
 						valid_days.indexOf('празник')!==-1?'1':'0'
-					].join(''),
-					cars: [],
-					valid_from: day.querySelector('em').innerText
-				};
+					].join('');
+				var valid_from = day.querySelector('em').innerText;
 				var container = line_view.querySelector(`#${button.id.replace('button', 'container')}`);
 				var stops_els = Array.from(container.previousElementSibling.querySelectorAll('.stop_link'));
 				var stops = stops_els.map(element => parseInt(element.innerText));
 				var first_stop = stops[0];
 				var last_stop = stops[stops.length-1];
-				local_sched.direction = routes[route_index].directions.find2DIndex(stops);
-				if(local_sched.direction == -1){
-					local_sched.direction = routes[route_index].directions.push(stops) - 1;
+				var direction_index = routes[route_index].directions.find2DIndex(stops);
+				if(direction_index == -1){
+					direction_index = routes[route_index].directions.push(stops) - 1;
 				}
-				var local_sched_index = routes[route_index].schedules.push(local_sched) - 1;
-				schedules_urls.push([`${schedules_url}server/html/schedule_load/${button.id.split('_')[2]}/${button.id.split('_')[3]}/${first_stop}`, route_index, local_sched_index]);
-				schedules_urls.push([`${schedules_url}server/html/schedule_load/${button.id.split('_')[2]}/${button.id.split('_')[3]}/${last_stop}`, route_index, local_sched_index]);
+
+                const trip = {valid_from: valid_from, valid_thru: valid_thru, direction: direction_index};
+                var trip_index = routes[route_index].trips.find2DIndex(trip);
+				if(trip_index == -1){
+					trip_index = routes[route_index].trips.push(trip) - 1;
+				}
+                //get from both ends, in order to catch all partial trips
+				schedules_urls.push({
+                    url: `${schedules_url}server/html/schedule_load/${button.id.split('_')[2]}/${button.id.split('_')[3]}/${first_stop}`,
+                    route_index: route_index,
+                    trip: trip_index
+                });
+				schedules_urls.push({
+                    url: `${schedules_url}server/html/schedule_load/${button.id.split('_')[2]}/${button.id.split('_')[3]}/${last_stop}`,
+                    route_index: route_index,
+                    trip: trip_index
+                });
 			});
 		});
 	})
@@ -164,23 +157,22 @@ function get_schedules(id){
 }
 function get_times(id){
 	var data = schedules_urls[id];
-	print_message(id, schedules_urls.length, "schedule", data[0]);
-	fetch(data[0])
+	print_message(id, schedules_urls.length, "schedule", data.url);
+	fetch(data.url)
 	.then(response => response.text())
 	.then(response => HTMLParser.parse(response))
 	.then(htmlDOM => Array.from(htmlDOM.querySelector('.schedule_times').querySelectorAll('a[onclick]')))
 	.then(times => {
 		var route_index = data[1];
-		var direction_index = data[2];
+		var schedule_index = data[2];
 		times.forEach(time => {
 			var car_schedule = time.getAttribute('onclick').split('\'')[5].split(',').map(a => a!==''?Number(a):a);
-			var car = car_schedule.shift();
-			var car_index = car-1;
-			if(!routes[route_index].schedules[direction_index].cars[car_index]){
-				routes[route_index].schedules[direction_index].cars[car_index] = [];
-			}
-			if(routes[route_index].schedules[direction_index].cars[car_index].find2DIndex(car_schedule)==-1){
-				routes[route_index].schedules[direction_index].cars[car_index].push(car_schedule);
+			var car_index = car_schedule.shift();
+            //verify that the trip hasn't been added
+            const result = {car: car_index, times: car_schedule, trip: data.trip};
+            const are_stop_times_present = routes[data.route_index].stop_times.find2DIndex(result)!==-1;
+			if(!are_stop_times_present){
+				routes[data.route_index].stop_times.push(result);
 			}
 		});
 		if(schedules_urls[id+1]){
@@ -196,32 +188,31 @@ function get_times(id){
 get_routes();
 function finalise() {
 	var M1_M2_index = routes.findIndex(route1 => route1 && route1.line=='M1-M2');
-	var res = split_M1_M2(routes[M1_M2_index]);
+    var res = split_M1_M2(JSON.parse(JSON.stringify(routes[M1_M2_index])));
 	delete routes[M1_M2_index];
-	
-	var M3_index = routes.findIndex(route1 => route1 && route1.line=='M3');
 	res.forEach(route => {
 		//put routes in correct order
 		if(route.line=='M1'){
-			routes.splice(M3_index, 0, route);
+			routes.splice(M1_M2_index, 0, route);
 		}
 		else if(route.line=='M2'){
-			routes.splice(M3_index+1, 0, route);
+			routes.splice(M1_M2_index+1, 0, route);
 		}
 		else{
-			routes.push(route);
+    	    var M3_index = routes.findIndex(route1 => route1 && route1.line=='M3');
+			routes.splice(M3_index+1, 0, route);
 		}
 	});
-	routes = routes.filter(route => !!route);
+    routes = routes.filter(route => !!route);
 	routes.sort((a, b) => a.line<b.line);
 
 	console.log('Done! Writing data to schedule.json');
-	var routes_json = JSON.stringify(routes);
+	var routes_json = JSON.stringify(routes).replace(/,{"car/g, ',\n{"car').replace(/,{"line/g, ',\n{"line');
 	fs.writeFileSync('docs/data/schedule.json', routes_json);
 	metadata.routes_hash = crypto.createHash('sha256').update(routes_json).digest('hex');
 	fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
 }
-function split_M1_M2(route) {
+function split_M1_M2(fict_route) {
 	var actual_routes = [
 		{
 			line: 'M1',
@@ -229,10 +220,9 @@ function split_M1_M2(route) {
 				[3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3039, 3041, 3043],
 				[3044, 3042, 3040, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002]
 			],
-			temp: false,
-			night: false,
 			type: 'metro',
-			schedules: []
+			trips: [],
+            stop_times: []
 		},
 		{
 			line: 'M2',
@@ -240,10 +230,9 @@ function split_M1_M2(route) {
 				[2975, 2977, 2979, 2981, 2983, 2985, 2987, 2989, 2991, 2993, 2995, 2997, 2999],
 				[3000, 2998, 2996, 2994, 2992, 2990, 2988, 2986, 2984, 2982, 2980, 2978, 2976]
 			],
-			temp: false,
-			night: false,
 			type: 'metro',
-			schedules: []
+			trips: [],
+            stop_times: []
 		},
 		{
 			line: 'M4',
@@ -251,43 +240,48 @@ function split_M1_M2(route) {
 				[2999, 3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3027, 3029, 3031, 3033, 3035, 3037],
 				[3038, 3036, 3034, 3032, 3030, 3028, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002, 3000]
 			],
-			temp: false,
-			night: false,
 			type: 'metro',
-			schedules: []
+			trips: [],
+            stop_times: []
 		}
 	];
-	
-	var directions = route.directions;
-	var cgm_dirs = [];
-	directions.forEach((direction, direction_index) => {
-		actual_routes.forEach((actual_route, route_index) => {
-			for(i=0;i<=1;i++){
-				var start_stop_index = direction.indexOf(actual_route.directions[i][0]);
-				var end_stop_index = direction.indexOf(actual_route.directions[i][actual_route.directions[i].length-1]);
-				if(start_stop_index!==-1 && end_stop_index!==-1){
-					var applies_to = route.schedules.filter(a => a.direction==direction_index);
-					applies_to.forEach(cars => {
-						var valid_thru_index = actual_routes[route_index].schedules.findIndex(a => a.valid_thru==cars.valid_thru && a.direction==i);
-						if(valid_thru_index==-1){
-							valid_thru_index = actual_routes[route_index].schedules.push({direction: i, valid_thru: cars.valid_thru, valid_from: cars.valid_from, cars: []})-1;
-						}
-						cars.cars.forEach((car, car_index) => {
-							if(car==null){
-								return;
-							}
-							if(!actual_routes[route_index].schedules[valid_thru_index].cars[car_index]){
-								actual_routes[route_index].schedules[valid_thru_index].cars[car_index] = [];
-							}
-							car.forEach(time => {
-								actual_routes[route_index].schedules[valid_thru_index].cars[car_index].push(time);
-							})
-						})
-					});
-					cgm_dirs.push([actual_route.line, direction_index, start_stop_index, end_stop_index, i]);
-				}
-			}
-		});
-	});
+
+    //for each real route
+    actual_routes.map((act_route, act_route_index) => {
+        //and each real direction
+        act_route.directions.map((act_dir, act_dir_index) => {
+            //loop through each fictional route direction
+            fict_route.directions.map((fict_dir, fict_dir_index) => {
+                //find the start and end indexes
+                var start_index = fict_dir.indexOf(act_dir[0]);
+                var end_index = fict_dir.indexOf(act_dir[act_dir.length-1]);
+                if(start_index!==-1 && end_index!==-1){
+                    //find fict trips
+                    var fict_trips = fict_route.trips
+                    .map((trip, i) => ({trip: trip, fict_i: i, act_i: 0}))
+                    .filter(trip => trip.trip.direction == fict_dir_index);
+                    fict_trips.map((fict_trip, index) => {
+                        //push to act_trips and save index
+                        var act_trip = {valid_from: fict_trip.trip.valid_from, valid_thru: fict_trip.trip.valid_thru, direction: act_dir_index};
+                        var act_trip_index = actual_routes[act_route_index].trips.find2DIndex(act_trip);
+				        if(act_trip_index == -1){
+					        act_trip_index = actual_routes[act_route_index].trips.push(act_trip) - 1;
+				        }
+                        fict_trips[index].act_i = act_trip_index;
+                    });
+                    //get all need trips and times, then slice
+                    var needed_fict_trip_ids = fict_trips.map(f => f.fict_i);
+                    var times_list = fict_route.stop_times.filter(stop_time => needed_fict_trip_ids.indexOf(stop_time.trip)!==-1);
+		    times_list.map(time => {
+			    var obj = {};
+			    obj.car = time.car;
+			    obj.times = time.times.slice(start_index, end_index+1);
+			    obj.trip = fict_trips.find(t => t.fict_i==time.trip).act_i;
+			    actual_routes[act_route_index].stop_times.push(obj);
+		    });
+                }
+            });
+        });
+    });
 	return actual_routes;
 }
