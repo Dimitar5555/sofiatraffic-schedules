@@ -3,10 +3,6 @@ function gen_route_json(){
 	return `${routes[current_route_index].type}\_${routes[current_route_index].line}`;
 }
 function init_favourites(){
-	var ths = favorite_stops_div.querySelectorAll('th');
-	ths.item(0).innerText = lang.favourites.stop;
-	ths.item(1).innerText = lang.favourites.actions;
-
 	show_favourite_stops();
 	show_favourite_lines();
 }

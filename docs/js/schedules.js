@@ -36,52 +36,17 @@ function mins_to_time(mins, h24_to_0=false){
 }
 
 function init_schedules(){
-	schedule_display_div.querySelector('button').childNodes[1].textContent = lang.schedules.back;
-	var labels = schedule_display_div.querySelectorAll('label');
-	labels.item(0).innerText = lang.schedules.line;
-	labels.item(1).innerText = lang.schedules.schedule;
-	labels.item(2).innerText = lang.schedules.valid_from;
-	labels.item(3).innerText = lang.schedules.direction;
-	labels.item(4).innerText = lang.schedules.stop;
-	labels.item(5).innerText = lang.schedules.show_by_cars;
-	
-	var modal = document.querySelector('#schedule_modal');
-	modal.querySelectorAll('button').item(1).innerText = lang.schedules.previous_course;
-	modal.querySelectorAll('button').item(2).innerText = lang.schedules.next_course;
-	modal.querySelectorAll('button').item(3).innerText = lang.schedules.close;
-	modal.querySelector('.modal-title').innerText = lang.schedules.modal_title;
-	var ths = modal.querySelectorAll('th');
-	ths.item(0).innerText = lang.schedules.stop;
-	ths.item(1).innerText = lang.schedules.departure_time;
-	var old_line_selector = line_selector_div;
-	line_selector_div = old_line_selector.cloneNode(false);
 	routes.map((route, index) => route.index = index);
-
-	line_selector_div.append(html_comp('h2', {text: 'Любими'}));
 	line_selector_div.appendChild(html_comp('div', {id: 'lines'}));
-
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.metros}));
-	create_schedule('metro');
-
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.tramways}));
-	create_schedule('tramway');
-
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.trolleybuses}));
-	create_schedule('trolleybus');
-
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.autobuses}));
-	create_schedule('autobus');
+    create_schedule('metro');
+    create_schedule('tramway');
+    create_schedule('trolleybus');
+    create_schedule('autobus');
 	if(routes.filter(route => route.temp).length>0){
-		line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.temporary}));
 		create_schedule('temp');
 	}
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.schoolbuses}));
 	create_schedule('school');
-
-	line_selector_div.appendChild(html_comp('h2', {text: lang.line_types.night}));
-	create_schedule('night');
-
-	old_line_selector.parentElement.replaceChild(line_selector_div, old_line_selector);
+    create_schedule('night');
 }
 function init_updated_schedules_table(){
 	var dates = {};
@@ -99,13 +64,34 @@ function init_updated_schedules_table(){
 	});
 	var tbody = document.querySelector('#updated_schedules_table').querySelector('tbody');
 	var ordered_date_keys = Object.keys(dates).sort().reverse();
-	var decode_weekdays = (weekdays="111") => weekdays.split('').map((day, index) => day==1?['делник', 'предпразник', 'празник'][index]:false).filter(a => a).join(', ');
-	var generate_lines_data = lines => lines.map(text => JSON.parse(text)).map(route => `${lang.line_type[route[0]]} ${decodeURI(route[1])}: ${decode_weekdays(route[2])}`).join('\n');
-	ordered_date_keys.forEach(key => {
-		var tr = html_comp('tr');
-		tbody.appendChild(tr);
-		tr.appendChild(html_comp('td', {text: key, class: 'align-middle'}));
-		tr.appendChild(html_comp('td', {text: generate_lines_data(dates[key])}));
+	var decode_weekdays = weekdays => weekdays.split('');
+    var checkmark = html_comp('i', {class: 'bi bi-check'});
+    console.log(dates);
+    ordered_date_keys.forEach(key => {
+		var tr0 = html_comp('tr');
+        var td0 = html_comp('td', {text: key, class: "align-middle"});
+        tr0.appendChild(td0);
+        tbody.appendChild(tr0);
+        
+        var rows = 0;
+        dates[key].map(line => JSON.parse(line))
+        .map(line => {
+            var tr = tr0;
+            if(rows>0){
+                tr = html_comp('tr');
+                tbody.appendChild(tr);
+            }
+            tr.appendChild(html_comp('td', {text: `${lang.line_type[line[0]]} ${line[1]}`}));
+            line[2].split('').map(val => {
+		      var td = html_comp('td', {});
+                if(val==1){
+                    td.appendChild(checkmark.cloneNode());
+                }
+                tr.appendChild(td);
+            });
+            rows++;
+        });
+        td0.setAttribute('rowspan', rows);
 	});
 }
 function create_schedule(type){
@@ -117,7 +103,12 @@ function create_schedule(type){
 		routes_to_process = routes.filter((route) => route.subtype === type);
 	}
 	routes_to_process.sort((a, b) => Number(a.line)>Number(b.line));
-	routes_to_process.forEach(route => generate_line_btn(route.index, line_selector_div));
+    var prev = document.querySelector(`[data-i18n="line_types.${type}"]`);
+	routes_to_process.forEach(route => {
+        var temp = generate_line_btn(route.index);
+        prev.parentNode.insertBefore(temp, prev.nextSibling);
+        prev = temp;
+    });
 }
 
 function show_schedule(el){
@@ -270,7 +261,7 @@ function get_stop_name(id, hide_metro_part=false){
 	}
     var stop = stops.find(stop => stop.code === Number(id));
     if(hide_metro_part){
-        return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ ', '') || "(НЕИЗВЕСТНА СПИРКА)";
+        return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
     return stop.names[lang.code] || "(НЕИЗВЕСТНА СПИРКА)";
 }
