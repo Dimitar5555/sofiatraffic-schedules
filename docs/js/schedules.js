@@ -322,7 +322,7 @@ function display_schedule(schedule_index){
         console.log(arranged);
         
         arranged.forEach((time, index) => {
-			tr_thead.appendChild(html_comp('th', {text: index==24?0:index}));
+			tr_thead.appendChild(html_comp('th', {text: index==24?0:index.toString().padStart(2, '0')}));
 			var td1 = html_comp('td');
 			time.forEach(time => {
                 var el_class = '';
