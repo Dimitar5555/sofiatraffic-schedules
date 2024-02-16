@@ -109,14 +109,12 @@ iframe {
 	background-repeat: no-repeat;
   }
   
-  .table td:first-child,
   .table-flip tbody tr:first-child {
 	background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
 	background-repeat: no-repeat;
 	background-size: 20px 100%;
   }
   
-  .table td:last-child,
   .table-flip tbody tr:last-child {
 	background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
 	background-repeat: no-repeat;
