@@ -417,9 +417,9 @@ function display_vehicle_schedule(time){
         if(!stop){
             alert(`index:${cur_stop_index}, stop:${route_stops[cur_stop_index]}`);        
         }
-		tr.appendChild(html_comp('td', {text: stop.code.toString().padStart(4, '0'), class: `${highlight}`}));
+		tr.appendChild(html_comp('td', {text: stop.code.toString().padStart(4, '0'), class: `align-middle ${highlight}`}));
 		tr.appendChild(html_comp('td', {text: get_stop_name(stop.code, is_metro), class: `${highlight}`}));
-		tr.appendChild(html_comp('td', {text: mins_to_time(time, true), class: `${highlight}`}));
+		tr.appendChild(html_comp('td', {text: mins_to_time(time, true), class: `align-middle ${highlight}`}));
 		new_tbody.append(tr);
 	});
 	replace_child(new_tbody, old_tbody);
