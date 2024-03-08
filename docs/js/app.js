@@ -84,6 +84,7 @@ function fetch_data(metadata=false){
 		localStorage.routes_hash = metadata.routes_hash;
 		init_schedules();
 		init_favourites();
+        init_stops();
 	}));
 
 	return Promise.all(promises);

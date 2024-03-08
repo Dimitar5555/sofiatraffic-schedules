@@ -1,4 +1,4 @@
-const favorite_stops_div = document.querySelector('#favorite_stops');
+const favorite_stops_div = document.querySelector('#favorite_stops_tab');
 function gen_route_json(){
 	return `${routes[current_route_index].type}\_${routes[current_route_index].line}`;
 }

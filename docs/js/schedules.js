@@ -81,7 +81,7 @@ function init_updated_schedules_table(){
                 tr = html_comp('tr');
                 tbody.appendChild(tr);
             }
-            tr.appendChild(html_comp('td', {text: `${lang.line_type[line[0]]} ${line[1]}`}));
+            tr.appendChild(html_comp('td', {text: `${lang.line_type[line[0]]} ${decodeURI(line[1])}`}));
             line[2].split('').map(val => {
 		      var td = html_comp('td', {});
                 if(val==1){
