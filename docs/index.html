@@ -16,11 +16,12 @@
 <body>
 	<div class="wrapper p-2">
 		<nav class="nav nav-pills nav-justified" id="nav-main" role="tablist">
-			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedule" class="nav-item nav-link active" href="#schedule"></a>
-			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favorite_stops" class="nav-item nav-link" href="#favorite_stops"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedule_tab" class="nav-item nav-link active" href="#schedule_tab"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.stops" data-bs-target="#stops_tab" class="nav-item nav-link" href="#stops_tab"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favorite_stops_tab" class="nav-item nav-link" href="#favorite_stops_tab"></a>
 		</nav>
 		<div class="tab-content" id="nav-mainContent">
-			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedule">
+			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedule_tab">
 				<div id="line_selector">
                     <h2 data-i18n="line_types.favourite"></h2>
                     <h2 data-i18n="line_types.metro"></h2>
@@ -125,7 +126,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="tab-pane p-2 fade" id="favorite_stops" role="tabpanel">
+	        <div class="tab-pane p-2 fade" id="stops_tab" role="tabpanel">
+                <input list="datalist_stops">
+                <datalist id="datalist_stops">
+            </div>
+			<div class="tab-pane p-2 fade" id="favorite_stops_tab" role="tabpanel">
 				<table id="stops" class="table table-bordered">
 					<thead>
 						<tr>
@@ -184,5 +189,6 @@
 	<script src="js/app.js"></script>
 	<script src="js/schedules.js"></script>
 	<script src="js/favourites.js"></script>
+	<script src="js/stops.js"></script>
 </body>
 </html>
