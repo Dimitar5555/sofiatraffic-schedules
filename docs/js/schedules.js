@@ -42,7 +42,7 @@ function init_schedules(){
     create_schedule('tramway');
     create_schedule('trolleybus');
     create_schedule('autobus');
-	if(routes.filter(route => route.temp).length>0){
+	if(routes.filter(route => route.subtype=='temporary').length>0){
 		create_schedule('temporary');
 	}
 	create_schedule('school');
