@@ -44,7 +44,7 @@ function get_routes() {
                 stop_times: []
 			};
             if(decodeURI(split_route[1]).indexOf('ТМ')!==-1){
-                route_data.subtype = 'temp';
+                route_data.subtype = 'temporary';
             }
             else if(decodeURI(split_route[1]).indexOf('N')!==-1){
                 route_data.subtype = 'night';
