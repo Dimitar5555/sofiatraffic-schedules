@@ -1,22 +1,14 @@
 function toggle_star(star, event){
-	if(event=='over'){
-		if(star.dataset.style=='none'){
-			star.classList.remove('bi-star');
-			star.classList.add('bi-star-fill');
-		}
-		else{
-			star.classList.add('bi-star');
-			star.classList.remove('bi-star-fill');
-		}
+	if(star.dataset.style=='disabled'){
 		return;
 	}
-	if(star.dataset.style=='none'){
-		star.classList.add('bi-star');
-		star.classList.remove('bi-star-fill');
+	const fill = 'bi-star-fill';
+	const empty = 'bi-star';
+	if(event=='out'){
+		star.classList.replace(...star.dataset.style=='none'?[fill, empty]:[empty, fill]);
 	}
 	else{
-		star.classList.remove('bi-star');
-		star.classList.add('bi-star-fill');
+		star.classList.replace(...star.dataset.style=='none'?[empty, fill]:[fill, empty]);
 	}
 }
 
