@@ -22,23 +22,48 @@
 		<div class="tab-content" id="nav-mainContent">
 			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedule">
 				<div id="line_selector">
-                    <h2 data-i18n="line_types.favourite"></h2>
-                    <h2 data-i18n="line_types.metro"></h2>
-                    <h2 data-i18n="line_types.tramway"></h2>
-                    <h2 data-i18n="line_types.trolleybus"></h2>
-                    <h2 data-i18n="line_types.autobus"></h2>
-                    <h2 data-i18n="line_types.school"></h2>
-                    <h2 data-i18n="line_types.temporary"></h2>
-                    <h2 data-i18n="line_types.night"></h2>
+					<div id="line_selector_favourites">
+						<h2 data-i18n="line_types.favourite"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_metro">
+						<h2 data-i18n="line_types.metro"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_tramway">
+						<h2 data-i18n="line_types.tramway"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_trolleybus">
+						<h2 data-i18n="line_types.trolleybus"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_autobus">
+						<h2 data-i18n="line_types.autobus"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_school">
+						<h2 data-i18n="line_types.school"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_temporary">
+						<h2 data-i18n="line_types.temporary"></h2>
+						<div class="lines"></div>
+					</div>
+					<div id="line_selector_night">
+						<h2 data-i18n="line_types.night"></h2>
+						<div class="lines"></div>
+					</div>
                 </div>
 				<div id="schedule_display" class="d-none">
-					<button onclick="line_selector_div.classList.remove('d-none');schedule_display.classList.add('d-none');" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="schedules.back"></button>
+					<button onclick="line_selector_div.classList.remove('d-none');schedule_display.classList.add('d-none');history.pushState({page: 'home', tab: 'stops'}, '', '#routes')" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="schedules.back"></button>
 					<br>
 					<div class="row m-2">
 						<div class="col col-4 col-md-3">
 							<label for="line" data-i18n="schedules.line"></label>
 						</div>
 						<div class="col col-8 col-md-4">
+							<i class="lh-1 align-top h5 bi-star text-warning" onclick="add_remove_favourite_line()"></i>
 							<span id="line"></span>
 						</div>
 					</div>
@@ -63,23 +88,23 @@
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
 						<div class="col col-8 col-md-4">
-							<select class="form-select" onchange="configure_stop_selector()" id="direction"></select>
+							<select class="form-select" onchange="show_schedule({direction: this.value})" id="direction"></select>
 						</div>
 					</div>
 					<div class="row m-2">
 						<div class="col col-4 col-md-3">
-							<label for="stops" data-i18n="schedules.stop"></label>
+							<label for="stops" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></label>
 						</div>
 						<div class="col col-8 col-md-4">
 							<div class="form-group">
 								<div class="row">
 									<div class="col-2 col-xs-3 col-sm-1 px-0 text-center align-middle" style="line-height: 37.6px;">
-										<i class="lh-1 align-middle bi bi-star h5 text-warning"></i>
+										<i class="lh-1 align-middle bi bi-star h5 text-warning" onclick="add_remove_favourite_stop()"></i>
 									</div>
 									<div class="col-10 col-xs-9 col-sm-11 ps-0">
-										<select class="form-select" onchange="display_schedule(); update_globals(); configure_favourite_stop_button();" id="stops"></select>
+										<select class="form-select" onchange="show_schedule({stop_code: this.value})" id="stops"></select>
 									</div>
-								</div>
+								</div> 
 							</div>
 						</div>
 					</div>
@@ -110,7 +135,7 @@
 								<table id="detailed_schedule" class="table table-bordered table-sm table-text-left">
 									<thead>
 										<tr>
-											<th data-i18n="schedules.stop" colspan="2"></th>
+											<th data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation" colspan="2"></th>
 											<th data-i18n="schedules.departure_time"></th>
 										</tr>
 									</thead>

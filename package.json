@@ -4,7 +4,8 @@
   "description": "A tool designed to take Sofia public transit schedules and convert them into machine readeble format..",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js",
+    "build": "node build.js && node build_sitemap.js",
+    "serve": "http-server ./docs -c-1 -g -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dimitar5555",
@@ -12,7 +13,7 @@
   "dependencies": {
     "crypto": "^1.0.1",
     "fs": "^0.0.1-security",
-    "node-fetch": "^2.6.7",
+    "http-server": "^14.1.1",
     "node-html-parser": "^6.1.4"
   }
 }

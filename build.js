@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const fs = require('fs');
 const HTMLParser = require('node-html-parser');
 const crypto = require('crypto');
@@ -8,17 +7,22 @@ const sofiatraffic_url = "sofiatraffic.bg";
 const schedules_url = `${protocol}schedules.${sofiatraffic_url}/`;
 const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 
+const main_types = ['metro', 'tramway', 'trolleybus', 'autobus', 'fakemetro'];
+
 const ROUTES_LIMIT = 0;
 var current_routes = 0;
 
-var date = new Date();
 var metadata = {
-	app_version: '2024-02-15',
-	routes_hash: '',
-	stops_hash: '',
-	retrieval_date: `${date.getUTCFullYear()}-${(date.getUTCMonth()+1).toString().padStart(2, '0')}-${date.getUTCDate().toString().padStart(2, '0')}`
+	app_version: '2024-03-18',
+	retrieval_date: new Date().toISOString().split('T')[0],
+	hashes: {}
 };
+
+var stops = [];
 var routes = [];
+var trips = [];
+var stop_times = [];
+var directions = [];
 
 var routes_urls = [];
 var schedules_urls = [];
@@ -29,36 +33,77 @@ Array.prototype.find2DIndex = function(searching_for){
 	return array.indexOf(searching_for);
 };
 function get_routes() {
-	fetch(`${schedules_url}`)
+	fetch(schedules_url)
 	.then(response => response.text())
 	.then(html => HTMLParser.parse(html))
 	.then(document => {
 		var data = Array.from(document.querySelector('#lines_quick_access').querySelectorAll('a')).map(el => el.getAttribute('href'));
 		data.forEach(route => {
-			var split_route = route.split('/');
+			var split_route = decodeURIComponent(route).split('/');
 			var route_data = {
-				line: split_route[1],
+				line: Number(split_route[1]).toString()===split_route[1]?Number(split_route[1]):split_route[1],
 			    type: split_route[0],
-			    directions: [],
 				trips: [],
-                stop_times: []
+				directions: []
 			};
-            if(decodeURI(split_route[1]).indexOf('ТМ')!==-1){
+			if(route_data.line=='M1-M2'){
+				route_data.type = 'fakemetro';
+			}
+			if(Number.isInteger(route_data.line)){
+				//ignore numbers, they are always regular lines
+			}
+            else if(route_data.line.indexOf('ТМ')!==-1 || route_data.line.indexOf('ТБ')!==-1){
                 route_data.subtype = 'temporary';
             }
-            else if(decodeURI(split_route[1]).indexOf('N')!==-1){
+            else if(route_data.line.indexOf('N')!==-1){
                 route_data.subtype = 'night';
             }
-            else if(decodeURI(split_route[1]).indexOf('У')!==-1){
+            else if(route_data.line.indexOf('У')!==-1){
                 route_data.subtype = 'school';
             }
 		    routes.push(route_data);
 		});
-        routes.map((route, route_index) => {
-			current_routes++;
-			if(ROUTES_LIMIT!=0 && current_routes>ROUTES_LIMIT){
+		routes.push(
+			{
+				line: 'M1',
+				type: 'metro',
+				trips: [],
+				directions: [9994, 9995]
+			},
+			{
+				line: 'M2',
+				type: 'metro',
+				trips: [],
+				directions: [9996, 9997]
+			},
+			{
+				line: 'M4',
+				type: 'metro',
+				trips: [],
+				directions: [9998, 9999]
+			}
+		);
+		directions.push({code: 9994, stops: [3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3039, 3041, 3043]});
+		directions.push({code: 9995, stops: [3044, 3042, 3040, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002]});
+		directions.push({code: 9996, stops: [2975, 2977, 2979, 2981, 2983, 2985, 2987, 2989, 2991, 2993, 2995, 2997, 2999]});
+		directions.push({code: 9997, stops: [3000, 2998, 2996, 2994, 2992, 2990, 2988, 2986, 2984, 2982, 2980, 2978, 2976]});
+		directions.push({code: 9998, stops: [2999, 3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3027, 3029, 3031, 3033, 3035, 3037]});
+		directions.push({code: 9999, stops: [3038, 3036, 3034, 3032, 3030, 3028, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002, 3000]});
+		routes.forEach((route, i)=>routes[i].ref = Number(route.line.toString().replaceAll(/[a-zA-Zа-яА-Я\-]+/g, '')));
+		routes.sort((a, b) => {
+			if(a.type === b.type){
+				return a.ref>b.ref?1:-1;
+			}
+			return (main_types.indexOf(a.type) > main_types.indexOf(b.type))?1:-1;
+		});
+		routes[routes.length-1].type = 'metro';
+		routes.forEach((route, route_index) => {
+			delete routes[route_index].ref
+			//ignore all M lines except for M1-M2 and M3
+			if(current_routes==ROUTES_LIMIT && ROUTES_LIMIT!=0 || route.type=='metro' && ['M1', 'M2', 'M4'].indexOf(route.line)!=-1){
 				return;
 			}
+			current_routes++;
 			var url = `${schedules_url}${route.type}/${route.line}`;
 			routes_urls.push([url, route_index]);
 		});
@@ -66,23 +111,19 @@ function get_routes() {
 	});
 	fetch(`${routes_url}resources/stops-bg.json`)
 	.then(response => response.json())
-	.then(stops => {
-		var res = [];
-		stops.forEach(stop => {
-			res.push({code: Number(stop.c), coords: [stop.y, stop.x], names: {bg: stop.n}});
+	.then(cgm_stops => {
+		cgm_stops.forEach(stop => {
+			stops.push({code: Number(stop.c), coords: [stop.y, stop.x], names: {bg: stop.n}});
 		});
-		fetch(`${routes_url}resources/stops-en.json`)
-		.then(response => response.json())
-		.then(stops => {
-			stops.forEach(cgm_stop => {
-				res[res.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
-			});
-
-			var stops_json = JSON.stringify(res).replace(/,{"code/g, ',\n{"code');
-			metadata.stops_hash = crypto.createHash('sha256').update(stops_json).digest('hex');
-			fs.writeFileSync('docs/data/stops.json', stops_json);
-		});
+		return fetch(`${routes_url}resources/stops-en.json`)
 	})
+	.then(response => response.json())
+	.then(cgm_stops => {
+		cgm_stops.forEach(cgm_stop => {
+			stops[stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
+		});
+		stops.sort((a, b) => a.code-b.code);
+	});
 }
 function print_message(id, total, type, url){
 	var id = (id+1).toString().padStart(total.toString().length, '0');
@@ -112,37 +153,37 @@ function get_schedules(id){
 			all_directions_for_day_btns.forEach(button => {
 				//взимане на разписание по коли
                 var valid_thru = [
-						valid_days.indexOf('делник')!==-1?'1':'0',
-						valid_days.indexOf('предпразник')!==-1?'1':'0',
-						valid_days.indexOf('празник')!==-1?'1':'0'
-					].join('');
+					valid_days.indexOf('делник')!==-1?'1':'0',
+					valid_days.indexOf('предпразник')!==-1?'1':'0',
+					valid_days.indexOf('празник')!==-1?'1':'0'
+				].join('');
 				var valid_from = day.querySelector('em').innerText;
 				var container = line_view.querySelector(`#${button.id.replace('button', 'container')}`);
 				var stops_els = Array.from(container.previousElementSibling.querySelectorAll('.stop_link'));
-				var stops = stops_els.map(element => parseInt(element.innerText));
-				var first_stop = stops[0];
-				var last_stop = stops[stops.length-1];
-				var direction_index = routes[route_index].directions.find2DIndex(stops);
+				var cgm_params = button.id.split('_');
+				var cgm_route_id = cgm_params[2];
+				var cgm_dir_id = cgm_params[3];
+				var direction = {code: Number(cgm_dir_id), stops: stops_els.map(element => parseInt(element.innerText))};
+				var first_stop = direction.stops[0];
+				var last_stop = direction.stops.toReversed()[0];
+				var direction_index = directions.find2DIndex(direction);
 				if(direction_index == -1){
-					direction_index = routes[route_index].directions.push(stops) - 1;
+					routes[route_index].directions.push(direction.code);
+					direction_index = directions.push(direction) - 1;
 				}
-
-                const trip = {valid_from: valid_from, valid_thru: valid_thru, direction: direction_index};
-                var trip_index = routes[route_index].trips.find2DIndex(trip);
+				
+                const trip = {route_index: route_index, direction: direction.code, valid_from: valid_from, valid_thru: valid_thru};
+                var trip_index = trips.find2DIndex(trip);
 				if(trip_index == -1){
-					trip_index = routes[route_index].trips.push(trip) - 1;
+					trip_index = trips.push(trip) - 1;
+					routes[route_index].trips.push(trip_index);
 				}
                 //get from both ends, in order to catch all partial trips
+				[first_stop, last_stop].forEach(stop => 
 				schedules_urls.push({
-                    url: `${schedules_url}server/html/schedule_load/${button.id.split('_')[2]}/${button.id.split('_')[3]}/${first_stop}`,
-                    route_index: route_index,
+                    url: `${schedules_url}server/html/schedule_load/${cgm_route_id}/${cgm_dir_id}/${stop}`,
                     trip: trip_index
-                });
-				schedules_urls.push({
-                    url: `${schedules_url}server/html/schedule_load/${button.id.split('_')[2]}/${button.id.split('_')[3]}/${last_stop}`,
-                    route_index: route_index,
-                    trip: trip_index
-                });
+                }));
 			});
 		});
 	})
@@ -163,16 +204,14 @@ function get_times(id){
 	.then(response => HTMLParser.parse(response))
 	.then(htmlDOM => Array.from(htmlDOM.querySelector('.schedule_times').querySelectorAll('a[onclick]')))
 	.then(times => {
-		var route_index = data[1];
-		var schedule_index = data[2];
 		times.forEach(time => {
 			var car_schedule = time.getAttribute('onclick').split('\'')[5].split(',').map(a => a!==''?Number(a):a);
 			var car_index = car_schedule.shift();
             //verify that the trip hasn't been added
-            const result = {car: car_index, times: car_schedule, trip: data.trip};
-            const are_stop_times_present = routes[data.route_index].stop_times.find2DIndex(result)!==-1;
+            const car_trip = {trip: data.trip, car: car_index, times: car_schedule};
+            const are_stop_times_present = stop_times.find2DIndex(car_trip)!==-1;
 			if(!are_stop_times_present){
-				routes[data.route_index].stop_times.push(result);
+				stop_times.push(car_trip);
 			}
 		});
 		if(schedules_urls[id+1]){
@@ -186,102 +225,96 @@ function get_times(id){
 	});
 }
 get_routes();
-function finalise() {
-	var M1_M2_index = routes.findIndex(route1 => route1 && route1.line=='M1-M2');
-    var res = split_M1_M2(JSON.parse(JSON.stringify(routes[M1_M2_index])));
-	delete routes[M1_M2_index];
-	res.forEach(route => {
-		//put routes in correct order
-		if(route.line=='M1'){
-			routes.splice(M1_M2_index, 0, route);
-		}
-		else if(route.line=='M2'){
-			routes.splice(M1_M2_index+1, 0, route);
-		}
-		else{
-    	    var M3_index = routes.findIndex(route1 => route1 && route1.line=='M3');
-			routes.splice(M3_index+1, 0, route);
-		}
-	});
-    routes = routes.filter(route => !!route);
-	routes.sort((a, b) => a.line<b.line);
 
-	console.log('Done! Writing data to schedule.json');
-	var routes_json = JSON.stringify(routes).replace(/,{"car/g, ',\n{"car').replace(/,{"line/g, ',\n{"line');
-	fs.writeFileSync('docs/data/schedule.json', routes_json);
-	metadata.routes_hash = crypto.createHash('sha256').update(routes_json).digest('hex');
+function finalise() {
+    split_M1_M2(routes.pop());
+	routes.map(route => delete route.index);
+	console.log('Done!');
+	directions.sort((a, b) => a.code-b.code)
+	var files_to_write = [{
+		name: 'routes',
+		data: routes,
+		split_rows_by: /,({"line)/g
+	},
+	{
+		name: 'trips',
+		data: trips,
+		split_rows_by: /,({"route_index)/g
+	},
+	{
+		name: 'directions',
+		data: directions,
+		split_rows_by: /,({"code)/g
+	},
+	{
+		name: 'stops',
+		data: stops,
+		split_rows_by: /,({"code)/g
+	},
+	{
+		name: 'stop_times',
+		data: stop_times,
+		split_rows_by: /,({"trip)/g
+	}
+	];
+
+	String.prototype.beautifyJSON = function(find, replace=',\n$1'){
+		return this
+		.replace(/^\[/, '[\n')
+		.replace(/\]$/, '\n]')
+		.replace(find, replace)
+	}
+	
+	files_to_write.forEach(file => {
+		console.log(`Writing data to ${file.name}.json`);
+		let json = JSON.stringify(file.data).beautifyJSON(file.split_rows_by);
+		metadata.hashes[file.name] = crypto.createHash('sha256').update(json).digest('hex');
+		fs.writeFileSync(`docs/data/${file.name}.json`, json);
+	});
+
 	fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
 }
 function split_M1_M2(fict_route) {
-	var actual_routes = [
-		{
-			line: 'M1',
-			directions: [
-				[3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3039, 3041, 3043],
-				[3044, 3042, 3040, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002]
-			],
-			type: 'metro',
-			trips: [],
-            stop_times: []
-		},
-		{
-			line: 'M2',
-			directions: [
-				[2975, 2977, 2979, 2981, 2983, 2985, 2987, 2989, 2991, 2993, 2995, 2997, 2999],
-				[3000, 2998, 2996, 2994, 2992, 2990, 2988, 2986, 2984, 2982, 2980, 2978, 2976]
-			],
-			type: 'metro',
-			trips: [],
-            stop_times: []
-		},
-		{
-			line: 'M4',
-			directions: [
-				[2999, 3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3027, 3029, 3031, 3033, 3035, 3037],
-				[3038, 3036, 3034, 3032, 3030, 3028, 3026, 3024, 3022, 3020, 3018, 3016, 3014, 3012, 3010, 3008, 3006, 3004, 3002, 3000]
-			],
-			type: 'metro',
-			trips: [],
-            stop_times: []
+	routes.map((route, index) => route.index = index);
+	var actual_metro_routes = routes.filter(route => route.type=='metro' && route.line!='M3');
+	var fake_dirs = directions.filter(dir => fict_route.directions.indexOf(dir.code)!==-1);
+	actual_metro_routes.forEach(act_route => {
+		var real_dirs = directions.filter(dir => act_route.directions.indexOf(dir.code)!==-1);
+		//find matches
+		real_dirs.forEach(real_dir => {
+			fake_dirs.forEach(fake_dir => {
+				let start_index = fake_dir.stops.indexOf(real_dir.stops[0]);
+				let end_index = fake_dir.stops.indexOf(real_dir.stops.toReversed()[0]);
+				if(start_index!==-1 && end_index!==-1){
+					//found match
+					//find matching trips and clone them
+					var trips_for_cloning = trips.filter(trip => trip.direction==fake_dir.code);
+					trips_for_cloning.map(trip => {
+						var clone = JSON.parse(JSON.stringify(trip));
+						clone.route_index = act_route.index;
+						clone.direction = real_dir.code;
+						var act_trip_index = trips.find2DIndex(clone);
+						if(act_trip_index==-1){
+							act_trip_index = trips.push(clone)-1;
+							routes[act_route.index].trips.push(act_trip_index);
+						}
+						var fake_trip_index = trips.find2DIndex(trip);
+						var stop_times_for_cloning = stop_times.filter(stop_time => stop_time.trip==fake_trip_index);
+						stop_times_for_cloning.forEach(stop_time => {
+							var cloned = {trip: act_trip_index, car: stop_time.car, times: stop_time.times.slice(start_index, end_index+1)};
+							stop_times.push(cloned);
+						});
+					});
+				}
+			});
+		});
+	});
+	trips = trips.filter(trip => {
+		if(trip.route_index==fict_route.index){
+			directions = directions.filter(dir => dir.code!==trip.direction);
+			stop_times = stop_times.filter(stop_time => stop_time.trip!==trip.code);
+			return false;
 		}
-	];
-
-    //for each real route
-    actual_routes.map((act_route, act_route_index) => {
-        //and each real direction
-        act_route.directions.map((act_dir, act_dir_index) => {
-            //loop through each fictional route direction
-            fict_route.directions.map((fict_dir, fict_dir_index) => {
-                //find the start and end indexes
-                var start_index = fict_dir.indexOf(act_dir[0]);
-                var end_index = fict_dir.indexOf(act_dir[act_dir.length-1]);
-                if(start_index!==-1 && end_index!==-1){
-                    //find fict trips
-                    var fict_trips = fict_route.trips
-                    .map((trip, i) => ({trip: trip, fict_i: i, act_i: 0}))
-                    .filter(trip => trip.trip.direction == fict_dir_index);
-                    fict_trips.map((fict_trip, index) => {
-                        //push to act_trips and save index
-                        var act_trip = {valid_from: fict_trip.trip.valid_from, valid_thru: fict_trip.trip.valid_thru, direction: act_dir_index};
-                        var act_trip_index = actual_routes[act_route_index].trips.find2DIndex(act_trip);
-				        if(act_trip_index == -1){
-					        act_trip_index = actual_routes[act_route_index].trips.push(act_trip) - 1;
-				        }
-                        fict_trips[index].act_i = act_trip_index;
-                    });
-                    //get all need trips and times, then slice
-                    var needed_fict_trip_ids = fict_trips.map(f => f.fict_i);
-                    var times_list = fict_route.stop_times.filter(stop_time => needed_fict_trip_ids.indexOf(stop_time.trip)!==-1);
-		    times_list.map(time => {
-			    var obj = {};
-			    obj.car = time.car;
-			    obj.times = time.times.slice(start_index, end_index+1);
-			    obj.trip = fict_trips.find(t => t.fict_i==time.trip).act_i;
-			    actual_routes[act_route_index].stop_times.push(obj);
-		    });
-                }
-            });
-        });
-    });
-	return actual_routes;
+		return true;
+	});
 }

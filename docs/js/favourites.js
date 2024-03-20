@@ -1,6 +1,6 @@
 const favorite_stops_div = document.querySelector('#favorite_stops');
 function gen_route_json(){
-	return `${routes[current_route_index].type}\_${routes[current_route_index].line}`;
+	return `${current.route.type}\_${current.route.line}`;
 }
 function init_favourites(){
 	show_favourite_stops();
@@ -25,33 +25,30 @@ function show_favourite_stops(favourite_stops=false){
 		tr.appendChild(td1);
 		new_tbody.appendChild(tr);
 	});
-	table.replaceChild(new_tbody, old_tbody);
+	old_tbody.replaceWith(new_tbody);
 }
 function show_favourite_lines(favourite_lines=false){
 	if(!favourite_lines){
 		favourite_lines = get_favourite_lines();
 	}
-	var old_div = document.querySelector('div#lines');
-	var parent = old_div.parentElement;
-	var new_div = html_comp('div', {id: 'lines'});
-	var types = {'metro': 1, 'tramway': 2, 'trolleybus': 3, 'electrobus': 4, 'autobus': 5};
-	favourite_lines.sort((a, b) => {
-		var a = a.split('_');
-		var b = b.split('_');
-		return types[a[0]] - types[b[0]] || Number(a[1]) - Number(b[1])});
-	favourite_lines.forEach(data => {
+	var old_div = document.querySelector('#line_selector_favourites').querySelector('.lines');
+	var new_div = old_div.cloneNode();
+	var indexes = favourite_lines.map(data => {
 		var line = data.split('_');
-		var route_index = routes.findIndex(a => a.line==line[1] && a.type==line[0]);
-		generate_line_btn(route_index, new_div);
+		return routes.findIndex(a => a.line==line[1] && a.type==line[0]);
 	});
-	parent.replaceChild(new_div, old_div);
+	indexes.sort();
+	indexes.forEach(route_index => {
+		var line_btn = generate_line_btn(route_index);
+		new_div.appendChild(line_btn);
+	});
+	old_div.replaceWith(new_div);
 }
 function get_favourite_lines(){
 	return JSON.parse(window.localStorage.getItem('favourite_lines')) || [];
 }
 function add_remove_favourite_line(){
 	var favourite_lines = get_favourite_lines();
-	var r = routes[current_route_index];
 	var cur_route_json = gen_route_json();
 	if(favourite_lines.indexOf(cur_route_json)==-1){
 		favourite_lines.push(cur_route_json);
@@ -61,6 +58,12 @@ function add_remove_favourite_line(){
 	}
 	show_favourite_lines(favourite_lines);
 	configure_favourite_line_button(favourite_lines);
+	if(favourite_lines.length==0){
+		document.querySelector('#line_selector_favourites').classList.add('d-none');
+	}
+	else{
+		document.querySelector('#line_selector_favourites').classList.remove('d-none');
+	}
 	window.localStorage.setItem('favourite_lines', JSON.stringify(favourite_lines));
 }
 function get_favourite_stops(){
@@ -68,11 +71,11 @@ function get_favourite_stops(){
 }
 function add_remove_favourite_stop(){
 	var favourite_stops = get_favourite_stops();
-	if(favourite_stops.indexOf(current_stop_code)==-1){
-		favourite_stops.push(current_stop_code);
+	if(favourite_stops.indexOf(current.stop_code)==-1){
+		favourite_stops.push(current.stop_code);
 	}
 	else{
-		favourite_stops.splice(favourite_stops.indexOf(current_stop_code), 1);
+		favourite_stops.splice(favourite_stops.indexOf(current.stop_code), 1);
 	}
 	show_favourite_stops(favourite_stops);
 	configure_favourite_stop_button(favourite_stops);

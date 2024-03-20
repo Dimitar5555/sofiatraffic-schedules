@@ -1,8 +1,11 @@
 const files_to_cache = [
 	'/',
 	'manifest.json',
-	'data/schedule.json',
+	'data/directions.json',
+	'data/routes.json',
+	'data/stop_times.json',
 	'data/stops.json',
+	'data/trips.json',
 	'data/metadata.json',
 	'js/app.js',
 	'js/schedules.js',
@@ -19,6 +22,8 @@ const files_to_cache = [
 	'fonts/bootstrap-icons.woff',
 	'fonts/bootstrap-icons.woff2'
 ];
+const cache_name = 'pwa-assets';
+/*
 self.addEventListener('install', () => {
 	if(navigator.onLine){
 		populate_cache();
@@ -35,8 +40,44 @@ self.addEventListener('fetch', function (event) {
 	}
 	var requested_file = event.request.url.split('/').reverse()[0];
 	fetch_file(event.request, event);
+});*/
+
+self.addEventListener('install', function(e) {
+	console.log('[ServiceWorker] Install');
+	e.waitUntil(
+		caches.open(cacheName).then(function(cache) {
+			console.log('[ServiceWorker] Caching app shell');
+			return cache.addAll(filesToCache);
+		})
+	);
 });
-async function is_metadata_up_to_date(){
+
+self.addEventListener('activate', function(e) {
+	console.log('[ServiceWorker] Activate');
+	e.waitUntil(
+		caches.keys().then(function(keyList) {
+			return Promise.all(keyList.map(function(key) {
+				if (key !== cacheName) {
+					console.log('[ServiceWorker] Removing old cache', key);
+					return caches.delete(key);
+				}
+			}));
+		})
+	);
+	return self.clients.claim();
+});
+
+self.addEventListener('fetch', function(e) {
+	console.log('[ServiceWorker] Fetch', e.request.url);
+	e.respondWith(
+		caches.match(e.request).then(function(response) {
+			return response || fetch(e.request);
+		})
+	);
+});
+  
+
+/*async function is_metadata_up_to_date(){
 	var local_data_version = fetch_file_locally('data/metadata.json').then(metadata => metadata.retrieval_date);
 	var today = new Date().toISOString().split('T')[0];
 	return today==local_data_version;
@@ -66,8 +107,8 @@ function clear_cache(){
 	})
 }
 function populate_cache(){
-	return caches.open("pwa-assets")
+	return caches.open(cache_name)
 	.then(cache => {
 		cache.addAll(files_to_cache);
 	});
-}
+}*/
