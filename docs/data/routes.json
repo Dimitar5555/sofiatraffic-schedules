@@ -44,7 +44,6 @@
 {"line":8,"type":"autobus","trips":[150,151,152,153],"directions":[5051,5052]},
 {"line":9,"type":"autobus","trips":[154,155,156,157],"directions":[5427,5428]},
 {"line":"Х9","type":"autobus","trips":[158,159],"directions":[5231,5232]},
-{"line":"10-ТМ","type":"autobus","trips":[],"directions":[],"subtype":"temporary"},
 {"line":10,"type":"autobus","trips":[160,161,162,163],"directions":[2924,2925]},
 {"line":"Х10","type":"autobus","trips":[164,165],"directions":[5211,5212]},
 {"line":11,"type":"autobus","trips":[166,167,168,169],"directions":[4335,4336]},
