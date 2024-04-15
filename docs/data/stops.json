@@ -2741,8 +2741,6 @@
 {"code":6217,"coords":[42.729797,23.293096],"names":{"bg":"УЛ. ЦАРЕВЕЦ","en":"TSAREVETS ST"}},
 {"code":6220,"coords":[42.710756,23.319083],"names":{"bg":"ПЛ. ЦЕНТРАЛНА ГАРА","en":"CENTRAL TRAIN STATION"}},
 {"code":6221,"coords":[42.701766,23.298479],"names":{"bg":"МЕТРОСТАНЦИЯ К. ВЕЛИЧКОВ","en":"K. VELICHKOV METRO STATION"}},
-{"code":6226,"coords":[42.668898,23.291727],"names":{"bg":"Ж.К. МОТОПИСТА-ВРЕМЕННА","en":"MOTOPISTA QR -TEMPORARY"}},
-{"code":6233,"coords":[42.669098,23.291483],"names":{"bg":"Ж.К. МОТОПИСТА-ВРЕМЕННА","en":"MOTOPISTA QR -TEMPORARY"}},
 {"code":6240,"coords":[42.742295,23.277768],"names":{"bg":"МЕТРОСТАНЦИЯ ОБЕЛЯ","en":"OBELYA METRO STATION"}},
 {"code":6241,"coords":[42.742219,23.277641],"names":{"bg":"МЕТРОСТАНЦИЯ ОБЕЛЯ","en":"OBELYA METRO STATION"}},
 {"code":6246,"coords":[42.713277,23.160144],"names":{"bg":"РЕМОНТНА БАЗА","en":"REPAIR BASE"}},
