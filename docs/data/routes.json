@@ -78,7 +78,7 @@
 {"line":68,"type":"autobus","trips":[298,299],"directions":[5259,5260]},
 {"line":69,"type":"autobus","trips":[300,301,302,303,304,305,306,307],"directions":[4663,4664,4863,4864]},
 {"line":70,"type":"autobus","trips":[308,309],"directions":[4665,4666]},
-{"line":72,"type":"autobus","trips":[310,311,312,313],"directions":[438,439]},
+{"line":72,"type":"autobus","trips":[310,311,312,313],"directions":[5507,5508,438,439]},
 {"line":73,"type":"autobus","trips":[314,315,316,317],"directions":[5329,5330]},
 {"line":74,"type":"autobus","trips":[318,319,320,321],"directions":[5315,5316]},
 {"line":75,"type":"autobus","trips":[322,323],"directions":[3987,3988]},
