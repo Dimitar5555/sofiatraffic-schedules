@@ -183,7 +183,7 @@
 {"code":194,"coords":[42.640269,23.376222],"names":{"bg":"БЛ. 327 Ж.К. МЛАДОСТ-3","en":"BL. 327 MLADOST 3 QR"}},
 {"code":195,"coords":[42.716897,23.286743],"names":{"bg":"БЛ. 35 Ж.К. ЗАХАРНА ФАБРИКА","en":"BL. 35 ZAHARNA FABRIKA QR"}},
 {"code":196,"coords":[42.717113,23.287516],"names":{"bg":"БЛ. 35 Ж.К. ЗАХАРНА ФАБРИКА","en":"BL. 35 ZAHARNA FABRIKA QR"}},
-{"code":197,"coords":[42.726492,23.245086],"names":{"bg":"БЛ. 350 Ж.К. ЛЮЛИН-3","en":"BL. 350 LYULIN 3 QR"}},
+{"code":197,"coords":[42.725869,23.244595],"names":{"bg":"БЛ. 350 Ж.К. ЛЮЛИН-3","en":"BL. 350 LYULIN 3 QR"}},
 {"code":198,"coords":[42.724976,23.245084],"names":{"bg":"БЛ. 350 Ж.К. ЛЮЛИН-3","en":"BL. 350 LYULIN 3 QR"}},
 {"code":199,"coords":[42.724995,23.244824],"names":{"bg":"БЛ. 350 Ж.К. ЛЮЛИН-3","en":"BL. 350 LYULIN 3 QR"}},
 {"code":200,"coords":[42.724929,23.243657],"names":{"bg":"БЛ. 350 Ж.К. ЛЮЛИН-3","en":"BL. 350 LYULIN 3 QR"}},
@@ -1493,7 +1493,7 @@
 {"code":1615,"coords":[42.707631,23.364429],"names":{"bg":"СТАДИОН Г. АСПАРУХОВ","en":"G. ASPARUHOV STADIUM"}},
 {"code":1616,"coords":[42.818445,23.280683],"names":{"bg":"НАЧАЛО С. ДОБРОСЛАВЦИ","en":"ENTRY TO DOBROSLAVTSI VILLAGE"}},
 {"code":1617,"coords":[42.712155,23.159054],"names":{"bg":"СТАДИОНА БАНКЯ","en":"BANKYA STADIUM"}},
-{"code":1618,"coords":[42.71163,23.158308],"names":{"bg":"СТАДИОНА БАНКЯ","en":"BANKYA STADIUM"}},
+{"code":1618,"coords":[42.71163,23.158258],"names":{"bg":"СТАДИОНА БАНКЯ","en":"BANKYA STADIUM"}},
 {"code":1619,"coords":[42.709687,23.160488],"names":{"bg":"СТАДИОНА БАНКЯ - ПО ЖЕЛАНИЕ","en":"BANKYA STADIUM"}},
 {"code":1620,"coords":[42.709734,23.160851],"names":{"bg":"СТАДИОНА БАНКЯ - ПО ЖЕЛАНИЕ","en":"BANKYA STADIUM"}},
 {"code":1621,"coords":[42.818091,23.280677],"names":{"bg":"НАЧАЛО С. ДОБРОСЛАВЦИ","en":"ENTRY TO DOBROSLAVTSI VILLAGE"}},
@@ -2751,7 +2751,7 @@
 {"code":6281,"coords":[42.715408,23.339497],"names":{"bg":"КАТОЛИЧЕСКИ ГРОБИЩЕН ПАРК","en":"CATHOLIC CEMETERY"}},
 {"code":6297,"coords":[42.707589,23.146293],"names":{"bg":"ЦЕНТЪРА БАНКЯ","en":"BANKYA CENTRE"}},
 {"code":6298,"coords":[42.707436,23.146317],"names":{"bg":"ЦЕНТЪР БАНКЯ","en":"BANKYA CENTRE"}},
-{"code":6331,"coords":[42.684318,23.320689],"names":{"bg":"УЛ. ФРИТЬОФ НАНСЕН","en":"UL. FRITYOF NANSEN"}},
+{"code":6331,"coords":[42.684318,23.320689],"names":{"bg":"УЛ. ПРОФЕСОР ФРИТЬОФ НАНСЕН","en":"UL. PROFESOR FRITYOF NANSEN"}},
 {"code":6347,"coords":[42.712444,23.151724],"names":{"bg":"УЛ. УЧЕНИЧЕСКА","en":"UCHENICHESKA ST"}},
 {"code":6382,"coords":[42.712888,23.343919],"names":{"bg":"УЛ. ПЪРВА БЪЛГАРСКА АРМИЯ","en":"PARVA BULGARSKA ARMIA ST"}},
 {"code":6401,"coords":[42.697533,23.315748],"names":{"bg":"ПЛ. ВЪЗРАЖДАНЕ","en":"VAZRAZHDANE SQ"}},
@@ -2787,6 +2787,7 @@
 {"code":6568,"coords":[42.62833,23.230307],"names":{"bg":"ДЕНДРАРИУМА - ПО ЖЕЛАНИЕ","en":"DENDRARIUMA"}},
 {"code":6569,"coords":[42.645929,23.245284],"names":{"bg":"УЛ. БЯЛАТА ЧЕШМА - ПО ЖЕЛАНИЕ","en":"BYALATA CHESHMA ST"}},
 {"code":6575,"coords":[42.7128,23.34389],"names":{"bg":"УЛ. ПЪРВА БЪЛГАРСКА АРМИЯ","en":"PARVA BULGARSKA ARMIA ST"}},
+{"code":6587,"coords":[42.649546,23.346589],"names":{"bg":"УЛ. АТАНАС МАНЧЕВ","en":"UL. ATANAS MANCHEV"}},
 {"code":6591,"coords":[42.685065,23.351248],"names":{"bg":"РУМЪНСКО ПОСОЛСТВО","en":"RUMANSKO POSOLSTVO"}},
 {"code":6599,"coords":[42.713284,23.384298],"names":{"bg":"БЛ. 28 Ж.К. ЛЕВСКИ-Г","en":"BL. 28 ZH.K. LEVSKI-G"}},
 {"code":6600,"coords":[42.711901,23.388112],"names":{"bg":"Ж.К. ЛЕВСКИ Г","en":"ZH.K. LEVSKI G"}},
@@ -2817,5 +2818,6 @@
 {"code":6707,"coords":[42.734885,23.293391],"names":{"bg":"МЕТРОСТАНЦИЯ БЕЛИ ДУНАВ","en":"METROSTANTSIA BELI DUNAV"}},
 {"code":6708,"coords":[42.734778,23.293705],"names":{"bg":"МЕТРОСТАНЦИЯ БЕЛИ ДУНАВ","en":"METROSTANTSIA BELI DUNAV"}},
 {"code":6709,"coords":[42.678314,23.370513],"names":{"bg":"АВТОСТАНЦИЯ ГЕО МИЛЕВ","en":"AVTOSTANTSIA GEO MILEV"}},
-{"code":6710,"coords":[42.677959,23.370031],"names":{"bg":"АВТОСТАНЦИЯ ГЕО МИЛЕВ","en":"AVTOSTANTSIA GEO MILEV"}}
+{"code":6710,"coords":[42.677959,23.370031],"names":{"bg":"АВТОСТАНЦИЯ ГЕО МИЛЕВ","en":"AVTOSTANTSIA GEO MILEV"}},
+{"code":6719,"coords":[42.647323,23.34561],"names":{"bg":"СТУДЕНТСКИ ГРАД","en":"STUDENTSKI GRAD"}}
 ]

@@ -443,6 +443,8 @@
 {"route_index":111,"direction":4960,"valid_from":"06.01.2024","valid_thru":"011"},
 {"route_index":112,"direction":5471,"valid_from":"07.05.2024","valid_thru":"100"},
 {"route_index":112,"direction":5472,"valid_from":"07.05.2024","valid_thru":"100"},
+{"route_index":112,"direction":2153,"valid_from":"01.05.2024","valid_thru":"011"},
+{"route_index":112,"direction":2154,"valid_from":"01.05.2024","valid_thru":"011"},
 {"route_index":113,"direction":4927,"valid_from":"12.01.2024","valid_thru":"100"},
 {"route_index":113,"direction":4928,"valid_from":"12.01.2024","valid_thru":"100"},
 {"route_index":113,"direction":4927,"valid_from":"13.04.2024","valid_thru":"011"},
