@@ -147,7 +147,9 @@ function configure_all_selectors(predefined_values={}, reset=false){
 	var valid_thru_val = Array.from(document.querySelectorAll('[name=schedule_type]')).find(el => el.checked).value;
 	
 	var current_direction_options = Array.from(schedule_div.querySelector('#direction').querySelectorAll('option')).map(el => Number(el.value));
-	var new_direction_options = route.directions;
+	//only fetch directions for the current valid thru interval
+	var new_direction_options = route.directions
+	.map(dir_code => trips.find(trip => trip.direction==dir_code && trip.valid_thru==valid_thru_val).direction);
 	var direction_options_ok = new_direction_options.filter(direction => current_direction_options.indexOf(direction)==-1).length==0;
 	if(!direction_options_ok || reset){
 		let index = new_direction_options.indexOf(predefined_values.direction?.code);
