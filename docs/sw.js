@@ -50,6 +50,12 @@ self.addEventListener('install', function(e) {
 			console.log('[ServiceWorker] Caching app shell');
 			return cache.addAll(files_to_cache);
 		})
+		.then(() => {
+			console.log('[ServiceWorker] Added all files to the cache');
+		})
+		.catch(err => {
+			console.error('[ServiceWorker] Error while adding files to the cache:' + err);
+		})
 	);
 });
 
