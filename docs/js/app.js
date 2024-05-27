@@ -100,31 +100,31 @@ function fetch_data(metadata=false){
 	.then(response => response.json())
 	.then(stops => {
 		window.stops = stops;
-		localStorage.stops_hash = metadata.stops_hash;
+		localStorage.stops_hash = metadata.hashes.stops;
 	}));
 	promises.push(fetch('data/routes.json')
 	.then(response => response.json())
 	.then(routes => {
 		window.routes = routes;
-		localStorage.routes_hash = metadata.routes_hash;
+		localStorage.routes_hash = metadata.hashes.routes;
 	}));
 	promises.push(fetch('data/trips.json')
 	.then(response => response.json())
 	.then(trips => {
 		window.trips = trips;
-		localStorage.trips_hash = metadata.trips_hash;
+		localStorage.trips_hash = metadata.hashes.trips;
 	}));
 	promises.push(fetch('data/directions.json')
 	.then(response => response.json())
 	.then(directions => {
 		window.directions = directions;
-		localStorage.directions_hash = metadata.directions_hash;
+		localStorage.directions_hash = metadata.hashes.directions;
 	}));
 	promises.push(fetch('data/stop_times.json')
 	.then(response => response.json())
 	.then(stop_times => {
 		window.stop_times = stop_times;
-		localStorage.stop_times_hash = metadata.stop_times_hash;
+		localStorage.stop_times_hash = metadata.hashes.stop_times;
 	}));
 	return Promise.all(promises)
 	.then(()=>{
