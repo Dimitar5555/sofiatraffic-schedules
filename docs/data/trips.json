@@ -355,8 +355,6 @@
 {"route_index":92,"direction":5536,"valid_from":"18.05.2024","valid_thru":"011"},
 {"route_index":93,"direction":4337,"valid_from":"27.11.2023","valid_thru":"100"},
 {"route_index":93,"direction":4338,"valid_from":"27.11.2023","valid_thru":"100"},
-{"route_index":93,"direction":4337,"valid_from":"01.06.2024","valid_thru":"010"},
-{"route_index":93,"direction":4338,"valid_from":"01.06.2024","valid_thru":"010"},
 {"route_index":93,"direction":4337,"valid_from":"06.01.2024","valid_thru":"001"},
 {"route_index":93,"direction":4338,"valid_from":"06.01.2024","valid_thru":"001"},
 {"route_index":94,"direction":5403,"valid_from":"01.02.2024","valid_thru":"100"},
