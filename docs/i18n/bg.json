@@ -3,7 +3,8 @@
 	"title":"Разписание на МГТ - София",
 	"nav":{
 		"schedules":"Разписание",
-		"favourites":"Любими спирки"
+		"favourites":"Любими спирки",
+		"map":"Карта"
 	},
 	"line_types":{
 		"favourite":"Любими линии",
@@ -29,7 +30,6 @@
 		"holiday":"празник"
 	},
 	"schedules":{
-		"back":" Назад",
 		"line":"Линия",
 		"schedule":"Разписание",
 		"valid_from":"Валидно от",
@@ -43,12 +43,12 @@
 		"next_course":"Следващ курс",
 		"partial_trips":"Непълните курсове са отбелязани с червен/жълт фон",
 		"add_to_favourites":"Добави към списъка с любими",
-		"remove_from_favourites":"Премахни от списъка с любими"
+		"remove_from_favourites":"Премахни от списъка с любими",
+		"unknown_stop": "НЕИЗВЕСТНА СПИРКА"
 	},
 	"favourites":{
 		"stop":"Спирка",
-		"actions":"Действия",
-		"virtual_table":"Виртуално табло"
+		"actions":"Действия"
 	},
 	"footer":{
 		"last_data_update":"Последно обновяване на разписанията",
@@ -57,9 +57,13 @@
 	"stats":{
 		"schedules_by_date":"Нови разписания по дати",
 		"date":"Дата",
-		"lines":"Линии"
+		"line":"Линия"
 	},
 	"actions":{
-		"close":"Затвори"
+		"close":"Затвори",
+		"schedule": "Разписание",
+		"virtual_table": "Виртуално табло",
+		"show_stop_schedule": "Разписание на спирката",
+		"back": " Назад"
 	}
 }

@@ -71,6 +71,11 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#tramway/15</loc>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#tramway/18</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -316,6 +321,11 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/Х43</loc>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/44</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -437,6 +447,11 @@
 </url>
 <url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/81</loc>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/82А</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -612,11 +627,6 @@
 </url>
 <url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/314</loc>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/384</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

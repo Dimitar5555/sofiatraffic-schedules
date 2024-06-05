@@ -8,16 +8,50 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-icons.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/leaflet.css">
 	<link rel="manifest" href="manifest.json" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<script src="js/bootstrap.bundle.min.js"></script>
     <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<script src="js/leaflet.markercluster.js"></script>
+	<link rel="stylesheet" href="css/MarkerCluster.css">
+	<link rel="stylesheet" href="css/MarkerCluster.Default.css">
 </head>
 <body>
+	<div class="modal fade" id="schedule_modal" tabindex="-1" aria-labelledby="schedule_modal" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" data-i18n="schedules.modal_title"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<button data-i18n="schedules.previous_course" class="d-none"></button>
+				<button data-i18n="schedules.next_course" class="d-none"></button>
+				<table id="detailed_schedule" class="table table-bordered table-sm table-text-left">
+					<thead>
+						<tr>
+							<th data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation" colspan="2"></th>
+							<th data-i18n="schedules.departure_time"></th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="actions.close"></button>
+			</div>
+		  </div>
+		</div>
+	</div>
 	<div class="wrapper p-2">
 		<nav class="nav nav-pills nav-justified" id="nav-main" role="tablist">
-			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedule" class="nav-item nav-link active" href="#schedule"></a>
-			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favorite_stops" class="nav-item nav-link" href="#favorite_stops"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedule" class="nav-item nav-link active" href="#schedule" onclick="updateURL(this.href)"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favourite_stops" class="nav-item nav-link" href="#favourite_stops" onclick="updateURL(this.href)"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.map" data-bs-target="#stops_map" class="nav-item nav-link" href="#stops_map" onclick="updateURL(this.href); init_map(true);"></a>
 		</nav>
 		<div class="tab-content" id="nav-mainContent">
 			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedule">
@@ -56,7 +90,7 @@
 					</div>
                 </div>
 				<div id="schedule_display" class="d-none">
-					<button onclick="line_selector_div.classList.remove('d-none');schedule_display.classList.add('d-none');history.pushState({page: 'home', tab: 'stops'}, '', '#routes')" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="schedules.back"></button>
+					<button onclick="line_selector_div.classList.remove('d-none');stop_schedule_div.classList.add('d-none');schedule_display.classList.add('d-none');/*history.pushState({page: 'home', tab: 'stops'}, '', '#routes')*/" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="actions.back"></button>
 					<br>
 					<div class="row m-2">
 						<div class="col col-4 col-md-3">
@@ -88,7 +122,7 @@
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
 						<div class="col col-8 col-md-4">
-							<select class="form-select" onchange="show_schedule({direction: this.value})" id="direction"></select>
+							<select class="form-select" onchange="show_schedule({direction: this.value, is_route: true})" id="direction"></select>
 						</div>
 					</div>
 					<div class="row m-2">
@@ -102,7 +136,8 @@
 										<i class="lh-1 align-middle bi bi-star h5 text-warning" onclick="add_remove_favourite_stop()"></i>
 									</div>
 									<div class="col-10 col-xs-9 col-sm-11 ps-0">
-										<select class="form-select" onchange="show_schedule({stop_code: this.value})" id="stops"></select>
+										<select class="form-select" onchange="show_schedule({stop_code: this.value, is_route: true})" id="route_stop_selector"></select>
+										<button class="btn btn-primary" onclick="show_schedule({stop_code: this.previousElementSibling.value, is_stop: true})" data-i18n="actions.show_stop_schedule"></button>
 									</div>
 								</div> 
 							</div>
@@ -117,41 +152,38 @@
 						</div>
 					</div>
 					<div class="table-responsive">
-						<table class="table table-bordered table-striped-columns table-flip position-relative" id="schedule_table">
+						<table class="schedule_table table table-bordered table-striped-columns table-flip" id="route_schedule_table">
 							<tbody></tbody>
 						</table>
 					</div>
 					<p data-i18n="schedules.partial_trips"></p>
-					<div class="modal fade" id="schedule_modal" tabindex="-1" aria-labelledby="schedule_modal" aria-hidden="true">
-						<div class="modal-dialog">
-						  <div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" data-i18n="schedules.modal_title"></h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div id="stop_schedule" class="d-none">
+					<button onclick="line_selector_div.classList.remove('d-none');stop_schedule_div.classList.add('d-none');schedule_display.classList.add('d-none');/*history.pushState({page: 'home', tab: 'stops'}, '', '#routes')*/" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="actions.back"> Назад</span></button>
+					<div>
+						<div class="row m-2">
+							<div class="col col-4 col-md-3" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></div>
+							<div class="col col-8 col-md-4" id="stop_name"></div>
+						</div>
+						<div class="row m-2">
+							<div class="col col-4 col-md-3"></div>
+							<div class="col col-8 col-md-4">
+								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="100" id="stop_schedule_type_weekdays" checked>
+								<label data-i18n="weekdays.weekday" for="stop_schedule_type_weekdays"></label>
+								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="010" id="stop_schedule_type_pre_holiday">
+								<label data-i18n="weekdays.pre_holiday" for="stop_schedule_type_pre_holiday"></label>
+								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="001" id="stop_schedule_type_holiday">
+								<label data-i18n="weekdays.holiday" for="stop_schedule_type_holiday"></label>
+
 							</div>
-							<div class="modal-body">
-								<button data-i18n="schedules.previous_course" class="d-none"></button>
-								<button data-i18n="schedules.next_course" class="d-none"></button>
-								<table id="detailed_schedule" class="table table-bordered table-sm table-text-left">
-									<thead>
-										<tr>
-											<th data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation" colspan="2"></th>
-											<th data-i18n="schedules.departure_time"></th>
-										</tr>
-									</thead>
-									<tbody></tbody>
-								</table>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="actions.close"></button>
-							</div>
-						  </div>
 						</div>
 					</div>
+					<div id="stop_map"></div>
+					<div id="stop_schedule_tables"></div>
 				</div>
 			</div>
-			<div class="tab-pane p-2 fade" id="favorite_stops" role="tabpanel">
-				<table id="stops" class="table table-bordered">
+			<div class="tab-pane p-2 fade" id="favourite_stops" role="tabpanel">
+				<table id="favourite_stops_table" class="table table-bordered">
 					<thead>
 						<tr>
 							<th data-i18n="favourites.stop" colspan="2"></th>
@@ -160,6 +192,9 @@
 					</thead>
 					<tbody></tbody>
 				</table>
+			</div>
+			<div class="tab-pane p-2 fade" id="stops_map" role="tabpanel">
+				<div id="map"></div>
 			</div>
 		</div>
 	</div>
@@ -175,7 +210,7 @@
 					<thead>
 						<tr>
 							<th data-i18n="stats.date"></th>
-							<th data-i18n="stats.lines"></th>
+							<th data-i18n="stats.line"></th>
 							<th data-i18n="weekdays.weekday"></th>
 							<th data-i18n="weekdays.pre_holiday"></th>
 							<th data-i18n="weekdays.holiday"></th>

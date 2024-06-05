@@ -9,11 +9,12 @@ const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 
 const main_types = ['metro', 'tramway', 'trolleybus', 'autobus', 'fakemetro'];
 
-const ROUTES_LIMIT = 0;
+const IS_IN_DEBUG_MODE = false;
+const ROUTES_LIMIT = 3;
 var current_routes = 0;
 
 var metadata = {
-	app_version: '2024-03-21',
+	app_version: '2024-06-05',
 	retrieval_date: new Date().toISOString().split('T')[0],
 	hashes: {}
 };
@@ -43,8 +44,8 @@ function get_routes() {
 			var route_data = {
 				line: Number(split_route[1]).toString()===split_route[1]?Number(split_route[1]):split_route[1],
 			    type: split_route[0],
-				trips: [],
-				directions: []
+				trip_indexes: [],
+				direction_codes: []
 			};
 			if(route_data.line=='M1-M2'){
 				route_data.type = 'fakemetro';
@@ -61,26 +62,29 @@ function get_routes() {
             else if(route_data.line.indexOf('У')!==-1){
                 route_data.subtype = 'school';
             }
+			if(route_data.type!=='tramway' && IS_IN_DEBUG_MODE){
+				return;
+			}
 		    routes.push(route_data);
 		});
 		routes.push(
 			{
 				line: 'M1',
 				type: 'metro',
-				trips: [],
-				directions: [9994, 9995]
+				trip_indexes: [],
+				direction_codes: [9994, 9995]
 			},
 			{
 				line: 'M2',
 				type: 'metro',
-				trips: [],
-				directions: [9996, 9997]
+				trip_indexes: [],
+				direction_codes: [9996, 9997]
 			},
 			{
 				line: 'M4',
 				type: 'metro',
-				trips: [],
-				directions: [9998, 9999]
+				trip_indexes: [],
+				direction_codes: [9998, 9999]
 			}
 		);
 		directions.push({code: 9994, stops: [3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3039, 3041, 3043]});
@@ -100,7 +104,7 @@ function get_routes() {
 		routes.forEach((route, route_index) => {
 			delete routes[route_index].ref
 			//ignore all M lines except for M1-M2 and M3
-			if(current_routes==ROUTES_LIMIT && ROUTES_LIMIT!=0 || route.type=='metro' && ['M1', 'M2', 'M4'].indexOf(route.line)!=-1){
+			if(current_routes==ROUTES_LIMIT && IS_IN_DEBUG_MODE || route.type=='metro' && ['M1', 'M2', 'M4'].indexOf(route.line)!=-1){
 				return;
 			}
 			current_routes++;
@@ -168,7 +172,7 @@ function get_schedules(id){
 				var last_stop = direction.stops.toReversed()[0];
 				var direction_index = directions.find2DIndex(direction);
 				if(direction_index == -1){
-					routes[route_index].directions.push(direction.code);
+					routes[route_index].direction_codes.push(direction.code);
 					direction_index = directions.push(direction) - 1;
 				}
 				
@@ -176,7 +180,7 @@ function get_schedules(id){
                 var trip_index = trips.find2DIndex(trip);
 				if(trip_index == -1){
 					trip_index = trips.push(trip) - 1;
-					routes[route_index].trips.push(trip_index);
+					routes[route_index].trip_indexes.push(trip_index);
 				}
                 //get from both ends, in order to catch all partial trips
 				[first_stop, last_stop].forEach(stop => 
@@ -277,9 +281,9 @@ function finalise() {
 function split_M1_M2(fict_route) {
 	routes.map((route, index) => route.index = index);
 	var actual_metro_routes = routes.filter(route => route.type=='metro' && route.line!='M3');
-	var fake_dirs = directions.filter(dir => fict_route.directions.indexOf(dir.code)!==-1);
+	var fake_dirs = directions.filter(dir => fict_route.direction_codes.indexOf(dir.code)!==-1);
 	actual_metro_routes.forEach(act_route => {
-		var real_dirs = directions.filter(dir => act_route.directions.indexOf(dir.code)!==-1);
+		var real_dirs = directions.filter(dir => act_route.direction_codes.indexOf(dir.code)!==-1);
 		//find matches
 		real_dirs.forEach(real_dir => {
 			fake_dirs.forEach(fake_dir => {
@@ -296,7 +300,7 @@ function split_M1_M2(fict_route) {
 						var act_trip_index = trips.find2DIndex(clone);
 						if(act_trip_index==-1){
 							act_trip_index = trips.push(clone)-1;
-							routes[act_route.index].trips.push(act_trip_index);
+							routes[act_route.index].trip_indexes.push(act_trip_index);
 						}
 						var fake_trip_index = trips.find2DIndex(trip);
 						var stop_times_for_cloning = stop_times.filter(stop_time => stop_time.trip==fake_trip_index);

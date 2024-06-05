@@ -1,4 +1,4 @@
-const favorite_stops_div = document.querySelector('#favorite_stops');
+const favourite_stops_div = document.querySelector('#favourite_stops');
 function gen_route_json(){
 	return `${current.route.type}\_${current.route.line}`;
 }
@@ -10,16 +10,19 @@ function show_favourite_stops(favourite_stops=false){
 	if(!favourite_stops){
 		favourite_stops = get_favourite_stops();
 	}
-	var table = favorite_stops_div.querySelector('table#stops');
+	var table = favourite_stops_div.querySelector('table#favourite_stops_table');
 	var old_tbody = table.querySelector('tbody');
 	var new_tbody = html_comp('tbody');
-	favourite_stops.forEach(stop => {
+	favourite_stops.forEach(stop_code => {
 		var tr = html_comp('tr');
-		tr.appendChild(html_comp('td', {text: stop.toString().padStart(4, '0'), class: 'align-middle'}));
-		tr.appendChild(html_comp('td', {text: get_stop_name(stop), class: 'align-middle'}));
+		tr.appendChild(html_comp('td', {text: format_stop_code(stop_code), class: 'align-middle'}));
+		tr.appendChild(html_comp('td', {text: get_stop_name(stop_code), class: 'align-middle'}));
 		var td1 = html_comp('td');
-		td1.appendChild(html_comp('button', {'data-bs-toggle':'modal', 'data-bs-target': '#sofiatraffic_live_data', 'data-url': `https://sofiatraffic.bg/bg/transport/virtual-tables/${stop.toString().padStart(4, '0')}`, text: lang.favourites.virtual_table, onclick: 'document.querySelector("iframe").setAttribute("src", this.dataset.url)', class: 'btn btn-primary'}));
-        td1.appendChild(html_comp('button', {'data-bs-toggle':'modal', 'data-bs-target': '#sofiatraffic_live_data', 'data-url': `https://sofiatraffic.bg/bg/transport/virtual-tables/${stop.toString().padStart(4, '0')}`, text: lang.favourites.schedule, onclick: 'document.querySelector("iframe").setAttribute("src", this.dataset.url)', class: 'd-none'}));
+		//TODO FIX
+		var btn_group = html_comp('div', {class: 'btn-group'});
+		btn_group.appendChild(html_comp('button', {'data-bs-toggle':'modal', 'data-bs-target': '#sofiatraffic_live_data', 'data-url': `https://sofiatraffic.bg/bg/transport/virtual-tables/${format_stop_code(stop_code)}`, text: lang.actions.virtual_table, onclick: 'document.querySelector("iframe").setAttribute("src", this.dataset.url)', class: 'btn btn-outline-primary'}));
+        btn_group.appendChild(html_comp('button', {text: lang.schedules.schedule, onclick: `show_schedule({stop_code: ${stop_code}, is_stop: true})`, class: 'btn btn-outline-primary'}));
+		td1.appendChild(btn_group);
 		//td1.appendChild(document.createTextNode(' '));
 		//td1.appendChild(html_comp('a', {href: `"++"`, text: 'Разписание', target: '_blank'}));
 		tr.appendChild(td1);
@@ -33,13 +36,19 @@ function show_favourite_lines(favourite_lines=false){
 	}
 	var old_div = document.querySelector('#line_selector_favourites').querySelector('.lines');
 	var new_div = old_div.cloneNode();
-	var indexes = favourite_lines.map(data => {
+	if(favourite_lines.length==0){
+		old_div.parentElement.classList.add('d-none');
+		return;
+	}
+
+	old_div.classList.remove('d-none');
+	let routes = favourite_lines.map(data => {
 		var line = data.split('_');
-		return routes.findIndex(a => a.line==line[1] && a.type==line[0]);
+		return data.routes.find(a => a.line==line[1] && a.type==line[0]);
 	});
-	indexes.sort();
-	indexes.forEach(route_index => {
-		var line_btn = generate_line_btn(route_index);
+	routes.sort();
+	routes.forEach(route => {
+		var line_btn = generate_line_btn(route);
 		new_div.appendChild(line_btn);
 	});
 	old_div.replaceWith(new_div);
@@ -58,12 +67,6 @@ function add_remove_favourite_line(){
 	}
 	show_favourite_lines(favourite_lines);
 	configure_favourite_line_button(favourite_lines);
-	if(favourite_lines.length==0){
-		document.querySelector('#line_selector_favourites').classList.add('d-none');
-	}
-	else{
-		document.querySelector('#line_selector_favourites').classList.remove('d-none');
-	}
 	window.localStorage.setItem('favourite_lines', JSON.stringify(favourite_lines));
 }
 function get_favourite_stops(){
