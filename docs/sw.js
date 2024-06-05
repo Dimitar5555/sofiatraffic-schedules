@@ -7,6 +7,7 @@ const files_to_cache = [
 	'data/stops.json',
 	'data/trips.json',
 	'data/metadata.json',
+	'js/utilities.js',
 	'js/app.js',
 	'js/schedules.js',
 	'js/favourites.js',

@@ -18,13 +18,7 @@ function show_favourite_stops(favourite_stops=false){
 		tr.appendChild(html_comp('td', {text: format_stop_code(stop_code), class: 'align-middle'}));
 		tr.appendChild(html_comp('td', {text: get_stop_name(stop_code), class: 'align-middle'}));
 		var td1 = html_comp('td');
-		//TODO FIX
-		var btn_group = html_comp('div', {class: 'btn-group'});
-		btn_group.appendChild(html_comp('button', {'data-bs-toggle':'modal', 'data-bs-target': '#sofiatraffic_live_data', 'data-url': `https://sofiatraffic.bg/bg/transport/virtual-tables/${format_stop_code(stop_code)}`, text: lang.actions.virtual_table, onclick: 'document.querySelector("iframe").setAttribute("src", this.dataset.url)', class: 'btn btn-outline-primary'}));
-        btn_group.appendChild(html_comp('button', {text: lang.schedules.schedule, onclick: `show_schedule({stop_code: ${stop_code}, is_stop: true})`, class: 'btn btn-outline-primary'}));
-		td1.appendChild(btn_group);
-		//td1.appendChild(document.createTextNode(' '));
-		//td1.appendChild(html_comp('a', {href: `"++"`, text: 'Разписание', target: '_blank'}));
+		td1.appendChild(generate_schedule_departure_board_buttons(stop_code))
 		tr.appendChild(td1);
 		new_tbody.appendChild(tr);
 	});

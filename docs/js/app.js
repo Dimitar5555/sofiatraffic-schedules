@@ -32,17 +32,6 @@ function updateURL(page=false){
 	}
 	history.pushState({}, '', new_hash);
 }
-function html_comp(tag, attributes={}){
-	var el = document.createElement(tag);
-	var keys = Object.keys(attributes);
-	keys.forEach(key => {
-		if(key=='text'){
-			el.innerText = attributes[key];
-			return;
-		}
-		el.setAttribute(key, attributes[key])});
-	return el;
-}
 function init(debug=false){
 	if(!localStorage.getItem('lang')){
 		var cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.indexOf(lang)!==-1);
@@ -72,8 +61,14 @@ function init(debug=false){
         });
 	});
 
+	
 	check_metadata()
 	.then(() => {
+		let new_item = generate_schedule_departure_board_buttons(1);
+		let old_item = document.querySelector('#route_btn_group');
+		new_item.setAttribute('id', 'route_btn_group');
+		new_item.classList.add(...Array.from(old_item.classList));
+		old_item.replaceWith(new_item);
 		if(window.location.hash){
 			navigate_to_current_hash();
 		}
@@ -97,7 +92,7 @@ function init_map(){
 	data.stops.forEach(stop => {
 		L.marker(stop.coords)
 		.addTo(clusterGroup)
-		.bindPopup(`[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)} <br/><div class="btn-group"><button data-bs-toggle="modal" data-bs-target="#sofiatraffic_live_data" data-url="https://sofiatraffic.bg/bg/transport/virtual-tables/${format_stop_code(stop.code)}" onclick='document.querySelector("iframe").setAttribute("src", this.dataset.url)' class="btn btn-outline-primary">${lang.actions.virtual_table}</button> <button class="btn btn-outline-primary" onclick="show_schedule({stop_code: ${stop.code}, is_stop: true})">${lang.actions.schedule}</button></div>`);
+		.bindPopup(`[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)} <br/>`+generate_schedule_departure_board_buttons(stop.code).outerHTML);
 	});
 	clusterGroup.addTo(map);
 	console.log(clusterGroup.getBounds());
@@ -164,14 +159,6 @@ function fetch_data(metadata=false){
 		init_schedules();
 		init_favourites();
 	});
-}
-function generate_line_btn(route){
-	var el = html_comp('button', {
-		text: route.line,
-		class: `line_selector_btn text-${route.line=='M4'?'dark':'light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
-		'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`
-	});
-	return el;
 }
 //try to update metadata every hour
 var update_interval;

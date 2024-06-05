@@ -96,7 +96,7 @@
 						<div class="col col-4 col-md-3">
 							<label for="line" data-i18n="schedules.line"></label>
 						</div>
-						<div class="col col-8 col-md-4">
+						<div class="col col-8 col-md-5">
 							<i class="lh-1 align-top h5 bi-star text-warning" onclick="add_remove_favourite_line()"></i>
 							<span id="line"></span>
 						</div>
@@ -105,7 +105,7 @@
 						<div class="col col-4 col-md-3">
 							<label for="date_type" data-i18n="schedules.schedule"></label>
 						</div>
-						<div class="col col-8 col-md-4">
+						<div class="col col-8 col-md-5">
 							<form id="date_type"></form>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 						<div class="col col-4 col-md-3">
 							<label for="date_type" data-i18n="schedules.valid_from"></label>
 						</div>
-						<div class="col col-8 col-md-4">
+						<div class="col col-8 col-md-6">
 							<span id="valid_from"></span>
 						</div>
 					</div>
@@ -121,7 +121,7 @@
 						<div class="col col-4 col-md-3">
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
-						<div class="col col-8 col-md-4">
+						<div class="col col-8 col-md-6">
 							<select class="form-select" onchange="show_schedule({direction: this.value, is_route: true})" id="direction"></select>
 						</div>
 					</div>
@@ -129,25 +129,19 @@
 						<div class="col col-4 col-md-3">
 							<label for="stops" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></label>
 						</div>
-						<div class="col col-8 col-md-4">
-							<div class="form-group">
-								<div class="row">
-									<div class="col-2 col-xs-3 col-sm-1 px-0 text-center align-middle" style="line-height: 37.6px;">
-										<i class="lh-1 align-middle bi bi-star h5 text-warning" onclick="add_remove_favourite_stop()"></i>
-									</div>
-									<div class="col-10 col-xs-9 col-sm-11 ps-0">
-										<select class="form-select" onchange="show_schedule({stop_code: this.value, is_route: true})" id="route_stop_selector"></select>
-										<button class="btn btn-primary" onclick="show_schedule({stop_code: this.previousElementSibling.value, is_stop: true})" data-i18n="actions.show_stop_schedule"></button>
-									</div>
-								</div> 
+						<div class="col col-8 col-md-6 d-flex flex-wrap flex-lg-nowrap justify-content-between">
+							<div class="d-flex flex-nowrap flex-grow-1">
+								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="add_remove_favourite_stop()"></i>
+								<select class="form-select d-inline-block" onchange="show_schedule({stop_code: this.value, is_route: true})" id="route_stop_selector"></select>
 							</div>
+							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>
 						</div>
 					</div>
 					<div class="row m-2">
 						<div class="col col-4 col-md-3">
 							<label for="display_by_car" data-i18n="schedules.show_by_cars"></label>
 						</div>
-						<div class="col col-8 col-md-4">
+						<div class="col col-8 col-md-6">
 							<input class="form-check-input" onchange="display_schedule()" type="checkbox" id="display_by_car">
 						</div>
 					</div>
@@ -241,6 +235,7 @@
 		<span data-i18n="footer.last_data_update"></span>: <a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a><br>
 		<span data-i18n="footer.last_site_update"></span>: <span id="app_version"></span>
 	</footer>
+	<script src="js/utilities.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/schedules.js"></script>
 	<script src="js/favourites.js"></script>

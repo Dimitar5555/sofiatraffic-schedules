@@ -211,6 +211,11 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 		configure_stop_selector(new_stop_options, selected_index);
 	}
 	current.stop_code = Number(document.querySelector('#route_stop_selector').value);
+
+	var btn_group = document.querySelector('#route_btn_group');
+	btn_group.children.item(0).dataset.code = current.stop_code;
+	btn_group.children.item(1).dataset.code = current.stop_code;
+
 	display_schedule();
 }
 
@@ -240,6 +245,7 @@ function configure_weekday_selector(values, selected_index){
         	onchange: 'show_schedule({valid_thru: this.value, stop_code: current.stop_code, is_route: true})',
             class: 'form-check-input'
 		}));
+		new_date_type_select.appendChild(document.createTextNode(' '));
         new_date_type_select.appendChild(html_comp('label', {
             text: variant[1],
             'for': `schedule_type_${index}`
@@ -362,9 +368,6 @@ function get_stop_name(stop_code){
         return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
     return stop?.names[lang.code] || `(${lang.schedules.unknown_stop})`;
-}
-function format_stop_code(code){
-	return code.toString().padStart(4, '0');
 }
 function display_schedule(){
 	const table = schedule_div.querySelector('#route_schedule_table');
