@@ -49,6 +49,7 @@ td, th {
 	width: 60px;
 	height: 30px;
 	margin: 2.5px;
+	text-wrap: nowrap;
 }
 span.line-break {
 	display: block;
