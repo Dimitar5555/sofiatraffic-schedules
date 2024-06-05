@@ -1,18 +1,36 @@
 const schedule_div = document.querySelector('#schedule');
 const schedule_display_div = document.querySelector('#schedule_display');
 var line_selector_div = document.querySelector('#line_selector');
+const stop_schedule_div = document.querySelector('#stop_schedule');
 
 const allowed_languages = ['bg'];
 const main_types = ['metro', 'tramway', 'trolleybus', 'autobus'];
 const sec_types = ['temporary', 'school', 'night'];
 
+const tab_btns = Array.from(document.querySelector('nav').children).map(btn => new bootstrap.Tab(btn));
+
 current = {
 	route: null, trip: null, stop_code: null
 };
 
-function updateURL(){
-	const url = `#${current.route.type}/${current.route.line}/${current.trip.valid_thru}/${current.trip.direction}/${current.stop_code}/`;
-	history.pushState({}, '', url);
+function updateURL(page=false){
+	console.log('called updateURL: '+page);
+	let new_hash = '';
+	if(page){
+		new_hash = page;
+	}
+	else if(current.view=='route'){
+		new_hash = `#${current.route.type}/${current.route.line}/${current.trip.valid_thru}/${current.trip.direction}/${current.stop_code}/`;
+	}
+	else if(current.view=='stop'){
+		var valid_thru_val = document.querySelector('[name=stop_schedule_type]:checked').value;
+		var index = valid_thru_val=='100'?0:(valid_thru_val=='010'?1:2);
+		new_hash = `#stop/${format_stop_code(current.stop_code)}/${['weekday', 'saturday', 'sunday'][index]}/`;
+	}
+	if(window.location.hash==new_hash){
+		return;
+	}
+	history.pushState({}, '', new_hash);
 }
 function html_comp(tag, attributes={}){
 	var el = document.createElement(tag);
@@ -57,31 +75,38 @@ function init(debug=false){
 	check_metadata()
 	.then(() => {
 		if(window.location.hash){
-			var hash = decodeURIComponent(window.location.hash).replace('#', '').split('/');
-			if(main_types.indexOf(hash[0]) !== -1){
-				var type = hash[0];
-				var line = hash[1];
-				var route_index = routes.findIndex(route => route.type==type && route.line==line);
-				if(route_index!=-1){
-					var valid_thru = hash[2];
-					var direction_code = Number(hash[3]);
-					var stop = Number(hash[4]);
-					var trip = trips.find(trip => trip.route_index==route_index && trip.direction==direction_code && trip.valid_thru==valid_thru);
-					//update_globals({route: routes[route_index], trip: trip, stop: stop, direction: direction})
-					//current.route = routes[route_index];
-					//current.stop = stop_code;
-					var data = {route: routes[route_index], valid_thru: valid_thru, direction: directions.find(dir => dir.code==direction_code), stop: stop, trip: trip};
-					console.log(data);
-					show_schedule(data);
-				}
-			}
+			navigate_to_current_hash();
 		}
 	});
 }
+function init_map(){
+	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'updateURL(this.href);');
+	map = L.map('map', {
+		center: [51.505, -0.09],
+		zoom: 13
+	});
+	map.invalidateSize();
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+	var markers = [];
+	var clusterGroup = new L.markerClusterGroup({
+		disableClusteringAtZoom: 16,
+		showCoverageOnHover: false
+	});
+	//var FG = L.FeatureGroup();
+	data.stops.forEach(stop => {
+		L.marker(stop.coords)
+		.addTo(clusterGroup)
+		.bindPopup(`[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)} <br/><div class="btn-group"><button data-bs-toggle="modal" data-bs-target="#sofiatraffic_live_data" data-url="https://sofiatraffic.bg/bg/transport/virtual-tables/${format_stop_code(stop.code)}" onclick='document.querySelector("iframe").setAttribute("src", this.dataset.url)' class="btn btn-outline-primary">${lang.actions.virtual_table}</button> <button class="btn btn-outline-primary" onclick="show_schedule({stop_code: ${stop.code}, is_stop: true})">${lang.actions.schedule}</button></div>`);
+	});
+	clusterGroup.addTo(map);
+	console.log(clusterGroup.getBounds());
+	//map.addLayer(FG);
+	map.fitBounds(clusterGroup.getBounds());
+}
 function check_metadata(){
 	return fetch('data/metadata.json')
-	.then(response => response.text())
-	.then(text => JSON.parse(text))
+	.then(response => response.json())
 	.then(metadata => {
 		localStorage.app_version = metadata.app_version;
 		localStorage.retrieval_date = metadata.retrieval_date;
@@ -99,45 +124,52 @@ function fetch_data(metadata=false){
 	promises.push(fetch('data/stops.json')
 	.then(response => response.json())
 	.then(stops => {
-		window.stops = stops;
 		localStorage.stops_hash = metadata.hashes.stops;
-	}));
-	promises.push(fetch('data/routes.json')
-	.then(response => response.json())
-	.then(routes => {
-		window.routes = routes;
-		localStorage.routes_hash = metadata.hashes.routes;
-	}));
-	promises.push(fetch('data/trips.json')
-	.then(response => response.json())
-	.then(trips => {
-		window.trips = trips;
-		localStorage.trips_hash = metadata.hashes.trips;
+		return stops;
 	}));
 	promises.push(fetch('data/directions.json')
 	.then(response => response.json())
 	.then(directions => {
-		window.directions = directions;
 		localStorage.directions_hash = metadata.hashes.directions;
+		return directions;
+	}));
+	promises.push(fetch('data/routes.json')
+	.then(response => response.json())
+	.then(routes => {
+		localStorage.routes_hash = metadata.hashes.routes;
+		return routes;
+	}));
+	promises.push(fetch('data/trips.json')
+	.then(response => response.json())
+	.then(trips => {
+		localStorage.trips_hash = metadata.hashes.trips;
+		return trips;
 	}));
 	promises.push(fetch('data/stop_times.json')
 	.then(response => response.json())
 	.then(stop_times => {
-		window.stop_times = stop_times;
 		localStorage.stop_times_hash = metadata.hashes.stop_times;
+		return stop_times;
 	}));
 	return Promise.all(promises)
-	.then(()=>{
+	.then((response)=>{
+		let organised_data = {
+			stops: response[0],
+			directions: response[1],
+			routes: response[2],
+			trips: response[3],
+			stop_times: response[4]
+		};
+		init_schedules_data(organised_data);
 		init_schedules();
 		init_favourites();
 	});
 }
-function generate_line_btn(route_index){
-	var route = routes[route_index];
+function generate_line_btn(route){
 	var el = html_comp('button', {
-		text: routes[route_index].line,
+		text: route.line,
 		class: `line_selector_btn text-${route.line=='M4'?'dark':'light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
-		'onclick': `show_schedule({route: routes[${route_index}]})`
+		'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`
 	});
 	return el;
 }
@@ -157,3 +189,42 @@ if ('serviceWorker' in navigator) {
 	.catch((err) => alert('Service worker registration FAIL:', err));
 }
 init();
+
+function navigate_to_current_hash() {
+	var hash = decodeURIComponent(window.location.hash).replace('#', '').split('/');
+	var main_tab_index = ['schedule', 'favourite_stops', 'stops_map'].indexOf(hash[0]);
+	if(main_tab_index!=-1){
+		tab_btns[main_tab_index].show();
+		if(hash[0]=='stops_map' && map.parentElement){
+			init_map();
+		}
+	}
+	else if(main_types.indexOf(hash[0])!=-1){
+		var type = hash[0];
+		var line = hash[1];
+		var route_index = data.routes.findIndex(route => route.type==type && route.line==line);
+		var data = {
+			is_route: true,
+			route: routes[route_index],
+			valid_thru: hash[2],
+			direction: hash[3],
+			stop_code: hash[4]
+		};
+		//TODO continue
+		if(route_index==-1 || !data,directions.find(dir => dir.code==data.direction) || !data,stops.find(stop => stop.code==data.stop_code)){
+			return;
+		}
+		update_globals(data);
+		show_schedule(data, true);
+	}
+	else if(hash[0]=='stop'){
+		show_schedule({stop_code: Number(hash[1]), schedule_type: {weekday: '100', saturday: '010', sunday: '001'}[hash[2]], is_stop: true});
+	}
+}
+window.addEventListener('popstate', function(event) {
+	navigate_to_current_hash();
+
+});
+window.addEventListener('pushstate', function(event) {
+	navigate_to_current_hash();
+});

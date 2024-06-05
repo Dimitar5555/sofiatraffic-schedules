@@ -1,5 +1,5 @@
 const files_to_cache = [
-	'index.html',
+	'/',
 	'manifest.json',
 	'data/directions.json',
 	'data/routes.json',
@@ -45,28 +45,19 @@ self.addEventListener('fetch', function (event) {
 self.addEventListener('install', function(e) {
 	console.log('[ServiceWorker] Install');
 	e.waitUntil(
-		caches.open(cache_name).then(function(cache) {
+		caches.open(cacheName).then(function(cache) {
 			console.log('[ServiceWorker] Caching app shell');
-			return cache.addAll(files_to_cache);
-		})
-		.then(() => {
-			console.log('[ServiceWorker] Added all files to the cache');
-		})
-		.catch(err => {
-			console.error('[ServiceWorker] Error while adding files to the cache:' + err);
+			return cache.addAll(filesToCache);
 		})
 	);
 });
 
 self.addEventListener('activate', function(e) {
 	console.log('[ServiceWorker] Activate');
-	if (!navigator.onLine) {
-		return self.clients.claim();
-	}
 	e.waitUntil(
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
-				if (key !== cache_name) {
+				if (key !== cacheName) {
 					console.log('[ServiceWorker] Removing old cache', key);
 					return caches.delete(key);
 				}
