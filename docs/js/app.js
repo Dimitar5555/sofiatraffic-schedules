@@ -68,6 +68,7 @@ function init(debug=false){
 		let old_item = document.querySelector('#route_btn_group');
 		new_item.setAttribute('id', 'route_btn_group');
 		new_item.classList.add(...Array.from(old_item.classList));
+		new_item.children.item(0).classList.add('text-nowrap');
 		old_item.replaceWith(new_item);
 		if(window.location.hash){
 			navigate_to_current_hash();
