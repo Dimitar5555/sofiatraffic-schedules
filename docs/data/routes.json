@@ -59,7 +59,7 @@
 {"line":26,"type":"autobus","trip_indexes":[210,211,212,213],"direction_codes":[4331,4332]},
 {"line":27,"type":"autobus","trip_indexes":[214,215,216,217],"direction_codes":[4333,4334]},
 {"line":28,"type":"autobus","trip_indexes":[218,219,220,221],"direction_codes":[3985,3986,3570,3571]},
-{"line":29,"type":"autobus","trip_indexes":[222,223,224,225],"direction_codes":[5561,5562]},
+{"line":29,"type":"autobus","trip_indexes":[222,223,224,225],"direction_codes":[5559,5560,5561,5562]},
 {"line":30,"type":"autobus","trip_indexes":[226,227,228,229],"direction_codes":[4485,4486]},
 {"line":31,"type":"autobus","trip_indexes":[230,231,232,233],"direction_codes":[3277,3278]},
 {"line":42,"type":"autobus","trip_indexes":[234,235,236,237,238,239],"direction_codes":[4755,4756,4757,4758]},
