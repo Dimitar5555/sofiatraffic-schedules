@@ -193,7 +193,7 @@ function navigate_to_current_hash() {
 		var route_index = data.routes.findIndex(route => route.type==type && route.line==line);
 		var loc_data = {
 			is_route: true,
-			route: routes[route_index],
+			route: data.routes[route_index],
 			valid_thru: hash[2],
 			direction: hash[3],
 			stop_code: hash[4]
