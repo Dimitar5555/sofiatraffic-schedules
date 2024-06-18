@@ -39,7 +39,6 @@
 {"line":3,"type":"autobus","trip_indexes":[122,123,124,125],"direction_codes":[4623,4624]},
 {"line":"N4","type":"autobus","trip_indexes":[126,127],"direction_codes":[5539,5540],"subtype":"night"},
 {"line":4,"type":"autobus","trip_indexes":[128,129,130,131],"direction_codes":[4625,4626]},
-{"line":"5-ТМ","type":"autobus","trip_indexes":[],"direction_codes":[],"subtype":"temporary"},
 {"line":5,"type":"autobus","trip_indexes":[132,133,134,135,136,137],"direction_codes":[3693,3694,3695,3696]},
 {"line":6,"type":"autobus","trip_indexes":[138,139,140,141],"direction_codes":[5311,5312]},
 {"line":7,"type":"autobus","trip_indexes":[142,143],"direction_codes":[3547,3548]},
