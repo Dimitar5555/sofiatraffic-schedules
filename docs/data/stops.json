@@ -2804,5 +2804,6 @@
 {"code":6719,"coords":[42.647323,23.34561],"names":{"bg":"СТУДЕНТСКИ ГРАД","en":"STUDENTSKI GRAD"}},
 {"code":6728,"coords":[42.715514,23.291222],"names":{"bg":"УЛ. БИЛЯНИНИ ИЗВОРИ","en":"UL. BILYANINI IZVORI"}},
 {"code":6729,"coords":[42.715671,23.291404],"names":{"bg":"УЛ. БИЛЯНИНИ ИЗВОРИ","en":"UL. BILYANINI IZVORI"}},
-{"code":6730,"coords":[42.714609,23.291286],"names":{"bg":"ЖК ЗАХАРНА ФАБРИКА","en":"ZHK ZAHARNA FABRIKA"}}
+{"code":6730,"coords":[42.714609,23.291286],"names":{"bg":"ЖК ЗАХАРНА ФАБРИКА","en":"ZHK ZAHARNA FABRIKA"}},
+{"code":6818,"coords":[42.738546,23.317842],"names":{"bg":"СТОКОВ БАЗАР ИЛИЯНЦИ","en":"STOKOV BAZAR ILIYANTSI"}}
 ]
