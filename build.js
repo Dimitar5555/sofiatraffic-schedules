@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 const protocol = "https://";
 const sofiatraffic_url = "sofiatraffic.bg";
-const schedules_url = `${protocol}schedules.${sofiatraffic_url}/`;
+const schedules_url = `${protocol}forum.${sofiatraffic_url}/`;
 const routes_url = `${protocol}routes.${sofiatraffic_url}/`;
 
 const main_types = ['metro', 'tramway', 'trolleybus', 'autobus', 'fakemetro'];
