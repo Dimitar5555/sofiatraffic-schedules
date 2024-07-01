@@ -16,7 +16,7 @@ var current_routes = 0;
 const init_get_polylines = require('./build_polylines.js');
 
 var metadata = {
-	app_version: '2024-06-05',
+	app_version: '2024-07-01',
 	retrieval_date: new Date().toISOString().split('T')[0],
 	hashes: {}
 };
