@@ -111,8 +111,8 @@ function check_metadata(){
 	});
 }
 function update_versions(){
-	document.querySelector('#last_data_update').innerText = localStorage.retrieval_date;
-	document.querySelector('#app_version').innerText = localStorage.app_version;
+	document.querySelector('#last_data_update').innerText = format_date_string(localStorage.retrieval_date);
+	document.querySelector('#app_version').innerText = format_date_string(localStorage.app_version);
 }
 function fetch_data(metadata=false){
 	var promises = [];
@@ -199,7 +199,7 @@ function navigate_to_current_hash() {
 			stop_code: hash[4]
 		};
 		//TODO continue
-		if(route_index==-1 || !data.directions.find(dir => dir.code==loc_data.direction) || !data.stops.find(stop => stop.code==loc_data.stop_code)){
+		if(route_index==-1 || !data.directions.find(dir => dir.code==loc_data.direction) || !data,stops.find(stop => stop.code==loc_data.stop_code)){
 			return;
 		}
 		update_globals(loc_data);

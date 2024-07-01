@@ -13,8 +13,10 @@ const IS_IN_DEBUG_MODE = false;
 const ROUTES_LIMIT = 3;
 var current_routes = 0;
 
+const init_get_polylines = require('./build_polylines.js');
+
 var metadata = {
-	app_version: '2024-06-05',
+	app_version: '2024-07-01',
 	retrieval_date: new Date().toISOString().split('T')[0],
 	hashes: {}
 };
@@ -224,15 +226,16 @@ function get_times(id){
 		}
 		else{
 			//done
-			finalise();
+			post_process();
 		}
 	});
 }
 get_routes();
 
-function finalise() {
+async function post_process() {
     split_M1_M2(routes.pop());
 	routes.map(route => delete route.index);
+	await init_get_polylines.init_get_polylines(routes, directions);
 	console.log('Done!');
 	directions.sort((a, b) => a.code-b.code)
 	var files_to_write = [{
@@ -269,12 +272,12 @@ function finalise() {
 		.replace(find, replace)
 	}
 	
-	files_to_write.forEach(file => {
+	for(const file of files_to_write) {
 		console.log(`Writing data to ${file.name}.json`);
 		let json = JSON.stringify(file.data).beautifyJSON(file.split_rows_by);
 		metadata.hashes[file.name] = crypto.createHash('sha256').update(json).digest('hex');
 		fs.writeFileSync(`docs/data/${file.name}.json`, json);
-	});
+	}
 
 	fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
 }
