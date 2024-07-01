@@ -95,7 +95,7 @@ function init_updated_schedules_table(){
 	
     sorted_dates.forEach(key => {
 		var tr0 = html_comp('tr');
-        var td0 = html_comp('td', {text: key, class: "align-middle"});
+        var td0 = html_comp('td', {text: format_date_string(key), class: "align-middle"});
         tr0.appendChild(td0);
         new_tbody.appendChild(tr0);
         
@@ -214,6 +214,12 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 
 	var btn_group = document.querySelector('#route_btn_group');
 	btn_group.children.item(0).dataset.code = current.stop_code;
+	if(is_metro_stop(current.stop_code)){
+		btn_group.children.item(0).setAttribute('disabled', '');
+	}
+	else{
+		btn_group.children.item(0).removeAttribute('disabled');
+	}
 	btn_group.children.item(1).dataset.code = current.stop_code;
 
 	display_schedule();
@@ -363,7 +369,7 @@ function get_stop_name(stop_code){
 		return '-';
 	}
     var stop = get_stop(stop_code);
-	var hide_metro_part = current.route && current.route.type=='metro';
+	var hide_metro_part = is_metro_stop(stop_code);
     if(hide_metro_part){
         return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
@@ -394,7 +400,7 @@ function display_schedule(){
 	
 	var trip_index = data.trips.findIndex(trip => trip.route_index==current.route.index && trip.valid_thru === valid_thru && trip.direction === direction);
     var stop_times = data.stop_times.filter(stop_times => stop_times.trip === trip_index);
-	schedule_div.querySelector('#valid_from').innerText = data.trips[trip_index].valid_from;
+	schedule_div.querySelector('#valid_from').innerText = format_date_string(data.trips[trip_index].valid_from);
 
 	generate_stop_times_table(stop_times, stop_index, table, display_by_car);
 }
@@ -624,4 +630,62 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
     new_tbody.appendChild(tr_thead);
     new_tbody.appendChild(tr_tbody);
 	table.querySelector('tbody').replaceWith(new_tbody);
+}
+
+async function load_virtual_table(stop_code) {
+	const date = new Date;
+	let generated_at_el = document.querySelector('#generated_at');
+	generated_at_el.innerText = '';
+	generated_at_el.nextElementSibling.setAttribute('disabled', '');
+	var table = document.querySelector('table#virtual_board_table');
+	var thead = table.querySelector('thead');
+	thead.querySelector('th').innerText = `[${format_stop_code(stop_code)}] ${get_stop_name(stop_code)}`;
+	var old_tbody = table.querySelector('tbody');
+	var new_tbody = old_tbody.cloneNode();
+	
+	let loading_row = html_comp('tr');
+	let loading_td = html_comp('th', {colspan: 4});
+	let loading_div = html_comp('div', {class: 'spinner-border my-2', style: 'width: 3rem; height: 3rem; border-width: 4.5px;', role: 'status'});
+	loading_td.appendChild(loading_div);
+	loading_row.append(loading_td);
+	new_tbody.appendChild(loading_row);
+	old_tbody.replaceWith(new_tbody);
+	let req = await fetch(`https://sofiatraffic-virtual-board-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`);
+	let routes_data = await req.json();
+	console.log(routes_data);
+	if(routes_data.status == 'ok'){
+		loading_row.remove();
+		console.log(routes_data);
+		routes_data.routes.forEach(route => {
+			let tr = html_comp('tr');
+			let td1 = html_comp('td');
+			let span = html_comp('span', {class: `${route.type}-bg-color text-light px-1`, text: route.ref});
+			td1.appendChild(span);
+			tr.appendChild(td1);
+
+			for(const time of route.times) {
+				let td = html_comp('td');
+				td.appendChild(document.createTextNode(format_time(date.getHours()*60+date.getMinutes()+time.t, false)));
+				td.appendChild(document.createTextNode(' '));
+				if(time.wheelchair){
+					td.appendChild(html_comp('i', {class: 'bi bi-person-wheelchair'}));
+				}
+				if(time.ac){
+					td.appendChild(html_comp('i', {class: 'bi bi-snow'}));
+				}
+				if(time.bicycle_rack){
+					td.appendChild(html_comp('i', {class: 'bi bi-bicycle'}));
+				}
+				tr.appendChild(td);
+			}
+
+			new_tbody.appendChild(tr);
+		});
+	}
+	else{
+		loading_row.innerText = `${routes_data.status}\n${routes_data.message}`;
+	}
+	generated_at_el.innerText = new Date(routes_data.generated_at).toLocaleString(lang.code);
+	generated_at_el.nextElementSibling.dataset.code = stop_code;
+	generated_at_el.nextElementSibling.removeAttribute('disabled');
 }

@@ -7,8 +7,8 @@
 	<title data-i18n="title">Разписание на МГТ - София</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-icons.css">
-	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/leaflet.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="manifest" href="manifest.json" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<script src="js/bootstrap.bundle.min.js"></script>
@@ -19,16 +19,6 @@
 	<script src="js/leaflet.markercluster.js"></script>
 	<link rel="stylesheet" href="css/MarkerCluster.css">
 	<link rel="stylesheet" href="css/MarkerCluster.Default.css">
-
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NH3TDJNG2C"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	
-	gtag('config', 'G-NH3TDJNG2C');
-	</script>
 </head>
 <body>
 	<div class="modal fade" id="schedule_modal" tabindex="-1" aria-labelledby="schedule_modal" aria-hidden="true">
@@ -233,7 +223,19 @@
 		<div class="modal-dialog modal-lg">
 		  <div class="modal-content">
 			<div class="modal-body">
-				<iframe></iframe>
+				<div class="alert alert-warning">
+					<span data-i18n="other.sofiatraffic_livedata_warning_1"></span>
+					<span data-i18n="other.sofiatraffic_livedata_warning_2"></span>
+				</div>
+				<table id="virtual_board_table" class="table table-bordered">
+					<thead>
+						<th colspan="4"></th>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<span data-i18n="other.generated_at"></span>
+				<span id="generated_at"></span>
+				<button class="btn btn-primary" onclick="load_virtual_table(this.dataset.code)"><i class="bi bi-arrow-repeat"></i> <span data-i18n="actions.refresh"></span></button>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="actions.close"></button>

@@ -166,17 +166,7 @@
 <priority>0.8</priority>
 </url>
 <url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/У1</loc>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/N2</loc>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#autobus/У2</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
