@@ -369,8 +369,7 @@ function get_stop_name(stop_code){
 		return '-';
 	}
     var stop = get_stop(stop_code);
-	var hide_metro_part = is_metro_stop(stop_code);
-    if(hide_metro_part){
+    if(is_metro_stop(stop_code)){
         return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
     return stop?.names[lang.code] || `(${lang.schedules.unknown_stop})`;

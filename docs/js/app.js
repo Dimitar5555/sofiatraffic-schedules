@@ -68,6 +68,7 @@ function init(debug=false){
 		let old_item = document.querySelector('#route_btn_group');
 		new_item.setAttribute('id', 'route_btn_group');
 		new_item.classList.add(...Array.from(old_item.classList));
+		new_item.children.item(0).classList.add('text-nowrap');
 		old_item.replaceWith(new_item);
 		if(window.location.hash){
 			navigate_to_current_hash();
@@ -190,19 +191,19 @@ function navigate_to_current_hash() {
 		var type = hash[0];
 		var line = hash[1];
 		var route_index = data.routes.findIndex(route => route.type==type && route.line==line);
-		var data = {
+		var loc_data = {
 			is_route: true,
-			route: routes[route_index],
+			route: data.routes[route_index],
 			valid_thru: hash[2],
 			direction: hash[3],
 			stop_code: hash[4]
 		};
 		//TODO continue
-		if(route_index==-1 || !data,directions.find(dir => dir.code==data.direction) || !data,stops.find(stop => stop.code==data.stop_code)){
+		if(route_index==-1 || !data.directions.find(dir => dir.code==loc_data.direction) || !data,stops.find(stop => stop.code==loc_data.stop_code)){
 			return;
 		}
-		update_globals(data);
-		show_schedule(data, true);
+		update_globals(loc_data);
+		show_schedule(loc_data, true);
 	}
 	else if(hash[0]=='stop'){
 		show_schedule({stop_code: Number(hash[1]), schedule_type: {weekday: '100', saturday: '010', sunday: '001'}[hash[2]], is_stop: true});
