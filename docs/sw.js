@@ -78,13 +78,27 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
 	console.log('[ServiceWorker] Fetch', e.request.url);
-	e.respondWith(
-		caches.match(e.request).then(function(response) {
-			return response || fetch(e.request);
-		})
-	);
+	const url = new URL(e.request.url);
+
+	// Handle internal requests (same origin)
+	if (url.origin === location.origin) {
+		e.respondWith(
+			caches.match(e.request).then(function(response) {
+				return response || fetch(e.request);
+			})
+		);
+	}
+	else {
+		// External request
+		e.respondWith(
+			fetch(e.request).then(function(networkResponse) {
+				return networkResponse;
+			}).catch(function(error) {
+				console.error('[ServiceWorker] Fetch failed; returning fallback content', error);
+			})
+		);
+	  }
 });
-  
 
 /*async function is_metadata_up_to_date(){
 	var local_data_version = fetch_file_locally('data/metadata.json').then(metadata => metadata.retrieval_date);
