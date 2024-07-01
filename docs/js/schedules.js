@@ -651,10 +651,8 @@ async function load_virtual_table(stop_code) {
 	old_tbody.replaceWith(new_tbody);
 	let req = await fetch(`https://sofiatraffic-virtual-board-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`);
 	let routes_data = await req.json();
-	console.log(routes_data);
 	if(routes_data.status == 'ok'){
 		loading_row.remove();
-		console.log(routes_data);
 		routes_data.routes.forEach(route => {
 			let tr = html_comp('tr');
 			let td1 = html_comp('td');
