@@ -78,6 +78,7 @@ async function match_routes_and_polylines(cgm_routes, routes, directions) {
             let polylines = await get_polylines(cgm_route.line_id);
             polylines.forEach(polyline => {
                 //determine direction for polyline based on start end end stops
+                console.log(polyline.segments[0]);
                 let start_stop_code = Number(polyline.segments[0].stop.code);
                 let end_stop_code = Number(polyline.segments[polyline.segments.length-1].end_stop.code);
                 let direction = directions.find(dir => !dir.polyline && start_stop_code == dir.stops[0] && end_stop_code == dir.stops.toReversed()[0]);
