@@ -1,8 +1,8 @@
 [
-{"line":"M1","type":"metro","trip_indexes":[490,491,492,493],"direction_codes":[9994,9995]},
-{"line":"M2","type":"metro","trip_indexes":[494,495,496,497],"direction_codes":[9996,9997]},
+{"line":"M1","type":"metro","trip_indexes":[492,493,494,495],"direction_codes":[9994,9995]},
+{"line":"M2","type":"metro","trip_indexes":[496,497,498,499],"direction_codes":[9996,9997]},
 {"line":"M3","type":"metro","trip_indexes":[0,1,2,3],"direction_codes":[4424,4425]},
-{"line":"M4","type":"metro","trip_indexes":[498,499,500,501],"direction_codes":[9998,9999]},
+{"line":"M4","type":"metro","trip_indexes":[500,501,502,503],"direction_codes":[9998,9999]},
 {"line":1,"type":"tramway","trip_indexes":[],"direction_codes":[]},
 {"line":3,"type":"tramway","trip_indexes":[],"direction_codes":[]},
 {"line":4,"type":"tramway","trip_indexes":[4,5,6,7],"direction_codes":[5373,5374]},
@@ -80,7 +80,7 @@
 {"line":70,"type":"autobus","trip_indexes":[284,285],"direction_codes":[4665,4666]},
 {"line":72,"type":"autobus","trip_indexes":[286,287,288,289],"direction_codes":[438,439]},
 {"line":73,"type":"autobus","trip_indexes":[290,291,292,293],"direction_codes":[5519,5520]},
-{"line":74,"type":"autobus","trip_indexes":[294,295,296,297],"direction_codes":[5315,5316]},
+{"line":74,"type":"autobus","trip_indexes":[294,295,296,297],"direction_codes":[5597,5598]},
 {"line":75,"type":"autobus","trip_indexes":[298,299],"direction_codes":[3987,3988]},
 {"line":76,"type":"autobus","trip_indexes":[300,301,302,303],"direction_codes":[4957,4958]},
 {"line":77,"type":"autobus","trip_indexes":[304,305,306,307],"direction_codes":[5569,5570]},
@@ -126,9 +126,9 @@
 {"line":404,"type":"autobus","trip_indexes":[458,459,460,461],"direction_codes":[3038,3039]},
 {"line":413,"type":"autobus","trip_indexes":[462,463,464,465],"direction_codes":[5533,5534]},
 {"line":604,"type":"autobus","trip_indexes":[466,467,468,469],"direction_codes":[3251,3252]},
-{"line":801,"type":"autobus","trip_indexes":[470,471],"direction_codes":[5479,5480]},
-{"line":802,"type":"autobus","trip_indexes":[472,473],"direction_codes":[5333,5334]},
-{"line":803,"type":"autobus","trip_indexes":[474,475,476,477],"direction_codes":[5335,5336,5337,5338]},
-{"line":804,"type":"autobus","trip_indexes":[478,479],"direction_codes":[5339,5340]},
-{"line":805,"type":"autobus","trip_indexes":[480,481],"direction_codes":[5567,5568]}
+{"line":801,"type":"autobus","trip_indexes":[470,471,472,473],"direction_codes":[5599,5600]},
+{"line":802,"type":"autobus","trip_indexes":[474,475],"direction_codes":[5333,5334]},
+{"line":803,"type":"autobus","trip_indexes":[476,477,478,479],"direction_codes":[5335,5336,5337,5338]},
+{"line":804,"type":"autobus","trip_indexes":[480,481],"direction_codes":[5339,5340]},
+{"line":805,"type":"autobus","trip_indexes":[482,483],"direction_codes":[5567,5568]}
 ]
