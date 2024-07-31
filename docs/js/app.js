@@ -91,9 +91,11 @@ function init_map(){
 	});
 	//var FG = L.FeatureGroup();
 	data.stops.forEach(stop => {
+		let directions = stop.direction_codes;
+		let routes = data.routes.filter(route => route.direction_codes.some(route_dir_code => directions.includes(route_dir_code)));
 		L.marker(stop.coords)
 		.addTo(clusterGroup)
-		.bindPopup(`[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)} <br/>`+generate_schedule_departure_board_buttons(stop.code).outerHTML);
+		.bindPopup(`<p class="my-1 fs-6 mb-1 text-center">[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)}</p><p class="my-1 fs-6 text-center">${routes.map(route => `<span class="${get_route_colour_classes(route)}">${route.line}</span>`).join(' ')}</p>${generate_schedule_departure_board_buttons(stop.code).outerHTML}`);
 	});
 	clusterGroup.addTo(map);
 	console.log(clusterGroup.getBounds());

@@ -45,8 +45,13 @@ function html_comp(tag, attributes={}){
 function generate_line_btn(route){
 	var el = html_comp('button', {
 		text: route.line,
-		class: `line_selector_btn text-${route.line=='M4'?'dark':'light'} rounded-1 ${route.type!=='metro'?route.type:route.line}-bg-color`,
+		class: `line_selector_btn  rounded-1 ${get_route_colour_classes(route)}`,
 		'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`
 	});
 	return el;
+}
+function get_route_colour_classes(route){
+    let bg_color = `${route.type!=='metro'?route.type:route.line}-bg-color`;
+    let fg_color = `text-${route.line=='M4'?'dark':'light'}`;
+    return  `px-1 ${bg_color} ${fg_color}`;
 }
