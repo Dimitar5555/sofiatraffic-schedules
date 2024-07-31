@@ -108,7 +108,7 @@ function init_updated_schedules_table(){
                 new_tbody.appendChild(tr);
             }
             tr.appendChild(html_comp('td'));
-			tr.lastElementChild.appendChild(html_comp('span',  {text: route[1], class: `${route[0]!=='metro'?route[0]:route[1]}-bg-color text-${route.line=='M4'?'dark':'light'} px-1`}));
+			tr.lastElementChild.appendChild(html_comp('span',  {text: route[1], class: get_route_colour_classes(route)}));
             route[2].split('').map(val => {
 		      var td = html_comp('td', {});
                 if(val==1){
@@ -514,7 +514,7 @@ function show_stop_schedule(stop_code, type){
 			//var trip_index = data[0];
 			var div = html_comp('div');
 			var num_div = html_comp('div');
-			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.line}`, class: `${route.type=='metro'?route.line:route.type}-bg-color text-${route.line=='M4'?'dark':'light'} px-1`}))
+			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.line}`, class: get_route_colour_classes(route)}))
 			num_div.appendChild(html_comp('br'));
 			num_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops)}`}));
 			div.appendChild(num_div);
@@ -656,7 +656,7 @@ async function load_virtual_table(stop_code) {
 		routes_data.routes.forEach(route => {
 			let tr = html_comp('tr');
 			let td1 = html_comp('td');
-			let span = html_comp('span', {class: `${route.type}-bg-color text-light px-1`, text: route.ref});
+			let span = html_comp('span', {class: get_route_colour_classes(route), text: route.ref});
 			td1.appendChild(span);
 			tr.appendChild(td1);
 
