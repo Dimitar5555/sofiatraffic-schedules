@@ -108,7 +108,7 @@ function init_updated_schedules_table(){
                 new_tbody.appendChild(tr);
             }
             tr.appendChild(html_comp('td'));
-			tr.lastElementChild.appendChild(html_comp('span',  {text: route[1], class: get_route_colour_classes(route)}));
+			tr.lastElementChild.appendChild(html_comp('span',  {text: route[1], class: get_route_colour_classes({line: route[1], type: route[0]})}));
             route[2].split('').map(val => {
 		      var td = html_comp('td', {});
                 if(val==1){
