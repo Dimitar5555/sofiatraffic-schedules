@@ -60,7 +60,7 @@ function normalise_metro_stop_codes(start_code, end_code) {
 		// 3313 is a station between Orlov most and Teatralna, which wasn't built
 		// 3325 is a station between Krasno selo and Bulgaria Blvd., which wasn't built
 		'0305->0318': [
-			3309, 3311, /*3313,*/ 3317, 3319, 3321, 3323, /*3325,*/ 3327, 3329, 3331, 3333, 3335
+			3309, 3311, /*3313,*/ 3315, 3317, 3319, 3321, 3323, /*3325,*/ 3327, 3329, 3331, 3333, 3335
 		],
 		// M3 => Hadzhi Dimitar
 		// 3314 is a station between Orlov most and Teatralna, which wasn't built
