@@ -30,6 +30,8 @@ function init_schedules_data(loc_data){
 	//add trips and directions to routes, based on trips
 	loc_data.routes.forEach((route, index) => {
 		route.index = index;
+		route.trip_indexes = [];
+		route.direction_codes = [];
 	});
 
 	//add directions to stops
@@ -48,10 +50,21 @@ function init_schedules_data(loc_data){
 	//add indexes to stop_times
 	loc_data.stop_times.forEach((stop_time, index) => stop_time.index = index);
 
+	//add trip indexes and direction codes to routes
+	loc_data.trips.forEach((trip, trip_index) => {
+		let route = loc_data.routes[trip.route_index];
+		if(!route.trip_indexes.includes(trip_index)){
+			route.trip_indexes.push(trip_index);
+		}
+		if(!route.direction_codes.includes(trip.direction)){
+			route.direction_codes.push(trip.direction);
+		}
+	});
+
 	data = loc_data;
 }
 function get_routes_by_type(type){
-	if(main_types.indexOf(type)!==-1){
+	if(main_types[type]){
 		return data.routes.filter(route => route.type === type && !route.subtype);
 	}
 	return data.routes.filter(route => route.subtype === type);
@@ -59,7 +72,7 @@ function get_routes_by_type(type){
 function init_schedules(){
 	line_selector_div.appendChild(html_comp('div', {id: 'lines'}));
 	//generate selector butons for line selection
-	main_types.forEach(main_type => create_line_selector(get_routes_by_type(main_type), main_type));
+	main_types_order.forEach(main_type => create_line_selector(get_routes_by_type(main_type), main_type));
 	sec_types.forEach(sec_type => {
 		let routes = get_routes_by_type(sec_type);
 		if(routes.length>0){
@@ -82,7 +95,7 @@ function init_updated_schedules_table(){
 		}
 		var route = data.routes[trip.route_index];
 		if(route){
-			var schd = JSON.stringify([route.type, route.line, trip.valid_thru]);
+			var schd = JSON.stringify([route.type, route.line, trip.is_weekend]);
 			if(dates[date].indexOf(schd)==-1){
 				dates[date].push(schd);
 			}
@@ -146,7 +159,6 @@ function show_schedule(new_globals, overwrite_selectors=false){
 		schedule_display_div.classList.remove('d-none');
 		stop_schedule_div.classList.add('d-none');
 		new_globals.view = 'route';
-		update_stop_labels(); //switches between "Subway station" and "Stop"
 	}
 	if(new_globals.is_stop){
 		schedule_display_div.classList.add('d-none');
@@ -167,6 +179,7 @@ function show_schedule(new_globals, overwrite_selectors=false){
 	}
 	else{
 		configure_all_selectors(new_globals, overwrite_selectors);
+		update_stop_labels(); //switches between "Subway station" and "Stop"
 		configure_favourite_stop_button();
 		configure_favourite_line_button();
 	}
@@ -179,24 +192,24 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	var route = current.route;
 	console.log('predef', predefined_values)
 	schedule_div.querySelector('#line').innerHTML = `${lang.line_type[route.type]} ${route.line}`;
+	schedule_div.querySelector('#line').setAttribute('class', get_route_colour_classes(route)+' fs-6');
 	
-	var current_weekday_options = Array.from(document.querySelectorAll('[name=schedule_type]')).map(el => el.value);
-	var new_weekday_options = route.trip_indexes.map(trip_index => data.trips[trip_index].valid_thru).filter((item, index, arr) => arr.indexOf(item)==index);
-	var weekday_selectors_ok = new_weekday_options.filter(loc_valid_thru => current_weekday_options.indexOf(loc_valid_thru)==-1).length==0;
+	var current_weekday_options = Array.from(document.querySelectorAll('[name=stop_schedule_type]:not(.d-none)')).map(el => is_weekend(el.value));
+	var new_weekday_options = route.trip_indexes.map(trip_index => data.trips[trip_index].is_weekend).filter((item, index, arr) => arr.indexOf(item)==index);
+	var weekday_selectors_ok = new_weekday_options.filter(loc_is_weekend => current_weekday_options.indexOf(loc_is_weekend)==-1).length==0;
 	if(!weekday_selectors_ok || overwrite_selectors){
-		let index = new_weekday_options.indexOf(predefined_values.valid_thru);
+		let index = new_weekday_options.indexOf(is_weekend(predefined_values.is_weekend));
 		let selected_index = index!==-1?index:0;
 		configure_weekday_selector(new_weekday_options, selected_index);
 	}
-	var valid_thru_val = document.querySelector('[name=schedule_type]:checked').value;
+	var is_weekend_val = document.querySelector('[name=stop_schedule_type]:checked').value === '1';
 	
 	var current_direction_options = Array.from(schedule_div.querySelector('#direction').querySelectorAll('option')).map(el => Number(el.value));
 	//only fetch directions for the current valid thru interval
-	var new_direction_options = data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.valid_thru==valid_thru_val).map(trip => trip.direction);
+	var new_direction_options = data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend==is_weekend_val).map(trip => trip.direction);
 	var direction_options_ok = new_direction_options.filter(direction => current_direction_options.indexOf(direction)==-1).length==0;
 	if(!direction_options_ok || overwrite_selectors){
 		let index = new_direction_options.indexOf(Number(predefined_values.direction));
-		console.log(predefined_values, index);
 		let selected_index = index!==-1?index:0;
 		configure_direction_selector(new_direction_options, selected_index);
 	}
@@ -226,51 +239,38 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 }
 
 function configure_weekday_selector(values, selected_index){
-    var variants = values
-	.map(days => {
-		var res = [];
-		if(days[0]==='1'){
-			res.push(lang.weekdays.weekday);
-		}
-		if(days[1]==='1'){
-			res.push(lang.weekdays.pre_holiday);
-		}
-		if(days[2]==='1'){
-			res.push(lang.weekdays.holiday);
-		}
-		return [days, res.join(' / ')];
-	});
-	var old_date_type_select = schedule_div.querySelector('#date_type');
-	var new_date_type_select = old_date_type_select.cloneNode();
-	variants.forEach((variant, index) => {
-		new_date_type_select.appendChild(html_comp('input', {
-			value: variant[0],
-            type: 'radio',
-            id: `schedule_type_${index}`,
-            name: 'schedule_type',
-        	onchange: 'show_schedule({valid_thru: this.value, stop_code: current.stop_code, is_route: true})',
-            class: 'form-check-input'
-		}));
-		new_date_type_select.appendChild(document.createTextNode(' '));
-        new_date_type_select.appendChild(html_comp('label', {
-            text: variant[1],
-            'for': `schedule_type_${index}`
-        }));
-		new_date_type_select.appendChild(document.createTextNode(' '));
-	});
-	old_date_type_select.replaceWith(new_date_type_select);
-    document.querySelectorAll("[name=schedule_type]").item(selected_index).checked = true;
+	let is_weekend_options = Array.from(document.querySelectorAll('[name=route_schedule_type]'));
+	let remove_d_none = [];
+	let add_d_none = [];
+	if(values.includes(false)) {
+		remove_d_none.push(is_weekend_options[0]);
+		remove_d_none.push(is_weekend_options[0].nextElementSibling);
+	}
+	else {
+		add_d_none.push(is_weekend_options[0]);
+		add_d_none.push(is_weekend_options[0].nextElementSibling);
+	}
+	if(values.includes(true)) {
+		remove_d_none.push(is_weekend_options[1]);
+		remove_d_none.push(is_weekend_options[1].nextElementSibling);
+	}
+	else {
+		add_d_none.push(is_weekend_options[1]);
+		add_d_none.push(is_weekend_options[1].nextElementSibling);
+	}
+	remove_d_none.forEach(el => el.classList.remove('d-none'));
+	add_d_none.forEach(el => el.classList.add('d-none'));
+	is_weekend_options[selected_index].checked = true;
 }
 function generate_from_to_text(stops){
 	var start_stop = get_stop_name(stops[0]);
 	var end_stop = get_stop_name(stops[stops.length-1]);
-	return `${start_stop} -> ${end_stop}`;
+	return `${start_stop} => ${end_stop}`;
 }
 function configure_direction_selector(possible_directions, selected_index){
 	var old_directions_select = schedule_div.querySelector('#direction');
 
 	var new_directions_select = old_directions_select.cloneNode(false);
-	console.log(possible_directions);
     possible_directions.forEach(dir_code => {
 		var index = data.directions.findIndex(dir => dir.code==dir_code);
 		new_directions_select.appendChild(html_comp('option', {
@@ -391,16 +391,15 @@ function display_schedule(){
 		return;
 	}
 
-	var valid_thru = document.querySelector('[name=schedule_type]:checked').value;;
-
+	var is_weekend_val = document.querySelector('[name=route_schedule_type]:checked').value === '1';
 	var direction = parseInt(schedule_div.querySelector('#direction').value);
-	var display_by_car = schedule_div.querySelector('#display_by_car').checked;
+	// var display_by_car = schedule_div.querySelector('#display_by_car').checked;
+	var display_by_car = false; // temporary disabled
 	var stop_index = schedule_div.querySelector('#route_stop_selector').selectedIndex;
 	
-	var trip_index = data.trips.findIndex(trip => trip.route_index==current.route.index && trip.valid_thru === valid_thru && trip.direction === direction);
+	var trip_index = data.trips.findIndex(trip => trip.route_index==current.route.index && trip.is_weekend === is_weekend_val && trip.direction === direction);
     var stop_times = data.stop_times.filter(stop_times => stop_times.trip === trip_index);
-	schedule_div.querySelector('#valid_from').innerText = format_date_string(data.trips[trip_index].valid_from);
-
+	// schedule_div.querySelector('#valid_from').innerText = format_date_string(data.trips[trip_index].valid_from);
 	generate_stop_times_table(stop_times, stop_index, table, display_by_car);
 }
 function display_trip_schedule(stop_time_index){
@@ -425,7 +424,7 @@ function display_trip_schedule(stop_time_index){
 			tr.classList.add('bg-warning');
 		}
 		tr.appendChild(html_comp('td', {text: format_stop_code(stop?.code), class: 'align-middle'}));
-		tr.appendChild(html_comp('td', {text: get_stop_name(stop)}));
+		tr.appendChild(html_comp('td', {text: get_stop_name(stop?.code)}));
 		tr.appendChild(html_comp('td', {text: format_time(time), class: 'align-middle'}));
 		new_tbody.append(tr);
 	});
@@ -449,7 +448,16 @@ function update_globals(new_globals=false){
 			current.trip = new_globals.trip;
 		}
 		else{
-			current.trip = data.trips.find(trip => trip.route_index==current.route.index && trip.direction==document.querySelector('#direction').value && trip.valid_thru==document.querySelector('[name=schedule_type]:checked').value);
+			try {
+				current.trip = data.trips.find(trip => 
+					trip.route_index==current.route.index 
+					&& trip.direction==document.querySelector('#direction').value 
+					&& trip.is_weekend==document.querySelector('[name=stop_schedule_type]:checked').value
+				);
+			}
+			catch {
+				current.trip = data.trips[current.route.trip_indexes[0]];
+			}
 		}
 		if(!current.trip){
 			current.trip = data.trips[current.route.trip_indexes[0]];
@@ -518,7 +526,7 @@ function show_stop_schedule(stop_code, type){
 			num_div.appendChild(html_comp('br'));
 			num_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops)}`}));
 			div.appendChild(num_div);
-			div.dataset.valid_thru = data.trips[trip_index].valid_thru;
+			div.dataset.is_weekend = data.trips[trip_index].is_weekend;
 			var table = html_comp('table');
 			table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip');
 			var tbody = html_comp('tbody');
@@ -541,15 +549,10 @@ function show_stop_schedule(stop_code, type){
 	show_stop_schedule_by_type(type);
 }
 function show_stop_schedule_by_type(type){
-	var weekday = type[0]=='1';
-	var pre_holiday = type[1]=='1';
-	var holiday = type[2]=='1';
-	stop_schedule_div.querySelectorAll('div[data-valid_thru').forEach(table => {
-		var table_valid_thru = table.dataset.valid_thru;
-		var table_weekday = table_valid_thru[0]=='1';
-		var table_pre_holiday = table_valid_thru[1]=='1';
-		var table_holiday = table_valid_thru[2]=='1';
-		if(weekday && weekday == table_weekday || pre_holiday && pre_holiday == table_pre_holiday || holiday && holiday == table_holiday){
+	let requested_weekend = is_weekend(type);
+	stop_schedule_div.querySelectorAll('div[data-is_weekend]').forEach(table => {
+		var table_is_weekend = is_weekend(table.dataset.is_weekend);
+		if(table_is_weekend == requested_weekend){
 			table.classList.remove('d-none');
 		}
 		else{
@@ -566,8 +569,8 @@ function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 		let result = {
 			time: stop_time.times[stop_index],
 			index: stop_time.index,
-			incomplete_course_start: stop_time.times[0]=='',
-			incomplete_course_final: stop_time.times[stop_time.times.length-1]==''
+			incomplete_course_start: !stop_time.times[0],
+			incomplete_course_final: !stop_time.times[stop_time.times.length-1]
 		};
 		if(by_cars){
 			result.car = stop_time.car;
@@ -577,7 +580,6 @@ function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 	.toSorted((a, b) => a.time>b.time);
 }
 function generate_stop_times_table(stop_times, stop_index, table, by_cars=false){
-	//extras: cars
 	var new_tbody = html_comp('tbody');
     var tr_thead = html_comp('tr');
     var tr_tbody = html_comp('tr');
@@ -653,7 +655,7 @@ async function load_virtual_table(stop_code) {
 	let routes_data = await req.json();
 	if(routes_data.status == 'ok'){
 		loading_row.remove();
-		routes_data.routes.forEach(route => {
+		routes_data.routes.forEach((route, row_index) => {
 			let tr = html_comp('tr');
 			let td1 = html_comp('td');
 			let span = html_comp('span', {class: get_route_colour_classes(route), text: route.ref});
@@ -675,7 +677,17 @@ async function load_virtual_table(stop_code) {
 				}
 				tr.appendChild(td);
 			}
-
+			let needed_cells = 3-route.times.length;
+			while(needed_cells>0) {
+				tr.appendChild(html_comp('td', {text: '-'}));
+				needed_cells--;
+			}
+			if(row_index == 0) {
+				tr.children.item(0).classList.add('col-2');
+				tr.children.item(1).classList.add('col-3');
+				tr.children.item(2).classList.add('col-3');
+				tr.children.item(3).classList.add('col-3');
+			}
 			new_tbody.appendChild(tr);
 		});
 	}

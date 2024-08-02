@@ -17,6 +17,7 @@
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 	<script src="js/leaflet.markercluster.js"></script>
+	<script src="js/leaflet.featuregroup.subgroup.js"></script>
 	<link rel="stylesheet" href="css/MarkerCluster.css">
 	<link rel="stylesheet" href="css/MarkerCluster.Default.css">
 
@@ -66,36 +67,39 @@
 		<div class="tab-content" id="nav-mainContent">
 			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedule">
 				<div id="line_selector">
+					<!--<div id="stop_selector" class="float-end border border-3 border-primary rounded">
+						<p>test</p>
+					</div>-->
 					<div id="line_selector_favourites">
-						<h2 data-i18n="line_types.favourite"></h2>
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.favourite"></h2>
 						<div class="lines"></div>
 					</div>
 					<div id="line_selector_metro">
-						<h2 data-i18n="line_types.metro"></h2>
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.metro"></h2>
 						<div class="lines"></div>
 					</div>
-					<div id="line_selector_tramway">
-						<h2 data-i18n="line_types.tramway"></h2>
+					<div id="line_selector_tram">
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.tram"></h2>
 						<div class="lines"></div>
 					</div>
-					<div id="line_selector_trolleybus">
-						<h2 data-i18n="line_types.trolleybus"></h2>
+					<div id="line_selector_trolley">
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.trolley"></h2>
 						<div class="lines"></div>
 					</div>
-					<div id="line_selector_autobus">
-						<h2 data-i18n="line_types.autobus"></h2>
+					<div id="line_selector_bus">
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.bus"></h2>
 						<div class="lines"></div>
 					</div>
 					<div id="line_selector_school">
-						<h2 data-i18n="line_types.school"></h2>
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.school"></h2>
 						<div class="lines"></div>
 					</div>
 					<div id="line_selector_temporary">
-						<h2 data-i18n="line_types.temporary"></h2>
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.temporary"></h2>
 						<div class="lines"></div>
 					</div>
 					<div id="line_selector_night">
-						<h2 data-i18n="line_types.night"></h2>
+						<h2 class="mt-2 mb-0 ms-1" data-i18n="line_types.night"></h2>
 						<div class="lines"></div>
 					</div>
                 </div>
@@ -116,17 +120,22 @@
 							<label for="date_type" data-i18n="schedules.schedule"></label>
 						</div>
 						<div class="col col-8 col-md-5">
-							<form id="date_type"></form>
+							<form id="date_type">
+								<input class="form-check-input" onchange="show_schedule({is_weekend: this.value === '1', stop_code: current.stop_code, is_route: true})" type="radio" name="route_schedule_type" value="0" id="route_schedule_type_weekday" checked>
+								<label data-i18n="weekdays.weekday" for="route_schedule_type_weekday"></label>
+								<input class="form-check-input" onchange="show_schedule({is_weekend: this.value === '1', stop_code: current.stop_code, is_route: true})" type="radio" name="route_schedule_type" value="1" id="route_schedule_type_weekend">
+								<label data-i18n="weekdays.weekend" for="route_schedule_type_weekend"></label>
+							</form>
 						</div>
 					</div>
-					<div class="row m-2">
+					<!-- <div class="row m-2">
 						<div class="col col-4 col-md-3">
 							<label for="date_type" data-i18n="schedules.valid_from"></label>
 						</div>
 						<div class="col col-8 col-md-6">
 							<span id="valid_from"></span>
 						</div>
-					</div>
+					</div> -->
 					<div class="row m-2">
 						<div class="col col-4 col-md-3">
 							<label for="direction" data-i18n="schedules.direction"></label>
@@ -147,14 +156,14 @@
 							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>
 						</div>
 					</div>
-					<div class="row m-2">
+					<!-- <div class="row m-2">
 						<div class="col col-4 col-md-3">
 							<label for="display_by_car" data-i18n="schedules.show_by_cars"></label>
 						</div>
 						<div class="col col-8 col-md-6">
 							<input class="form-check-input" onchange="display_schedule()" type="checkbox" id="display_by_car">
 						</div>
-					</div>
+					</div> -->
 					<div class="table-responsive">
 						<table class="schedule_table table table-bordered table-striped-columns table-flip" id="route_schedule_table">
 							<tbody></tbody>
@@ -172,12 +181,12 @@
 						<div class="row m-2">
 							<div class="col col-4 col-md-3"></div>
 							<div class="col col-8 col-md-4">
-								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="100" id="stop_schedule_type_weekdays" checked>
+								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="0" id="stop_schedule_type_weekdays" checked>
 								<label data-i18n="weekdays.weekday" for="stop_schedule_type_weekdays"></label>
-								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="010" id="stop_schedule_type_pre_holiday">
-								<label data-i18n="weekdays.pre_holiday" for="stop_schedule_type_pre_holiday"></label>
-								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="001" id="stop_schedule_type_holiday">
-								<label data-i18n="weekdays.holiday" for="stop_schedule_type_holiday"></label>
+								<!-- <input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="010" id="stop_schedule_type_pre_holiday"> -->
+								<!-- <label data-i18n="weekdays.pre_holiday" for="stop_schedule_type_pre_holiday"></label> -->
+								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="1" id="stop_schedule_type_weekend">
+								<label data-i18n="weekdays.weekend" for="stop_schedule_type_weekend"></label>
 
 							</div>
 						</div>
@@ -202,7 +211,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade modal-lg" id="updated_schedules" tabindex="-1" aria-labelledby="updated_schedules" aria-hidden="true">
+	<!--<div class="modal fade modal-lg" id="updated_schedules" tabindex="-1" aria-labelledby="updated_schedules" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div class="modal-header">
@@ -228,7 +237,7 @@
 			</div>
 		  </div>
 		</div>
-	</div>
+	</div>-->
     <div class="modal fade" id="sofiatraffic_live_data" tabindex="-1" aria-labelledby="sofiatraffic_live_data" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 		  <div class="modal-content">
@@ -253,8 +262,28 @@
 		  </div>
 		</div>
 	</div>
+	<!--<div class="modal fade modal-lg" id="data_sources" tabindex="-1" aria-labelledby="data_sources" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" data-i18n="other.data_sources"></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>
+					<span>Данни за спирки, маршрути и разписания ЦГМ</span>
+					<span>Данни за спирки на метрото: OpenStreetMap</span>
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="actions.close"></button>
+			</div>
+		  </div>
+		</div>
+	</div>-->
 	<footer class="footer p-2 border-top">
-		<span data-i18n="footer.last_data_update"></span>: <a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a><br>
+		<!--<a href="#data_sources" data-bs-toggle="modal" data-bs-target="#data_sources" data-i18n="other.data_sources">fd</a><br>-->
+		<span data-i18n="footer.last_data_update"></span>: <span id="last_data_update"></span><!--<a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a>--><br>
 		<span data-i18n="footer.last_site_update"></span>: <span id="app_version"></span>
 	</footer>
 	<script src="js/utilities.js"></script>

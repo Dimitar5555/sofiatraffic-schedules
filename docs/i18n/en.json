@@ -3,35 +3,34 @@
 	"title":"Sofia Urban Transport Schedule",
 	"nav":{
 		"schedules":"Schedules",
-		"favourites":"Favourite stops"
+		"favourites":"Favourite stops",
+		"map": "Map"
 	},
 	"line_types":{
 		"favourite":"Favourite lines",
 		"metro":"Metrolines",
-		"tramway":"Tramways",
-		"trolleybus":"Trolleybuses",
-		"autobus":"Buses",
+		"tram":"Tramways",
+		"trolley":"Trolleybuses",
+		"bus":"Buses",
 		"school":"School buses",
 		"temporary":"Temporary buses",
 		"night":"Night buses"
 	},
 	"line_type":{
 		"metro":"Metroline",
-		"tramway":"Tramway",
-		"trolleybus":"Trolleybus",
-		"autobus":"Bus",
+		"tram":"Tramway",
+		"trolley":"Trolleybus",
+		"bus":"Bus",
 		"temporary":"Temporary bus",
 		"night":"Night bus"
 	},
 	"weekdays":{
 		"weekday":"Weekday",
-		"pre_holiday":"Pre-holiday",
-		"holiday":"Holiday"
+		"weekend":"Weekend"
 	},
 	"schedules":{
-		"back":" Back",
 		"line":"Line:",
-		"schedule":"Valid thru:",
+		"schedule":"Stop schedule",
 		"valid_from":"Valid from:",
 		"direction":"Direction",
 		"stop":"Stop",
@@ -50,7 +49,7 @@
 		"virtual_table":"Virtual departure board"
 	},
 	"footer":{
-		"last_data_update":"Last update of schedules",
+		"last_data_update":"Last data update",
 		"last_site_update":"Last site update"
 	},
 	"stats":{
@@ -59,6 +58,16 @@
 		"lines":"Line"
 	},
 	"actions":{
-		"close":"Close"
+		"back":" Back",
+		"schedule": "Schedule",
+		"virtual_table": "Virtual Board",
+		"show_stop_schedule": "Stop Schedule",
+		"close":"Close",
+		"refresh": "Refresh"
+	},
+	"other":{
+		"sofiatraffic_livedata_warning_1": "The data is provided by SUMC as it. It may be incomplete or incorrect.",
+		"sofiatraffic_livedata_warning_2": "Departure times might be off by ±1 minute.",
+		"generated_at": "Generated at "
 	}
 }

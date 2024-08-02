@@ -1,4 +1,7 @@
 function format_stop_code(code){
+    if(!code) {
+        return '####'
+    }
 	return code.toString().padStart(4, '0');
 }
 function format_date_string(string){
@@ -54,4 +57,11 @@ function get_route_colour_classes(route){
     let bg_color = `${route.type!=='metro'?route.type:route.line}-bg-color`;
     let fg_color = `text-${route.line=='M4'?'dark':'light'}`;
     return  `px-1 ${bg_color} ${fg_color}`;
+}
+function is_weekend(boolean){
+    let result = boolean === '1' || boolean === true || boolean === 'true';
+    return result;
+}
+function return_weekday_text(boolean){
+    return is_weekend(boolean)?'weekend':'workday';
 }
