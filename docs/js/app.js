@@ -4,7 +4,17 @@ var line_selector_div = document.querySelector('#line_selector');
 const stop_schedule_div = document.querySelector('#stop_schedule');
 
 const allowed_languages = ['bg'];
-const main_types = ['metro', 'tramway', 'trolleybus', 'autobus'];
+const main_types = {
+	metro: 'metro',
+	tram: 'tram',
+	trolley: 'trolley',
+	bus: 'bus'
+};
+const main_types_order = [
+	main_types.metro, 
+	main_types.tram, 
+	main_types.trolley,
+	main_types.bus];
 const sec_types = ['temporary', 'school', 'night'];
 
 const tab_btns = Array.from(document.querySelector('nav').children).map(btn => new bootstrap.Tab(btn));
@@ -20,12 +30,12 @@ function updateURL(page=false){
 		new_hash = page;
 	}
 	else if(current.view=='route'){
-		new_hash = `#${current.route.type}/${current.route.line}/${current.trip.valid_thru}/${current.trip.direction}/${current.stop_code}/`;
+		var is_weekend_val = document.querySelector('[name=route_schedule_type]:checked').value;
+		new_hash = `#${current.route.type}/${current.route.line}/${return_weekday_text(is_weekend_val)}/${current.trip.direction}/${current.stop_code}/`;
 	}
 	else if(current.view=='stop'){
-		var valid_thru_val = document.querySelector('[name=stop_schedule_type]:checked').value;
-		var index = valid_thru_val=='100'?0:(valid_thru_val=='010'?1:2);
-		new_hash = `#stop/${format_stop_code(current.stop_code)}/${['weekday', 'saturday', 'sunday'][index]}/`;
+		var is_weekend_val = document.querySelector('[name=stop_schedule_type]:checked').value;
+		new_hash = `#stop/${format_stop_code(current.stop_code)}/${return_weekday_text(is_weekend_val)}/`;
 	}
 	if(window.location.hash==new_hash){
 		return;
@@ -52,12 +62,17 @@ function init(debug=false){
         const i18n_els = document.querySelectorAll('[data-i18n]');
         Array.from(i18n_els)
         .map(el => {
-            var path = el.dataset.i18n.split('.');
-            var string = path.reduce((acc, cur) => acc[cur], response);
-            if(!string){
-                alert(el.dataset.i18n);
-            }
-            el.innerHTML = debug?`{{${el.dataset.i18n}}}`:string;
+			try {
+				var path = el.dataset.i18n.split('.');
+				var string = path.reduce((acc, cur) => acc[cur], response);
+				if(!string){
+					alert(el.dataset.i18n);
+				}
+				el.innerHTML = debug?`{{${el.dataset.i18n}}}`:string;
+			}
+			catch(err) {
+				alert(el.dataset.i18n)
+			}
         });
 	});
 
@@ -84,23 +99,58 @@ function init_map(){
 	map.invalidateSize();
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 
-	var markers = [];
-	var clusterGroup = new L.markerClusterGroup({
+	var marker_groups = {
+		metro: [],
+		tram: [],
+		trolley: [],
+		bus: []
+	};
+
+	var cluster_group = new L.markerClusterGroup({
 		disableClusteringAtZoom: 16,
 		showCoverageOnHover: false
-	});
-	//var FG = L.FeatureGroup();
+	}).addTo(map);
+
 	data.stops.forEach(stop => {
 		let directions = stop.direction_codes;
 		let routes = data.routes.filter(route => route.direction_codes.some(route_dir_code => directions.includes(route_dir_code)));
-		L.marker(stop.coords)
-		.addTo(clusterGroup)
-		.bindPopup(`<p class="my-1 fs-6 mb-1 text-center">[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)}</p><p class="my-1 fs-6 text-center">${routes.map(route => `<span class="${get_route_colour_classes(route)}">${route.line}</span>`).join(' ')}</p>${generate_schedule_departure_board_buttons(stop.code).outerHTML}`);
+		let popup_text = `
+		<p class="my-1 fs-6 mb-1 text-center">[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)}</p>
+		<p class="my-1 fs-6 text-center">${routes.map(route => `<span class="${get_route_colour_classes(route)}">${route.line}</span>`).join(' ')}</p>
+		${generate_schedule_departure_board_buttons(stop.code).outerHTML}
+		`;
+		let marker = L.marker(stop.coords)
+		.bindPopup(popup_text);
+		let route_types = routes.map(route => route.type);
+		if(route_types.includes(main_types.metro)){
+			marker_groups.metro.push(marker);
+		}
+		if(route_types.includes(main_types.tram)){
+			marker_groups.tram.push(marker);
+		}
+		if(route_types.includes(main_types.trolley)){
+			marker_groups.trolley.push(marker);
+		}
+		if(route_types.includes(main_types.bus)){
+			marker_groups.bus.push(marker);
+		}
 	});
-	clusterGroup.addTo(map);
-	console.log(clusterGroup.getBounds());
-	//map.addLayer(FG);
-	map.fitBounds(clusterGroup.getBounds());
+
+	// generate sub groups for marker cluster
+	let metro_sub = L.featureGroup.subGroup(cluster_group, marker_groups.metro).addTo(map);
+	let tram_sub = L.featureGroup.subGroup(cluster_group, marker_groups.tram).addTo(map);
+	let trolley_sub = L.featureGroup.subGroup(cluster_group, marker_groups.trolley).addTo(map);
+	let bus_sub = L.featureGroup.subGroup(cluster_group, marker_groups.bus).addTo(map);
+	
+	map.fitBounds(cluster_group.getBounds());
+
+	var overlays = {
+		"Метростанции": metro_sub,
+		"Трамвайни спирки": tram_sub,
+		"Тролейбусни спирки": trolley_sub,
+		"Автобусни спирки": bus_sub
+	};
+	L.control.layers([], overlays, {collapsed: true}).addTo(map);
 }
 function check_metadata(){
 	return fetch('data/metadata.json')
@@ -108,9 +158,11 @@ function check_metadata(){
 	.then(metadata => {
 		localStorage.app_version = metadata.app_version;
 		localStorage.retrieval_date = metadata.retrieval_date;
-		update_versions();
 		return fetch_data(metadata);
-	});
+	})
+	.then(() => {
+		update_versions();
+	})
 }
 function update_versions(){
 	document.querySelector('#last_data_update').innerText = format_date_string(localStorage.retrieval_date);
@@ -189,19 +241,19 @@ function navigate_to_current_hash() {
 			init_map();
 		}
 	}
-	else if(main_types.indexOf(hash[0])!=-1){
+	else if(main_types[hash[0]]){
 		var type = hash[0];
 		var line = hash[1];
 		var route_index = data.routes.findIndex(route => route.type==type && route.line==line);
 		var loc_data = {
 			is_route: true,
 			route: data.routes[route_index],
-			valid_thru: hash[2],
+			is_weekend: hash[2]=='weekend',
 			direction: hash[3],
 			stop_code: hash[4]
 		};
 		//TODO continue
-		if(route_index==-1 || !data.directions.find(dir => dir.code==loc_data.direction) || !data,stops.find(stop => stop.code==loc_data.stop_code)){
+		if(route_index==-1 || !data.directions.find(dir => dir.code==loc_data.direction) || !data.stops.find(stop => stop.code==loc_data.stop_code)){
 			return;
 		}
 		update_globals(loc_data);

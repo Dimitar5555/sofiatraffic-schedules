@@ -9,25 +9,24 @@
 	"line_types":{
 		"favourite":"Любими линии",
 		"metro":"Метро",
-		"tramway":"Трамваи",
-		"trolleybus":"Тролейбуси",
-		"autobus":"Автобуси",
+		"tram":"Трамваи",
+		"trolley":"Тролейбуси",
+		"bus":"Автобуси",
 		"school":"Училищни автобуси",
 		"temporary":"Заместващи автобуси",
 		"night":"Нощни автобуси"
 	},
 	"line_type":{
 		"metro":"Метролиния",
-		"tramway":"Трамвай",
-		"trolleybus":"Тролейбус",
-		"autobus":"Автобус",
+		"tram":"Трамвай",
+		"trolley":"Тролейбус",
+		"bus":"Автобус",
 		"temporary":"Заместващ автобус",
 		"night":"Нощен автобус"
 	},
 	"weekdays":{
 		"weekday":"делник",
-		"pre_holiday":"предпразник",
-		"holiday":"празник"
+		"weekend":"празник"
 	},
 	"schedules":{
 		"line":"Линия",

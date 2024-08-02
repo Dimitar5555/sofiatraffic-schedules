@@ -33,13 +33,13 @@ td, th {
 .M4-bg-color {
 	background-color: #fcd403 !important;
 }
-.tramway-bg-color {
+.tram-bg-color, .tramway-bg-color {
 	background-color: #f6921e !important;
 }
-.trolleybus-bg-color {
+.trolley-bg-color, .trolleybus-bg-color {
 	background-color: #0095da !important;
 }
-.autobus-bg-color {
+.bus-bg-color, .autobus-bg-color {
 	background-color: #be1e2d !important;
 }
 .btn:hover {
