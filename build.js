@@ -1,5 +1,4 @@
 const fs = require('fs');
-const HTMLParser = require('node-html-parser');
 const crypto = require('crypto');
 
 const protocol = "https://";

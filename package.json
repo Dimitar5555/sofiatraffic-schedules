@@ -14,7 +14,6 @@
     "@mapbox/polyline": "^1.2.1",
     "crypto": "^1.0.1",
     "fs": "^0.0.1-security",
-    "http-server": "^14.1.1",
-    "node-html-parser": "^6.1.4"
+    "http-server": "^14.1.1"
   }
 }
