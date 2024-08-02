@@ -137,8 +137,14 @@ function process_stops_data(stops_bg, stops_en) {
 }
 
 function fetch_osm_stops_data() {
+	const query = '[out:json][timeout:25];'
+	+ '('
+	+ 'node[subway=yes][public_transport=stop_position][ref][network="Градски транспорт София"];'
+	+ 'node[tram=yes][public_transport=stop_position][ref][network="Градски транспорт София"];'
+	+ ');'
+	+ 'out geom;';
 	let req = fetch("https://overpass.kumi.systems/api/interpreter", {
-		"body": "data=%5Bout%3Ajson%5D%5Btimeout%3A25%5D%3B%0Anode%5Bsubway%3Dyes%5D%5Bpublic_transport%3Dstop_position%5D%5Bref%5D%5Bnetwork%3D%22%D0%93%D1%80%D0%B0%D0%B4%D1%81%D0%BA%D0%B8+%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BF%D0%BE%D1%80%D1%82+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F%22%5D%3B%0Aout+geom%3B",
+		"body": `data=${encodeURIComponent(query)}`,
 		"method": "POST",
 	})
 	.then(response => response.json())
@@ -149,6 +155,10 @@ function fetch_osm_stops_data() {
 function process_osm_stops_data(app_stops, osm_stops) {
 	osm_stops.forEach(osm_stop => {
 		let app_stop = app_stops.find(stop => stop.code == osm_stop.tags.ref);
+		// skip stops, which are not in CGM's dataset
+		if(!app_stop) {
+			return;
+		}
 		app_stop.coords = [osm_stop.lat, osm_stop.lon];
 	});
 }
