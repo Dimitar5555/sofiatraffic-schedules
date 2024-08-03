@@ -4,7 +4,8 @@ const crypto = require('crypto');
 const protocol = "https://";
 const sofiatraffic_url = "sofiatraffic.bg";
 // const schedules_url = `${protocol}forum.${sofiatraffic_url}/`;
-const stops_url = `${protocol}routes.${sofiatraffic_url}/`;
+const old_stops_url = `${protocol}routes.${sofiatraffic_url}/`;
+const stops_url = `${protocol}${sofiatraffic_url}/bg/trip/getAllStops`
 const routes_url = `${protocol}${sofiatraffic_url}/bg/trip/getLines`;
 const schedule_url = `${protocol}${sofiatraffic_url}/bg/trip/getSchedule`;
 
@@ -116,23 +117,37 @@ function fetch_data_from_sofiatraffic(url, body={}) {
 }
 
 function fetch_stops_data() {
-	let stops_bg = fetch(`${stops_url}resources/stops-bg.json`)
+	let stops_bg = fetch(`${old_stops_url}resources/stops-bg.json`)
 	.then(response => response.json());
-	let stops_en = fetch(`${stops_url}resources/stops-en.json`)
+	let stops_en = fetch(`${old_stops_url}resources/stops-en.json`)
 	.then(response => response.json());
-	return Promise.all([stops_bg, stops_en]);
+	let new_stops = fetch_data_from_sofiatraffic(stops_url)
+	.then(response => response.json());
+	return Promise.all([stops_bg, stops_en, new_stops]);
 }
 
-function process_stops_data(stops_bg, stops_en) {
-	let final_stops = [];
+function process_stops_data(stops_bg, stops_en, new_stops) {
+	let processed_stops = [];
 	stops_bg.forEach(stop => {
-		final_stops.push({code: Number(stop.c), coords: [stop.y, stop.x], names: {bg: stop.n}});
+		processed_stops.push({code: Number(stop.c), coords: [stop.y, stop.x], names: {bg: stop.n}});
 	});
 	stops_en.forEach(cgm_stop => {
-		final_stops[final_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
+		processed_stops[processed_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
 	});
-	final_stops.sort((a, b) => a.code-b.code);
-	return final_stops;
+	new_stops.forEach(new_cgm_stop => {
+		let proc_stop = processed_stops.find(stop => stop.code == Number(new_cgm_stop.code));
+		if(!proc_stop) {
+			processed_stops.push({
+				code: Number(new_cgm_stop.code),
+				coords: [parseFloat(new_cgm_stop.latitude), parseFloat(new_cgm_stop.longitude)],
+				names: {
+					bg: new_cgm_stop.name.toUpperCase()
+				}
+			});
+		}
+	});
+	processed_stops.sort((a, b) => a.code-b.code);
+	return processed_stops;
 }
 
 function fetch_osm_stops_data() {
@@ -151,14 +166,15 @@ function fetch_osm_stops_data() {
 	return req;
 }
 
-function process_osm_stops_data(app_stops, osm_stops) {
+function process_osm_stops_data(cgm_stops, osm_stops) {
 	osm_stops.forEach(osm_stop => {
-		let app_stop = app_stops.find(stop => stop.code == osm_stop.tags.ref);
-		// skip stops, which are not in CGM's dataset
-		if(!app_stop) {
-			return;
-		}
-		app_stop.coords = [osm_stop.lat, osm_stop.lon];
+		cgm_stops.push({
+			code: Number(osm_stop.tags.ref),
+			coords: [osm_stop.lat, osm_stop.lon],
+			names: {
+				bg: osm_stop.tags.name
+			}
+		});
 	});
 }
 
@@ -281,16 +297,24 @@ function process_schedule_data(data, route_index, trip_index_offset, is_metro) {
 	};
 }
 
+function sleep(time) {
+	return new Promise((resolve) => {
+		setTimeout(resolve, time);
+	});
+}
+
 async function fetch_all_data() {
 	console.log('Starting build script');
-	console.log('Fetching stops data');
-	let stops = fetch_stops_data()
-	.then(data => process_stops_data(data[0], data[1]));
-	let osm_stops = fetch_osm_stops_data();
-
-	
 	console.log('Fetching tokens');
 	await fetch_tokens();
+	console.log('Fetching stops data');
+	let stops = fetch_stops_data()
+	.then(data => process_stops_data(data[0], data[1], data[2]))
+	.then(stop => stop.sort((a, b) => a.code-b.code));
+	let osm_stops = fetch_osm_stops_data();
+
+
+	
 	console.log('Fetching routes data');
 	let routes = fetch_routes_data()
 	.then(data => process_routes_data(data));
@@ -318,6 +342,7 @@ async function fetch_all_data() {
 				stop_times = stop_times.concat(data.stop_times);
 			});
 			route_index++;
+			await sleep(timeout);
 		}
 
 		routes.forEach(route => {
