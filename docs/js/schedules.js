@@ -655,6 +655,12 @@ async function load_virtual_table(stop_code) {
 	let routes_data = await req.json();
 	if(routes_data.status == 'ok'){
 		loading_row.remove();
+		if(routes_data.routes.length == 0) {
+			let tr = html_comp('tr');
+			let td = html_comp('td', {colspan: 4, text: 'Няма повече потегляния за деня', class: 'text-center'});
+			tr.appendChild(td);
+			new_tbody.appendChild(tr);
+		}
 		routes_data.routes.forEach((route, row_index) => {
 			let tr = html_comp('tr');
 			let td1 = html_comp('td');
