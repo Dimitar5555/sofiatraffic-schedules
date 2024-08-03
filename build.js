@@ -146,7 +146,6 @@ function process_stops_data(stops_bg, stops_en, new_stops) {
 			});
 		}
 	});
-	processed_stops.sort((a, b) => a.code-b.code);
 	return processed_stops;
 }
 
@@ -172,7 +171,7 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 			code: Number(osm_stop.tags.ref),
 			coords: [osm_stop.lat, osm_stop.lon],
 			names: {
-				bg: osm_stop.tags.name
+				bg: osm_stop.tags.name.toUpperCase()
 			}
 		});
 	});
@@ -310,7 +309,6 @@ async function fetch_all_data() {
 	console.log('Fetching stops data');
 	let stops = fetch_stops_data()
 	.then(data => process_stops_data(data[0], data[1], data[2]))
-	.then(stop => stop.sort((a, b) => a.code-b.code));
 	let osm_stops = fetch_osm_stops_data();
 
 
@@ -329,6 +327,7 @@ async function fetch_all_data() {
 		let trips = [];
 
 		process_osm_stops_data(stops, data[2]);
+		stops.sort((a, b) => a.code-b.code);
 
 		let route_index = 0;
 		for(route of routes) {
