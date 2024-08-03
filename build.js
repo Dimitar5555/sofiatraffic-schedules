@@ -167,13 +167,19 @@ function fetch_osm_stops_data() {
 
 function process_osm_stops_data(cgm_stops, osm_stops) {
 	osm_stops.forEach(osm_stop => {
-		cgm_stops.push({
-			code: Number(osm_stop.tags.ref),
-			coords: [osm_stop.lat, osm_stop.lon],
-			names: {
-				bg: osm_stop.tags.name.toUpperCase()
-			}
-		});
+		let stop_to_override = cgm_stops.find(cgm_stop => cgm_stop.code == osm_stop.tags.ref);
+		if(!stop_to_override){
+			cgm_stops.push({
+				code: Number(osm_stop.tags.ref),
+				coords: [osm_stop.lat, osm_stop.lon],
+				names: {
+					bg: osm_stop.tags.name.toUpperCase()
+				}
+			});
+		}
+		else{
+			stop_to_override.coords = [osm_stop.lat, osm_stop.lon]
+		}
 	});
 }
 
