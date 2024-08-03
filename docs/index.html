@@ -137,18 +137,18 @@
 						</div>
 					</div> -->
 					<div class="row m-2">
-						<div class="col col-4 col-md-3">
+						<div class="col col-12 col-sm-4 col-md-3">
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
-						<div class="col col-8 col-md-6">
+						<div class="col col-12 col-sm-8 col-md-9">
 							<select class="form-select" onchange="show_schedule({direction: this.value, is_route: true})" id="direction"></select>
 						</div>
 					</div>
 					<div class="row m-2">
-						<div class="col col-4 col-md-3">
+						<div class="col col-12 col-sm-4 col-md-3">
 							<label for="stops" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></label>
 						</div>
-						<div class="col col-8 col-md-6 d-flex flex-wrap flex-lg-nowrap justify-content-between">
+						<div class="col col-12 col-sm-8 col-md-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
 							<div class="d-flex flex-nowrap flex-grow-1">
 								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="add_remove_favourite_stop()"></i>
 								<select class="form-select d-inline-block" onchange="show_schedule({stop_code: this.value, is_route: true})" id="route_stop_selector"></select>

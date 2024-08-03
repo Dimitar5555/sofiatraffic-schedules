@@ -366,9 +366,12 @@ function get_stop(stop_arg){
 //accepts stop_code or stop object, in order to maintain consistent stop names
 function get_stop_name(stop_code){
 	if(!stop_code || stop_code==undefined){
-		return '-';
+		return '(НЕИЗВЕСТНА СПИРКА)';
 	}
     var stop = get_stop(stop_code);
+	if(!stop){
+		console.error(`Missing stop with code: ${stop_code}`);
+	}
     if(is_metro_stop(stop_code)){
         return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
@@ -417,13 +420,10 @@ function display_trip_schedule(stop_time_index){
 		var tr = html_comp('tr');
 		var highlight_row = route_stops[stop_index]==current.stop_code?'bg-warning':'';
         const stop = get_stop(route_stops[stop_index]) || false;
-        if(!stop){
-            alert(`index: ${stop_index}, stop: ${route_stops[stop_index]}`);        
-        }
 		if(highlight_row){
 			tr.classList.add('bg-warning');
 		}
-		tr.appendChild(html_comp('td', {text: format_stop_code(stop?.code), class: 'align-middle'}));
+		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: 'align-middle'}));
 		tr.appendChild(html_comp('td', {text: get_stop_name(stop?.code)}));
 		tr.appendChild(html_comp('td', {text: format_time(time), class: 'align-middle'}));
 		new_tbody.append(tr);
@@ -651,7 +651,7 @@ async function load_virtual_table(stop_code) {
 	loading_row.append(loading_td);
 	new_tbody.appendChild(loading_row);
 	old_tbody.replaceWith(new_tbody);
-	let req = await fetch(`https://sofiatraffic-virtual-board-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`);
+	let req = await fetch(`https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`);
 	let routes_data = await req.json();
 	if(routes_data.status == 'ok'){
 		loading_row.remove();
