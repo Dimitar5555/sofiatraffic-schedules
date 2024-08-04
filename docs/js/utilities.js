@@ -1,8 +1,37 @@
-function format_stop_code(code){
-    if(!code) {
-        return '####'
+function format_stop_code(stop_code){
+    if(!stop_code) {
+        return '????'
     }
-	return code.toString().padStart(4, '0');
+	return stop_code.toString().padStart(4, '0');
+}
+function get_stop(stop_arg){
+	if(typeof stop_arg=='string'){
+		stop_arg = Number(stop_arg);
+	}
+	if(typeof stop_arg=='object'){
+		return stop_arg;
+	}
+	else if(typeof stop_arg=='number'){
+		return data.stops.find(stop => stop.code === stop_arg);
+	}
+}
+//accepts stop_code or stop object, in order to maintain consistent stop names
+function get_stop_name(stop_code){
+	if(!stop_code || stop_code==undefined){
+		return '(НЕИЗВЕСТНА СПИРКА)';
+	}
+    var stop = get_stop(stop_code);
+	if(!stop){
+		console.error(`Missing stop with code: ${stop_code}`);
+	}
+    if(is_metro_stop(stop_code)){
+        return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
+    }
+    return stop?.names[lang.code] || `(${lang.schedules.unknown_stop})`;
+}
+function get_stop_string(stop_code_or_object) {
+    let stop_obj = get_stop(stop_code_or_object);
+    return `[${format_stop_code(stop_obj.code)}] ${get_stop_name(stop_obj)}`;
 }
 function format_date_string(string){
     return new Date(string).toLocaleDateString(lang.code);

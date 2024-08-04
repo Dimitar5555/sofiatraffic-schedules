@@ -28,19 +28,17 @@ function show_favourite_lines(favourite_lines=false){
 	if(!favourite_lines){
 		favourite_lines = get_favourite_lines();
 	}
+	favourite_lines = favourite_lines.map(fl => fl.split('_'));
 	var old_div = document.querySelector('#line_selector_favourites').querySelector('.lines');
-	var new_div = old_div.cloneNode();
 	if(favourite_lines.length==0){
 		old_div.parentElement.classList.add('d-none');
 		return;
 	}
-
-	old_div.classList.remove('d-none');
-	let routes = favourite_lines.map(favourite_line => {
-		var line = favourite_line.split('_');
-		return data.routes.find(a => a.line==line[1] && a.type==line[0]);
-	});
-	routes.sort();
+	
+	old_div.parentElement.classList.remove('d-none');
+	var new_div = old_div.cloneNode();
+	let routes = data.routes.filter(route => favourite_lines.some(favourite_line => favourite_line[0] == route.type && favourite_line[1] == route.line));
+	
 	routes.forEach(route => {
 		var line_btn = generate_line_btn(route);
 		new_div.appendChild(line_btn);
@@ -59,6 +57,7 @@ function add_remove_favourite_line(){
 	else{
 		favourite_lines.splice(favourite_lines.indexOf(cur_route_json), 1);
 	}
+	console.log('cakked fav lines with ', favourite_lines)
 	show_favourite_lines(favourite_lines);
 	configure_favourite_line_button(favourite_lines);
 	window.localStorage.setItem('favourite_lines', JSON.stringify(favourite_lines));
@@ -66,13 +65,13 @@ function add_remove_favourite_line(){
 function get_favourite_stops(){
 	return JSON.parse(window.localStorage.getItem('favourite_stops')).map(stop => parseInt(stop)) || [];
 }
-function add_remove_favourite_stop(){
+function add_remove_favourite_stop(stop_code){
 	var favourite_stops = get_favourite_stops();
-	if(favourite_stops.indexOf(current.stop_code)==-1){
-		favourite_stops.push(current.stop_code);
+	if(favourite_stops.indexOf(stop_code)==-1){
+		favourite_stops.push(stop_code);
 	}
 	else{
-		favourite_stops.splice(favourite_stops.indexOf(current.stop_code), 1);
+		favourite_stops.splice(favourite_stops.indexOf(stop_code), 1);
 	}
 	show_favourite_stops(favourite_stops);
 	configure_favourite_stop_button(favourite_stops);

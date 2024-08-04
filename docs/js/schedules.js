@@ -288,7 +288,7 @@ function configure_stop_selector(values, selected_index){
 
 	values.forEach(stop_code => new_stop_el.appendChild(
 		html_comp('option', {
-			text: `[${format_stop_code(stop_code)}] ${get_stop_name(stop_code)}`,
+			text: get_stop_string(stop_code),
 			value: stop_code
 		})
 	));
@@ -351,31 +351,6 @@ function configure_favourite_stop_button(favourite_stops=false){
 		star.dataset.style = "fill";
 		star.setAttribute('title', lang.schedules.remove_from_favourites);
 	}
-}
-function get_stop(stop_arg){
-	if(typeof stop_arg=='string'){
-		stop_arg = Number(stop_arg);
-	}
-	if(typeof stop_arg=='object'){
-		return stop_arg;
-	}
-	else if(typeof stop_arg=='number'){
-		return data.stops.find(stop => stop.code === stop_arg);
-	}
-}
-//accepts stop_code or stop object, in order to maintain consistent stop names
-function get_stop_name(stop_code){
-	if(!stop_code || stop_code==undefined){
-		return '(НЕИЗВЕСТНА СПИРКА)';
-	}
-    var stop = get_stop(stop_code);
-	if(!stop){
-		console.error(`Missing stop with code: ${stop_code}`);
-	}
-    if(is_metro_stop(stop_code)){
-        return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
-    }
-    return stop?.names[lang.code] || `(${lang.schedules.unknown_stop})`;
 }
 function display_schedule(){
 	const table = schedule_div.querySelector('#route_schedule_table');
@@ -490,7 +465,7 @@ function show_stop_schedule(stop_code, type){
 	if(typeof stop_code=='string'){
 		stop_code = Number(stop_code);
 	}
-	stop_schedule_div.querySelector('#stop_name').innerText = get_stop_name(stop_code);
+	stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code);
 	var relevant_directions = data.directions.filter(dir => dir.stops.indexOf(stop_code)!==-1);
 	//var stop_indexes = relevant_directions.map(dir => dir.stops.indexOf(stop_code));
 	var direction_codes = relevant_directions.map(dir => dir.code);
@@ -640,7 +615,7 @@ async function load_virtual_table(stop_code) {
 	generated_at_el.nextElementSibling.setAttribute('disabled', '');
 	var table = document.querySelector('table#virtual_board_table');
 	var thead = table.querySelector('thead');
-	thead.querySelector('th').innerText = `[${format_stop_code(stop_code)}] ${get_stop_name(stop_code)}`;
+	thead.querySelector('th').innerText = get_stop_string(stop_code);
 	var old_tbody = table.querySelector('tbody');
 	var new_tbody = old_tbody.cloneNode();
 	

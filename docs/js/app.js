@@ -86,7 +86,7 @@ function init(debug=false){
 		new_item.children.item(0).classList.add('text-nowrap');
 		old_item.replaceWith(new_item);
 		if(window.location.hash){
-			navigate_to_current_hash();
+			navigate_to_current_hash(true);
 		}
 	});
 }
@@ -115,7 +115,7 @@ function init_map(){
 		let directions = stop.direction_codes;
 		let routes = data.routes.filter(route => route.direction_codes.some(route_dir_code => directions.includes(route_dir_code)));
 		let popup_text = `
-		<p class="my-1 fs-6 mb-1 text-center">[${format_stop_code(stop.code)}] ${get_stop_name(stop.code)}</p>
+		<p class="my-1 fs-6 mb-1 text-center">${get_stop_string(stop)}]</p>
 		<p class="my-1 fs-6 text-center">${routes.map(route => `<span class="${get_route_colour_classes(route)}">${route.line}</span>`).join(' ')}</p>
 		${generate_schedule_departure_board_buttons(stop.code).outerHTML}
 		`;
@@ -232,7 +232,7 @@ if ('serviceWorker' in navigator) {
 }
 init();
 
-function navigate_to_current_hash() {
+function navigate_to_current_hash(first_entry=false) {
 	var hash = decodeURIComponent(window.location.hash).replace('#', '').split('/');
 	var main_tab_index = ['schedule', 'favourite_stops', 'stops_map'].indexOf(hash[0]);
 	if(main_tab_index!=-1){
@@ -252,12 +252,14 @@ function navigate_to_current_hash() {
 			direction: hash[3],
 			stop_code: hash[4]
 		};
-		//TODO continue
-		if(route_index==-1 || !data.directions.find(dir => dir.code==loc_data.direction) || !data.stops.find(stop => stop.code==loc_data.stop_code)){
+		if(route_index==-1 /*|| !data.directions.find(dir => dir.code==loc_data.direction) || !data.stops.find(stop => stop.code==loc_data.stop_code)*/){
 			return;
 		}
 		update_globals(loc_data);
 		show_schedule(loc_data, true);
+		if(route_index != -1 && first_entry){
+			updateURL();
+		}
 	}
 	else if(hash[0]=='stop'){
 		show_schedule({stop_code: Number(hash[1]), schedule_type: {weekday: '100', saturday: '010', sunday: '001'}[hash[2]], is_stop: true});
