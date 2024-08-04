@@ -36,8 +36,8 @@ function show_favourite_lines(favourite_lines=false){
 	}
 
 	old_div.classList.remove('d-none');
-	let routes = favourite_lines.map(data => {
-		var line = data.split('_');
+	let routes = favourite_lines.map(favourite_line => {
+		var line = favourite_line.split('_');
 		return data.routes.find(a => a.line==line[1] && a.type==line[0]);
 	});
 	routes.sort();
