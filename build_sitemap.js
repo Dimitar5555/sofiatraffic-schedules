@@ -10,7 +10,7 @@ function run(){
 	var sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'];
 	routes.forEach((route, route_index) => {
 		sitemap.push('<url>');
-		sitemap.push(`<loc>${site}#${route.type}/${route.line}</loc>`);
+		sitemap.push(`<loc>${site}#${route.type}/${route.line}/</loc>`);
 		sitemap.push('<changefreq>daily</changefreq>');
 		sitemap.push('<priority>0.8</priority>');
 		sitemap.push('</url>');
