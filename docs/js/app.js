@@ -93,7 +93,7 @@ function init(debug=false){
 function init_map(){
 	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'updateURL(this.href);');
 	map = L.map('map', {
-		center: [51.505, -0.09],
+		center: [42.69671, 23.32129],
 		zoom: 13
 	});
 	map.invalidateSize();
