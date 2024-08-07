@@ -115,7 +115,7 @@ function init_map(){
 		let directions = stop.direction_codes;
 		let routes = data.routes.filter(route => route.direction_codes.some(route_dir_code => directions.includes(route_dir_code)));
 		let popup_text = `
-		<p class="my-1 fs-6 mb-1 text-center">${get_stop_string(stop)}]</p>
+		<p class="my-1 fs-6 mb-1 text-center">${get_stop_string(stop)}</p>
 		<p class="my-1 fs-6 text-center">${routes.map(route => `<span class="${get_route_colour_classes(route)}">${route.line}</span>`).join(' ')}</p>
 		${generate_schedule_departure_board_buttons(stop.code).outerHTML}
 		`;
