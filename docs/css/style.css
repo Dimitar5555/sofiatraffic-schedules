@@ -50,6 +50,11 @@ td, th {
 	height: 30px;
 	margin: 2.5px;
 	text-wrap: nowrap;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 30px;
 }
 span.line-break {
 	display: block;

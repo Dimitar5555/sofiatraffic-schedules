@@ -22,8 +22,9 @@ function get_stop_name(stop_code){
 	}
     var stop = get_stop(stop_code);
 	if(!stop){
-		console.error(`Missing stop with code: ${stop_code}`);
+        console.error(`Missing stop with code: ${stop_code}`);
 	}
+    stop_code = stop?.code;
     if(is_metro_stop(stop_code)){
         return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
@@ -49,11 +50,12 @@ function generate_schedule_departure_board_buttons (stop_code, parent=false) {
         onclick: 'load_virtual_table(this.dataset.code)',
         class: 'btn btn-outline-primary'
     }));
-    btn_group.appendChild(html_comp('button', {
+    btn_group.appendChild(html_comp('a', {
         text: lang.schedules.schedule,
-        'data-code': stop_code,
-        onclick: `show_schedule({stop_code: this.dataset.code, is_stop: true})`,
-        class: 'btn btn-outline-primary'
+        //'data-code': stop_code,
+        //onclick: `show_schedule({stop_code: this.dataset.code, is_stop: true})`,
+        class: 'btn btn-outline-primary',
+        href: `#stop/${stop_code}/`
     }));
     if(is_metro_stop(stop_code)){
         btn_group.children.item(0).setAttribute('disabled', '');
@@ -75,20 +77,21 @@ function html_comp(tag, attributes={}){
 	return el;
 }
 function generate_line_btn(route){
-	var el = html_comp('button', {
+	var el = html_comp('a', {
 		text: route.line,
 		class: `line_selector_btn  rounded-1 ${get_route_colour_classes(route)}`,
-		'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`
+		//'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`,
+        href: `#${route.type}/${route.line}/`
 	});
 	return el;
 }
 function get_route_colour_classes(route){
     let bg_color = `${route.type!=='metro'?route.type:route.line}-bg-color`;
     let fg_color = `text-${route.line=='M4'?'dark':'light'}`;
-    return  `px-1 ${bg_color} ${fg_color}`;
+    return  `px-2 ${bg_color} ${fg_color}`;
 }
 function is_weekend(boolean){
-    let result = boolean === '1' || boolean === true || boolean === 'true';
+    let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1;
     return result;
 }
 function return_weekday_text(boolean){
