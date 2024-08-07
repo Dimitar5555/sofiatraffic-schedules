@@ -192,8 +192,8 @@ function show_schedule(new_globals, overwrite_selectors=false, update_url=false)
 
 function are_options_matching(current_options, required_options) {
 	let are_all_required_options_present = required_options.every(required_option => current_options.includes(required_option));
-	let any_unwanted_options = current_options.every(current_option => !required_options.includes(current_option));
-	return are_all_required_options_present && any_unwanted_options;
+	let no_unwanted_options = current_options.every(current_option => required_options.includes(current_option));
+	return are_all_required_options_present && no_unwanted_options;
 }
 
 function configure_all_selectors(predefined_values={}, overwrite_selectors=false){
@@ -216,7 +216,6 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	//only fetch directions for the current valid thru interval
 	var new_direction_options = data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend==is_weekend_val).map(trip => trip.direction);
 	var direction_options_ok = are_options_matching(current_direction_options, new_direction_options);
-	console.log(data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1), is_weekend_val)
 	if(!direction_options_ok || overwrite_selectors){
 		let index = new_direction_options.indexOf(Number(predefined_values.direction));
 		let selected_index = index!==-1?index:0;
