@@ -91,7 +91,7 @@ function get_route_colour_classes(route){
     return  `px-2 ${bg_color} ${fg_color}`;
 }
 function is_weekend(boolean){
-    let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1;
+    let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1 || boolean === 'weekend';
     return result;
 }
 function return_weekday_text(boolean){

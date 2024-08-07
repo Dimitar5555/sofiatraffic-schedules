@@ -285,7 +285,7 @@ function handle_page_change() {
 	let hash = decodeURIComponent(window.location.hash).replace('#', '').split('/');
 	let main_tab_index = ['schedules', 'favourite_stops', 'stops_map'].indexOf(hash[0]);
 	let globals = get_globals_from_hash(hash);
-	console.log(globals);
+	console.log('detected globals', globals);
 	if(globals.is_stop || globals.is_route) {
 		update_globals(globals);
 		show_schedule(globals, false, hash.length != 3);
@@ -308,9 +308,9 @@ function get_globals_from_hash(hash) {
 
 		globals.is_route = true;
 		globals.route = data.routes[route_index];
-		globals.is_weekend = hash[2]=='weekend';
+		globals.is_weekend = is_weekend(hash[2]);
 		globals.direction = hash[3];
-		globals.stop_code - hash[4];
+		globals.stop_code = hash[4];
 		globals.view = 'route';
 
 		if(route_index==-1 /*|| !data.directions.find(dir => dir.code==loc_data.direction) || !data.stops.find(stop => stop.code==loc_data.stop_code)*/){

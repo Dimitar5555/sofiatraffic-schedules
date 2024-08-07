@@ -210,6 +210,9 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 		let selected_index = index!==-1?index:0;
 		configure_weekday_selector(new_weekday_options, selected_index);
 	}
+	if(predefined_values.is_weekend) {	
+		document.querySelector(`[name=route_schedule_type][value="${predefined_values.is_weekend+1-1}"]`).checked = true;
+	}
 	var is_weekend_val = is_weekend(document.querySelector('[name=route_schedule_type]:checked').value);
 	
 	var current_direction_options = Array.from(schedule_div.querySelector('#direction').querySelectorAll('option')).map(el => Number(el.value));
@@ -269,6 +272,9 @@ function configure_weekday_selector(values, selected_index){
 	else {
 		add_d_none.push(is_weekend_options[1]);
 		add_d_none.push(is_weekend_options[1].nextElementSibling);
+		if(selected_index == 1) {
+			selected_index = 0;
+		}
 	}
 	remove_d_none.forEach(el => el.classList.remove('d-none'));
 	add_d_none.forEach(el => el.classList.add('d-none'));
@@ -449,12 +455,12 @@ function update_globals(new_globals=false){
 		if(!current.trip){
 			current.trip = data.trips[current.route.trip_indexes[0]];
 		}
-		if(new_globals.direction){
-			current.direction = new_globals.direction;
-		}
-		else{
+		// if(new_globals.direction){
+		// 	current.direction = data.directions.find(dir => dir.code==new_globals.direction);
+		// }
+		// else{
 			current.direction = data.directions.find(dir => dir.code==current.trip.direction);
-		}
+		// }
 		if(new_globals.stop_code){
 			current.stop_code = parseInt(new_globals.stop_code);
 		}
@@ -466,10 +472,11 @@ function update_globals(new_globals=false){
 		current.direction = directions.find(dir => dir.code==current.route.directions[0]);
 	}*/
 	
+	console.log(current)
 	if(new_globals.stop_code){
 		current.stop_code = parseInt(new_globals.stop_code);
 	}
-	if(!current.stop_code){
+	else if(!current.stop_code){
 		current.stop_code = current.direction.stops[0];
 	}
 }
