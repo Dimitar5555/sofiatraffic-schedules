@@ -5,19 +5,21 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title data-i18n="title">Разписание на МГТ София</title>
+	<link rel="stylesheet" href="css/leaflet.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-icons.css">
-	<link rel="stylesheet" href="css/leaflet.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="manifest" href="manifest.json" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="canonical" href="/">
+	<meta name="description" content="Актуални разписания на софийския градски транспорт.">
 	<script src="js/bootstrap.bundle.min.js"></script>
     <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-	<script src="js/leaflet.markercluster.js"></script>
-	<script src="js/leaflet.featuregroup.subgroup.js"></script>
+	<script defer src="js/leaflet.markercluster.js"></script>
+	<script defer src="js/leaflet.featuregroup.subgroup.js"></script>
 	<link rel="stylesheet" href="css/MarkerCluster.css">
 	<link rel="stylesheet" href="css/MarkerCluster.Default.css">
 
@@ -31,7 +33,12 @@
 	gtag('config', 'G-NH3TDJNG2C');
 	</script>
 </head>
-<body>
+<body class="no-scroll">
+	<div class="loading_screen text-center">
+		<div class="spinner-border" style="width: 6rem; height: 6rem; border-width: 6px; position: relative; top: calc(50% - 3rem)" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
 	<div class="modal fade" id="schedule_modal" tabindex="-1" aria-labelledby="schedule_modal" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
@@ -61,8 +68,8 @@
 	<div class="wrapper p-2">
 		<nav class="nav nav-pills nav-justified" id="nav-main" role="tablist">
 			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedules" class="nav-item nav-link active" href="#schedules" onclick="navigate_to_home();"></a>
-			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favourite_stops" class="nav-item nav-link" href="#favourite_stops" onclick="history.pushState({}, '', this.href)"></a>
-			<a data-bs-toggle="pill" data-i18n="nav.map" data-bs-target="#stops_map" class="nav-item nav-link" href="#stops_map" onclick="history.pushState({}, '', this.href); init_map();"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favourite_stops" class="nav-item nav-link" href="#favourite_stops" onclick="manual_push_state(this.href)"></a>
+			<a data-bs-toggle="pill" data-i18n="nav.map" data-bs-target="#stops_map" class="nav-item nav-link" href="#stops_map" onclick="manual_push_state(this.href); init_map();"></a>
 		</nav>
 		<div class="tab-content" id="nav-mainContent">
 			<div class="tab-pane fade show active p-2" role="tabpanel" id="schedules">
@@ -292,9 +299,9 @@
 		<span data-i18n="footer.last_data_update"></span>: <span id="last_data_update"></span><!--<a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a>--><br>
 		<span data-i18n="footer.last_site_update"></span>: <span id="app_version"></span>
 	</footer>
-	<script src="js/utilities.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/schedules.js"></script>
-	<script src="js/favourites.js"></script>
+	<script defer src="js/utilities.js"></script>
+	<script defer src="js/app.js"></script>
+	<script defer src="js/schedules.js"></script>
+	<script defer src="js/favourites.js"></script>
 </body>
 </html>

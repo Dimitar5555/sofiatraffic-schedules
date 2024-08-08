@@ -23,30 +23,40 @@ current = {
 	route: null, trip: null, stop_code: null, view: null
 };
 
-function update_page_title(hash) {
-	if(!hash) {
-		hash = window.location.hash;
-	}
+function handle_seo() {
+	let hash = window.location.hash;
 	let title_el = document.querySelector('title');
+	let canonical_el = document.querySelector('link[rel=canonical]');
+	let description_el = document.querySelector('meta[name=description]');
 	if(hash.includes('#schedules')) {
 		title_el.innerText = lang.titles.title;
+		canonical_el.setAttribute('href', '#schedules');
+		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
 	}
 	else if(hash.includes('#favourite_stops')) {
 		title_el.innerText = `${lang.titles.favourite_stops} - ${lang.titles.short_title}`;
+		canonical_el.setAttribute('href', '#favourite_stops');
+		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
 	}
 	else if(hash.includes('#stops_map')) {
 		title_el.innerText = `${lang.titles.stops_map} - ${lang.titles.short_title}`;
+		canonical_el.setAttribute('href', '#stops_map');
+		description_el.setAttribute('content', 'Интерактивна карта на спирките на софийския градски транспорт.');
 	}
 	else if(main_types_order.some(main_type => hash.includes(main_type))) {
 		let split_hash = hash.replace('#', '').split('/');
 		let line_type = split_hash[0];
 		let line_ref = split_hash[1];
-		title_el.innerText = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`
+		title_el.innerText = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
+		canonical_el.setAttribute('href',`#${line_type}/${line_ref}/`);
+		description_el.setAttribute('content', `Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
 	}
 	else if(hash.includes('#stop')) {
 		let split_hash = hash.replace('#', '').split('/');
 		let stop_code = split_hash[1];
-		title_el.innerText = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`
+		title_el.innerText = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
+		canonical_el.setAttribute('href', `#stop/${stop_code}/`);
+		description_el.setAttribute('content', `Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
 	}
 }
 
@@ -67,7 +77,7 @@ function updateURL(page=false){
 		return;
 	}
 	console.log('called updateURL: '+window.location.hash+' '+new_hash);
-	history.pushState({}, '', new_hash);
+	manual_push_state(new_hash);
 }
 
 function init(debug=false){
@@ -119,9 +129,9 @@ function init(debug=false){
 	});
 }
 
-function init_map() {
+async function init_map() {
 	let start = Date.now();
-	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'history.pushState({}, \'\', this.href)');
+	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
 	map = L.map('map', {
 		center: [42.69671, 23.32129],
 		zoom: 13
@@ -154,33 +164,36 @@ function init_map() {
 		popup.appendChild(generate_schedule_departure_board_buttons(stop.code));
 		return popup;
 	}
-
-	data.stops.forEach(stop => {
+	let total_match_time = 0;
+	for(const stop of data.stops) {
 		let stop_directions = stop.direction_codes;
 		let routes = data.routes.filter(route => route.direction_codes.some(route_dir_code => stop_directions.includes(route_dir_code)));
 		let popup = generate_popup_text(stop, routes);
 		let marker = L.marker(stop.coords)
 		.bindPopup(popup);
-		let route_types = new Set(routes.map(route => route.type));
-		if(route_types.has(main_types.metro)){
+		let route_types = routes.map(route => route.type);
+		if(route_types.includes(main_types.metro)){
 			marker_groups.metro.push(marker);
 		}
-		if(route_types.has(main_types.tram)){
-			marker_groups.tram.push(marker);
+		else {
+			if(route_types.includes(main_types.tram)){
+				marker_groups.tram.push(marker);
+			}
+			if(route_types.includes(main_types.trolley)){
+				marker_groups.trolley.push(marker);
+			}
+			if(route_types.includes(main_types.bus)){
+				marker_groups.bus.push(marker);
+			}
 		}
-		if(route_types.has(main_types.trolley)){
-			marker_groups.trolley.push(marker);
-		}
-		if(route_types.has(main_types.bus)){
-			marker_groups.bus.push(marker);
-		}
-	});
-
+	}
 	// generate sub groups for marker cluster
+	let stop_dir_matching = Date.now();
 	let metro_sub = L.featureGroup.subGroup(cluster_group, marker_groups.metro).addTo(map);
 	let tram_sub = L.featureGroup.subGroup(cluster_group, marker_groups.tram).addTo(map);
 	let trolley_sub = L.featureGroup.subGroup(cluster_group, marker_groups.trolley).addTo(map);
 	let bus_sub = L.featureGroup.subGroup(cluster_group, marker_groups.bus).addTo(map);
+	console.log(`Matching time ${Date.now()-stop_dir_matching} ms`, marker_groups.bus.length);
 	
 	map.fitBounds(cluster_group.getBounds());
 
@@ -203,7 +216,7 @@ function check_metadata(){
 	})
 	.then(() => {
 		update_versions();
-	})
+	});
 }
 function update_versions(){
 	document.querySelector('#last_data_update').innerText = format_date_string(localStorage.retrieval_date);
@@ -254,6 +267,10 @@ function fetch_data(metadata=false){
 		init_schedules_data(organised_data);
 		init_schedules();
 		init_favourites();
+	})
+	.then(() => {
+		document.body.classList.remove('no-scroll');
+		document.querySelector('.loading_screen').classList.add('d-none');
 	});
 }
 //try to update metadata every hour
@@ -296,7 +313,12 @@ function handle_page_change() {
 			init_map();
 		}
 	}
-	update_page_title();
+	handle_seo();
+}
+
+function manual_push_state(new_href) {
+	history.pushState({}, '', new_href);
+	handle_page_change();
 }
 
 function get_globals_from_hash(hash) {
@@ -332,20 +354,20 @@ function navigate_to_home() {
 		line_selector_div.classList.add('d-none');
 		stop_schedule_div.classList.remove('d-none');
 		schedule_display.classList.add('d-none');
-		history.pushState({}, '', generate_current_hash());
+		manual_push_state(generate_current_hash());
 		
 	}
 	else if(current.view == 'route') {
 		line_selector_div.classList.add('d-none');
 		stop_schedule_div.classList.add('d-none');
 		schedule_display.classList.remove('d-none');
-		history.pushState({}, '', generate_current_hash());
+		manual_push_state(generate_current_hash());
 	}
 	else{
 		line_selector_div.classList.remove('d-none');
 		stop_schedule_div.classList.add('d-none');
 		schedule_display.classList.add('d-none');
-		history.pushState({}, '', '#schedules');
+		manual_push_state('#schedules');
 	}
 }
 
