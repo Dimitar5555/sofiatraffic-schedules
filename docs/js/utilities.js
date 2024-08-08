@@ -79,7 +79,7 @@ function html_comp(tag, attributes={}){
 function generate_line_btn(route){
 	var el = html_comp('a', {
 		text: route.line,
-		class: `line_selector_btn  rounded-1 ${get_route_colour_classes(route)}`,
+		class: `line_selector_btn  rounded-1 ${get_route_colour_classes(route)} fs-5 fw-bolder`,
 		//'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`,
         href: `#${route.type}/${route.line}/`
 	});
