@@ -126,10 +126,19 @@ function fetch_stops_data() {
 	return Promise.all([stops_bg, stops_en, new_stops]);
 }
 
+function process_stop_coords(lat, lon) {
+	// 5 digits give precission of 1.1 meters
+	let toFixed = n => Number(Number(n).toFixed(5));
+	return [
+		toFixed(lat),
+		toFixed(lon)
+	];
+}
+
 function process_stops_data(stops_bg, stops_en, new_stops) {
 	let processed_stops = [];
 	stops_bg.forEach(stop => {
-		processed_stops.push({code: Number(stop.c), coords: [stop.y, stop.x], names: {bg: stop.n}});
+		processed_stops.push({code: Number(stop.c), coords: process_stop_coords(stop.y, stop.x), names: {bg: stop.n}});
 	});
 	stops_en.forEach(cgm_stop => {
 		processed_stops[processed_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
@@ -139,7 +148,7 @@ function process_stops_data(stops_bg, stops_en, new_stops) {
 		if(!proc_stop) {
 			processed_stops.push({
 				code: Number(new_cgm_stop.code),
-				coords: [parseFloat(new_cgm_stop.latitude), parseFloat(new_cgm_stop.longitude)],
+				coords: process_stop_coords(new_cgm_stop.latitude, new_cgm_stop.longitude),
 				names: {
 					bg: new_cgm_stop.name.toUpperCase()
 				}
@@ -171,14 +180,14 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 		if(!stop_to_override){
 			cgm_stops.push({
 				code: Number(osm_stop.tags.ref),
-				coords: [osm_stop.lat, osm_stop.lon],
+				coords: process_stop_coords(osm_stop.lat, osm_stop.lon),
 				names: {
 					bg: osm_stop.tags.name.toUpperCase()
 				}
 			});
 		}
 		else{
-			stop_to_override.coords = [osm_stop.lat, osm_stop.lon]
+			stop_to_override.coords = process_stop_coords(osm_stop.lat, osm_stop.lon)
 		}
 	});
 }
@@ -350,6 +359,7 @@ async function fetch_all_data() {
 			await sleep(timeout);
 		}
 
+		// remove temporary data
 		routes.forEach(route => {
 			delete route.temp_ref;
 			delete route.temp_cgm_id;
@@ -371,6 +381,9 @@ async function fetch_all_data() {
 				console.log(`Processed ${st_index}/${st_length}`)
 			}
 		});
+
+		// sort directions by code
+		directions.sort((a, b) => a.code - b.code);
 		
 		var files_to_save = [
 			{
