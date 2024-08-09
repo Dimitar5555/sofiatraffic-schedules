@@ -25,7 +25,6 @@ current = {
 
 function handle_seo() {
 	let hash = window.location.hash;
-	let title_el = document.querySelector('title');
 	let canonical_el = document.querySelector('link[rel=canonical]');
 	let description_el = document.querySelector('meta[name=description]');
 	if(hash.includes('#schedules')) {
@@ -34,12 +33,12 @@ function handle_seo() {
 		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
 	}
 	else if(hash.includes('#favourite_stops')) {
-		title_el.innerText = `${lang.titles.favourite_stops} - ${lang.titles.short_title}`;
+		document.title = `${lang.titles.favourite_stops} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href', '#favourite_stops');
 		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
 	}
 	else if(hash.includes('#stops_map')) {
-		title_el.innerText = `${lang.titles.stops_map} - ${lang.titles.short_title}`;
+		document.title = `${lang.titles.stops_map} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href', '#stops_map');
 		description_el.setAttribute('content', 'Интерактивна карта на спирките на софийския градски транспорт.');
 	}
@@ -47,14 +46,14 @@ function handle_seo() {
 		let split_hash = hash.replace('#', '').split('/');
 		let line_type = split_hash[0];
 		let line_ref = split_hash[1];
-		title_el.innerText = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
+		document.title = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href',`#${line_type}/${line_ref}/`);
 		description_el.setAttribute('content', `Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
 	}
 	else if(hash.includes('#stop')) {
 		let split_hash = hash.replace('#', '').split('/');
 		let stop_code = split_hash[1];
-		title_el.innerText = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
+		document.title = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href', `#stop/${stop_code}/`);
 		description_el.setAttribute('content', `Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
 	}
