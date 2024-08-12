@@ -28,7 +28,7 @@ function handle_seo() {
 	let canonical_el = document.querySelector('link[rel=canonical]');
 	let description_el = document.querySelector('meta[name=description]');
 	if(hash.includes('#schedules')) {
-		title_el.innerText = lang.titles.title;
+		document.title.innerText = lang.titles.title;
 		canonical_el.setAttribute('href', '#schedules');
 		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
 	}
