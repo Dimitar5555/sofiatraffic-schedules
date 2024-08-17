@@ -5,77 +5,78 @@
 		"short_title": "МГТ София",
 		"title": "Разписание на МГТ София",
 		"schedule_of": "Разписание на ",
-		"favourite_stops": "Любими спирки",
 		"stops_map": "Карта на спирките"
 	},
 	"nav":{
-		"schedules":"Разписание",
-		"favourites":"Любими спирки",
-		"map":"Карта"
+		"schedules": "Разписание",
+		"map": "Карта"
 	},
 	"line_types":{
-		"favourite":"Любими линии",
-		"metro":"Метро",
-		"tram":"Трамваи",
-		"trolley":"Тролейбуси",
-		"bus":"Автобуси",
-		"school":"Училищни автобуси",
+		"favourite": "Любими линии",
+		"metro": "Метро",
+		"tram": "Трамваи",
+		"trolley": "Тролейбуси",
+		"bus": "Автобуси",
+		"school": "Училищни автобуси",
 		"temporary":"Заместващи автобуси",
 		"night":"Нощни автобуси"
 	},
 	"line_type":{
-		"metro":"Метролиния",
-		"tram":"Трамвай",
-		"trolley":"Тролейбус",
-		"bus":"Автобус",
+		"metro": "Метролиния",
+		"tram": "Трамвай",
+		"trolley": "Тролейбус",
+		"bus": "Автобус",
 		"temporary":"Заместващ автобус",
-		"night":"Нощен автобус"
+		"night": "Нощен автобус"
 	},
 	"weekdays":{
-		"weekday":"делник",
-		"weekend":"празник"
+		"weekday": "делник",
+		"weekend": "празник"
 	},
 	"schedules":{
-		"line":"Линия",
-		"schedule":"Разписание",
-		"valid_from":"Валидно от",
-		"direction":"Посока",
-		"stop":"Спирка",
+		"line": "Линия",
+		"schedule": "Разписание",
+		"valid_from": "Валидно от",
+		"direction": "Посока",
+		"stop": "Спирка",
 		"metrostation": "Метростанция",
-		"show_by_cars":"Показване на разписанието по коли",
-		"modal_title":"Разписание на курса",
-		"departure_time":"Час на потегляне",
-		"previous_course":"Предишен курс",
-		"next_course":"Следващ курс",
-		"partial_trips":"Непълните курсове са отбелязани с червен/жълт фон",
-		"add_to_favourites":"Добави към списъка с любими",
-		"remove_from_favourites":"Премахни от списъка с любими",
-		"unknown_stop": "НЕИЗВЕСТНА СПИРКА"
-	},
-	"favourites":{
-		"stop":"Спирка",
-		"actions":"Действия"
+		"show_by_cars": "Показване на разписанието по коли",
+		"modal_title": "Разписание на курса",
+		"departure_time": "Час на потегляне",
+		"previous_course": "Предишен курс",
+		"next_course": "Следващ курс",
+		"partial_trips": "Непълните курсове са отбелязани с червен/жълт фон",
+		"add_to_favourites": "Добави към списъка с любими",
+		"remove_from_favourites": "Премахни от списъка с любими",
+		"unknown_stop": "НЕИЗВЕСТНА СПИРКА",
+		"routes": "Линии",
+		"favourite_stops": "Любими спирки",
+		"stops": "Спирки"
 	},
 	"footer":{
-		"last_data_update":"Последно обновяване на разписанията",
-		"last_site_update":"Последно обновяване на сайта"
+		"last_data_update": "Последно обновяване на разписанията",
+		"last_site_update": "Последно обновяване на сайта"
 	},
 	"stats":{
-		"schedules_by_date":"Нови разписания по дати",
-		"date":"Дата",
-		"line":"Линия"
+		"schedules_by_date": "Нови разписания по дати",
+		"date": "Дата",
+		"line": "Линия"
 	},
 	"actions":{
-		"close":"Затвори",
+		"actions": "Действия",
+		"close": "Затвори",
 		"schedule": "Разписание",
-		"virtual_table": "Виртуално табло",
+		"virtual_board": "Виртуално табло",
 		"show_stop_schedule": "Разписание на спирката",
 		"back": " Назад",
-		"refresh": "Обнови"
+		"refresh": "Обнови",
+		"locate_stop_on_map": "Покажи спирката на картата",
+		"stop_schedule": "Разписание на спирката",
+		"search_by_name_or_code": "Въведете име или код на спирка"
 	},
 	"other":{
-		"sofiatraffic_livedata_warning_1": "Данните са предоставени от ЦГМ. Възможно е да са непълни или неточни.",
-		"sofiatraffic_livedata_warning_2": "Възможни са отклонения във времената на потегляне в рамките на ±1 минута.",
+		"sofiatraffic_livedata_warning_1": "Данните идват от ЦГМ, като е възможно да има непълноти или неточности.",
+		"sofiatraffic_livedata_warning_2": "Възможни са разлики във времената на потегляне в рамките на ±1 минута.",
 		"generated_at": "Генерирано на "
 	}
 }

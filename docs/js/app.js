@@ -19,6 +19,8 @@ const sec_types = ['temporary', 'school', 'night'];
 
 const tab_btns = Array.from(document.querySelector('nav').children).map(btn => new bootstrap.Tab(btn));
 
+const maximum_stops_shwon_at_once = 6;
+
 current = {
 	route: null, trip: null, stop_code: null, view: null
 };
@@ -31,12 +33,12 @@ function handle_seo() {
 		document.title.innerText = lang.titles.title;
 		canonical_el.setAttribute('href', '#schedules');
 		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
-	}
+	}/*
 	else if(hash.includes('#favourite_stops')) {
 		document.title = `${lang.titles.favourite_stops} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href', '#favourite_stops');
 		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
-	}
+	}*/
 	else if(hash.includes('#stops_map')) {
 		document.title = `${lang.titles.stops_map} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href', '#stops_map');
@@ -128,7 +130,22 @@ function init(debug=false){
 	});
 }
 
+is_map_done = false;
 async function init_map() {
+	if(is_map_done) {
+		show_favourite_stops();
+		filter_stops(document.querySelector('name="search_for_stop"]').value);
+		return;
+	}
+	is_map_done = true;
+	document.querySelector('[name="search_for_stop"]').setAttribute('placeholder', lang.actions.search_by_name_or_code);
+	let icon = new L.Icon({
+		iconUrl: 'images/marker-icon.png',
+		iconSize: [25, 41],
+		iconAnchor: [12, 41],
+		popupAnchor: [1, -34]
+	});
+	icon.options.shadowSize = [0,0];
 	let start = Date.now();
 	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
 	map = L.map('map', {
@@ -150,27 +167,31 @@ async function init_map() {
 		showCoverageOnHover: false
 	}).addTo(map);
 
+
 	function generate_popup_text(stop, routes) {
-		let popup = html_comp('div');
-		let p1 = html_comp('p', {class: 'my-1 fs-6 mb-1 text-center', text: get_stop_string(stop)})
-		let p2 = html_comp('p', {class: 'my-1 fs-6 text-center'});
-		routes.map(route => {
-			p2.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.line}))
-			p2.appendChild(document.createTextNode(' '));
-		});
+		let popup = html_comp('div', {class: 'text-center'});
+		let p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', text: get_stop_string(stop)})
+		let p2 = html_comp('p', {class: 'my-1 fs-6'});
+		generate_routes_thumbs(routes, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
 		popup.appendChild(generate_schedule_departure_board_buttons(stop.code));
 		return popup;
 	}
-	let total_match_time = 0;
-	for(const stop of data.stops) {
-		let stop_directions = stop.direction_codes;
-		let routes = data.routes.filter(route => route.direction_codes.some(route_dir_code => stop_directions.includes(route_dir_code)));
-		let popup = generate_popup_text(stop, routes);
-		let marker = L.marker(stop.coords)
-		.bindPopup(popup);
-		let route_types = routes.map(route => route.type);
+	const stops_list = document.querySelector('#stops_list');
+	let curently_shown_stops = 0;
+	for(let stop of data.stops) {
+		stops_list.appendChild(generate_stop_row(stop));
+		curently_shown_stops++;
+		if(curently_shown_stops>maximum_stops_shwon_at_once) {
+			stops_list.children.item(curently_shown_stops-1).classList.add('d-none');
+		}
+		let stop_routes = stop.route_indexes.map(index => data.routes[index]);
+		let popup = generate_popup_text(stop, stop_routes);
+		let marker = L.marker(stop.coords, {icon: icon})
+		.bindPopup(popup, {maxWidth: 340, closeButton: false});
+		stop.marker = marker;
+		let route_types = stop_routes.map(route => route.type);
 		if(route_types.includes(main_types.metro)){
 			marker_groups.metro.push(marker);
 		}
@@ -204,6 +225,7 @@ async function init_map() {
 	};
 	L.control.layers([], overlays, {collapsed: true}).addTo(map);
 	console.log(`Took ${Date.now()-start} ms to generate map`);
+	show_favourite_stops();
 }
 function check_metadata(){
 	return fetch('data/metadata.json')
@@ -265,7 +287,6 @@ function fetch_data(metadata=false){
 		};
 		init_schedules_data(organised_data);
 		init_schedules();
-		init_favourites();
 	})
 	.then(() => {
 		document.body.classList.remove('no-scroll');
@@ -299,7 +320,7 @@ window.addEventListener('pushstate', function(event) {
 
 function handle_page_change() {
 	let hash = decodeURIComponent(window.location.hash).replace('#', '').split('/');
-	let main_tab_index = ['schedules', 'favourite_stops', 'stops_map'].indexOf(hash[0]);
+	let main_tab_index = ['schedules', 'stops_map'].indexOf(hash[0]);
 	let globals = get_globals_from_hash(hash);
 	console.log('detected globals', globals);
 	if(globals.is_stop || globals.is_route) {

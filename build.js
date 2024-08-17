@@ -14,7 +14,7 @@ const main_types = ['metro', 'tram', 'trolley', 'bus'];
 //const init_get_polylines = require('./build_polylines.js');
 
 var metadata = {
-	app_version: '2024-08-02',
+	app_version: '2024-08-17',
 	retrieval_date: new Date().toISOString().split('T')[0],
 	hashes: {}
 };

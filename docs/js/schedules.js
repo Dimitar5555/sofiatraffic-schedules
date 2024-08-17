@@ -34,19 +34,6 @@ function init_schedules_data(loc_data){
 		route.direction_codes = [];
 	});
 
-	//add directions to stops
-	loc_data.stops.forEach(stop => {
-		stop.direction_codes = [];
-	});
-	loc_data.directions.forEach(direction => {
-		direction.stops.forEach(stop_code => {
-			var stop_index = loc_data.stops.findIndex(stop => stop.code==stop_code);
-			if(stop_index!=-1 && loc_data.stops[stop_index].direction_codes.indexOf(direction.code)==-1){
-				loc_data.stops[stop_index].direction_codes.push(direction.code);
-			}
-		});
-	});
-
 	//add indexes to stop_times
 	loc_data.stop_times.forEach((stop_time, index) => stop_time.index = index);
 
@@ -61,8 +48,57 @@ function init_schedules_data(loc_data){
 		}
 	});
 
+	//add directions and routes to stops
+	loc_data.stops.forEach(stop => {
+		stop.direction_codes = [];
+		stop.route_indexes = [];
+	});
+	loc_data.directions.forEach(direction => {
+		let route_index = loc_data.routes.findIndex(route => route.direction_codes.includes(direction.code));
+		direction.stops.forEach(stop_code => {
+			var stop_index = loc_data.stops.findIndex(stop => stop.code==stop_code);
+			if(stop_index!=-1) {
+				let stop = loc_data.stops[stop_index];
+				if(!stop.direction_codes.includes(direction.code)){
+					stop.direction_codes.push(direction.code);
+				}
+				if(!stop.route_indexes.includes(route_index)) {
+					stop.route_indexes.push(route_index);
+				}
+			}
+		});
+	});
+
+	loc_data.stops.forEach(stop => {
+		stop.route_indexes.sort((a, b) => a-b);
+	});
+
 	data = loc_data;
 }
+
+function generate_routes_thumbs(routes, parent) {
+	routes.map(route => {
+		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.line}))
+		parent.appendChild(document.createTextNode(' '));
+	});
+}
+
+function generate_stop_row(stop) {
+	let tr = html_comp('tr', {'data-stop-code': stop.code});
+	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
+	tr.appendChild(html_comp('td', {text: get_stop_name(stop), class: 'align-middle'}));
+
+	let lines_td = html_comp('td');
+	let routes = stop.route_indexes.map(index => data.routes[index]);
+	generate_routes_thumbs(routes, lines_td);
+	tr.appendChild(lines_td);
+
+	let td1 = html_comp('td');
+	td1.appendChild(generate_schedule_departure_board_buttons(stop.code, true, true));
+	tr.appendChild(td1);
+	return tr;
+}
+
 function get_routes_by_type(type){
 	if(main_types[type]){
 		return data.routes.filter(route => route.type === type && !route.subtype);
@@ -154,6 +190,32 @@ function update_stop_labels(){
 	let string = path.reduce((acc, cur) => acc[cur], lang);
 	stop_labels.forEach(label => label.innerText = string);
 }
+
+function filter_stops(text) {
+	let code = parseInt(text);
+	text = text.toUpperCase();
+	let show_stops = [];
+	if(Number.isFinite(code)) {
+		let str_code = code.toString();
+		show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
+	}
+	if(!Number.isFinite(code) || show_stops.length == 0) {
+		show_stops = data.stops.filter(stop => stop.names[lang.code].includes(text)).map(stop => stop.code);
+	}
+
+	let stops_trs = document.querySelectorAll('tr[data-stop-code]');
+	let currently_shown_stops = 0;
+	for(let stop_row of stops_trs) {
+		if(!stop_row.dataset.hidden && currently_shown_stops<=maximum_stops_shwon_at_once && show_stops.includes(Number(stop_row.dataset.stopCode))) {
+			stop_row.classList.remove('d-none');
+			currently_shown_stops++;
+		}
+		else {
+			stop_row.classList.add('d-none');
+		}
+	}
+}
+
 function show_schedule(new_globals, overwrite_selectors=false, update_url=false){
 	console.log('show_schedule called', new_globals)
 	if(new_globals.is_route){
@@ -631,7 +693,7 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 	table.querySelector('tbody').replaceWith(new_tbody);
 }
 
-async function load_virtual_table(stop_code) {
+async function load_virtual_board(stop_code) {
 	const date = new Date;
 	let generated_at_el = document.querySelector('#generated_at');
 	generated_at_el.innerText = '';

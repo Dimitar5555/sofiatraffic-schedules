@@ -40,31 +40,61 @@ function format_date_string(string){
 function is_metro_stop(stop_code){
     return Number(stop_code)>2900 && Number(stop_code)<3400
 }
-function generate_schedule_departure_board_buttons (stop_code, parent=false) {
-    var btn_group = html_comp('div', {class: 'btn-group'});
-    btn_group.appendChild(html_comp('button', {
+function generate_schedule_departure_board_buttons (stop_code, only_icons=false, show_pan_btn=false) {
+    let btn_group = html_comp('div', {class: 'btn-group'});
+    let virtual_board_btn = html_comp('button', {
         'data-code': stop_code,
         'data-bs-toggle':'modal',
         'data-bs-target': '#sofiatraffic_live_data',
-        text: lang.actions.virtual_table,
-        onclick: 'load_virtual_table(this.dataset.code)',
+        onclick: 'load_virtual_board(this.dataset.code)',
         class: 'btn btn-outline-primary'
-    }));
-    btn_group.appendChild(html_comp('a', {
-        text: lang.schedules.schedule,
-        //'data-code': stop_code,
-        //onclick: `show_schedule({stop_code: this.dataset.code, is_stop: true})`,
+    });
+    virtual_board_btn.appendChild(html_comp('i', {class: 'bi bi-clock'}));
+
+    let stop_schedule_btn = html_comp('a', {
         class: 'btn btn-outline-primary',
         href: `#stop/${stop_code}/`
-    }));
+    });
+    stop_schedule_btn.appendChild(html_comp('i', {class: 'bi bi-table'}));
+
+    btn_group.appendChild(virtual_board_btn);
+    btn_group.appendChild(stop_schedule_btn);
+    
+    if(show_pan_btn) {
+        let pan_btn = html_comp('button', {
+            class: 'btn btn-outline-primary',
+            onclick: `zoom_to_stop(${stop_code})`
+        });
+        pan_btn.appendChild(html_comp('i', {class: 'bi bi-crosshair'}));
+        pan_btn.setAttribute('title', lang.actions.locate_stop_on_map);
+        btn_group.appendChild(pan_btn);
+    }
+    if(!only_icons) {
+        virtual_board_btn.classList.add('text-nowrap')
+        virtual_board_btn.appendChild(html_comp('span', {text: ` ${lang.actions.virtual_board}`, class: 'd-none d-md-inline'}));
+        stop_schedule_btn.classList.add('text-nowrap')
+        stop_schedule_btn.appendChild(html_comp('span', {text: ` ${lang.actions.schedule}`, class: 'd-none d-md-inline'}));
+    }
+    else {
+        virtual_board_btn.setAttribute('title', lang.actions.virtual_board);
+        stop_schedule_btn.setAttribute('title', lang.actions.stop_schedule);
+    }
+
     if(is_metro_stop(stop_code)){
-        btn_group.children.item(0).setAttribute('disabled', '');
+        virtual_board_btn.setAttribute('disabled', '');
     }
-    if(!parent){
-        return btn_group;
-    }
-    parent.appendChild(btn_group);
+
+    return btn_group;
 }
+
+function zoom_to_stop(stop_code) {
+    let marker = get_stop(stop_code).marker;
+    map.flyTo(marker.getLatLng(), 17, {
+		animate: false
+	});
+    marker.openPopup();
+}
+
 function html_comp(tag, attributes={}){
 	var el = document.createElement(tag);
 	var keys = Object.keys(attributes);

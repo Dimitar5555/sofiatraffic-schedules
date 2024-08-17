@@ -83,8 +83,13 @@ self.addEventListener('fetch', function(e) {
 	// Handle internal requests (same origin)
 	if (url.origin === location.origin) {
 		e.respondWith(
-			caches.match(e.request).then(function(response) {
-				return response || fetch(e.request);
+			fetch(e.request).then(function(networkResponse) {
+				return networkResponse;
+			})
+			.catch(() => {
+				caches.match(e.request).then(function(response) {
+					return response;
+				});
 			})
 		);
 	}

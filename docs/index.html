@@ -15,8 +15,7 @@
 	<meta name="description" content="Актуални разписания на софийския градски транспорт.">
 	<script src="js/bootstrap.bundle.min.js"></script>
     <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	<script src="js/leaflet.js"></script>
 
 	<script defer src="js/leaflet.markercluster.js"></script>
 	<script defer src="js/leaflet.featuregroup.subgroup.js"></script>
@@ -68,7 +67,7 @@
 	<div class="wrapper p-2">
 		<nav class="nav nav-pills nav-justified" id="nav-main" role="tablist">
 			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedules" class="nav-item nav-link active" href="#schedules" onclick="navigate_to_home();"></a>
-			<a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favourite_stops" class="nav-item nav-link" href="#favourite_stops" onclick="manual_push_state(this.href)"></a>
+			<!-- <a data-bs-toggle="pill" data-i18n="nav.favourites" data-bs-target="#favourite_stops" class="nav-item nav-link" href="#favourite_stops" onclick="manual_push_state(this.href)"></a> -->
 			<a data-bs-toggle="pill" data-i18n="nav.map" data-bs-target="#stops_map" class="nav-item nav-link" href="#stops_map" onclick="manual_push_state(this.href); init_map();"></a>
 		</nav>
 		<div class="tab-content" id="nav-mainContent">
@@ -200,7 +199,7 @@
 						<div class="row m-2">
 							<div class="col col-4 col-md-3"></div>
 							<div class="col col-8 col-md-4">
-								<button data-i18n="actions.virtual_table" data-bs-toggle="modal" data-bs-target="#sofiatraffic_live_data" onclick="load_virtual_table(current.stop_code)" class="btn btn-outline-primary text-nowrap"></button>
+								<button data-i18n="actions.virtual_board" data-bs-toggle="modal" data-bs-target="#sofiatraffic_live_data" onclick="load_virtual_board(current.stop_code)" class="btn btn-outline-primary text-nowrap"></button>
 							</div>
 						</div>
 					</div>
@@ -208,19 +207,31 @@
 					<div id="stop_schedule_tables"></div>
 				</div>
 			</div>
-			<div class="tab-pane p-2 fade" id="favourite_stops" role="tabpanel">
-				<table id="favourite_stops_table" class="table table-bordered">
-					<thead>
-						<tr>
-							<th data-i18n="favourites.stop" colspan="2"></th>
-							<th data-i18n="favourites.actions"></th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
 			<div class="tab-pane p-2 fade" id="stops_map" role="tabpanel">
-				<div id="map"></div>
+				<div class="row">
+					<div class="col col-12 col-lg-5"> 
+						<input class="form-control my-3" name="search_for_stop" type="text" oninput="filter_stops(this.value)">
+						<table class="table table-bordered table-sm">
+							<thead>
+								<tr>
+									<th data-i18n="schedules.stop" colspan="2"></th>
+									<th data-i18n="schedules.routes"></th>
+									<th data-i18n="actions.actions"></th>
+								</tr>
+							</thead>
+							<tbody id="favourite_stops_tbody">
+								<tr>
+									<th data-i18n="schedules.favourite_stops" colspan="4"></th>
+								</td>
+							</tbody>
+							<th data-i18n="schedules.stops" colspan="4"></th>
+							<tbody id="stops_list"></tbody>
+						</table>
+					</div>
+					<div class="col col-12 col-lg-7">
+						<div id="map"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -267,7 +278,7 @@
 				</table>
 				<span data-i18n="other.generated_at"></span>
 				<span id="generated_at"></span>
-				<button class="btn btn-primary" onclick="load_virtual_table(this.dataset.code)"><i class="bi bi-arrow-repeat"></i> <span data-i18n="actions.refresh"></span></button>
+				<button class="btn btn-primary" onclick="load_virtual_board(this.dataset.code)"><i class="bi bi-arrow-repeat"></i> <span data-i18n="actions.refresh"></span></button>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="actions.close"></button>

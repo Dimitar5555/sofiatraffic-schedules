@@ -46,7 +46,7 @@
 	"favourites":{
 		"stop":"Stop",
 		"actions":"Actions",
-		"virtual_table":"Virtual departure board"
+		"virtual_board":"Virtual departure board"
 	},
 	"footer":{
 		"last_data_update":"Last data update",
@@ -60,7 +60,7 @@
 	"actions":{
 		"back":" Back",
 		"schedule": "Schedule",
-		"virtual_table": "Virtual Board",
+		"virtual_board": "Virtual Board",
 		"show_stop_schedule": "Stop Schedule",
 		"close":"Close",
 		"refresh": "Refresh"

@@ -34,3 +34,6 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-arrow-left::before { content: "\f12f"; }
 .bi-arrow-repeat::before { content: "\f130"; }
 .bi-check::before { content: "\f26e"; }
+.bi-clock::before { content: "\f293"; }
+.bi-table::before { content: "\f5AA"; }
+.bi-crosshair::before { content: "\f769"; }
