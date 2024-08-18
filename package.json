@@ -14,7 +14,9 @@
   "dependencies": {
     "@mapbox/polyline": "^1.2.1",
     "crypto": "^1.0.1",
-    "fs": "^0.0.1-security",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
     "http-server": "^14.1.1"
   }
 }
