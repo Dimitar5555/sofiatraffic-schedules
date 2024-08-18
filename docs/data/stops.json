@@ -2810,7 +2810,6 @@
 {"code":6694,"coords":[42.6343,23.31045],"names":{"bg":"ГРОБИЩЕН ПАРК ДРАГАЛЕВЦИ - ВРЕМЕННА","en":"GROBISHTEN PARK DRAGALEVTSI - VREMENNA"}},
 {"code":6695,"coords":[42.63423,23.31033],"names":{"bg":"ГРОБИЩЕН ПАРК ДРАГАЛЕВЦИ - ВРЕМЕННА","en":"GROBISHTEN PARK DRAGALEVTSI - VREMENNA"}},
 {"code":6696,"coords":[42.63096,23.30609],"names":{"bg":"УЛ. ЛЕШНИКОВА ГОРА - ВРЕМЕННА","en":"UL. LESHNIKOVA GORA - VREMENNA"}},
-{"code":6702,"coords":[42.67975,23.24026],"names":{"bg":"МЕТРОСТАНЦИЯ ГОРНА БАНЯ"}},
 {"code":6704,"coords":[42.62945,23.31303],"names":{"bg":"УЛ. ПАПРАТ - ВРЕМЕННА"}},
 {"code":6707,"coords":[42.73488,23.29339],"names":{"bg":"МЕТРОСТАНЦИЯ БЕЛИ ДУНАВ","en":"METROSTANTSIA BELI DUNAV"}},
 {"code":6708,"coords":[42.73478,23.2937],"names":{"bg":"МЕТРОСТАНЦИЯ БЕЛИ ДУНАВ","en":"METROSTANTSIA BELI DUNAV"}},
@@ -2820,10 +2819,10 @@
 {"code":6728,"coords":[42.71551,23.29122],"names":{"bg":"УЛ. БИЛЯНИНИ ИЗВОРИ","en":"UL. BILYANINI IZVORI"}},
 {"code":6729,"coords":[42.71567,23.2914],"names":{"bg":"УЛ. БИЛЯНИНИ ИЗВОРИ","en":"UL. BILYANINI IZVORI"}},
 {"code":6730,"coords":[42.71461,23.29129],"names":{"bg":"ЖК ЗАХАРНА ФАБРИКА","en":"ZHK ZAHARNA FABRIKA"}},
+{"code":6732,"coords":[42.69563,23.33375],"names":{"bg":"ПЛ.СВ. АЛЕКСАНДЪР НЕВСКИ"}},
 {"code":6818,"coords":[42.73855,23.31784],"names":{"bg":"СТОКОВ БАЗАР ИЛИЯНЦИ","en":"STOKOV BAZAR ILIYANTSI"}},
 {"code":6819,"coords":[42.62765,23.31401],"names":{"bg":"УЛ. МАЕСТРО АТАНАСОВ - ВРЕМЕННА","en":"UL. MAESTRO ATANASOV - VREMENNA"}},
 {"code":6820,"coords":[42.62538,23.31742],"names":{"bg":"УЛ. 243 - ВРЕМЕННА","en":"UL. 243 - VREMENNA"}},
 {"code":6821,"coords":[42.6294,23.3162],"names":{"bg":"УЛ. ПАНАЙОТ ПИПКОВ - ВРЕМЕННА","en":"UL. PANAYOT PIPKOV - VREMENNA"}},
-{"code":6822,"coords":[42.63198,23.31515],"names":{"bg":"УЛ. ЛАГАДИНА - ВРЕМЕННА","en":"UL. LAGADINA - VREMENNA"}},
-{"code":6823,"coords":[42.6571,23.27175],"names":{"bg":"НИМ - ВРЕМЕННА"}}
+{"code":6822,"coords":[42.63198,23.31515],"names":{"bg":"УЛ. ЛАГАДИНА - ВРЕМЕННА","en":"UL. LAGADINA - VREMENNA"}}
 ]
