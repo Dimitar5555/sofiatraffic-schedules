@@ -546,11 +546,6 @@
 <priority>0.8</priority>
 </url>
 <url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#bus/200/</loc>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#bus/204/</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -14721,11 +14716,6 @@
 <priority>0.8</priority>
 </url>
 <url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#stop/6702/</loc>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#stop/6704/</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -14771,6 +14761,11 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#stop/6732/</loc>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#stop/6818/</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -14792,11 +14787,6 @@
 </url>
 <url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#stop/6822/</loc>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#stop/6823/</loc>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>

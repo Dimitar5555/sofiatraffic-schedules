@@ -21,6 +21,8 @@ var metadata = {
 
 const timeout = 1000; // ms
 
+const routes_limit = 0; // used for debugging
+
 Array.prototype.find2DIndex = function(searching_for){
 	var array = this.map(item => JSON.stringify(item));
 	var searching_for = JSON.stringify(searching_for);
@@ -343,9 +345,14 @@ async function fetch_all_data() {
 
 		process_osm_stops_data(stops, data[2]);
 		stops.sort((a, b) => a.code-b.code);
+		
+		// routes = routes.filter(route => route.type == 'tram');
 
 		let route_index = 0;
 		for(route of routes) {
+			if(route_index > routes_limit && routes_limit != 0) {
+				break;
+			}
 			await fetch_schedule_data(route)
 			.then(data => process_schedule_data(data, route_index, trips.length, route.type == 'metro'))
 			.then(data => {
@@ -381,6 +388,42 @@ async function fetch_all_data() {
 				console.log(`Processed ${st_index}/${st_length}`)
 			}
 		});
+
+		// patch SUMC fake partial courses which represent driver changes
+		const do_stop_times_match = (st1, st2) => {
+			return st2.trip == st1.trip && JSON.stringify(st2.times) == JSON.stringify(st1.times);
+		}
+
+		let partial_courses_from_depot = stop_times.filter(st => st.times[0] == null);
+		let partial_courses_to_depot = stop_times.filter(st => st.times.toReversed()[0] == null);
+		
+		for(let st_to_depot of partial_courses_to_depot) {
+			let st_from_depot = partial_courses_from_depot.find(st_from_depot => {
+				if(st_from_depot.trip != st_to_depot.trip) {
+					return false;
+				}
+				let first_time_index = st_from_depot.times.findIndex(time => time != null);
+				let first_time = st_from_depot.times[first_time_index];
+				let last_time_index = st_to_depot.times.findLastIndex(time => time != null);
+				let last_time = st_to_depot.times[last_time_index];
+				return last_time == first_time && first_time_index == last_time_index;
+			});
+			if(st_from_depot) {
+				console.log(st_to_depot, st_from_depot)
+				let st_from_depot_index = stop_times.findIndex(st => do_stop_times_match(st, st_to_depot));
+				let st_to_depot_index = stop_times.findIndex(st => do_stop_times_match(st, st_from_depot));
+				console.log(st_to_depot_index, st_from_depot_index)
+				let destination = stop_times[st_to_depot_index].times;
+				let source = stop_times[st_from_depot_index].times;
+				console.log(destination, source)
+				source.forEach((time, time_index) => {
+					if(time != null) {
+						destination[time_index] = time;
+					}
+				});
+				stop_times.splice(st_from_depot_index, 1);
+			}
+		}
 
 		// sort directions by code
 		directions.sort((a, b) => a.code - b.code);
