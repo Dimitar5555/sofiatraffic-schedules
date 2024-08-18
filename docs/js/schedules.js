@@ -192,7 +192,7 @@ function update_stop_labels(){
 }
 
 function filter_stops(text) {
-	let code = parseInt(text);
+	let code = Number(text);
 	text = text.toUpperCase();
 	let show_stops = [];
 	if(Number.isFinite(code)) {

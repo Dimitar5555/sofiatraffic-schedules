@@ -134,7 +134,7 @@ is_map_done = false;
 async function init_map() {
 	if(is_map_done) {
 		show_favourite_stops();
-		filter_stops(document.querySelector('name="search_for_stop"]').value);
+		filter_stops(document.querySelector('[name="search_for_stop"]').value);
 		return;
 	}
 	is_map_done = true;
