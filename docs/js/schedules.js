@@ -88,14 +88,19 @@ function generate_stop_row(stop) {
 	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
 	tr.appendChild(html_comp('td', {text: get_stop_name(stop), class: 'align-middle'}));
 
-	let lines_td = html_comp('td');
+	let lines_td = html_comp('td', {class: 'align-middle'});
 	let routes = stop.route_indexes.map(index => data.routes[index]);
 	generate_routes_thumbs(routes, lines_td);
 	tr.appendChild(lines_td);
 
-	let td1 = html_comp('td');
-	td1.appendChild(generate_schedule_departure_board_buttons(stop.code, true, true));
-	tr.appendChild(td1);
+	let td3 = html_comp('td');
+	let btn_group_1 = generate_schedule_departure_board_buttons(stop.code, true, true);
+	let btn_group_2 = btn_group_1.cloneNode(true);
+	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
+	btn_group_2.setAttribute('class', 'btn-group-vertical d-block d-md-none');
+	td3.appendChild(btn_group_1);
+	td3.appendChild(btn_group_2);
+	tr.appendChild(td3);
 	return tr;
 }
 
