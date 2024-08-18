@@ -110,7 +110,7 @@ function init(debug=false){
 				el.innerHTML = debug?`{{${el.dataset.i18n}}}`:string;
 			}
 			catch(err) {
-				alert(el.dataset.i18n)
+				console.error(`Missing string: ${el.dataset.i18n}`)
 			}
         });
 	});
@@ -286,6 +286,7 @@ function fetch_data(metadata=false){
 			stop_times: response[4]
 		};
 		init_schedules_data(organised_data);
+		init_favourites();
 		init_schedules();
 	})
 	.then(() => {
