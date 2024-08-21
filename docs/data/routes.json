@@ -31,12 +31,8 @@
 {"line":9,"type":"trolley"},
 {"line":11,"type":"trolley"},
 {"line":1,"type":"bus"},
-{"line":"N 1","type":"bus"},
-{"line":"N 2","type":"bus"},
 {"line":3,"type":"bus"},
-{"line":"N 3","type":"bus"},
 {"line":4,"type":"bus"},
-{"line":"N 4","type":"bus"},
 {"line":5,"type":"bus"},
 {"line":6,"type":"bus"},
 {"line":7,"type":"bus"},
@@ -131,5 +127,9 @@
 {"line":802,"type":"bus"},
 {"line":803,"type":"bus"},
 {"line":804,"type":"bus"},
-{"line":805,"type":"bus"}
+{"line":805,"type":"bus"},
+{"line":"N1","subtype":"night","type":"bus"},
+{"line":"N2","subtype":"night","type":"bus"},
+{"line":"N3","subtype":"night","type":"bus"},
+{"line":"N4","subtype":"night","type":"bus"}
 ]
