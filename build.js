@@ -211,7 +211,7 @@ function process_routes_data(input_routes) {
 		};
 
 		let line = output_route.temp_ref == output_route.line?output_route.temp_ref:output_route.line;
-		if(typeof line == 'string' && line.startsWith('Н')) {
+		if(typeof line == 'string' && line.startsWith('N')) {
 			line = `N${output_route.temp_ref}`;
 			output_route.subtype = 'night';
 		}
