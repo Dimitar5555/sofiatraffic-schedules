@@ -37,7 +37,7 @@ jobs:
         remove: ''
         cwd: 'docs/data/'
         pull: '--rebase --autostash'
-        default_actuor: 'github_actor'
+        default_author: 'github_actor'
   # Build job
   build:
     runs-on: ubuntu-latest
