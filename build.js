@@ -409,13 +409,11 @@ async function fetch_all_data() {
 				return last_time == first_time && first_time_index == last_time_index;
 			});
 			if(st_from_depot) {
-				console.log(st_to_depot, st_from_depot)
 				let st_from_depot_index = stop_times.findIndex(st => do_stop_times_match(st, st_to_depot));
 				let st_to_depot_index = stop_times.findIndex(st => do_stop_times_match(st, st_from_depot));
-				console.log(st_to_depot_index, st_from_depot_index)
 				let destination = stop_times[st_to_depot_index].times;
 				let source = stop_times[st_from_depot_index].times;
-				console.log(destination, source)
+
 				source.forEach((time, time_index) => {
 					if(time != null) {
 						destination[time_index] = time;
