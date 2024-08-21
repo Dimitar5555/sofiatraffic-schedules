@@ -13,7 +13,6 @@
   "license": "GPL-3.0",
   "dependencies": {
     "@mapbox/polyline": "^1.2.1",
-    "crypto": "^1.0.1",
     "fs": "^0.0.1-security"
   },
   "devDependencies": {
