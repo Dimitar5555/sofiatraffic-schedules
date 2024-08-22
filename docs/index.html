@@ -127,9 +127,9 @@
 						</div>
 						<div class="col col-8 col-md-5">
 							<form id="date_type">
-								<input class="form-check-input" onchange="show_schedule({is_weekend: this.value === '1', stop_code: current.stop_code, is_route: true}, false, true)" type="radio" name="route_schedule_type" value="0" id="route_schedule_type_weekday" checked>
+								<input class="form-check-input" onchange="current.is_weekend=false;updateURL()" type="radio" name="route_schedule_type" value="0" id="route_schedule_type_weekday" checked>
 								<label data-i18n="weekdays.weekday" for="route_schedule_type_weekday"></label>
-								<input class="form-check-input" onchange="show_schedule({is_weekend: this.value === '1', stop_code: current.stop_code, is_route: true}, false, true)" type="radio" name="route_schedule_type" value="1" id="route_schedule_type_weekend">
+								<input class="form-check-input" onchange="current.is_weekend=true;updateURL()" type="radio" name="route_schedule_type" value="1" id="route_schedule_type_weekend">
 								<label data-i18n="weekdays.weekend" for="route_schedule_type_weekend"></label>
 							</form>
 						</div>
@@ -147,7 +147,7 @@
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
 						<div class="col col-12 col-sm-8 col-md-9">
-							<select class="form-select" onchange="show_schedule({direction: this.value, is_route: true}, false, true)" id="direction"></select>
+							<select class="form-select" onchange="current.direction = data.directions.find(dir => dir.code == this.value); updateURL();" id="direction"></select>
 						</div>
 					</div>
 					<div class="row m-2">
@@ -157,7 +157,7 @@
 						<div class="col col-12 col-sm-8 col-md-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
 							<div class="d-flex flex-nowrap flex-grow-1">
 								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="add_remove_favourite_stop(Number(this.nextElementSibling.value))"></i>
-								<select class="form-select d-inline-block" onchange="show_schedule({stop_code: this.value, is_route: true}, false, true)" id="route_stop_selector"></select>
+								<select class="form-select d-inline-block" onchange="current.stop_code = Number(this.value); updateURL();" id="route_stop_selector"></select>
 							</div>
 							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>
 						</div>
@@ -207,16 +207,16 @@
 					<div id="stop_schedule_tables"></div>
 				</div>
 			</div>
-			<div class="tab-pane p-2 fade" id="stops_map" role="tabpanel">
+			<div class="tab-pane p-2 fade" role="tabpanel" id="stops_map">
 				<div class="row">
 					<div class="col col-12 col-lg-5"> 
 						<input class="form-control my-3" name="search_for_stop" type="text" oninput="filter_stops(this.value)">
 						<table class="table table-bordered table-sm">
 							<thead>
 								<tr>
-									<th data-i18n="schedules.stop" colspan="2" class="col-3"></th>
-									<th data-i18n="schedules.routes"></th>
-									<th data-i18n="actions.actions" class="col-2 col-sm-2"></th>
+									<th data-i18n="schedules.stop" colspan="2" class="col-4"></th>
+									<th data-i18n="schedules.routes" class="col-5"></th>
+									<th data-i18n="actions.actions" class=""></th>
 								</tr>
 							</thead>
 							<tbody id="favourite_stops_tbody">
@@ -312,6 +312,7 @@
 	</footer>
 	<script defer src="js/utilities.js"></script>
 	<script defer src="js/app.js"></script>
+	<script defer src="js/navigation.js"></script>
 	<script defer src="js/schedules.js"></script>
 	<script defer src="js/favourites.js"></script>
 </body>

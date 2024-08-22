@@ -1,3 +1,5 @@
+const url_prefix = '#';
+
 function format_stop_code(stop_code){
     if(!stop_code) {
         return '????'
@@ -40,27 +42,61 @@ function format_date_string(string){
 function is_metro_stop(stop_code){
     return Number(stop_code)>2900 && Number(stop_code)<3400
 }
-function generate_schedule_departure_board_buttons (stop_code, only_icons=false, show_pan_btn=false) {
+
+function generate_stop_action_buttons(stop_code, options={}) {
+    if(!options.icons_only) {
+        options.icons_only = false;
+    }
+    if(!options.virtual_board_btn && options.virtual_board_btn != false) {
+        options.virtual_board_btn = true;
+    }
+    if(!options.stop_schedule_btn && options.stop_schedule_btn != false) {
+        options.stop_schedule_btn = true;
+    }
+    if(!options.pan_btn) {
+        options.pan_btn = false;
+    }
+
     let btn_group = html_comp('div', {class: 'btn-group'});
-    let virtual_board_btn = html_comp('button', {
-        'data-code': stop_code,
-        'data-bs-toggle':'modal',
-        'data-bs-target': '#sofiatraffic_live_data',
-        onclick: 'load_virtual_board(this.dataset.code)',
-        class: 'btn btn-outline-primary'
-    });
-    virtual_board_btn.appendChild(html_comp('i', {class: 'bi bi-clock'}));
-
-    let stop_schedule_btn = html_comp('a', {
-        class: 'btn btn-outline-primary',
-        href: `#stop/${stop_code}/`
-    });
-    stop_schedule_btn.appendChild(html_comp('i', {class: 'bi bi-table'}));
-
-    btn_group.appendChild(virtual_board_btn);
-    btn_group.appendChild(stop_schedule_btn);
+    if(options.virtual_board_btn) {
+        let virtual_board_btn = html_comp('button', {
+            'data-code': stop_code,
+            'data-bs-toggle':'modal',
+            'data-bs-target': '#sofiatraffic_live_data',
+            onclick: 'load_virtual_board(this.dataset.code)',
+            class: 'btn btn-outline-primary'
+        });
+        if(is_metro_stop(stop_code)){
+            virtual_board_btn.setAttribute('disabled', '');
+        }
+        virtual_board_btn.appendChild(html_comp('i', {class: 'bi bi-clock'}));
+        if(!options.icons_only) {
+            virtual_board_btn.classList.add('text-nowrap')
+            virtual_board_btn.appendChild(html_comp('span', {text: ` ${lang.actions.virtual_board}`, class: 'd-none d-md-inline'}));
+        }
+        else {
+            virtual_board_btn.setAttribute('title', lang.actions.virtual_board);
+        }
+        btn_group.appendChild(virtual_board_btn);
+    }
     
-    if(show_pan_btn) {
+    if(options.stop_schedule_btn) {
+        let stop_schedule_btn = html_comp('a', {
+            class: 'btn btn-outline-primary',
+            href: `${url_prefix}stop/${stop_code}/`
+        });
+        stop_schedule_btn.appendChild(html_comp('i', {class: 'bi bi-table'}));
+        if(!options.icons_only) {
+            stop_schedule_btn.classList.add('text-nowrap')
+            stop_schedule_btn.appendChild(html_comp('span', {text: ` ${lang.actions.schedule}`, class: 'd-none d-md-inline'}));
+        }
+        else {
+            stop_schedule_btn.setAttribute('title', lang.actions.stop_schedule);
+        }
+        btn_group.appendChild(stop_schedule_btn);
+    }
+
+    if(options.pan_btn) {
         let pan_btn = html_comp('button', {
             class: 'btn btn-outline-primary',
             onclick: `zoom_to_stop(${stop_code})`
@@ -69,21 +105,6 @@ function generate_schedule_departure_board_buttons (stop_code, only_icons=false,
         pan_btn.setAttribute('title', lang.actions.locate_stop_on_map);
         btn_group.appendChild(pan_btn);
     }
-    if(!only_icons) {
-        virtual_board_btn.classList.add('text-nowrap')
-        virtual_board_btn.appendChild(html_comp('span', {text: ` ${lang.actions.virtual_board}`, class: 'd-none d-md-inline'}));
-        stop_schedule_btn.classList.add('text-nowrap')
-        stop_schedule_btn.appendChild(html_comp('span', {text: ` ${lang.actions.schedule}`, class: 'd-none d-md-inline'}));
-    }
-    else {
-        virtual_board_btn.setAttribute('title', lang.actions.virtual_board);
-        stop_schedule_btn.setAttribute('title', lang.actions.stop_schedule);
-    }
-
-    if(is_metro_stop(stop_code)){
-        virtual_board_btn.setAttribute('disabled', '');
-    }
-
     return btn_group;
 }
 
@@ -111,7 +132,8 @@ function generate_line_btn(route){
 		text: route.line,
 		class: `line_selector_btn  rounded-1 ${get_route_colour_classes(route)} fs-5 fw-bolder`,
 		//'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`,
-        href: `#${route.type}/${route.line}/`
+        href: `${url_prefix}${route.type}/${route.line}/`,
+        //onclick: 'event.preventDefault(); manual_push_state(this.href);'
 	});
 	return el;
 }

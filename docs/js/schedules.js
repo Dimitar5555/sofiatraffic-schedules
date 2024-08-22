@@ -93,8 +93,8 @@ function generate_stop_row(stop) {
 	generate_routes_thumbs(routes, lines_td);
 	tr.appendChild(lines_td);
 
-	let td3 = html_comp('td');
-	let btn_group_1 = generate_schedule_departure_board_buttons(stop.code, true, true);
+	let td3 = html_comp('td', {class: 'align-middle'});
+	let btn_group_1 = generate_stop_action_buttons(stop.code, {pan_btn: true, icons_only: true});
 	let btn_group_2 = btn_group_1.cloneNode(true);
 	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
 	btn_group_2.setAttribute('class', 'btn-group-vertical d-block d-md-none');
@@ -252,9 +252,6 @@ function show_schedule(new_globals, overwrite_selectors=false, update_url=false)
 		configure_favourite_stop_button();
 		configure_favourite_line_button();
 	}
-	if(update_url){
-		updateURL();
-	}
 }
 
 function are_options_matching(current_options, required_options) {
@@ -312,7 +309,7 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	else{
 		btn_group.children.item(0).removeAttribute('disabled');
 	}
-	btn_group.children.item(1).setAttribute('href', `#stop/${current.stop_code}/`);
+	btn_group.children.item(1).setAttribute('href', `${url_prefix}stop/${current.stop_code}/`);
 
 	display_schedule();
 }
@@ -343,6 +340,7 @@ function configure_weekday_selector(values, selected_index){
 			selected_index = 0;
 		}
 	}
+
 	remove_d_none.forEach(el => el.classList.remove('d-none'));
 	add_d_none.forEach(el => el.classList.add('d-none'));
 	is_weekend_options[selected_index].checked = true;
@@ -353,30 +351,31 @@ function generate_from_to_text(stops){
 	return `${start_stop} => ${end_stop}`;
 }
 function configure_direction_selector(possible_directions, selected_index){
-	var old_directions_select = schedule_div.querySelector('#direction');
+	let old_directions_select = schedule_div.querySelector('#direction');
+	let new_directions_select = old_directions_select.cloneNode();
 
-	var new_directions_select = old_directions_select.cloneNode(false);
-    possible_directions.forEach(dir_code => {
-		var index = data.directions.findIndex(dir => dir.code==dir_code);
+	for(const dir_code of possible_directions) {
+		let direction = data.directions.find(dir => dir.code==dir_code);
 		new_directions_select.appendChild(html_comp('option', {
-			text: generate_from_to_text(data.directions[index].stops),
+			text: generate_from_to_text(direction.stops),
 			value: dir_code
 		}));
-	});
+	}
 
     old_directions_select.replaceWith(new_directions_select);
 	new_directions_select.selectedIndex = selected_index;
 }
 function configure_stop_selector(values, selected_index){
-	var old_stop_el = schedule_div.querySelector('#route_stop_selector');
-    var new_stop_el = old_stop_el.cloneNode();
+	let old_stop_el = schedule_div.querySelector('#route_stop_selector');
+    let new_stop_el = old_stop_el.cloneNode();
 
-	values.forEach(stop_code => new_stop_el.appendChild(
-		html_comp('option', {
+	for(const stop_code of values) {
+		let option = html_comp('option', {
 			text: get_stop_string(stop_code),
 			value: stop_code
-		})
-	));
+		});
+		new_stop_el.appendChild(option);
+	}
 
 	old_stop_el.replaceWith(new_stop_el);
 	new_stop_el.selectedIndex = selected_index;
@@ -539,7 +538,6 @@ function update_globals(new_globals=false){
 		current.direction = directions.find(dir => dir.code==current.route.directions[0]);
 	}*/
 	
-	console.log(current)
 	if(new_globals.stop_code){
 		current.stop_code = parseInt(new_globals.stop_code);
 	}

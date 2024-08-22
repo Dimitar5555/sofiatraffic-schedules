@@ -25,62 +25,6 @@ current = {
 	route: null, trip: null, stop_code: null, view: null
 };
 
-function handle_seo() {
-	let hash = window.location.hash;
-	let canonical_el = document.querySelector('link[rel=canonical]');
-	let description_el = document.querySelector('meta[name=description]');
-	if(hash.includes('#schedules')) {
-		document.title.innerText = lang.titles.title;
-		canonical_el.setAttribute('href', '#schedules');
-		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
-	}/*
-	else if(hash.includes('#favourite_stops')) {
-		document.title = `${lang.titles.favourite_stops} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href', '#favourite_stops');
-		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
-	}*/
-	else if(hash.includes('#stops_map')) {
-		document.title = `${lang.titles.stops_map} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href', '#stops_map');
-		description_el.setAttribute('content', 'Интерактивна карта на спирките на софийския градски транспорт.');
-	}
-	else if(main_types_order.some(main_type => hash.includes(main_type))) {
-		let split_hash = hash.replace('#', '').split('/');
-		let line_type = split_hash[0];
-		let line_ref = split_hash[1];
-		document.title = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href',`#${line_type}/${line_ref}/`);
-		description_el.setAttribute('content', `Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
-	}
-	else if(hash.includes('#stop')) {
-		let split_hash = hash.replace('#', '').split('/');
-		let stop_code = split_hash[1];
-		document.title = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href', `#stop/${stop_code}/`);
-		description_el.setAttribute('content', `Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
-	}
-}
-
-function updateURL(page=false){
-	let new_hash = '';
-	if(page){
-		new_hash = page;
-	}
-	else if(current.view=='route'){
-		var is_weekend_val = document.querySelector('[name=route_schedule_type]:checked').value;
-		new_hash = `#${current.route.type}/${current.route.line}/${return_weekday_text(is_weekend_val)}/${current.trip.direction}/${current.stop_code}/`;
-	}
-	else if(current.view=='stop'){
-		var is_weekend_val = document.querySelector('[name=stop_schedule_type]:checked').value;
-		new_hash = `#stop/${format_stop_code(current.stop_code)}/${return_weekday_text(is_weekend_val)}/`;
-	}
-	if(window.location.hash==new_hash){
-		return;
-	}
-	console.log('called updateURL: '+window.location.hash+' '+new_hash);
-	manual_push_state(new_hash);
-}
-
 function init(debug=false){
 	if(!localStorage.getItem('lang')){
 		var cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.indexOf(lang)!==-1);
@@ -118,7 +62,7 @@ function init(debug=false){
 	
 	check_metadata()
 	.then(() => {
-		let new_item = generate_schedule_departure_board_buttons(1);
+		let new_item = generate_stop_action_buttons(1);
 		let old_item = document.querySelector('#route_btn_group');
 		new_item.setAttribute('id', 'route_btn_group');
 		new_item.classList.add(...Array.from(old_item.classList));
@@ -175,7 +119,7 @@ async function init_map() {
 		generate_routes_thumbs(routes, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
-		popup.appendChild(generate_schedule_departure_board_buttons(stop.code));
+		popup.appendChild(generate_stop_action_buttons(stop.code));
 		return popup;
 	}
 	const stops_list = document.querySelector('#stops_list');
@@ -227,6 +171,7 @@ async function init_map() {
 	console.log(`Took ${Date.now()-start} ms to generate map`);
 	show_favourite_stops();
 }
+
 function check_metadata(){
 	return fetch('data/metadata.json')
 	.then(response => response.json())
@@ -239,10 +184,12 @@ function check_metadata(){
 		update_versions();
 	});
 }
+
 function update_versions(){
 	document.querySelector('#last_data_update').innerText = format_date_string(localStorage.retrieval_date);
 	document.querySelector('#app_version').innerText = format_date_string(localStorage.app_version);
 }
+
 function fetch_data(metadata=false){
 	var promises = [];
 
@@ -294,6 +241,7 @@ function fetch_data(metadata=false){
 		document.querySelector('.loading_screen').classList.add('d-none');
 	});
 }
+
 //try to update metadata every hour
 var update_interval;
 addEventListener('online', (event) => {
@@ -311,96 +259,6 @@ if ('serviceWorker' in navigator) {
 }
 init();
 
-window.addEventListener('popstate', function(event) {
-	handle_page_change();
-});
-
-window.addEventListener('pushstate', function(event) {
-	handle_page_change();
-});
-
-function handle_page_change() {
-	let hash = decodeURIComponent(window.location.hash).replace('#', '').split('/');
-	let main_tab_index = ['schedules', 'stops_map'].indexOf(hash[0]);
-	let globals = get_globals_from_hash(hash);
-	console.log('detected globals', globals);
-	if(globals.is_stop || globals.is_route) {
-		update_globals(globals);
-		show_schedule(globals, false, hash.length != 3);
-	}
-	else if(main_tab_index != -1) {
-		tab_btns[main_tab_index].show();
-		if(hash[0] == 'stops_map') {
-			init_map();
-		}
-	}
-	handle_seo();
-}
-
-function manual_push_state(new_href) {
-	history.pushState({}, '', new_href);
-	handle_page_change();
-}
-
-function get_globals_from_hash(hash) {
-	let globals = {};
-	if(main_types[hash[0]]){
-		var type = hash[0];
-		var line = hash[1];
-		var route_index = data.routes.findIndex(route => route.type==type && route.line==line);
-
-		globals.is_route = true;
-		globals.route = data.routes[route_index];
-		globals.is_weekend = is_weekend(hash[2]);
-		globals.direction = hash[3];
-		globals.stop_code = hash[4];
-		globals.view = 'route';
-
-		if(route_index==-1 /*|| !data.directions.find(dir => dir.code==loc_data.direction) || !data.stops.find(stop => stop.code==loc_data.stop_code)*/){
-			return;
-		}
-	}
-	else if(hash[0]=='stop') {
-		globals.stop_code = parseInt(hash[1]);
-		globals.schedule_type = {workday: 0, weekend: 1}[hash[2]];
-		globals.is_stop = true;
-		globals.view = 'stop';
-		console.log(hash[2])
-	}
-	return globals;
-}
-
-function navigate_to_home() {
-	if(current.view == 'stop') {
-		line_selector_div.classList.add('d-none');
-		stop_schedule_div.classList.remove('d-none');
-		schedule_display.classList.add('d-none');
-		manual_push_state(generate_current_hash());
-		
-	}
-	else if(current.view == 'route') {
-		line_selector_div.classList.add('d-none');
-		stop_schedule_div.classList.add('d-none');
-		schedule_display.classList.remove('d-none');
-		manual_push_state(generate_current_hash());
-	}
-	else{
-		line_selector_div.classList.remove('d-none');
-		stop_schedule_div.classList.add('d-none');
-		schedule_display.classList.add('d-none');
-		manual_push_state('#schedules');
-	}
-}
-
 function drop_current() {
 	current = {};
-}
-
-function generate_current_hash() {
-	if(current.view == 'stop') {
-		return `#stop/${current.stop_code}/`;
-	}
-	else if(current.view == 'route') {
-		return `#${current.route.type}/${current.route.line}/`;
-	}		
 }
