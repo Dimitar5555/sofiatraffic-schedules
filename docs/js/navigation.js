@@ -18,39 +18,42 @@ function updateURL(page=false) {
 	manual_push_state(new_hash);
 }
 
+function set_canonical_url(hash) {
+	let canonical_el = document.querySelector('link[rel=canonical]');
+	canonical_el.setAttribute('href', `https://dimitar5555.github.io/sofiatraffic-schedules/${url_prefix}${hash}`);
+}
+
+function set_page_description(description) {
+	let description_el = document.querySelector('meta[name=description]');
+	description_el.setAttribute('content', description);
+}
+
 function handle_seo() {
 	let hash = window.location.hash;
-	let canonical_el = document.querySelector('link[rel=canonical]');
-	let description_el = document.querySelector('meta[name=description]');
-	if(hash.includes('#schedules')) {
-		document.title.innerText = lang.titles.title;
-		canonical_el.setAttribute('href', '#schedules');
-		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
-	}/*
-	else if(hash.includes('#favourite_stops')) {
-		document.title = `${lang.titles.favourite_stops} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href', '#favourite_stops');
-		description_el.setAttribute('content', 'Актуални разписания на софийския градски транспорт.');
-	}*/
-	else if(hash.includes('#stops_map')) {
+	if(hash.includes('schedules')) {
+		document.title = lang.titles.title;
+		set_canonical_url('schedules');
+		set_page_description('content', 'Актуални разписания на софийския градски транспорт.');
+	}
+	else if(hash.includes('stops_map')) {
 		document.title = `${lang.titles.stops_map} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href', '#stops_map');
-		description_el.setAttribute('content', 'Интерактивна карта на спирките на софийския градски транспорт.');
+		set_canonical_url('stops_map');
+		set_page_description('Интерактивна карта на спирките на софийския градски транспорт.');
 	}
 	else if(main_types_order.some(main_type => hash.includes(main_type))) {
 		let split_hash = get_split_hash();
 		let line_type = split_hash[0];
 		let line_ref = split_hash[1];
 		document.title = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href',`${url_prefix}${line_type}/${line_ref}/`);
-		description_el.setAttribute('content', `Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
+		set_canonical_url(`${line_type}/${line_ref}/`);
+		set_page_description(`Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
 	}
 	else if(hash.includes('#stop')) {
 		let split_hash = get_split_hash();
 		let stop_code = split_hash[1];
 		document.title = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
-		canonical_el.setAttribute('href', `${url_prefix}stop/${stop_code}/`);
-		description_el.setAttribute('content', `Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
+		set_canonical_url(`stop/${stop_code}/`);
+		set_page_description(`Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
 	}
 }
 
