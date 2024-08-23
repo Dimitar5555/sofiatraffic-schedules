@@ -1,5 +1,6 @@
 const fs = require('fs');
 const site = 'https://dimitar5555.github.io/sofiatraffic-schedules/';
+const url_prefix = '#';
 
 function read_file(file) {
 	return JSON.parse(fs.readFileSync(`docs/data/${file}.json`).toString());
