@@ -5,7 +5,7 @@ function updateURL(page=false) {
 	}
 	else if(current.view=='route'){
 		var is_weekend_val = document.querySelector('[name=route_schedule_type]:checked').value;
-		new_hash = `${url_prefix}${current.route.type}/${current.route.line}/${return_weekday_text(is_weekend_val)}/${current.trip.direction}/${current.stop_code}/`;
+		new_hash = `${url_prefix}${current.route.type}/${current.route.line}/${return_weekday_text(is_weekend_val)}/${current.direction.code}/${current.stop_code}/`;
 	}
 	else if(current.view=='stop'){
 		var is_weekend_val = document.querySelector('[name=stop_schedule_type]:checked').value;
@@ -38,7 +38,7 @@ function handle_seo() {
 		description_el.setAttribute('content', 'Интерактивна карта на спирките на софийския градски транспорт.');
 	}
 	else if(main_types_order.some(main_type => hash.includes(main_type))) {
-		let split_hash = hash.replace('#', '').split('/').filter(el => el);
+		let split_hash = get_split_hash();
 		let line_type = split_hash[0];
 		let line_ref = split_hash[1];
 		document.title = `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
@@ -46,7 +46,7 @@ function handle_seo() {
 		description_el.setAttribute('content', `Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
 	}
 	else if(hash.includes('#stop')) {
-		let split_hash = hash.replace('#', '').split('/');
+		let split_hash = get_split_hash();
 		let stop_code = split_hash[1];
 		document.title = `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
 		canonical_el.setAttribute('href', `${url_prefix}stop/${stop_code}/`);
@@ -55,7 +55,7 @@ function handle_seo() {
 }
 
 function handle_page_change() {
-	let hash = decodeURIComponent(window.location.hash).replace('#', '').split('/').filter(el => el);
+	let hash = get_split_hash().filter(el => el);
 	let main_tab_index = ['schedules', 'stops_map'].indexOf(hash[0]);
     console.log(hash)
     if(main_tab_index != -1) {

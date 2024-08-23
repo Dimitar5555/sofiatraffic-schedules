@@ -1,5 +1,13 @@
 const url_prefix = '#';
 
+function get_split_hash() {
+    return decodeURIComponent(window.location.hash)
+    .replace('#', '')
+    .replace('!', '')
+    .split('/')
+    .filter(el => el);
+}
+
 function format_stop_code(stop_code){
     if(!stop_code) {
         return '????'
