@@ -697,6 +697,41 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 }
 
 async function load_virtual_board(stop_code) {
+	function generate_virtual_board_row(route, row_index, new_tbody) {
+		let tr = html_comp('tr');
+		let td1 = html_comp('td');
+		let span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
+		td1.appendChild(span);
+		tr.appendChild(td1);
+
+		for(const time of route.times) {
+			let td = html_comp('td');
+			td.appendChild(document.createTextNode(format_time(date.getHours()*60+date.getMinutes()+time.t, false)));
+			td.appendChild(document.createTextNode(' '));
+			if(time.wheelchair){
+				td.appendChild(html_comp('i', {class: 'bi bi-person-wheelchair'}));
+			}
+			if(time.ac){
+				td.appendChild(html_comp('i', {class: 'bi bi-snow'}));
+			}
+			if(time.bicycle_rack){
+				td.appendChild(html_comp('i', {class: 'bi bi-bicycle'}));
+			}
+			tr.appendChild(td);
+		}
+		let needed_cells = 3-route.times.length;
+		while(needed_cells>0) {
+			tr.appendChild(html_comp('td', {text: '-'}));
+			needed_cells--;
+		}
+		if(row_index == 0) {
+			tr.children.item(0).classList.add('col-2');
+			tr.children.item(1).classList.add('col-3');
+			tr.children.item(2).classList.add('col-3');
+			tr.children.item(3).classList.add('col-3');
+		}
+		new_tbody.appendChild(tr);
+	}
 	const date = new Date;
 	let generated_at_el = document.querySelector('#generated_at');
 	generated_at_el.innerText = '';
@@ -716,6 +751,7 @@ async function load_virtual_board(stop_code) {
 	old_tbody.replaceWith(new_tbody);
 	let req = await fetch(`https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`);
 	let routes_data = await req.json();
+
 	if(routes_data.status == 'ok'){
 		loading_row.remove();
 		if(routes_data.routes.length == 0) {
@@ -725,39 +761,10 @@ async function load_virtual_board(stop_code) {
 			new_tbody.appendChild(tr);
 		}
 		routes_data.routes.forEach((route, row_index) => {
-			let tr = html_comp('tr');
-			let td1 = html_comp('td');
-			let span = html_comp('span', {class: get_route_colour_classes(route), text: route.ref});
-			td1.appendChild(span);
-			tr.appendChild(td1);
-
-			for(const time of route.times) {
-				let td = html_comp('td');
-				td.appendChild(document.createTextNode(format_time(date.getHours()*60+date.getMinutes()+time.t, false)));
-				td.appendChild(document.createTextNode(' '));
-				if(time.wheelchair){
-					td.appendChild(html_comp('i', {class: 'bi bi-person-wheelchair'}));
-				}
-				if(time.ac){
-					td.appendChild(html_comp('i', {class: 'bi bi-snow'}));
-				}
-				if(time.bicycle_rack){
-					td.appendChild(html_comp('i', {class: 'bi bi-bicycle'}));
-				}
-				tr.appendChild(td);
+			if(!route.route_ref) {
+				route.route_ref = route.ref;
 			}
-			let needed_cells = 3-route.times.length;
-			while(needed_cells>0) {
-				tr.appendChild(html_comp('td', {text: '-'}));
-				needed_cells--;
-			}
-			if(row_index == 0) {
-				tr.children.item(0).classList.add('col-2');
-				tr.children.item(1).classList.add('col-3');
-				tr.children.item(2).classList.add('col-3');
-				tr.children.item(3).classList.add('col-3');
-			}
-			new_tbody.appendChild(tr);
+			generate_virtual_board_row(route, row_index, new_tbody);
 		});
 	}
 	else{
