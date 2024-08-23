@@ -13,23 +13,25 @@ function init(){
 	stops = read_file('stops');
 }
 
-function generate_url_entry(hash, sitemap) {
+function generate_url_entry(hash, priority, sitemap) {
 	sitemap.push('<url>');
-	sitemap.push(`<loc>${site}#${hash}/</loc>`);
-	sitemap.push('<changefreq>daily</changefreq>');
-	sitemap.push('<priority>0.8</priority>');
+	sitemap.push(`<loc>${site}${url_prefix}${hash}/</loc>`);
+	sitemap.push('<changefreq>weekly</changefreq>');
+	sitemap.push(`<priority>${priority}</priority>`);
 	sitemap.push('</url>');
 }
 
 function run(){
 	var sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'];
-	
+	for(const page of ['schedules', 'stops_map']) {
+		generate_url_entry(`${page}`, 1, sitemap);
+	}
 	routes.forEach(route => {
-		generate_url_entry(`${url_prefix}${route.type}/${route.line}`, sitemap);
+		generate_url_entry(`${route.type}/${route.line}`, 0.7, sitemap);
 	});
 	
 	stops.forEach(stop => {
-		generate_url_entry(`${url_prefix}stop/${stop.code}`, sitemap);
+		generate_url_entry(`stop/${stop.code}`, 0.5, sitemap);
 	})
 
 	sitemap.push('</urlset>');
