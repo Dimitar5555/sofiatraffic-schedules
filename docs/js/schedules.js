@@ -749,28 +749,40 @@ async function load_virtual_board(stop_code) {
 	loading_row.append(loading_td);
 	new_tbody.appendChild(loading_row);
 	old_tbody.replaceWith(new_tbody);
-	let req = await fetch(`https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`);
-	let routes_data = await req.json();
-
-	if(routes_data.status == 'ok'){
-		loading_row.remove();
-		if(routes_data.routes.length == 0) {
-			let tr = html_comp('tr');
-			let td = html_comp('td', {colspan: 4, text: 'Няма повече потегляния за деня', class: 'text-center'});
-			tr.appendChild(td);
-			new_tbody.appendChild(tr);
-		}
-		routes_data.routes.forEach((route, row_index) => {
-			if(!route.route_ref) {
-				route.route_ref = route.ref;
+	fetch(`https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`)
+	.then(data => data.json())
+	.then(routes_data => {
+		if(routes_data.status == 'ok'){
+			loading_row.remove();
+			if(routes_data.routes.length == 0) {
+				let tr = html_comp('tr');
+				let td = html_comp('td', {colspan: 4, text: 'Няма повече потегляния за деня', class: 'text-center'});
+				tr.appendChild(td);
+				new_tbody.appendChild(tr);
 			}
-			generate_virtual_board_row(route, row_index, new_tbody);
-		});
-	}
-	else{
-		loading_row.innerText = `${routes_data.status}\n${routes_data.message}`;
-	}
-	generated_at_el.innerText = new Date(routes_data.generated_at).toLocaleString(lang.code);
-	generated_at_el.nextElementSibling.dataset.code = stop_code;
-	generated_at_el.nextElementSibling.removeAttribute('disabled');
+			routes_data.routes.forEach((route, row_index) => {
+				if(!route.route_ref) {
+					route.route_ref = route.ref;
+				}
+				generate_virtual_board_row(route, row_index, new_tbody);
+			});
+		}
+		else{
+			loading_row.innerText = `${routes_data.status}\n${routes_data.message}`;
+		}
+		generated_at_el.innerText = new Date(routes_data.generated_at).toLocaleString(lang.code);
+		generated_at_el.nextElementSibling.dataset.code = stop_code;
+		generated_at_el.nextElementSibling.removeAttribute('disabled');
+	})
+	.catch(err => {
+		console.log(err);
+		let tr = html_comp('tr');
+		let td = html_comp('td', {colspan: 4, text: `Няма връзка със сървъра или интернет`, class: 'text-center'});
+		tr.appendChild(td);
+		new_tbody.appendChild(tr);
+
+		loading_row.remove();
+		generated_at_el.nextElementSibling.dataset.code = stop_code;
+		generated_at_el.nextElementSibling.removeAttribute('disabled');
+	});
 }
