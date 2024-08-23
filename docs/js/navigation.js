@@ -55,6 +55,11 @@ function handle_seo() {
 		set_canonical_url(`stop/${stop_code}/`);
 		set_page_description(`Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
 	}
+
+	gtag('event', 'page_view', {
+		page_title: document.title,
+		page_location: location.pathname+location.hash
+	});
 }
 
 function handle_page_change() {
