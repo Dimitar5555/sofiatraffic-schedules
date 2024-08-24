@@ -91,10 +91,10 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
 	const url = new URL(e.request.url);
 	
-	// Handle internal requests (same origin)
 	console.log(url.origin, location.origin);
 	console.log(url, location);
 	if (url.origin === location.origin) {
+		// Handle internal requests (same origin)
 		console.log('[ServiceWorker] Fetch same origin ', e.request.url);
 		e.respondWith(
 			fetch(e.request)
@@ -104,7 +104,7 @@ self.addEventListener('fetch', function(e) {
 			.catch(() => {
 				return caches
 				.open(OFFLINE_CACHE)
-				.then((cache) => cache.match(OFFLINE_URL));
+				.then((cache) => cache.match(e.request));
 			})
 		);
 	} else {
