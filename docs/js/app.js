@@ -255,7 +255,7 @@ addEventListener('offline', (event) => {
 //register service worker
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('sw.js')
-	.catch((err) => alert('Service worker registration FAIL:', err));
+	.catch((err) => console.error('Service worker registration FAIL:', err));
 }
 init();
 
