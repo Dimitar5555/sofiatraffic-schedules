@@ -19,7 +19,11 @@ function updateURL(page=false) {
 }
 
 function set_canonical_url(hash) {
-	let canonical_el = document.querySelector('link[rel=canonical]');
+	var canonical_el = document.querySelector('link[rel=canonical]');
+	if(!canonical_el) {
+		canonical_el = html_comp('link', {rel: 'canonical'});
+		document.head.appendChild(canonical_el);
+	}
 	canonical_el.setAttribute('href', `https://dimitar5555.github.io/sofiatraffic-schedules/${url_prefix}${hash}`);
 }
 
@@ -30,6 +34,10 @@ function set_page_description(description) {
 
 function handle_seo() {
 	let hash = window.location.hash;
+	let split_hash = get_split_hash();
+	let line_type = split_hash[0];
+	let line_ref = split_hash[1];
+	let stop_code = split_hash[1];
 
 	function generate_title(hash) {
 		if(hash.includes('schedules')) {
@@ -39,14 +47,9 @@ function handle_seo() {
 			return `${lang.titles.stops_map} - ${lang.titles.short_title}`;
 		}
 		else if(main_types_order.some(main_type => hash.includes(main_type))) {
-			let split_hash = get_split_hash();
-			let line_type = split_hash[0];
-			let line_ref = split_hash[1];
 			return  `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
 		}
 		else if(hash.includes('#stop')) {
-			let split_hash = get_split_hash();
-			let stop_code = split_hash[1];
 			return `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
 		}
 	}
