@@ -63,6 +63,7 @@ self.addEventListener('install', function(e) {
 		})
 		.then(() => {
 			console.log('[ServiceWorker] Added all files to the cache');
+			return self.skipWaiting();
 		})
 		.catch(err => {
 			console.error('[ServiceWorker] Error while adding files to the cache:' + err);
@@ -72,7 +73,8 @@ self.addEventListener('install', function(e) {
 
 self.addEventListener('activate', function(e) {
 	console.log('[ServiceWorker] Activate');
-	e.waitUntil(
+	e.waitUntil(self.clients.claim());
+	/*e.waitUntil(
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
 				if (key !== cache_name) {
@@ -82,6 +84,7 @@ self.addEventListener('activate', function(e) {
 			}));
 		}).then(() => clients.claim())
 	);
+	);*/
 });
 
 self.addEventListener('fetch', function(e) {
