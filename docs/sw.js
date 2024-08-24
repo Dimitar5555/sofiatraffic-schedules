@@ -34,7 +34,7 @@ const files_to_cache = [
 	'fonts/bootstrap-icons.woff',
 	'fonts/bootstrap-icons.woff2'
 ];
-const cache_name = 'pwa-assets';
+const OFFLINE_CACHE = 'pwa-assets';
 /*
 self.addEventListener('install', () => {
 	if(navigator.onLine){
@@ -57,7 +57,9 @@ self.addEventListener('fetch', function (event) {
 self.addEventListener('install', function(e) {
 	console.log('[ServiceWorker] Install');
 	e.waitUntil(
-		caches.open(cache_name).then(function(cache) {
+		caches
+		.open(OFFLINE_CACHE)
+		.then(function(cache) {
 			console.log('[ServiceWorker] Caching app shell');
 			return cache.addAll(files_to_cache);
 		})
@@ -77,7 +79,7 @@ self.addEventListener('activate', function(e) {
 	/*e.waitUntil(
 		caches.keys().then(function(keyList) {
 			return Promise.all(keyList.map(function(key) {
-				if (key !== cache_name) {
+				if (key !== OFFLINE_CACHE) {
 					console.log('[ServiceWorker] Removing old cache', key);
 					return caches.delete(key);
 				}
@@ -95,27 +97,34 @@ self.addEventListener('fetch', function(e) {
 	if (url.origin === location.origin) {
 		console.log('[ServiceWorker] Fetch same origin ', e.request.url);
 		e.respondWith(
-			fetch(e.request).then(function(networkResponse) {
+			fetch(e.request)
+			.then(function(networkResponse) {
 				return networkResponse;
 			})
 			.catch(() => {
-				caches.match(e.request).then(function(response) {
-					return response;
+				return caches
+				.open(OFFLINE_CACHE)
+				.then((cache) => cache.match(OFFLINE_URL));
+			})
+		);
+	} else {
+		// External request
+		console.log('[ServiceWorker] Fetch external origin ', e.request.url);
+		e.respondWith(
+			fetch(e.request.clone())
+			.then(function(networkResponse) {
+				return networkResponse;
+			})
+			.catch(function(error) {
+				console.error('[ServiceWorker] Fetch failed for external request', error);
+				// Return a fallback response or a generic error message
+				return new Response('External request failed', {
+					status: 502,
+					statusText: 'Bad Gateway',
 				});
 			})
 		);
 	}
-	else {
-		// External request
-		console.log('[ServiceWorker] Fetch external origin ', e.request.url);
-		e.respondWith(
-			fetch(e.request).then(function(networkResponse) {
-				return networkResponse;
-			}).catch(function(error) {
-				console.error('[ServiceWorker] Fetch failed; returning fallback content', error);
-			})
-		);
-	  }
 });
 
 /*async function is_metadata_up_to_date(){
@@ -148,7 +157,7 @@ function clear_cache(){
 	})
 }
 function populate_cache(){
-	return caches.open(cache_name)
+	return caches.open(OFFLINE_CACHE)
 	.then(cache => {
 		cache.addAll(files_to_cache);
 	});
