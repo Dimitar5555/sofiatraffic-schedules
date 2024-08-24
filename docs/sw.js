@@ -88,11 +88,13 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-	console.log('[ServiceWorker] Fetch', e.request.url);
 	const url = new URL(e.request.url);
-
+	
 	// Handle internal requests (same origin)
+	console.log(url.origin, location.origin);
+	console.log(url, location);
 	if (url.origin === location.origin) {
+		console.log('[ServiceWorker] Fetch same origin ', e.request.url);
 		e.respondWith(
 			fetch(e.request).then(function(networkResponse) {
 				return networkResponse;
@@ -106,6 +108,7 @@ self.addEventListener('fetch', function(e) {
 	}
 	else {
 		// External request
+		console.log('[ServiceWorker] Fetch external origin ', e.request.url);
 		e.respondWith(
 			fetch(e.request).then(function(networkResponse) {
 				return networkResponse;
