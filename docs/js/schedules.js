@@ -222,7 +222,6 @@ function filter_stops(text) {
 }
 
 function show_schedule(new_globals, overwrite_selectors=false, update_url=false){
-	console.log('show_schedule called', new_globals)
 	if(new_globals.is_route){
 		schedule_display_div.classList.remove('d-none');
 		stop_schedule_div.classList.add('d-none');
@@ -233,7 +232,6 @@ function show_schedule(new_globals, overwrite_selectors=false, update_url=false)
 		stop_schedule_div.classList.remove('d-none');
 		new_globals.view = 'stop';
 	}
-	console.log(new_globals);
 	if(update_url){
 		update_globals(new_globals);
 	}
@@ -241,7 +239,6 @@ function show_schedule(new_globals, overwrite_selectors=false, update_url=false)
 	//hide line selector
 	line_selector_div.classList.add('d-none');
 	tab_btns[0].show();
-	console.log(new_globals)
 	if(new_globals.stop_code && (current.view=='stop' || current.is_stop)){
 		//show stop schedule
 		show_stop_schedule(new_globals.stop_code, new_globals.schedule_type);

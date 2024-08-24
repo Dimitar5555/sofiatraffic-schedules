@@ -1,22 +1,33 @@
 const files_to_cache = [
 	'index.html',
 	'manifest.json',
+
 	'data/directions.json',
 	'data/routes.json',
 	'data/stop_times.json',
 	'data/stops.json',
 	'data/trips.json',
 	'data/metadata.json',
+
+	'js/bootstrap.bundle.min.js',
+	'js/leaflet.js',
+	'js/leaflet.markercluster.js',
 	'js/utilities.js',
 	'js/app.js',
+	'js/navigation.js',
 	'js/schedules.js',
 	'js/favourites.js',
-	'js/bootstrap.bundle.min.js',
+
 	'i18n/bg.json',
 	'i18n/en.json',
+
+	'css/leaflet.css',
 	'css/bootstrap.min.css',
 	'css/bootstrap-icons.css',
 	'css/style.css',
+	'css/MarkerCluster.css',
+	'css/MarkerCluster.Default.css',
+
 	'fonts/SofiaSans-Bold.ttf',
 	'fonts/SofiaSans-Medium.ttf',
 	'fonts/SofiaSans-Regular.ttf',
