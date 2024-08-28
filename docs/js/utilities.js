@@ -1,7 +1,12 @@
 const url_prefix = '#';
 
 function get_split_hash() {
-    return decodeURIComponent(window.location.hash)
+    let hash = window.location.hash;
+    if(!hash) {
+        hash = (new URL(document.location)).searchParams.get('_escaped_fragment_');
+
+    }
+    return decodeURIComponent(hash)
     .replace('#', '')
     .replace('!', '')
     .split('/')

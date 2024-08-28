@@ -68,7 +68,8 @@ function init(debug=false){
 		new_item.classList.add(...Array.from(old_item.classList));
 		new_item.children.item(0).classList.add('text-nowrap');
 		old_item.replaceWith(new_item);
-		if(window.location.hash){
+		let hash_from_param = (new URL(document.location)).searchParams.get('_escaped_fragment_');
+		if(window.location.hash || hash_from_param){
 			handle_page_change();
 		}
 	});
