@@ -57,6 +57,7 @@ function init(debug=false){
 				console.error(`Missing string: ${el.dataset.i18n}`)
 			}
         });
+		handle_seo();
 	});
 
 	
