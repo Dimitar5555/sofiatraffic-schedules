@@ -40,10 +40,7 @@ function handle_seo() {
 	let stop_code = split_hash[1];
 
 	function generate_title(hash) {
-		if(hash.includes('schedules')) {
-			return lang.titles.title;
-		}
-		else if(hash.includes('stops_map')) {
+		if(hash.includes('stops_map')) {
 			return `${lang.titles.stops_map} - ${lang.titles.short_title}`;
 		}
 		else if(main_types_order.some(main_type => hash.includes(main_type))) {
@@ -51,6 +48,9 @@ function handle_seo() {
 		}
 		else if(hash.includes('#stop')) {
 			return `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
+		}
+		else {
+			return lang.titles.title;
 		}
 	}
 	let new_title = generate_title(hash);
