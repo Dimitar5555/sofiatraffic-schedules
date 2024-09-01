@@ -33,7 +33,6 @@ function set_page_description(description) {
 }
 
 function handle_seo() {
-	let hash = window.location.hash;
 	let split_hash = get_split_hash();
 	let line_type = split_hash[0];
 	let line_ref = split_hash[1];
@@ -46,30 +45,30 @@ function handle_seo() {
 		else if(main_types_order.some(main_type => hash.includes(main_type))) {
 			return  `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
 		}
-		else if(hash.includes('#stop')) {
+		else if(hash.includes('stop')) {
 			return `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
 		}
 		else {
 			return lang.titles.title;
 		}
 	}
-	let new_title = generate_title(hash);
+	let new_title = generate_title(split_hash);
 	let title_changed = document.title != new_title;
 	if(title_changed) {
 		document.title = new_title;
-		if(hash.includes('schedules')) {
+		if(split_hash.includes('schedules')) {
 			set_canonical_url('schedules');
 			set_page_description('content', 'Актуални разписания на софийския градски транспорт.');
 		}
-		else if(hash.includes('stops_map')) {
+		else if(split_hash.includes('stops_map')) {
 			set_canonical_url('stops_map');
 			set_page_description('Интерактивна карта на спирките на софийския градски транспорт.');
 		}
-		else if(main_types_order.some(main_type => hash.includes(main_type))) {
+		else if(main_types_order.some(main_type => split_hash.includes(main_type))) {
 			set_canonical_url(`${line_type}/${line_ref}/`);
 			set_page_description(`Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
 		}
-		else if(hash.includes('#stop')) {
+		else if(split_hash.includes('#stop')) {
 			set_canonical_url(`stop/${stop_code}/`);
 			set_page_description(`Актуално разписание на спирка ${get_stop_string(stop_code)}.`);
 		}
