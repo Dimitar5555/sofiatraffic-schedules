@@ -2,7 +2,7 @@ const url_prefix = '#';
 
 function get_split_hash() {
     let hash = window.location.hash;
-    if(!hash) {
+    if(hash == '') {
         hash = (new URL(document.location)).searchParams.get('_escaped_fragment_');
 
     }
