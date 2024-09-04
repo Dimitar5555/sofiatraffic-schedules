@@ -1,9 +1,8 @@
-const fs = require('fs');
-const crypto = require('crypto');
+import fs from "fs";
+import crypto from "crypto"
 
 const protocol = "https://";
 const sofiatraffic_url = "sofiatraffic.bg";
-// const schedules_url = `${protocol}forum.${sofiatraffic_url}/`;
 const old_stops_url = `${protocol}routes.${sofiatraffic_url}/`;
 const stops_url = `${protocol}${sofiatraffic_url}/bg/trip/getAllStops`
 const routes_url = `${protocol}${sofiatraffic_url}/bg/trip/getLines`;
@@ -50,7 +49,7 @@ function normalise_metro_stop_codes(start_code, end_code) {
 		'0000->0016': [
 			2999, 3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3039, 3041, 3043
 		],
-		// M2 => Obelya (Slivnitsa)
+		// M2 => Obelya (start/end trips reach Slivnitsa)
 		'0212->0001': [
 			2975, 2977, 2979, 2981, 2983, 2985, 2987, 2989, 2991, 2993, 2995, 2997, 2999
 		],
@@ -80,7 +79,7 @@ function normalise_metro_stop_codes(start_code, end_code) {
 		]
 	};
 	let key = `${pad_code(start_code)}->${pad_code(end_code)}`;
-	return bindings[`${pad_code(start_code)}->${pad_code(end_code)}`];
+	return bindings[key];
 }
 
 async function fetch_tokens() {
@@ -254,16 +253,16 @@ function process_routes_data(input_routes) {
 	return output_routes;
 }
 
-function fetch_schedule_data(route) {
-	let schedule = fetch_data_from_sofiatraffic(schedule_url, {line_id: route.temp_cgm_id})
+function fetch_schedule_data(temp_cgm_id) {
+	let schedule = fetch_data_from_sofiatraffic(schedule_url, {line_id: temp_cgm_id})
 	.then(response => response.json());
 	return schedule;
 }
 
 function process_schedule_data(data, route_index, trip_index_offset, is_metro) {
-	let directions = [];
-	let trips = [];
-	let stop_times = [];
+	var directions = [];
+	var trips = [];
+	var stop_times = [];
 
 	// for each direction
 	data.routes.forEach(route => {
@@ -274,10 +273,12 @@ function process_schedule_data(data, route_index, trip_index_offset, is_metro) {
 		// Overwrite CGM's sequence
 		let cur_segment = 0;
 		let next_stop_code = undefined;
+		let skipped_segments_idx = [];
 		// for each segment
-		for(segment of route.segments) {
+		for(let segment of route.segments) {
 			// stops are not active during construction works, ignore their times and their existance
 			if(segment.stop.code != next_stop_code && next_stop_code) {
+				skipped_segments_idx.push(segment)
 				continue;
 			}
 			directions[cur_direction_index].stops[cur_segment] = Number(segment.stop.code);
@@ -303,6 +304,21 @@ function process_schedule_data(data, route_index, trip_index_offset, is_metro) {
 			let start_stop = stops_arr[0];
 			let end_stop = stops_arr[stops_arr.length-1];
 			directions[cur_direction_index].stops = normalise_metro_stop_codes(start_stop, end_stop);
+			if(start_stop == 212 || end_stop == 212) {
+				//M2 since first/last station is Vitosha
+				//used to remove the times for Slivnitsa station
+				//see https://github.com/Dimitar5555/sofiatraffic-schedules/issues/15
+				stop_times.forEach(stop_time => {
+					if(stop_time.times.length > stops_arr.length - 1) {
+						if(start_stop == 212) {
+							console.log('popped ', stop_time.times.pop());
+						}
+						else {
+							console.log('shifted ', stop_time.times.shift());
+						}
+					}
+				})
+			}
 		}
 	});
 
@@ -349,11 +365,11 @@ async function fetch_all_data() {
 		// routes = routes.filter(route => route.type == 'tram');
 
 		let route_index = 0;
-		for(route of routes) {
+		for(const route of routes) {
 			if(route_index > routes_limit && routes_limit != 0) {
 				break;
 			}
-			await fetch_schedule_data(route)
+			await fetch_schedule_data(route.temp_cgm_id)
 			.then(data => process_schedule_data(data, route_index, trips.length, route.type == 'metro'))
 			.then(data => {
 				//push to respective arr
