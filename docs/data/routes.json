@@ -46,6 +46,7 @@
 {"line":14,"type":"bus"},
 {"line":18,"type":"bus"},
 {"line":20,"type":"bus"},
+{"line":"20TM","type":"bus"},
 {"line":21,"type":"bus"},
 {"line":22,"type":"bus"},
 {"line":23,"type":"bus"},
