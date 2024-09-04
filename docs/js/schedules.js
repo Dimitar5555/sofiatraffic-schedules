@@ -198,20 +198,31 @@ function update_stop_labels(){
 
 function filter_stops(text) {
 	let code = Number(text);
+	code = code!=0?code:false;
 	text = text.toUpperCase();
 	let show_stops = [];
 	if(Number.isFinite(code)) {
 		let str_code = code.toString();
 		show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
 	}
-	if(!Number.isFinite(code) || show_stops.length == 0) {
+	if(!Number.isFinite(code)) {
 		show_stops = data.stops.filter(stop => stop.names[lang.code].includes(text)).map(stop => stop.code);
 	}
 
 	let stops_trs = document.querySelectorAll('tr[data-stop-code]');
+	console.log(code, text, show_stops)
 	let currently_shown_stops = 0;
 	for(let stop_row of stops_trs) {
-		if(!stop_row.dataset.hidden && currently_shown_stops<=maximum_stops_shwon_at_once && show_stops.includes(Number(stop_row.dataset.stopCode))) {
+		let is_stop_in_show_stops = show_stops.includes(Number(stop_row.dataset.stopCode));
+		let show_stop = 
+		(
+			is_stop_in_show_stops
+			|| show_stops.length == 0
+		)
+		&& stop_row.dataset.hidden != '1'
+		&& currently_shown_stops<=maximum_stops_shwon_at_once;
+		if(show_stop) {
+			console.log(stop_row.dataset.stopCode)
 			stop_row.classList.remove('d-none');
 			currently_shown_stops++;
 		}
