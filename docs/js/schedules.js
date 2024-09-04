@@ -648,7 +648,7 @@ function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 		}
 		return result;
 	})
-	.toSorted((a, b) => a.time>b.time);
+	.toSorted((a, b) => a.time-b.time);
 }
 function generate_stop_times_table(stop_times, stop_index, table, by_cars=false){
 	var new_tbody = html_comp('tbody');
