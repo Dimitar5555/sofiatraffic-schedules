@@ -27,13 +27,13 @@ function get_stop(stop_arg){
 		return stop_arg;
 	}
 	else if(typeof stop_arg=='number'){
-		return data.stops.find(stop => stop.code === stop_arg);
+		return data.stops.find(stop => stop.code === stop_arg) || {code: stop_arg, names: {bg: `(${lang.schedules.unknown_stop})`}};
 	}
 }
 //accepts stop_code or stop object, in order to maintain consistent stop names
 function get_stop_name(stop_code){
 	if(!stop_code || stop_code==undefined){
-		return '(НЕИЗВЕСТНА СПИРКА)';
+		return `(${lang.schedules.unknown_stop})`;
 	}
     var stop = get_stop(stop_code);
 	if(!stop){
