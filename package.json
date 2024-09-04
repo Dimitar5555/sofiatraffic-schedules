@@ -11,6 +11,7 @@
   },
   "author": "Dimitar5555",
   "license": "GPL-3.0",
+  "type": "module",
   "devDependencies": {
     "http-server": "^14.1.1"
   }
