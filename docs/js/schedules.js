@@ -726,7 +726,7 @@ async function load_virtual_board(stop_code) {
 			if(time.ac){
 				td.appendChild(html_comp('i', {class: 'bi bi-snow'}));
 			}
-			if(time.bicycle_rack){
+			if(time.bike_rack){
 				td.appendChild(html_comp('i', {class: 'bi bi-bicycle'}));
 			}
 			tr.appendChild(td);
