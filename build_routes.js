@@ -58,7 +58,7 @@ function process_routes_data(input_routes) {
 
 	input_routes.forEach(input_route => {
 		let output_route = {
-			temp_cgm_id: input_route.line_id,
+			temp_cgm_id: input_route.ext_id,
 			line: input_route.name,
 			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, ''))
 		};
@@ -114,7 +114,7 @@ function process_routes_data(input_routes) {
 }
 
 export function fetch_schedule_data(temp_cgm_id) {
-	let schedule = fetch_data_from_sofiatraffic(schedule_url, {line_id: temp_cgm_id})
+	let schedule = fetch_data_from_sofiatraffic(schedule_url, {ext_id: temp_cgm_id})
 	.then(response => response.json());
 	return schedule;
 }
