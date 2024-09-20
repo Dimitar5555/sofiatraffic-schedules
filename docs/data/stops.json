@@ -1,4 +1,6 @@
 [
+{"code":0,"coords":[42.74108,23.27654],"names":{"bg":"ОБЕЛЯ"}},
+{"code":1,"coords":[42.72661,23.26148],"names":{"bg":"СЛИВНИЦА"}},
 {"code":2,"coords":[42.7357,23.30533],"names":{"bg":"102-РО ОУ","en":"SCHOOL No102"}},
 {"code":3,"coords":[42.63697,23.38038],"names":{"bg":"БЛ. 411 Ж.К. МЛАДОСТ-4","en":"BL. 411 MLADOST 4 QR"}},
 {"code":4,"coords":[42.63797,23.38117],"names":{"bg":"БЛ. 411 Ж.К. МЛАДОСТ-4","en":"BL. 411 MLADOST 4 QR"}},
@@ -193,6 +195,7 @@
 {"code":205,"coords":[42.66754,23.32546],"names":{"bg":"МБАЛ ТОКУДА БОЛНИЦА","en":"TOKUDA HOSPITAL"}},
 {"code":206,"coords":[42.66777,23.32713],"names":{"bg":"МБАЛ ТОКУДА БОЛНИЦА","en":"TOKUDA HOSPITAL"}},
 {"code":207,"coords":[42.71967,23.23953],"names":{"bg":"БЛ. 402 Ж.К. ЛЮЛИН-4","en":"BL. 402 LYULIN 4 QR"}},
+{"code":208,"coords":[42.69875,23.32208],"names":{"bg":"СЕРДИКА 2"}},
 {"code":209,"coords":[42.65659,23.37626],"names":{"bg":"БЛ. 41 Ж.К. МЛАДОСТ-1","en":"BL. 41 MLADOST 1 QR"}},
 {"code":210,"coords":[42.65591,23.37517],"names":{"bg":"БЛ. 41 Ж.К. МЛАДОСТ-1","en":"BL. 41 MLADOST 1 QR"}},
 {"code":211,"coords":[42.69042,23.25518],"names":{"bg":"ТЪРГОВСКИ Ц-Р ОВЧА КУПЕЛ","en":"OVCHA KUPEL SHOPPING CENTRE"}},
@@ -286,6 +289,8 @@
 {"code":302,"coords":[42.68371,23.31421],"names":{"bg":"БУЛ. ВИТОША","en":"VITOSHA BLVD"}},
 {"code":303,"coords":[42.70251,23.35232],"names":{"bg":"МЕТРОСТАНЦИЯ ХАДЖИ ДИМИТЪР","en":"VLADIMIR VAZOV BLVD"}},
 {"code":304,"coords":[42.69448,23.29303],"names":{"bg":"БУЛ. ВЪЗКРЕСЕНИЕ","en":"VAZKRESENIE BLVD"}},
+{"code":305,"coords":[42.70271,23.35265],"names":{"bg":"ХАДЖИ ДИМИТЪР"}},
+{"code":306,"coords":[42.69675,23.34687],"names":{"bg":"ТЕAТРАЛНА"}},
 {"code":307,"coords":[42.69447,23.29201],"names":{"bg":"БУЛ. ВЪЗКРЕСЕНИЕ","en":"VAZKRESENIE BLVD"}},
 {"code":308,"coords":[42.67172,23.29385],"names":{"bg":"БУЛ. ГОЦЕ ДЕЛЧЕВ","en":"GOTSE DELCHEV BLVD"}},
 {"code":309,"coords":[42.66592,23.30197],"names":{"bg":"БУЛ. ГОЦЕ ДЕЛЧЕВ","en":"GOTSE DELCHEV BLVD"}},
