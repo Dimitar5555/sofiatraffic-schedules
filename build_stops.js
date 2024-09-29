@@ -80,7 +80,7 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 
 export function get_stops_data() {
     let cgm_stops = fetch_stops_data()
-	.then(data => {console.log(data);return process_stops_data(data)})
+	.then(data => process_stops_data(data))
 	let osm_stops = fetch_osm_stops_data();
     return Promise.all([cgm_stops, osm_stops])
     .then(([stops, osm_stops]) => {
