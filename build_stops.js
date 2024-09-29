@@ -1,13 +1,14 @@
-import { old_stops_url, stops_url } from "./config.js";
+import { stops_url } from "./config.js";
 import { fetch_data_from_sofiatraffic } from "./build_utilities.js";
 
 function fetch_stops_data() {
-	let stops_bg = fetch(`${old_stops_url}resources/stops-bg.json`)
+	// let stops_bg = fetch(`${old_stops_url}resources/stops-bg.json`)
+	// .then(response => response.json());
+	// let stops_en = fetch(`${old_stops_url}resources/stops-en.json`)
+	// .then(response => response.json());
+	let stops = fetch_data_from_sofiatraffic(stops_url)
 	.then(response => response.json());
-	let stops_en = fetch(`${old_stops_url}resources/stops-en.json`)
-	.then(response => response.json());
-	let new_stops = fetch_data_from_sofiatraffic(stops_url)
-	.then(response => response.json());
+	return stops;
 	return Promise.all([stops_bg, stops_en, new_stops]);
 }
 
@@ -20,17 +21,17 @@ function round_stop_coords(lat, lon) {
 	];
 }
 
-function process_stops_data(stops_bg, stops_en, new_stops) {
+function process_stops_data(stops) {
 	let processed_stops = [];
-	stops_bg.forEach(stop => {
-		processed_stops.push({code: Number(stop.c), coords: round_stop_coords(stop.y, stop.x), names: {bg: stop.n}});
-	});
-	stops_en.forEach(cgm_stop => {
-		processed_stops[processed_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
-	});
-	new_stops.forEach(new_cgm_stop => {
-		let proc_stop = processed_stops.find(stop => stop.code == Number(new_cgm_stop.code));
-		if(!proc_stop) {
+	// stops_bg.forEach(stop => {
+	// 	processed_stops.push({code: Number(stop.c), coords: round_stop_coords(stop.y, stop.x), names: {bg: stop.n}});
+	// });
+	// stops_en.forEach(cgm_stop => {
+	// 	processed_stops[processed_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
+	// });
+	stops.forEach(new_cgm_stop => {
+		// let proc_stop = processed_stops.find(stop => stop.code == Number(new_cgm_stop.code));
+		// if(!proc_stop) {
 			processed_stops.push({
 				code: Number(new_cgm_stop.code),
 				coords: round_stop_coords(new_cgm_stop.latitude, new_cgm_stop.longitude),
@@ -38,7 +39,7 @@ function process_stops_data(stops_bg, stops_en, new_stops) {
 					bg: new_cgm_stop.name.toUpperCase()
 				}
 			});
-		}
+		// }
 	});
 	return processed_stops;
 }
@@ -79,7 +80,7 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 
 export function get_stops_data() {
     let cgm_stops = fetch_stops_data()
-	.then(data => process_stops_data(data[0], data[1], data[2]))
+	.then(data => {console.log(data);return process_stops_data(data)})
 	let osm_stops = fetch_osm_stops_data();
     return Promise.all([cgm_stops, osm_stops])
     .then(([stops, osm_stops]) => {
