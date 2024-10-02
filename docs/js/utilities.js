@@ -53,7 +53,7 @@ function format_date_string(string){
     return new Date(string).toLocaleDateString(lang.code);
 }
 function is_metro_stop(stop_code){
-    return Number(stop_code)>2900 && Number(stop_code)<3400
+    return 2900 < Number(stop_code) && Number(stop_code) < 3400
 }
 
 function generate_stop_action_buttons(stop_code, options={}) {
