@@ -353,13 +353,10 @@ function configure_weekday_selector(values, selected_index){
 	is_weekend_options[selected_index].checked = true;
 }
 function generate_from_to_text(stops){
-	let key_stops = [1038];
-	key_stops.unshift(stops[0]);
-	key_stops.push(stops[stops.length-1]);
+	let key_stops = [stops[0], 1038, stops[stops.length-1]];
 	let stops_names = key_stops.map(key_stop => stops.includes(key_stop)?get_stop_name(key_stop):false)
 	.filter(stop_name => stop_name);
-	console.log(stops_names);
-	return stops_names.join(' => ');//`${start_stop} => ${end_stop}`;
+	return stops_names.join(' => ');
 }
 function configure_direction_selector(possible_directions, selected_index){
 	let old_directions_select = schedule_div.querySelector('#direction');
