@@ -222,7 +222,6 @@ function filter_stops(text) {
 		&& stop_row.dataset.hidden != '1'
 		&& currently_shown_stops<=maximum_stops_shwon_at_once;
 		if(show_stop) {
-			console.log(stop_row.dataset.stopCode)
 			stop_row.classList.remove('d-none');
 			currently_shown_stops++;
 		}
