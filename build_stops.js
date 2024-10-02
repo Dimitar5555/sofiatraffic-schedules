@@ -31,7 +31,7 @@ function process_stops_data(stops) {
 	// });
 	stops.forEach(new_cgm_stop => {
 		// let proc_stop = processed_stops.find(stop => stop.code == Number(new_cgm_stop.code));
-		// if(!proc_stop) {
+		if(new_cgm_stop.code.length === 4) {
 			processed_stops.push({
 				code: Number(new_cgm_stop.code),
 				coords: round_stop_coords(new_cgm_stop.latitude, new_cgm_stop.longitude),
@@ -39,7 +39,7 @@ function process_stops_data(stops) {
 					bg: new_cgm_stop.name.toUpperCase()
 				}
 			});
-		// }
+		}
 	});
 	return processed_stops;
 }
