@@ -312,10 +312,10 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	var btn_group = document.querySelector('#route_btn_group');
 	btn_group.children.item(0).dataset.code = current.stop_code;
 	if(is_metro_stop(current.stop_code)){
-		btn_group.children.item(0).setAttribute('disabled', '');
+		//btn_group.children.item(0).setAttribute('disabled', '');
 	}
 	else{
-		btn_group.children.item(0).removeAttribute('disabled');
+		//btn_group.children.item(0).removeAttribute('disabled');
 	}
 	btn_group.children.item(1).setAttribute('href', `${url_prefix}stop/${current.stop_code}/`);
 
@@ -562,7 +562,7 @@ function show_stop_schedule(stop_code, type){
 		stop_code = Number(stop_code);
 	}
 
-	stop_schedule_div.querySelector('button[data-bs-target]').disabled = is_metro_stop(stop_code);
+	//stop_schedule_div.querySelector('button[data-bs-target]').disabled = is_metro_stop(stop_code);
 	stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code);
 	var relevant_directions = data.directions.filter(dir => dir.stops.indexOf(stop_code)!==-1);
 	//var stop_indexes = relevant_directions.map(dir => dir.stops.indexOf(stop_code));

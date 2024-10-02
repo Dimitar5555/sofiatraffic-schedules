@@ -80,7 +80,7 @@ function generate_stop_action_buttons(stop_code, options={}) {
             class: 'btn btn-outline-primary'
         });
         if(is_metro_stop(stop_code)){
-            virtual_board_btn.setAttribute('disabled', '');
+            //virtual_board_btn.setAttribute('disabled', '');
         }
         virtual_board_btn.appendChild(html_comp('i', {class: 'bi bi-clock'}));
         if(!options.icons_only) {
@@ -155,7 +155,7 @@ function get_route_colour_classes(route){
         route.route_ref = route.line;
     }
     let bg_color = `${route.type!=='metro'?route.type:route.route_ref}-bg-color`;
-    let fg_color = `text-${route.line=='M4'?'dark':'light'}`;
+    let fg_color = `text-${route.route_ref=='M4'?'dark':'light'}`;
     return  `px-2 ${bg_color} ${fg_color}`;
 }
 function is_weekend(boolean){
