@@ -30,8 +30,6 @@
 {"line":9,"type":"trolley"},
 {"line":11,"type":"trolley"},
 {"line":1,"type":"bus"},
-{"line":"Y1","type":"bus"},
-{"line":"Y2","type":"bus"},
 {"line":3,"type":"bus"},
 {"line":4,"type":"bus"},
 {"line":5,"type":"bus"},
@@ -133,5 +131,7 @@
 {"line":"N1","subtype":"night","type":"bus"},
 {"line":"N2","subtype":"night","type":"bus"},
 {"line":"N3","subtype":"night","type":"bus"},
-{"line":"N4","subtype":"night","type":"bus"}
+{"line":"N4","subtype":"night","type":"bus"},
+{"line":"У1","subtype":"school","type":"bus"},
+{"line":"У2","subtype":"school","type":"bus"}
 ]
