@@ -71,6 +71,10 @@ function process_routes_data(input_routes) {
 		else if(typeof line == 'string' && line.startsWith('E')) {
 			line = Number(output_route.temp_ref);
 		}
+		else if(typeof line == 'string' && (line.startsWith('Y') || line.startsWith('У'))) {
+			line = `У${Number(output_route.temp_ref)}`;
+			output_route.subtype = 'school';
+		}
 		output_route.line = line;
 
 		if(input_route.icon.includes('subway.png')){
