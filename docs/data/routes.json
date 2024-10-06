@@ -128,7 +128,7 @@
 {"line":803,"type":"bus"},
 {"line":804,"type":"bus"},
 {"line":805,"type":"bus"},
-{"line":"22ТМ","type":"bus","subtype":"temporary"},
+{"line":"6ТМ","type":"bus","subtype":"temporary"},
 {"line":"N1","subtype":"night","type":"bus"},
 {"line":"N2","subtype":"night","type":"bus"},
 {"line":"N3","subtype":"night","type":"bus"},
