@@ -80,6 +80,7 @@ function handle_seo() {
 }
 
 function handle_page_change() {
+	handle_seo();
 	let hash = get_split_hash().filter(el => el);
 	let main_tab_index = ['schedules', 'stops_map'].indexOf(hash[0]);
     console.log(hash)
@@ -96,7 +97,6 @@ function handle_page_change() {
 		update_globals(globals);
 		show_schedule(globals, false, hash.length != 2);
 	}
-	handle_seo();
 }
 
 function manual_push_state(new_href) {

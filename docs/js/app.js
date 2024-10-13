@@ -42,6 +42,7 @@ function init(debug=false){
 	.then((response) => {
         lang = response;
 	    
+		handle_seo();
         const i18n_els = document.querySelectorAll('[data-i18n]');
         Array.from(i18n_els)
         .map(el => {
@@ -57,7 +58,6 @@ function init(debug=false){
 				console.error(`Missing string: ${el.dataset.i18n}`)
 			}
         });
-		handle_seo();
 	});
 
 	
