@@ -124,7 +124,7 @@ async function fetch_all_data() {
 			{
 				name: 'routes',
 				data: routes,
-				split_rows_by: /,({"line)/g
+				split_rows_by: /,({"route_ref)/g
 			},
 			{
 				name: 'trips',

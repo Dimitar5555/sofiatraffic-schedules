@@ -59,23 +59,23 @@ function process_routes_data(input_routes) {
 	input_routes.forEach(input_route => {
 		let output_route = {
 			temp_cgm_id: input_route.ext_id,
-			line: input_route.name,
+			route_ref: input_route.name,
 			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, ''))
 		};
 
-		let line = output_route.temp_ref == output_route.line?output_route.temp_ref:output_route.line;
-		if(typeof line == 'string' && line.startsWith('N')) {
-			line = `N${output_route.temp_ref}`;
+		let route_ref = output_route.temp_ref == output_route.route_ref?output_route.temp_ref:output_route.route_ref;
+		if(typeof route_ref == 'string' && route_ref.startsWith('N')) {
+			route_ref = `N${output_route.temp_ref}`;
 			output_route.subtype = 'night';
 		}
-		else if(typeof line == 'string' && line.startsWith('E')) {
-			line = Number(output_route.temp_ref);
+		else if(typeof route_ref == 'string' && route_ref.startsWith('E')) {
+			route_ref = Number(output_route.temp_ref);
 		}
-		else if(typeof line == 'string' && (line.startsWith('Y') || line.startsWith('У'))) {
-			line = `У${Number(output_route.temp_ref)}`;
+		else if(typeof route_ref == 'string' && (route_ref.startsWith('Y') || route_ref.startsWith('У'))) {
+			route_ref = `У${Number(output_route.temp_ref)}`;
 			output_route.subtype = 'school';
 		}
-		output_route.line = line;
+		output_route.route_ref = route_ref;
 
 		if(input_route.icon.includes('subway.png')){
 			output_route.type = 'metro';

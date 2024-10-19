@@ -28,7 +28,7 @@ function run(routes, trips, directions, stops){
 		generate_url_entry(`${page}`, 1, sitemap);
 	}
 	routes.forEach(route => {
-		generate_url_entry(`${route.type}/${route.line}`, 0.7, sitemap);
+		generate_url_entry(`${route.type}/${route.route_ref}`, 0.7, sitemap);
 	});
 	
 	stops.forEach(stop => {
