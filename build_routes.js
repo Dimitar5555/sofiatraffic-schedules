@@ -88,10 +88,10 @@ function process_routes_data(input_routes) {
 		}
 		else if(input_route.icon.includes('bus.png')){
 			output_route.type = 'bus';
-			if(typeof line == 'string' && (line.includes('-')
-			             /* Latin */          /* Cyrrilic */
-			|| line.includes('TM') || line.includes('ТМ')
-			|| line.includes('TB') || line.includes('ТБ'))) {
+			if(typeof route_ref == 'string' && (route_ref.includes('-')
+			                /* Latin */              /* Cyrrilic */
+			|| route_ref.includes('TM') || route_ref.includes('ТМ')
+			|| route_ref.includes('TB') || route_ref.includes('ТБ'))) {
 				output_route.subtype = 'temporary';
 			}
 		}

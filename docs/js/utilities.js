@@ -151,10 +151,6 @@ function generate_line_btn(route){
 	return el;
 }
 function get_route_colour_classes(route){
-    if(!route.line) {
-        // TEMPORARY
-        // route.line = route.route_ref;
-    }
     let bg_color = `${route.type!=='metro'?route.type:route.route_ref}-bg-color`;
     let fg_color = `text-${route.route_ref=='M4'?'dark':'light'}`;
     return  `px-2 ${bg_color} ${fg_color}`;

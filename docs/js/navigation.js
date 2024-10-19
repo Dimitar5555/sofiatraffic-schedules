@@ -162,7 +162,7 @@ function generate_current_hash() {
 		return `${url_prefix}stop/${current.stop_code}/`;
 	}
 	else if(current.view == 'route') {
-		return `${url_prefix}${current.route.type}/${current.route.line}/${current.direction.code}/${current.stop_code}`;
+		return `${url_prefix}${current.route.type}/${current.route.route_ref}/${current.direction.code}/${current.stop_code}`;
 	}
 }
 
