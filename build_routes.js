@@ -69,7 +69,7 @@ function process_routes_data(input_routes) {
 			output_route.subtype = 'night';
 		}
 		else if(typeof route_ref == 'string' && route_ref.startsWith('E')) {
-			route_ref = Number(output_route.temp_ref);
+			route_ref = output_route.temp_ref.toString();
 		}
 		else if(typeof route_ref == 'string' && (route_ref.startsWith('Y') || route_ref.startsWith('У'))) {
 			route_ref = `У${Number(output_route.temp_ref)}`;
