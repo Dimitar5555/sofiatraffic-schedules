@@ -216,11 +216,6 @@
 <priority>0.7</priority>
 </url>
 <url>
-<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#bus/10ТМ/</loc>
-<changefreq>weekly</changefreq>
-<priority>0.7</priority>
-</url>
-<url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#bus/X10/</loc>
 <changefreq>weekly</changefreq>
 <priority>0.7</priority>
@@ -652,6 +647,11 @@
 </url>
 <url>
 <loc>https://dimitar5555.github.io/sofiatraffic-schedules/#bus/805/</loc>
+<changefreq>weekly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://dimitar5555.github.io/sofiatraffic-schedules/#bus/10ТМ/</loc>
 <changefreq>weekly</changefreq>
 <priority>0.7</priority>
 </url>

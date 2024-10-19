@@ -77,7 +77,7 @@ function init_schedules_data(loc_data){
 }
 
 function generate_routes_thumbs(routes, parent) {
-	routes.map(route => {
+	routes.forEach(route => {
 		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref}))
 		parent.appendChild(document.createTextNode(' '));
 	});
