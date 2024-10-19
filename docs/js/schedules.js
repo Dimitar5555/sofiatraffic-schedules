@@ -77,8 +77,8 @@ function init_schedules_data(loc_data){
 }
 
 function generate_routes_thumbs(routes, parent) {
-	routes.map(route => {
-		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.line}))
+	routes.forEach(route => {
+		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref}))
 		parent.appendChild(document.createTextNode(' '));
 	});
 }
@@ -136,7 +136,7 @@ function init_updated_schedules_table(){
 		}
 		var route = data.routes[trip.route_index];
 		if(route){
-			var schd = JSON.stringify([route.type, route.line, trip.is_weekend]);
+			var schd = JSON.stringify([route.type, route.route_ref, trip.is_weekend]);
 			if(dates[date].indexOf(schd)==-1){
 				dates[date].push(schd);
 			}
@@ -270,7 +270,7 @@ function are_options_matching(current_options, required_options) {
 function configure_all_selectors(predefined_values={}, overwrite_selectors=false){
 	var route = current.route;
 	console.log('predef', predefined_values)
-	schedule_div.querySelector('#line').innerHTML = `${lang.line_type[route.type]} ${route.line}`;
+	schedule_div.querySelector('#line').innerHTML = `${lang.line_type[route.type]} ${route.route_ref}`;
 	schedule_div.querySelector('#line').setAttribute('class', get_route_colour_classes(route)+' fs-6');
 	
 	var current_weekday_options = Array.from(document.querySelectorAll('[name=route_schedule_type]:not(.d-none)')).map(el => is_weekend(el.value));
@@ -576,7 +576,7 @@ function show_stop_schedule(stop_code, type){
 			result.subtype = route.subtype;
 		}
 		result.route_index = route.index;
-		result.line = route.line;
+		result.route_ref = route.route_ref;
 		result.stops = data.directions.find(dir => dir.code==direction_code).stops;
 		result.trip_indexes = data.trips.map((trip, index) => {trip.index = index; return trip;}).filter(trip => /*trip.route_index == route.index &&*/ trip.direction == direction_code).map(trip => trip.index);
 		result.stop_times = data.stop_times.filter(stop_time => result.trip_indexes.indexOf(stop_time.trip)!=-1);
@@ -592,7 +592,7 @@ function show_stop_schedule(stop_code, type){
 			//var trip_index = data[0];
 			var div = html_comp('div');
 			var num_div = html_comp('div');
-			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.line}`, class: get_route_colour_classes(route)}))
+			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}))
 			num_div.appendChild(html_comp('br'));
 			num_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops)}`}));
 			div.appendChild(num_div);
