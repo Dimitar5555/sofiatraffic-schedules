@@ -5,7 +5,7 @@ function updateURL(page=false) {
 	}
 	else if(current.view=='route'){
 		var is_weekend_val = document.querySelector('[name=route_schedule_type]:checked').value;
-		new_hash = `${url_prefix}${current.route.type}/${current.route.line}/${return_weekday_text(is_weekend_val)}/${current.direction.code}/${current.stop_code}/`;
+		new_hash = `${url_prefix}${current.route.type}/${current.route.route_ref}/${return_weekday_text(is_weekend_val)}/${current.direction.code}/${current.stop_code}/`;
 	}
 	else if(current.view=='stop'){
 		var is_weekend_val = document.querySelector('[name=stop_schedule_type]:checked').value;
@@ -35,7 +35,7 @@ function set_page_description(description) {
 function handle_seo() {
 	let split_hash = get_split_hash();
 	let line_type = split_hash[0];
-	let line_ref = split_hash[1];
+	let route_ref = split_hash[1];
 	let stop_code = split_hash[1];
 
 	function generate_title(hash) {
@@ -43,7 +43,7 @@ function handle_seo() {
 			return `${lang.titles.stops_map} - ${lang.titles.short_title}`;
 		}
 		else if(main_types_order.some(main_type => hash.includes(main_type))) {
-			return  `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${line_ref} - ${lang.titles.short_title}`;
+			return  `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${route_ref} - ${lang.titles.short_title}`;
 		}
 		else if(hash.includes('stop')) {
 			return `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
@@ -65,8 +65,8 @@ function handle_seo() {
 			set_page_description('Интерактивна карта на спирките на софийския градски транспорт.');
 		}
 		else if(main_types_order.some(main_type => split_hash.includes(main_type))) {
-			set_canonical_url(`${line_type}/${line_ref}/`);
-			set_page_description(`Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${line_ref}.`);
+			set_canonical_url(`${line_type}/${route_ref}/`);
+			set_page_description(`Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${route_ref}.`);
 		}
 		else if(split_hash.includes('#stop')) {
 			set_canonical_url(`stop/${stop_code}/`);
@@ -111,8 +111,8 @@ function get_globals_from_hash(hash) {
 	let globals = {};
 	if(main_types[hash[0]]){
 		var type = hash[0];
-		var line = hash[1];
-		var route_index = data.routes.findIndex(route => route.type==type && route.line==line);
+		var route_ref = hash[1];
+		var route_index = data.routes.findIndex(route => route.type==type && route.route_ref==route_ref);
 
 		globals.is_route = true;
 		globals.route = data.routes[route_index];

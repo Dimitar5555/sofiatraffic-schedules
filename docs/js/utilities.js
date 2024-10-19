@@ -142,17 +142,18 @@ function html_comp(tag, attributes={}){
 }
 function generate_line_btn(route){
 	var el = html_comp('a', {
-		text: route.line,
+		text: route.route_ref,
 		class: `line_selector_btn  rounded-1 ${get_route_colour_classes(route)} fs-5 fw-bolder`,
 		//'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`,
-        href: `${url_prefix}${route.type}/${route.line}/`,
+        href: `${url_prefix}${route.type}/${route.route_ref}/`,
         //onclick: 'event.preventDefault(); manual_push_state(this.href);'
 	});
 	return el;
 }
 function get_route_colour_classes(route){
-    if(!route.route_ref) {
-        route.route_ref = route.line;
+    if(!route.line) {
+        // TEMPORARY
+        // route.line = route.route_ref;
     }
     let bg_color = `${route.type!=='metro'?route.type:route.route_ref}-bg-color`;
     let fg_color = `text-${route.route_ref=='M4'?'dark':'light'}`;

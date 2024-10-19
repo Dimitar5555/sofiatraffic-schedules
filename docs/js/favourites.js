@@ -1,6 +1,6 @@
 const favourite_stops_div = document.querySelector('#favourite_stops');
 function gen_route_json(){
-	return `${current.route.type}\_${current.route.line}`;
+	return `${current.route.type}\_${current.route.route_ref}`;
 }
 function init_favourites(){
 	show_favourite_lines();
@@ -64,7 +64,7 @@ function show_favourite_lines(favourite_lines=false){
 	
 	old_div.parentElement.classList.remove('d-none');
 	var new_div = old_div.cloneNode();
-	let routes = data.routes.filter(route => favourite_lines.some(favourite_line => favourite_line[0] == route.type && favourite_line[1] == route.line));
+	let routes = data.routes.filter(route => favourite_lines.some(favourite_line => favourite_line[0] == route.type && favourite_line[1] == route.route_ref));
 	
 	routes.forEach(route => {
 		var line_btn = generate_line_btn(route);
