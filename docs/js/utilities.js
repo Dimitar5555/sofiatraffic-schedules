@@ -1,4 +1,4 @@
-const url_prefix = '#';
+const url_prefix = '#!';
 
 function get_split_hash() {
     let hash = window.location.hash;
