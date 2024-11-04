@@ -39,10 +39,9 @@ function init(debug=false){
 
 	fetch(`i18n/${localStorage.lang}.json`)
 	.then(response => response.json())
-	.then((response) => {
+	.then(response => {
         lang = response;
 	    
-		handle_seo();
         const i18n_els = document.querySelectorAll('[data-i18n]');
         Array.from(i18n_els)
         .map(el => {
@@ -74,6 +73,8 @@ function init(debug=false){
 			handle_page_change();
 		}
 	});
+
+
 }
 
 is_map_done = false;
