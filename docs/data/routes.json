@@ -130,5 +130,7 @@
 {"route_ref":"N1","subtype":"night","type":"bus"},
 {"route_ref":"N2","subtype":"night","type":"bus"},
 {"route_ref":"N3","subtype":"night","type":"bus"},
-{"route_ref":"N4","subtype":"night","type":"bus"}
+{"route_ref":"N4","subtype":"night","type":"bus"},
+{"route_ref":"У1","subtype":"school","type":"bus"},
+{"route_ref":"У2","subtype":"school","type":"bus"}
 ]
