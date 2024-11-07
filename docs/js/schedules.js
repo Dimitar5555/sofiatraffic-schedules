@@ -601,7 +601,7 @@ function show_stop_schedule(stop_code, type){
 			table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip');
 			var tbody = html_comp('tbody');
 			table.appendChild(tbody);
-			var stop_times = data.stop_times.filter(stop_time => stop_time.trip==trip_index);
+			var stop_times = data.stop_times.filter(stop_time => stop_time.trip === trip_index);
 			generate_stop_times_table(stop_times, route.stops.indexOf(stop_code), table);
 			div.appendChild(table);
 			new_stop_schedule_div.appendChild(div);
@@ -635,20 +635,21 @@ function show_stop_schedule_by_type(type, update_url=false){
 }
 function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 	return stop_times.map(stop_time => {
-		if(stop_time.time==''){
+		if(stop_time.times[stop_index] === null){
 			return;
 		}
 		let result = {
 			time: stop_time.times[stop_index],
 			index: stop_time.index,
-			incomplete_course_start: !stop_time.times[0],
-			incomplete_course_final: !stop_time.times[stop_time.times.length-1]
+			incomplete_course_start: stop_time.times[0] === null,
+			incomplete_course_final: stop_time.times[stop_time.times.length-1] === null
 		};
 		if(by_cars){
 			result.car = stop_time.car;
 		}
 		return result;
 	})
+	.filter(a => a)
 	.toSorted((a, b) => a.time-b.time);
 }
 function generate_stop_times_table(stop_times, stop_index, table, by_cars=false){
@@ -667,7 +668,7 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 
 	var body_cells = Array.from(tr_tbody.querySelectorAll('td'));
 	processed_stop_times.forEach(stop_time => {
-		if(stop_time.time=='' || !stop_time.time){
+		if(stop_time.time === '' || stop_time.time === null){
 			return;
 		}
 		var el_class = '';
