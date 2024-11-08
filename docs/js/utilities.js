@@ -1,5 +1,3 @@
-const url_prefix = '#!';
-
 function get_split_hash() {
     let hash = window.location.hash;
     if(hash == '') {
@@ -79,8 +77,8 @@ function generate_stop_action_buttons(stop_code, options={}) {
             onclick: 'load_virtual_board(this.dataset.code)',
             class: 'btn btn-outline-primary'
         });
-        if(is_metro_stop(stop_code)){
-            //virtual_board_btn.setAttribute('disabled', '');
+        if(is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards){
+            virtual_board_btn.setAttribute('disabled', '');
         }
         virtual_board_btn.appendChild(html_comp('i', {class: 'bi bi-clock'}));
         if(!options.icons_only) {

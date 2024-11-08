@@ -310,11 +310,11 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 
 	var btn_group = document.querySelector('#route_btn_group');
 	btn_group.children.item(0).dataset.code = current.stop_code;
-	if(is_metro_stop(current.stop_code)){
-		//btn_group.children.item(0).setAttribute('disabled', '');
+	if(is_metro_stop(current.stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards){
+		btn_group.children.item(0).setAttribute('disabled', '');
 	}
 	else{
-		//btn_group.children.item(0).removeAttribute('disabled');
+		btn_group.children.item(0).removeAttribute('disabled');
 	}
 	btn_group.children.item(1).setAttribute('href', `${url_prefix}stop/${current.stop_code}/`);
 
@@ -559,7 +559,12 @@ function show_stop_schedule(stop_code, type){
 		stop_code = Number(stop_code);
 	}
 
-	//stop_schedule_div.querySelector('button[data-bs-target]').disabled = is_metro_stop(stop_code);
+	if(is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards) {
+		stop_schedule_div.querySelector('button[data-bs-target]').disabled = true;
+	}
+	else {
+		stop_schedule_div.querySelector('button[data-bs-target]').disabled = false;
+	}
 	stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code);
 	var relevant_directions = data.directions.filter(dir => dir.stops.indexOf(stop_code)!==-1);
 	//var stop_indexes = relevant_directions.map(dir => dir.stops.indexOf(stop_code));
@@ -644,7 +649,7 @@ function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 			incomplete_course_start: stop_time.times[0] === null,
 			incomplete_course_final: stop_time.times[stop_time.times.length-1] === null
 		};
-		if(by_cars){
+		if(by_cars /*&& enable_schedules_by_cars*/){
 			result.car = stop_time.car;
 		}
 		return result;
@@ -691,7 +696,7 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 			onclick: 'display_trip_schedule(this.dataset.stopTimeIndex)',
 			class: el_class
 		});
-		if(!by_cars){
+		if(!by_cars/* || !enable_schedules_by_cars*/){
 			body_cells[hour].appendChild(el);
 			body_cells[hour].appendChild(html_comp('span', {class: 'line-break'}));
 		}
@@ -759,7 +764,7 @@ async function load_virtual_board(stop_code) {
 	loading_row.append(loading_td);
 	new_tbody.appendChild(loading_row);
 	old_tbody.replaceWith(new_tbody);
-	fetch(`https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=${format_stop_code(stop_code)}`)
+	fetch(`${virtual_board_proxy_url}${format_stop_code(stop_code)}`)
 	.then(data => data.json())
 	.then(routes_data => {
 		if(routes_data.status == 'ok'){
