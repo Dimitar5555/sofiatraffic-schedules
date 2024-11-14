@@ -61,9 +61,9 @@ function process_routes_data(input_routes) {
 
 	input_routes.forEach(input_route => {
 		let output_route = {
-			temp_cgm_id: input_route.ext_id,
 			route_ref: input_route.name,
-			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, ''))
+			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, '')),
+			cgm_id: input_route.ext_id,
 		};
 
 		let route_ref = output_route.temp_ref == output_route.route_ref?output_route.temp_ref:output_route.route_ref;
@@ -120,8 +120,8 @@ function process_routes_data(input_routes) {
 	return output_routes;
 }
 
-export function fetch_schedule_data(temp_cgm_id) {
-	let schedule = fetch_data_from_sofiatraffic(schedule_url, {ext_id: temp_cgm_id})
+export function fetch_schedule_data(cgm_id) {
+	let schedule = fetch_data_from_sofiatraffic(schedule_url, {ext_id: cgm_id})
 	.then(response => response.json());
 	return schedule;
 }
