@@ -3,7 +3,7 @@ name: Generate schedules and commit changes
 
 on:
   schedule:
-    - cron: '0 0 */1 * *'
+    - cron: '45 2 */1 * *'
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
