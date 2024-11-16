@@ -50,7 +50,7 @@ async function fetch_all_data() {
 			if(route_index >= routes_limit && routes_limit != 0) {
 				break;
 			}
-			await fetch_schedule_data(route.temp_cgm_id)
+			await fetch_schedule_data(route.cgm_id)
 			.then(data => {
 				console.log(`Fetching route data: ${route_index+1}/${routes.length}`);
 				return data;
@@ -63,7 +63,7 @@ async function fetch_all_data() {
 		// remove temporary data
 		routes.forEach(route => {
 			delete route.temp_ref;
-			delete route.temp_cgm_id;
+			// delete route.temp_cgm_id;
 		});
 
 		let st_length = stop_times.length;
