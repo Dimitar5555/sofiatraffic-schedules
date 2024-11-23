@@ -714,10 +714,14 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 async function load_virtual_board(stop_code) {
 	function generate_virtual_board_row(route, row_index, new_tbody) {
 		let tr = html_comp('tr');
-		let td1 = html_comp('td');
-		let span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
-		td1.appendChild(span);
-		tr.appendChild(td1);
+		{
+			let td = html_comp('td');
+			let span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
+			td.appendChild(span);
+			td.appendChild(html_comp('i', {class: 'bi bi-caret-right-fill'}));
+			td.appendChild(document.createTextNode(get_stop_name(route.destination_stop)))
+			tr.appendChild(td);
+		}
 
 		for(const time of route.times) {
 			let td = html_comp('td');
@@ -740,10 +744,10 @@ async function load_virtual_board(stop_code) {
 			needed_cells--;
 		}
 		if(row_index == 0) {
-			tr.children.item(0).classList.add('col-2');
-			tr.children.item(1).classList.add('col-3');
-			tr.children.item(2).classList.add('col-3');
-			tr.children.item(3).classList.add('col-3');
+			tr.children.item(0).classList.add('col-4');
+			tr.children.item(1).classList.add('col-2');
+			tr.children.item(2).classList.add('col-2');
+			tr.children.item(3).classList.add('col-2');
 		}
 		new_tbody.appendChild(tr);
 	}
