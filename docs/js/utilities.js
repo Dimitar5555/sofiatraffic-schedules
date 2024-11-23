@@ -64,67 +64,86 @@ function is_metro_stop(stop_code){
     return 2900 < Number(stop_code) && Number(stop_code) < 3400
 }
 
-function generate_stop_action_buttons(stop_code, options={}) {
-    if(!options.icons_only) {
-        options.icons_only = false;
+function generate_button(options) {
+    /*
+    options:
+        type: [schedule / departures_board / locate_stop]
+        type specifies the used icon as well
+
+        text: [true / false]
+        whether to show any text, true by default
+
+        stop_code: integer
+    */
+    const btns_data = {
+        departures_board: {
+            type: 'button',
+            icon: 'bi-clock',
+            text: lang.actions.virtual_board,
+            disable_condition: (stop_code) => !enable_virtual_boards ||
+            ( !enable_virtual_boards_for_subway_stations && is_metro_stop(stop_code) )
+        },
+        schedule: {
+            type: 'a',
+            icon: 'bi-table',
+            text: lang.actions.schedule
+        },
+        locate_stop: {
+            type: 'button',
+            icon: 'bi-crosshair',
+            text: lang.actions.locate_stop_on_map
+        }
+    };
+
+    const btn_data = btns_data[options.type];
+
+    let btn = html_comp(btn_data.type, {
+        class: 'btn btn-outline-primary'
+    });
+    btn.appendChild(html_comp('i', {class: `bi ${btn_data.icon}`}));
+    if(options.text) {
+        btn.classList.add('text-nowrap')
+        btn.appendChild(html_comp('span', {text: ` ${btn_data.text}`, class: 'd-none d-md-inline'}));
     }
-    if(!options.virtual_board_btn && options.virtual_board_btn != false) {
-        options.virtual_board_btn = true;
-    }
-    if(!options.stop_schedule_btn && options.stop_schedule_btn != false) {
-        options.stop_schedule_btn = true;
-    }
-    if(!options.pan_btn) {
-        options.pan_btn = false;
+    else {
+        btn.setAttribute('title', btn_data.text);
     }
 
-    let btn_group = html_comp('div', {class: 'btn-group'});
-    if(options.virtual_board_btn) {
-        let virtual_board_btn = html_comp('button', {
-            'data-code': stop_code,
-            'data-bs-toggle':'modal',
-            'data-bs-target': '#sofiatraffic_live_data',
-            onclick: 'load_virtual_board(this.dataset.code)',
-            class: 'btn btn-outline-primary'
-        });
-        if(is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards){
-            virtual_board_btn.setAttribute('disabled', '');
-        }
-        virtual_board_btn.appendChild(html_comp('i', {class: 'bi bi-clock'}));
-        if(!options.icons_only) {
-            virtual_board_btn.classList.add('text-nowrap')
-            virtual_board_btn.appendChild(html_comp('span', {text: ` ${lang.actions.virtual_board}`, class: 'd-none d-md-inline'}));
-        }
-        else {
-            virtual_board_btn.setAttribute('title', lang.actions.virtual_board);
-        }
-        btn_group.appendChild(virtual_board_btn);
+    if(btn.disable_condition && btn.disable_condition(options.stop_code)) {
+        btn.setAttribute('disabled', '');
     }
+
+    if(options.type == 'departures_board') {
+        btn.setAttribute('data-code', options.stop_code);
+        btn.setAttribute('data-bs-toggle', 'modal');
+        btn.setAttribute('data-bs-target', '#sofiatraffic_live_data');
+        btn.setAttribute('onclick', 'load_virtual_board(this.dataset.code)');
+    }
+    else if(options.type == 'schedule') {
+        btn.setAttribute('href', `${url_prefix}stop/${options.stop_code}/`);
+    }
+    else if(options.type == 'locate_stop') {
+        btn.setAttribute('onclick', `zoom_to_stop(${options.stop_code})`);
+    }
+    return btn;
+}
     
-    if(options.stop_schedule_btn) {
-        let stop_schedule_btn = html_comp('a', {
-            class: 'btn btn-outline-primary',
-            href: `${url_prefix}stop/${stop_code}/`
-        });
-        stop_schedule_btn.appendChild(html_comp('i', {class: 'bi bi-table'}));
-        if(!options.icons_only) {
-            stop_schedule_btn.classList.add('text-nowrap')
-            stop_schedule_btn.appendChild(html_comp('span', {text: ` ${lang.actions.schedule}`, class: 'd-none d-md-inline'}));
-        }
-        else {
-            stop_schedule_btn.setAttribute('title', lang.actions.stop_schedule);
-        }
-        btn_group.appendChild(stop_schedule_btn);
-    }
+function generate_btn_group(options, btn_group=false) {
+    /*
+    options:
+        type: [schedule / departures_board / locate_stop]
+        type specifies the used icon as well
 
-    if(options.pan_btn) {
-        let pan_btn = html_comp('button', {
-            class: 'btn btn-outline-primary',
-            onclick: `zoom_to_stop(${stop_code})`
-        });
-        pan_btn.appendChild(html_comp('i', {class: 'bi bi-crosshair'}));
-        pan_btn.setAttribute('title', lang.actions.locate_stop_on_map);
-        btn_group.appendChild(pan_btn);
+        text: [true / false]
+        whether to show any text, true by default
+
+        stop_code: integer
+    */
+    if(!btn_group) {
+        btn_group = html_comp('div', {class: 'btn-group'});
+    }
+    for(let btn of options.buttons) {
+        btn_group.appendChild(generate_button({stop_code: options.stop_code, type: btn, text: options.text}));
     }
     return btn_group;
 }

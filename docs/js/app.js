@@ -62,7 +62,7 @@ function init(debug=false){
 	
 	check_metadata()
 	.then(() => {
-		let new_item = generate_stop_action_buttons(1);
+		let new_item = generate_btn_group({stop_code:1, buttons: ['departures_board', 'schedule'], text: true});
 		let old_item = document.querySelector('#route_btn_group');
 		new_item.setAttribute('id', 'route_btn_group');
 		new_item.classList.add(...Array.from(old_item.classList));
@@ -122,7 +122,7 @@ async function init_map() {
 		generate_routes_thumbs(routes, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
-		popup.appendChild(generate_stop_action_buttons(stop.code));
+		popup.appendChild(generate_btn_group({buttons: ['departures_board', 'schedule'], stop_code: stop.code, text: true}));
 		return popup;
 	}
 	const stops_list = document.querySelector('#stops_list');

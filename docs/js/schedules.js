@@ -94,7 +94,7 @@ function generate_stop_row(stop) {
 	tr.appendChild(lines_td);
 
 	let td3 = html_comp('td', {class: 'align-middle'});
-	let btn_group_1 = generate_stop_action_buttons(stop.code, {pan_btn: true, icons_only: true});
+	let btn_group_1 = generate_btn_group({stop_code: stop.code, buttons: ['departures_board', 'schedule', 'locate_stop'], text: false});
 	let btn_group_2 = btn_group_1.cloneNode(true);
 	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
 	btn_group_2.setAttribute('class', 'btn-group-vertical d-block d-md-none');
