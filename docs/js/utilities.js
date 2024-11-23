@@ -11,12 +11,13 @@ function get_split_hash() {
     .filter(el => el);
 }
 
-function format_stop_code(stop_code){
+function format_stop_code(stop_code) {
     if(!stop_code) {
         return '????'
     }
 	return stop_code.toString().padStart(4, '0');
 }
+
 function get_stop(stop_arg){
 	if(typeof stop_arg=='string'){
 		stop_arg = Number(stop_arg);
@@ -28,6 +29,7 @@ function get_stop(stop_arg){
 		return data.stops.find(stop => stop.code === stop_arg) || {code: stop_arg, names: {bg: `(${lang.schedules.unknown_stop})`}};
 	}
 }
+
 //accepts stop_code or stop object, in order to maintain consistent stop names
 function get_stop_name(stop_code){
 	if(!stop_code || stop_code==undefined){
@@ -48,13 +50,16 @@ function get_stop_name(stop_code){
     }
     return stop_name || `(${lang.schedules.unknown_stop})`;
 }
+
 function get_stop_string(stop_code_or_object) {
     let stop_obj = get_stop(stop_code_or_object);
     return `[${format_stop_code(stop_obj.code)}] ${get_stop_name(stop_obj)}`;
 }
+
 function format_date_string(string){
     return new Date(string).toLocaleDateString(lang.code);
 }
+
 function is_metro_stop(stop_code){
     return 2900 < Number(stop_code) && Number(stop_code) < 3400
 }
