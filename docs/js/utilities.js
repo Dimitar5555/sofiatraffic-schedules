@@ -41,7 +41,12 @@ function get_stop_name(stop_code){
     if(is_metro_stop(stop_code)){
         return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
     }
-    return stop?.names[lang.code] || `(${lang.schedules.unknown_stop})`;
+    let stop_name = stop?.names[lang.code];
+    // TODO: Remove this monkey patch, when SUMC fixes their data
+    if(stop_name == 'Ж. К. ОБЕЛЯ 3') {
+        stop_name = 'Ж. К. ОБЕЛЯ 2';
+    }
+    return stop_name || `(${lang.schedules.unknown_stop})`;
 }
 function get_stop_string(stop_code_or_object) {
     let stop_obj = get_stop(stop_code_or_object);
