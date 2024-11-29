@@ -56,6 +56,24 @@ function fetch_routes_data() {
 	return routes;
 }
 
+function determine_route_type(type_string) {
+	if(type_string.includes('subway.png')){
+		return 'metro';
+	}
+	else if(type_string.includes('tram.png')){
+		return 'tram';
+	}
+	else if(type_string.includes('trolley.png')){
+		return 'trolley';
+	}
+	else if(type_string.includes('bus.png')){
+		return 'bus';
+	}
+	else{
+		console.error(`Unrecognised line type: ${type_string}`);
+	}
+}
+
 function process_routes_data(input_routes) {
 	let output_routes = [];
 
@@ -64,6 +82,7 @@ function process_routes_data(input_routes) {
 			route_ref: input_route.name,
 			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, '')),
 			cgm_id: input_route.ext_id,
+			type: determine_route_type(input_route.icon)
 		};
 
 		let route_ref = output_route.temp_ref == output_route.route_ref?output_route.temp_ref:output_route.route_ref;
@@ -78,30 +97,16 @@ function process_routes_data(input_routes) {
 			route_ref = `У${Number(output_route.temp_ref)}`;
 			output_route.subtype = 'school';
 		}
-		output_route.route_ref = route_ref;
+		output_route.route_ref = route_ref.toString();
 
-		if(input_route.icon.includes('subway.png')){
-			output_route.type = 'metro';
-		}
-		else if(input_route.icon.includes('tram.png')){
-			output_route.type = 'tram';
-		}
-		else if(input_route.icon.includes('trolley.png')){
-			output_route.type = 'trolley';
-		}
-		else if(input_route.icon.includes('bus.png')){
+
+		if(typeof route_ref == 'string' && (route_ref.includes('-')
+					/* Latin */              /* Cyrrilic */
+		|| route_ref.includes('TM') || route_ref.includes('ТМ')
+		|| route_ref.includes('TB') || route_ref.includes('ТБ'))) {
 			output_route.type = 'bus';
-			if(typeof route_ref == 'string' && (route_ref.includes('-')
-			                /* Latin */              /* Cyrrilic */
-			|| route_ref.includes('TM') || route_ref.includes('ТМ')
-			|| route_ref.includes('TB') || route_ref.includes('ТБ'))) {
-				output_route.subtype = 'temporary';
-			}
+			output_route.subtype = 'temporary';
 		}
-		else{
-			console.error(`Unrecognised line type: ${input_route.icon}`);
-		}
-
 		output_routes.push(output_route);
 	});
 
@@ -109,14 +114,15 @@ function process_routes_data(input_routes) {
 		if(a.type != b.type) {
 			return main_types.indexOf(a.type)-main_types.indexOf(b.type);
 		}
-		if(a.subtype) {
+		if(a.subtype && !b.subtype) {
 			return 1;
 		}
-		if(b.subtype) {
+		if(b.subtype && !a.subtype) {
 			return -1;
 		}
 		return a.temp_ref - b.temp_ref;
 	});
+	console.table(output_routes)
 	return output_routes;
 }
 
