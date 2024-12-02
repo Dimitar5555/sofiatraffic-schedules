@@ -222,7 +222,9 @@
 									<th data-i18n="schedules.favourite_stops" colspan="4"></th>
 								</tr>
 							</tbody>
-							<th data-i18n="schedules.stops" colspan="4"></th>
+							<tr>
+								<th data-i18n="schedules.stops" colspan="4"></th>
+							</tr>
 							<tbody id="stops_list"></tbody>
 						</table>
 					</div>
@@ -268,11 +270,33 @@
 					<span data-i18n="other.sofiatraffic_livedata_warning_1"></span>
 					<span data-i18n="other.sofiatraffic_livedata_warning_2"></span>
 				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" id="virtual_board_show_exact_time" onclick="virtual_board_toggle_exact_times(this.checked); set_virtual_boards_settings();">
+					<label class="form-check-label" for="virtual_board_show_exact_time" data-i18n="other.show_exact_time"></label>
+				</div>
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" id="virtual_board_show_condensed" onclick="virtual_board_toggle_condensed_view(this.checked); set_virtual_boards_settings();">
+					<label class="form-check-label" for="virtual_board_show_condensed" data-i18n="other.show_condensed"></label>
+				</div>
 				<table id="virtual_board_table" class="table table-bordered">
 					<thead>
 						<th colspan="4"></th>
 					</thead>
-					<tbody></tbody>
+					<tbody id="virtual_board_information">
+						<tr id="virtual_board_no_more_departures">
+							<td class="text-center" colspan="4" data-i18n="other.no_more_departures"></td>
+						</tr>
+						<tr id="loading_row">
+							<th colspan="4">
+								<div class="spinner-border my-2" style="width: 3rem; height: 3rem; border-width: 4.5px;"></div>
+							</th>
+						</tr>
+						<tr id="no_network_connection">
+							<th colspan="4" data-i18n="other.no_network_connection"></th>
+						</tr>
+					</tbody>
+					<tbody id="virtual_board_condensed_view"></tbody>
+					<tbody id="virtual_board_verbose_view"></tbody>
 				</table>
 				<span data-i18n="other.generated_at"></span>
 				<span id="generated_at"></span>
@@ -309,6 +333,7 @@
 		<span data-i18n="footer.last_site_update"></span>: <span id="app_version"></span>
 	</footer>
 	<script defer src="js/config.js"></script>
+	<script defer src="js/virtual_boards.js"></script>
 	<script defer src="js/utilities.js"></script>
 	<script defer src="js/app.js"></script>
 	<script defer src="js/navigation.js"></script>

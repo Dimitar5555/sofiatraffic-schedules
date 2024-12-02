@@ -125,6 +125,20 @@ function init_schedules(){
 	});
 }
 
+function init_virtual_boards() {
+	let virtual_boards_settings = JSON.parse(localStorage.getItem('virtual_boards_settings')) || VIRTUAL_BOARDS_DEFAULT_SETTINGS;
+	document.querySelector('#virtual_board_show_condensed').checked = virtual_boards_settings.show_condensed_view;
+	document.querySelector('#virtual_board_show_exact_time').checked = virtual_boards_settings.use_exact_times;
+}
+
+function set_virtual_boards_settings() {
+	let virtual_boards_settings = {
+		show_condensed_view: document.querySelector('#virtual_board_show_condensed').checked,
+		use_exact_times: document.querySelector('#virtual_board_show_exact_time').checked,
+	};
+	localStorage.setItem('virtual_boards_settings', JSON.stringify(virtual_boards_settings));
+}
+
 function init_updated_schedules_table(){
 	document.querySelector('a[onclick="init_updated_schedules_table()"]').removeAttribute('onclick');
 	//handles the table with last updated schedules
@@ -712,95 +726,53 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 }
 
 async function load_virtual_board(stop_code) {
-	function generate_virtual_board_row(route, row_index, new_tbody) {
-		let tr = html_comp('tr');
-		{
-			let td = html_comp('td');
-			let span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
-			td.appendChild(span);
-			td.appendChild(html_comp('i', {class: 'bi bi-caret-right-fill'}));
-			td.appendChild(document.createTextNode(get_stop_name(route.destination_stop)))
-			tr.appendChild(td);
-		}
-
-		for(const time of route.times) {
-			let td = html_comp('td');
-			td.appendChild(document.createTextNode(format_time(date.getHours()*60+date.getMinutes()+time.t, false)));
-			td.appendChild(document.createTextNode(' '));
-			if(time.wheelchair){
-				td.appendChild(html_comp('i', {class: 'bi bi-person-wheelchair'}));
-			}
-			if(time.ac){
-				td.appendChild(html_comp('i', {class: 'bi bi-snow'}));
-			}
-			if(time.bike_rack){
-				td.appendChild(html_comp('i', {class: 'bi bi-bicycle'}));
-			}
-			tr.appendChild(td);
-		}
-		let needed_cells = 3-route.times.length;
-		while(needed_cells>0) {
-			tr.appendChild(html_comp('td', {text: '-'}));
-			needed_cells--;
-		}
-		if(row_index == 0) {
-			tr.children.item(0).classList.add('col-4');
-			tr.children.item(1).classList.add('col-2');
-			tr.children.item(2).classList.add('col-2');
-			tr.children.item(3).classList.add('col-2');
-		}
-		new_tbody.appendChild(tr);
-	}
-	const date = new Date;
+    const use_exact_times = document.querySelector('#virtual_board_show_exact_time').checked;
+    const show_condensed_view = document.querySelector('#virtual_board_show_condensed').checked;
+	
 	let generated_at_el = document.querySelector('#generated_at');
 	generated_at_el.innerText = '';
 	generated_at_el.nextElementSibling.setAttribute('disabled', '');
+	
 	var table = document.querySelector('table#virtual_board_table');
 	var thead = table.querySelector('thead');
 	thead.querySelector('th').innerText = get_stop_string(stop_code);
-	var old_tbody = table.querySelector('tbody');
-	var new_tbody = old_tbody.cloneNode();
 	
-	let loading_row = html_comp('tr');
-	let loading_td = html_comp('th', {colspan: 4});
-	let loading_div = html_comp('div', {class: 'spinner-border my-2', style: 'width: 3rem; height: 3rem; border-width: 4.5px;', role: 'status'});
-	loading_td.appendChild(loading_div);
-	loading_row.append(loading_td);
-	new_tbody.appendChild(loading_row);
-	old_tbody.replaceWith(new_tbody);
+	var old_condensed_tbody = table.querySelector('tbody#virtual_board_condensed_view');
+	var new_condensed_tbody = old_condensed_tbody.cloneNode();
+	
+	var old_verbose_tbody = table.querySelector('tbody#virtual_board_verbose_view');
+	var new_verbose_tbody = old_verbose_tbody.cloneNode();
+	
+	virtual_board_show_info('loading_row');
+	
+	let no_more_departures_el = table.querySelector('#virtual_board_no_more_departures');
+	no_more_departures_el.classList.add('d-none');
+	
+	old_condensed_tbody.replaceWith(new_condensed_tbody);
+	old_verbose_tbody.replaceWith(new_verbose_tbody);
+	
 	fetch(`${virtual_board_proxy_url}${format_stop_code(stop_code)}`)
 	.then(data => data.json())
 	.then(routes_data => {
-		if(routes_data.status == 'ok'){
-			loading_row.remove();
+		virtual_board_show_info(false);
+		if(routes_data.status == 'ok') {
 			if(routes_data.routes.length == 0) {
-				let tr = html_comp('tr');
-				let td = html_comp('td', {colspan: 4, text: 'Няма повече потегляния за деня', class: 'text-center'});
-				tr.appendChild(td);
-				new_tbody.appendChild(tr);
+				no_more_departures_el.classList.remove('d-none');
 			}
-			routes_data.routes.forEach((route, row_index) => {
-				if(!route.route_ref) {
-					route.route_ref = route.ref;
-				}
-				generate_virtual_board_row(route, row_index, new_tbody);
-			});
+			const date = new Date;
+			populate_virtual_board_table(routes_data.routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view);
 		}
-		else{
-			loading_row.innerText = `${routes_data.status}\n${routes_data.message}`;
+		else {
+			// loading_row.innerText = `${routes_data.status}\n${routes_data.message}`;
 		}
 		generated_at_el.innerText = new Date(routes_data.generated_at).toLocaleString(lang.code);
 		generated_at_el.nextElementSibling.dataset.code = stop_code;
 		generated_at_el.nextElementSibling.removeAttribute('disabled');
 	})
 	.catch(err => {
-		console.log(err);
-		let tr = html_comp('tr');
-		let td = html_comp('td', {colspan: 4, text: `Няма връзка със сървъра или интернет`, class: 'text-center'});
-		tr.appendChild(td);
-		new_tbody.appendChild(tr);
+		console.error(err);
+		virtual_board_show_info('no_network_connection');
 
-		loading_row.remove();
 		generated_at_el.nextElementSibling.dataset.code = stop_code;
 		generated_at_el.nextElementSibling.removeAttribute('disabled');
 	});

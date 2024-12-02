@@ -77,6 +77,10 @@
 	"other":{
 		"sofiatraffic_livedata_warning_1": "Данните идват от ЦГМ, като е възможно да има непълноти или неточности.",
 		"sofiatraffic_livedata_warning_2": "Възможни са разлики във времената на потегляне в рамките на ±1 минута.",
-		"generated_at": "Генерирано на "
+		"generated_at": "Генерирано на ",
+		"show_exact_time": "Показване на точно време",
+		"show_condensed": "Покажи синтезирано",
+		"no_more_departures": "Няма повече потегляния за деня",
+		"no_network_connection": "Няма връзка със сървъра или интернет"
 	}
 }

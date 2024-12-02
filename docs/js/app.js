@@ -238,6 +238,7 @@ function fetch_data(metadata=false){
 		init_schedules_data(organised_data);
 		init_favourites();
 		init_schedules();
+		init_virtual_boards();
 	})
 	.then(() => {
 		document.body.classList.remove('no-scroll');
