@@ -56,22 +56,48 @@ function fetch_routes_data() {
 	return routes;
 }
 
-function determine_route_type(type_string) {
+function determine_route_type(route, type_string) {
 	if(type_string.includes('subway.png')){
-		return 'metro';
+		route.type = 'metro';
 	}
 	else if(type_string.includes('tram.png')){
-		return 'tram';
+		route.type = 'tram';
 	}
 	else if(type_string.includes('trolley.png')){
-		return 'trolley';
+		route.type = 'trolley';
 	}
 	else if(type_string.includes('bus.png')){
-		return 'bus';
+		route.type = 'bus';
 	}
 	else{
 		console.error(`Unrecognised line type: ${type_string}`);
 	}
+	const route_ref = route.route_ref;
+	/*   Cyrrilic                     Latin */
+	if(route_ref.includes('Т') || route_ref.includes('T')) {
+		route.type = 'bus';
+		route.subtype = 'temporary';
+	}
+	else if(route_ref.startsWith('N')) {
+		route.subtype = 'night';
+	}
+	else if(route_ref.startsWith('У')) {
+		route.subtype = 'school';
+	}
+}
+
+function determine_route_ref(ref) {
+	let number = ref.replace(/[a-zа-я]/gi, '');
+    if(ref.startsWith('E')){
+        ref = ref.replace('E', '');
+    }
+    else if(ref.startsWith('N')){
+        ref = `N${number}`;
+    }
+	else if(ref.startsWith('Y')) {
+		ref = `У${number}`;
+	}
+    return ref;
 }
 
 function process_routes_data(input_routes) {
@@ -79,34 +105,35 @@ function process_routes_data(input_routes) {
 
 	input_routes.forEach(input_route => {
 		let output_route = {
-			route_ref: input_route.name,
+			route_ref: determine_route_ref(input_route.name),
 			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, '')),
 			cgm_id: input_route.ext_id,
-			type: determine_route_type(input_route.icon)
 		};
+		console.log(input_route, output_route);
+		determine_route_type(output_route, input_route.icon);
+		output_route.temp_ref = Number(output_route.route_ref.replace(/[a-zа-я]/gi, ''));
 
-		let route_ref = output_route.temp_ref == output_route.route_ref?output_route.temp_ref:output_route.route_ref;
-		if(typeof route_ref == 'string' && route_ref.startsWith('N')) {
-			route_ref = `N${output_route.temp_ref}`;
-			output_route.subtype = 'night';
-		}
-		else if(typeof route_ref == 'string' && route_ref.startsWith('E')) {
-			route_ref = output_route.temp_ref.toString();
-		}
-		else if(typeof route_ref == 'string' && (route_ref.startsWith('Y') || route_ref.startsWith('У'))) {
-			route_ref = `У${Number(output_route.temp_ref)}`;
-			output_route.subtype = 'school';
-		}
-		output_route.route_ref = route_ref.toString();
+		// let route_ref = output_route.temp_ref == output_route.route_ref?output_route.temp_ref:output_route.route_ref;
+		// if(typeof route_ref == 'string' && route_ref.startsWith('N')) {
+		// 	output_route.subtype = 'night';
+		// }
+		// else if(typeof route_ref == 'string' && route_ref.startsWith('E')) {
+		// 	route_ref = output_route.temp_ref.toString();
+		// }
+		// else if(typeof route_ref == 'string' && (route_ref.startsWith('Y') || route_ref.startsWith('У'))) {
+		// 	route_ref = `У${Number(output_route.temp_ref)}`;
+		// 	output_route.subtype = 'school';
+		// }
+		// output_route.route_ref = route_ref.toString();
 
 
-		if(typeof route_ref == 'string' && (route_ref.includes('-')
+		// if(typeof route_ref == 'string' && (route_ref.includes('-')
 					/* Latin */              /* Cyrrilic */
-		|| route_ref.includes('TM') || route_ref.includes('ТМ')
-		|| route_ref.includes('TB') || route_ref.includes('ТБ'))) {
-			output_route.type = 'bus';
-			output_route.subtype = 'temporary';
-		}
+		// || route_ref.includes('TM') || route_ref.includes('ТМ')
+		// || route_ref.includes('TB') || route_ref.includes('ТБ'))) {
+		// 	output_route.type = 'bus';
+		// 	output_route.subtype = 'temporary';
+		// }
 		output_routes.push(output_route);
 	});
 
