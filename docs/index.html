@@ -9,15 +9,15 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-icons.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="manifest" href="manifest.json" />
+	<link rel="manifest" href="manifest.json">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<meta name="description" content="Актуални разписания на софийския градски транспорт.">
-	<script src="js/bootstrap.bundle.min.js"></script>
-    <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0" />
-	<script src="js/leaflet.js"></script>
+	<script src="js/vendor/bootstrap.bundle.min.js"></script>
+    <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0">
+	<script src="js/vendor/leaflet.js"></script>
 
-	<script defer src="js/leaflet.markercluster.js"></script>
-	<script defer src="js/leaflet.featuregroup.subgroup.js"></script>
+	<script defer src="js/vendor/leaflet.markercluster.js"></script>
+	<script defer src="js/vendor/leaflet.featuregroup.subgroup.js"></script>
 	<link rel="stylesheet" href="css/MarkerCluster.css">
 	<link rel="stylesheet" href="css/MarkerCluster.Default.css">
 
@@ -108,7 +108,7 @@
 					</div>
                 </div>
 				<div id="schedule_display" class="d-none">
-					<button onclick="drop_current(); navigate_to_home();" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="actions.back"></button>
+					<button onclick="drop_current(); navigate_to_home();" class="btn btn-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="actions.back"></span></button>
 					<br>
 					<div class="row m-2">
 						<div class="col col-4 col-md-3">
@@ -220,7 +220,7 @@
 							<tbody id="favourite_stops_tbody">
 								<tr>
 									<th data-i18n="schedules.favourite_stops" colspan="4"></th>
-								</td>
+								</tr>
 							</tbody>
 							<th data-i18n="schedules.stops" colspan="4"></th>
 							<tbody id="stops_list"></tbody>
