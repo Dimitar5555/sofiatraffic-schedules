@@ -28,7 +28,6 @@
 {"route_ref":"8","cgm_id":"TB4","type":"trolley"},
 {"route_ref":"9","cgm_id":"TB8","type":"trolley"},
 {"route_ref":"11","cgm_id":"TB2","type":"trolley"},
-{"route_ref":"20","cgm_id":"TB34","type":"trolley"},
 {"route_ref":"1","cgm_id":"A66","type":"bus"},
 {"route_ref":"3","cgm_id":"A68","type":"bus"},
 {"route_ref":"4","cgm_id":"A69","type":"bus"},
@@ -131,5 +130,6 @@
 {"route_ref":"У2","cgm_id":"A243","type":"bus","subtype":"school"},
 {"route_ref":"N3","cgm_id":"A226","type":"bus","subtype":"night"},
 {"route_ref":"N4","cgm_id":"A227","type":"bus","subtype":"night"},
-{"route_ref":"20TM","cgm_id":"A172","type":"bus","subtype":"temporary"}
+{"route_ref":"20TM","cgm_id":"A172","type":"bus","subtype":"temporary"},
+{"route_ref":"20T","cgm_id":"TB34","type":"bus","subtype":"temporary"}
 ]
