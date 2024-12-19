@@ -20,6 +20,7 @@
 {"route_ref":"22","cgm_id":"TM22","type":"tram"},
 {"route_ref":"23","cgm_id":"TM50","type":"tram"},
 {"route_ref":"27","cgm_id":"TM55","type":"tram"},
+{"route_ref":"92","cgm_id":"TM57","type":"tram"},
 {"route_ref":"1","cgm_id":"TB10","type":"trolley"},
 {"route_ref":"2","cgm_id":"TB9","type":"trolley"},
 {"route_ref":"3","cgm_id":"TB32","type":"trolley"},
