@@ -72,6 +72,7 @@
 {"route_ref":"64","cgm_id":"A6","type":"bus"},
 {"route_ref":"66","cgm_id":"A63","type":"bus"},
 {"route_ref":"67","cgm_id":"A77","type":"bus"},
+{"route_ref":"68","cgm_id":"A106","type":"bus"},
 {"route_ref":"69","cgm_id":"A78","type":"bus"},
 {"route_ref":"70","cgm_id":"A79","type":"bus"},
 {"route_ref":"72","cgm_id":"A1","type":"bus"},
