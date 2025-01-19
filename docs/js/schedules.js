@@ -234,7 +234,7 @@ function filter_stops(text) {
 			|| show_stops.length == 0
 		)
 		&& stop_row.dataset.hidden != '1'
-		&& currently_shown_stops<=maximum_stops_shwon_at_once;
+		&& currently_shown_stops<=maximum_stops_shown_at_once;
 		if(show_stop) {
 			stop_row.classList.remove('d-none');
 			currently_shown_stops++;

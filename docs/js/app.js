@@ -19,7 +19,7 @@ const sec_types = ['temporary', 'school', 'night'];
 
 const tab_btns = Array.from(document.querySelector('nav').children).map(btn => new bootstrap.Tab(btn));
 
-const maximum_stops_shwon_at_once = 6;
+const maximum_stops_shown_at_once = 6;
 
 current = {
 	route: null, trip: null, stop_code: null, view: null
@@ -130,7 +130,7 @@ async function init_map() {
 	for(let stop of data.stops) {
 		stops_list.appendChild(generate_stop_row(stop));
 		curently_shown_stops++;
-		if(curently_shown_stops>maximum_stops_shwon_at_once) {
+		if(curently_shown_stops>maximum_stops_shown_at_once) {
 			stops_list.children.item(curently_shown_stops-1).classList.add('d-none');
 		}
 		let stop_routes = stop.route_indexes.map(index => data.routes[index]);
