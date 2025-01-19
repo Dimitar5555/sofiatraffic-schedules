@@ -109,7 +109,7 @@ function generate_button(options) {
         btn.setAttribute('title', btn_data.text);
     }
 
-    if(btn.disable_condition && btn.disable_condition(options.stop_code)) {
+    if(btn_data.disable_condition && btn_data.disable_condition(options.stop_code)) {
         btn.setAttribute('disabled', '');
     }
 
