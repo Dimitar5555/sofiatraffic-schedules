@@ -7,7 +7,7 @@ var sofiatraffic_session_cookie;
 var sofiatraffic_xsrf_token;
 
 async function fetch_tokens() {
-    let cookies_request = await fetch('https://sofiatraffic.bg/bg/public-transport');
+    let cookies_request = await fetch('https://sofiatraffic.bg/bg/public-transport', {"method": "HEAD"});
     let cookies = cookies_request.headers.getSetCookie();
     sofiatraffic_xsrf_token = decodeURIComponent(cookies[0].split(';')[0].split('=')[1]);
     sofiatraffic_session_cookie = decodeURIComponent(cookies[1].split(';')[0].split('=')[1]);
