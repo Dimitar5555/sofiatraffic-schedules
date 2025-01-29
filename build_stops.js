@@ -49,6 +49,8 @@ function fetch_osm_stops_data() {
 	+ '('
 	+ 'node[subway=yes][public_transport=stop_position][ref][network="Градски транспорт София"];'
 	+ 'node[tram=yes][public_transport=stop_position][ref][network="Градски транспорт София"];'
+	+ 'node[bus=yes][public_transport=platform][ref][network="Градски транспорт София"];'
+	+ 'node[trolleybus=yes][public_transport=platform][ref][network="Градски транспорт София"];'
 	+ ');'
 	+ 'out geom;';
 	let req = fetch("https://overpass.kumi.systems/api/interpreter", {
@@ -72,7 +74,7 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 				}
 			});
 		}
-		else{
+		else if(osm_stop.tags.tram) {
 			stop_to_override.coords = round_stop_coords(osm_stop.lat, osm_stop.lon)
 		}
 	});
@@ -85,7 +87,7 @@ export function get_stops_data() {
     return Promise.all([cgm_stops, osm_stops])
     .then(([stops, osm_stops]) => {
         process_osm_stops_data(stops, osm_stops);
-		stops.sort((a, b) => a.code-b.code);
+		stops.sort((a, b) => a.code - b.code);
         return stops;
     });
 }
