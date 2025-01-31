@@ -128,8 +128,8 @@ function generate_verbose_virtual_board_table(routes, tbody, date) {
             new_data.push({
                 route_ref: route.route_ref,
                 type: route.type,
-                destination_stop: route.destination,
-                t: time.t,
+                destination: route.destination,
+                time: time.t,
                 extras: time.extras
             });
         }
@@ -146,7 +146,7 @@ function generate_verbose_virtual_board_table(routes, tbody, date) {
             let td = html_comp('td', {class: 'align-middle'});
             td.setAttribute('colspan', 2);
 
-            generate_time_and_icons(row.t, row.extras, date, td);
+            generate_time_and_icons(row.time, row.extras, date, td);
             tr.appendChild(td);
         }
 
