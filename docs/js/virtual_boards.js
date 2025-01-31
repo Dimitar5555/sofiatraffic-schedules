@@ -25,18 +25,33 @@ function virtual_board_toggle_condensed_view(use_condensed_view) {
 }
 
 function virtual_board_add_icons(extras, td) {
-    td.appendChild(document.createTextNode(' '));
-    let span = html_comp('span', {class: 'text-nowrap'})
-    if(extras.wheelchair){
-        span.appendChild(html_comp('i', {class: 'bi bi-person-wheelchair'}));
+    const icons = [
+        {
+            // air conditioning
+            icon: 'snow',
+            condition: extras[0] === '1'
+        },
+        {
+            // wheelchair access
+            icon: 'person-wheelchair',
+            condition: extras[1] === '1'
+        },
+        {
+            // bike rack
+            icon: 'bicycle',
+            condition: extras[2] === '1'
+        }
+    ];
+    if(icons.some(icon => icon.condition)) {
+        td.appendChild(document.createTextNode(' '));
+        let span = html_comp('span', {class: 'text-nowrap'});
+        for(const icon of icons) {
+            if(icon.condition) {
+                span.appendChild(html_comp('i', {class: `bi bi-${icon.icon}`}));
+            }
+        }
+        td.appendChild(span);
     }
-    if(extras.ac){
-        span.appendChild(html_comp('i', {class: 'bi bi-snow'}));
-    }
-    if(extras.bike_rack){
-        span.appendChild(html_comp('i', {class: 'bi bi-bicycle'}));
-    }
-    td.appendChild(span);
 }
 
 function generate_condensed_virtual_board_table(routes, tbody, date) {
@@ -74,7 +89,7 @@ function generate_route_td(route) {
     const span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
     td.appendChild(span);
     td.appendChild(html_comp('i', {class: 'bi bi-caret-right-fill'}));
-    td.appendChild(document.createTextNode(get_stop_name(route.destination_stop)));
+    td.appendChild(document.createTextNode(get_stop_name(route.destination)));
     return td;
 }
 
@@ -86,7 +101,7 @@ function generate_virtual_board_row(route, row_index, tbody, date) {
     for(const time of route.times) {
         let td = html_comp('td', {class: 'align-middle'});
         
-        generate_time_and_icons(time.t, {ac: time.ac, wheelchair: time.wheelchair, bike_rack: time.bike_rack}, date, td);
+        generate_time_and_icons(time.t, time.extras, date, td);
         tr.appendChild(td);
     }
     let needed_cells = 3-route.times.length;
@@ -111,13 +126,9 @@ function generate_verbose_virtual_board_table(routes, tbody, date) {
             new_data.push({
                 route_ref: route.route_ref,
                 type: route.type,
-                destination_stop: route.destination_stop,
-                time: time.t,
-                extras: {
-                    ac: time.ac,
-                    bike_rack: time.bike_rack,
-                    wheelchair: time.wheelchair
-                }
+                destination_stop: route.destination,
+                t: time.t,
+                extras: time.extras
             });
         }
     }
@@ -133,7 +144,7 @@ function generate_verbose_virtual_board_table(routes, tbody, date) {
             let td = html_comp('td', {class: 'align-middle'});
             td.setAttribute('colspan', 2);
 
-            generate_time_and_icons(row.time, row.extras, date, td);
+            generate_time_and_icons(row.t, row.extras, date, td);
             tr.appendChild(td);
         }
 
