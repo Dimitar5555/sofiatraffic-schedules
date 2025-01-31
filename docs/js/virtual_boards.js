@@ -48,8 +48,10 @@ function virtual_board_add_icons(extras, td) {
         for(const icon of icons) {
             if(icon.condition) {
                 span.appendChild(html_comp('i', {class: `bi bi-${icon.icon}`}));
+                span.appendChild(document.createTextNode(' '));
             }
         }
+        span.removeChild(span.lastChild);
         td.appendChild(span);
     }
 }
