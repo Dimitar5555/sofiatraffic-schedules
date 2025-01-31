@@ -763,7 +763,7 @@ async function load_virtual_board(stop_code) {
 			populate_virtual_board_table(routes_data.routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view);
 		}
 		else {
-			// loading_row.innerText = `${routes_data.status}\n${routes_data.message}`;
+			virtual_board_show_info('no_data');
 		}
 		generated_at_el.innerText = new Date(routes_data.generated_at).toLocaleString(lang.code);
 		generated_at_el.nextElementSibling.dataset.code = stop_code;

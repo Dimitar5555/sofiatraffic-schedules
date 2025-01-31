@@ -38,3 +38,4 @@
 .bi-table::before { content: "\f5AA"; }
 .bi-crosshair::before { content: "\f769"; }
 .bi-caret-right-fill::before { content: "\f231"; }
+.bi-exclamation-triangle-fill::before { content: "\f33a"; }
