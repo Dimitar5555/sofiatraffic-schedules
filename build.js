@@ -4,7 +4,7 @@ import { get_stops_data } from "./build_stops.js";
 import { get_routes_data, fetch_schedule_data, process_schedule_data } from "./build_routes.js";
 
 var metadata = {
-	app_version: '2024-12-02',
+	app_version: '2025-01-31',
 	retrieval_date: new Date().toISOString().split('T')[0],
 	hashes: {}
 };
