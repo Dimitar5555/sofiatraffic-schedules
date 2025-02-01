@@ -21,14 +21,14 @@ export async function fetch_data_from_sofiatraffic(url, body={}) {
         "method": "POST",
         "credentials": "include",
         "headers": {
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0",
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/134.0",
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-GB,en;q=0.5",
             "Accept-Encoding": "gzip, deflate, br, zstd",
             "X-Requested-With": "XMLHttpRequest",
             "Content-Type": "application/json",
             "X-XSRF-TOKEN": sofiatraffic_xsrf_token,
-            "Cookie": `sofia_traffic_session=${sofiatraffic_session_cookie}`,
+            "Cookie": `XSRF-TOKEN=${sofiatraffic_xsrf_token}; sofia_traffic_session=${sofiatraffic_session_cookie}`,
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-origin",
@@ -38,7 +38,6 @@ export async function fetch_data_from_sofiatraffic(url, body={}) {
             "Referrer": "https://www.sofiatraffic.bg/bg/public-transport",
             "TE": "trailers"
         },
-        "referrer": "https://www.sofiatraffic.bg/bg/public-transport",
         "body": JSON.stringify(body),
         "mode": "cors"
     });
