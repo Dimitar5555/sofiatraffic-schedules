@@ -12,17 +12,22 @@ window.onload = function() {
     if(window.location.search.length > 0) {
         const params = new URLSearchParams(window.location.search);
         const type = params.get('type');
+        let new_url = '/';
+        if(window.location.hostname.includes('github')) {
+            new_url += 'sofiatraffic-schedules/';
+        }
         if(['schedules', 'stops_map'].includes(type)) {
-            window.history.replaceState({}, '', `/#!${type}/`);
+            new_url += `#!${type}/`;
         }
         else if(['metro', 'tram', 'trolley', 'bus'].includes(type)) {
             const route_ref = params.get('route');
-            window.history.replaceState({}, '', `/#!${type}/${route_ref}/`);
+            new_url += `#!${type}/${route_ref}/`;
         }
         else if(type == 'stop') {
             const stop_code = params.get('code');
-            window.history.replaceState({}, '', `/#!stop/${stop_code}/`);
+            new_url += `#!stop/${stop_code}/`;
         }
+        window.history.replaceState({}, '', new_url);
     }
     if(!enable_schedules_by_cars) {
         document.querySelectorAll('.schedule_by_cars_related')
