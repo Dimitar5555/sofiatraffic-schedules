@@ -1,6 +1,6 @@
 const url_prefix = '#!';
 
-const enable_virtual_boards = false;
+const enable_virtual_boards = true;
 const enable_virtual_boards_for_subway_stations = true;
 const virtual_board_proxy_url = 'https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=';
 
