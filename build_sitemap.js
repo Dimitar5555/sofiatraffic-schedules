@@ -16,7 +16,7 @@ function init(){
 
 function generate_url_entry(query_string, priority, sitemap) {
 	sitemap.push('<url>');
-	sitemap.push(`<loc>${site}${url_prefix}${query_string}</loc>`);
+	sitemap.push(`<loc>${site}${url_prefix}${query_string}</loc>`.replace(/&/g, '&amp;'));
 	sitemap.push('<changefreq>weekly</changefreq>');
 	sitemap.push(`<priority>${priority}</priority>`);
 	sitemap.push('</url>');
