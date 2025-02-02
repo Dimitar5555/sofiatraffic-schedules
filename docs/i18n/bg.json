@@ -7,11 +7,11 @@
 		"schedule_of": "Разписание на ",
 		"stops_map": "Карта на спирките"
 	},
-	"nav":{
+	"nav": {
 		"schedules": "Разписание",
 		"map": "Карта"
 	},
-	"line_types":{
+	"line_types": {
 		"favourite": "Любими линии",
 		"metro": "Метро",
 		"tram": "Трамваи",
@@ -21,7 +21,7 @@
 		"temporary":"Заместващи автобуси",
 		"night":"Нощни автобуси"
 	},
-	"line_type":{
+	"line_type": {
 		"metro": "Метролиния",
 		"tram": "Трамвай",
 		"trolley": "Тролейбус",
@@ -29,11 +29,11 @@
 		"temporary":"Заместващ автобус",
 		"night": "Нощен автобус"
 	},
-	"weekdays":{
+	"weekdays": {
 		"weekday": "делник",
 		"weekend": "празник"
 	},
-	"schedules":{
+	"schedules": {
 		"line": "Линия",
 		"schedule": "Разписание",
 		"valid_from": "Валидно от",
@@ -53,16 +53,16 @@
 		"favourite_stops": "Любими спирки",
 		"stops": "Спирки"
 	},
-	"footer":{
+	"footer": {
 		"last_data_update": "Последно обновяване на разписанията",
 		"last_site_update": "Последно обновяване на сайта"
 	},
-	"stats":{
+	"stats": {
 		"schedules_by_date": "Нови разписания по дати",
 		"date": "Дата",
 		"line": "Линия"
 	},
-	"actions":{
+	"actions": {
 		"actions": "Действия",
 		"close": "Затвори",
 		"schedule": "Разписание",
@@ -74,7 +74,7 @@
 		"stop_schedule": "Разписание на спирката",
 		"search_by_name_or_code": "Въведете име или код на спирка"
 	},
-	"other":{
+	"other": {
 		"sofiatraffic_livedata_warning_1": "Данните са предоставени от ЦГМ.",
 		"sofiatraffic_livedata_warning_2": "Възможно е да са непълни, неточни и/или да има разлики в времената на потегляне в рамките на ±1 минута.",
 		"generated_at": "Генерирано на ",
