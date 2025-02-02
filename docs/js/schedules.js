@@ -52,6 +52,7 @@ function init_schedules_data(loc_data){
 	loc_data.stops.forEach(stop => {
 		stop.direction_codes = [];
 		stop.route_indexes = [];
+		stop.route_types = new Set();
 	});
 	loc_data.directions.forEach(direction => {
 		let route_index = loc_data.routes.findIndex(route => route.direction_codes.includes(direction.code));
@@ -64,6 +65,7 @@ function init_schedules_data(loc_data){
 				}
 				if(!stop.route_indexes.includes(route_index)) {
 					stop.route_indexes.push(route_index);
+					stop.route_types.add(loc_data.routes[route_index].type);
 				}
 			}
 		});
@@ -76,8 +78,9 @@ function init_schedules_data(loc_data){
 	data = loc_data;
 }
 
-function generate_routes_thumbs(routes, parent) {
-	routes.forEach(route => {
+function generate_routes_thumbs(route_indexes, parent) {
+	route_indexes.forEach(route_index => {
+		const route = data.routes[route_index];
 		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref}))
 		parent.appendChild(document.createTextNode(' '));
 	});
@@ -89,8 +92,7 @@ function generate_stop_row(stop) {
 	tr.appendChild(html_comp('td', {text: get_stop_name(stop), class: 'align-middle'}));
 
 	let lines_td = html_comp('td', {class: 'align-middle'});
-	let routes = stop.route_indexes.map(index => data.routes[index]);
-	generate_routes_thumbs(routes, lines_td);
+	generate_routes_thumbs(stop.route_indexes, lines_td);
 	tr.appendChild(lines_td);
 
 	let td3 = html_comp('td', {class: 'align-middle'});

@@ -97,87 +97,94 @@ async function init_map() {
 		iconAnchor: [12, 41],
 		popupAnchor: [1, -34]
 	});
-	icon.options.shadowSize = [0,0];
-	let start = Date.now();
 	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
 	map = L.map('map', {
 		center: [42.69671, 23.32129],
 		zoom: 13
 	});
 	map.invalidateSize();
-	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+	const attribution_text = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: attribution_text}).addTo(map);
 
-	var marker_groups = {
-		metro: [],
-		tram: [],
-		trolley: [],
-		bus: []
-	};
-
-	var cluster_group = new L.markerClusterGroup({
+	cluster_group = new L.markerClusterGroup({
 		disableClusteringAtZoom: 16,
 		showCoverageOnHover: false
 	}).addTo(map);
 
 
-	function generate_popup_text(stop, routes) {
+	function generate_popup_text(stop, route_indexes) {
 		let popup = html_comp('div', {class: 'text-center'});
 		let p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', text: get_stop_string(stop)})
 		let p2 = html_comp('p', {class: 'my-1 fs-6'});
-		generate_routes_thumbs(routes, p2);
+		generate_routes_thumbs(route_indexes, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
 		popup.appendChild(generate_btn_group({buttons: ['departures_board', 'schedule'], stop_code: stop.code, text: true}));
 		return popup;
 	}
-	const stops_list = document.querySelector('#stops_list');
-	let curently_shown_stops = 0;
+	let markers = [];
+	console.time('Adding stops to map');
 	for(let stop of data.stops) {
-		stops_list.appendChild(generate_stop_row(stop));
-		curently_shown_stops++;
-		if(curently_shown_stops>maximum_stops_shown_at_once) {
-			stops_list.children.item(curently_shown_stops-1).classList.add('d-none');
-		}
-		let stop_routes = stop.route_indexes.map(index => data.routes[index]);
-		let popup = generate_popup_text(stop, stop_routes);
+		let popup = generate_popup_text(stop, stop.route_indexes);
 		let marker = L.marker(stop.coords, {icon: icon})
 		.bindPopup(popup, {maxWidth: 340, closeButton: false});
 		stop.marker = marker;
-		let route_types = stop_routes.map(route => route.type);
-		if(route_types.includes(main_types.metro)){
-			marker_groups.metro.push(marker);
+		stop.is_marker_shown = true;
+		markers.push(marker);
+	}
+	cluster_group.addLayers(markers);
+	map.fitBounds(cluster_group.getBounds());
+	console.timeEnd('Adding stops to map');
+	show_favourite_stops();
+}
+
+async function init_stops_list() {
+	const stops_list = document.querySelector('#stops_list');
+	let curently_shown_stops = 0;
+	for(let stop of data.stops) {
+		let stop_row = generate_stop_row(stop);
+		curently_shown_stops++;
+		if(curently_shown_stops > maximum_stops_shown_at_once) {
+			stop_row.classList.add('d-none');
+		}
+		stops_list.appendChild(stop_row);
+	}
+}
+
+async function toggle_stop_type_visibility() {
+	let to_remove = [];
+	let to_add = [];
+
+	const metro = document.querySelector('#metro_stops_visibility').checked;
+	const tram = document.querySelector('#tram_stops_visibility').checked;
+	const trolley = document.querySelector('#trolley_stops_visibility').checked;
+	const bus = document.querySelector('#bus_stops_visibility').checked;
+
+	const show_types = new Set();
+	if(metro) show_types.add(main_types.metro);
+	if(tram) show_types.add(main_types.tram);
+	if(trolley) show_types.add(main_types.trolley);
+	if(bus) show_types.add(main_types.bus);
+	console.time('Filtering stops');
+	data.stops.forEach(stop => {
+		// const route_types = new Set();
+		// stop.route_indexes.map(index => route_types.add(data.routes[index].type));
+
+		if(show_types.intersection(stop.route_types).size > 0) {
+			if(!stop.is_marker_shown) {
+				to_add.push(stop.marker);
+				stop.is_marker_shown = true;
+			}
 		}
 		else {
-			if(route_types.includes(main_types.tram)){
-				marker_groups.tram.push(marker);
-			}
-			if(route_types.includes(main_types.trolley)){
-				marker_groups.trolley.push(marker);
-			}
-			if(route_types.includes(main_types.bus)){
-				marker_groups.bus.push(marker);
+			if(stop.is_marker_shown) {
+				to_remove.push(stop.marker);
+				stop.is_marker_shown = false;
 			}
 		}
-	}
-	// generate sub groups for marker cluster
-	let stop_dir_matching = Date.now();
-	let metro_sub = L.featureGroup.subGroup(cluster_group, marker_groups.metro).addTo(map);
-	let tram_sub = L.featureGroup.subGroup(cluster_group, marker_groups.tram).addTo(map);
-	let trolley_sub = L.featureGroup.subGroup(cluster_group, marker_groups.trolley).addTo(map);
-	let bus_sub = L.featureGroup.subGroup(cluster_group, marker_groups.bus).addTo(map);
-	console.log(`Matching time ${Date.now()-stop_dir_matching} ms`, marker_groups.bus.length);
-	
-	map.fitBounds(cluster_group.getBounds());
-
-	var overlays = {
-		"Метростанции": metro_sub,
-		"Трамвайни спирки": tram_sub,
-		"Тролейбусни спирки": trolley_sub,
-		"Автобусни спирки": bus_sub
-	};
-	L.control.layers([], overlays, {collapsed: true}).addTo(map);
-	console.log(`Took ${Date.now()-start} ms to generate map`);
-	show_favourite_stops();
+	});
+	cluster_group.removeLayers(to_remove);
+	cluster_group.addLayers(to_add, {chunkedLoading: true});
 }
 
 function check_metadata(){
@@ -244,6 +251,7 @@ function fetch_data(metadata=false){
 		init_favourites();
 		init_schedules();
 		init_virtual_boards();
+		init_stops_list();
 	})
 	.then(() => {
 		document.body.classList.remove('no-scroll');
