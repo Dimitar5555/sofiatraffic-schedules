@@ -49,7 +49,7 @@ function init(debug=false){
 				var path = el.dataset.i18n.split('.');
 				var string = path.reduce((acc, cur) => acc[cur], response);
 				if(!string){
-					alert(el.dataset.i18n);
+					console.warn(`Missing translation key: ${el.dataset.i18n}`);
 				}
 				el.innerHTML = debug?`{{${el.dataset.i18n}}}`:string;
 			}
