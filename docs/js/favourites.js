@@ -32,10 +32,8 @@ function show_favourite_stops(favourite_stops=false){
 		}
 	}
 	let missing_stops = favourite_stops.filter(stop => !has_stops.includes(stop));
-	console.log(favourite_stops, has_stops, missing_stops)
 	for(let stop_code of missing_stops) {
 		let stop_row = regular_stops_tbody.querySelector(`[data-stop-code="${stop_code}"]`);
-		console.log(stop_code, stop_row)
 		let clone = stop_row.cloneNode(true);
 		clone.classList.remove('d-none');
 		favourite_stops_tbody.appendChild(clone);
