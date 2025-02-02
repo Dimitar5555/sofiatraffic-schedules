@@ -42,21 +42,27 @@ function init(debug=false){
 	.then(response => {
         lang = response;
 	    
-        const i18n_els = document.querySelectorAll('[data-i18n]');
-        Array.from(i18n_els)
-        .map(el => {
+		function show_string(el, key='innerText') {
+			const i18n_key = key!='innerText'?`data-i18n-${key}`:'data-i18n';
+			const full_path = el.getAttribute(i18n_key);
+			const split_path = full_path.split('.');
 			try {
-				var path = el.dataset.i18n.split('.');
-				var string = path.reduce((acc, cur) => acc[cur], response);
+				const string = split_path.reduce((acc, cur) => acc[cur], response);
 				if(!string){
-					console.warn(`Missing translation key: ${el.dataset.i18n}`);
+					throw(new Error());
 				}
-				el.innerHTML = debug?`{{${el.dataset.i18n}}}`:string;
+				el[key] = debug?`{{${full_path}}}`:string;
 			}
 			catch(err) {
-				console.error(`Missing string: ${el.dataset.i18n}`)
+				console.error(`Missing string: ${full_path}`)
 			}
-        });
+		}
+
+        const i18n_els = document.querySelectorAll('[data-i18n]');
+        i18n_els.forEach(el => show_string(el));
+
+		const i18n_els_placeholder = document.querySelectorAll('[data-i18n-placeholder]');
+		i18n_els_placeholder.forEach(el => show_string(el, 'placeholder'));
 	});
 
 	
@@ -85,7 +91,6 @@ async function init_map() {
 		return;
 	}
 	is_map_done = true;
-	document.querySelector('[name="search_for_stop"]').setAttribute('placeholder', lang.actions.search_by_name_or_code);
 	let icon = new L.Icon({
 		iconUrl: 'images/marker-icon.png',
 		iconSize: [25, 41],
