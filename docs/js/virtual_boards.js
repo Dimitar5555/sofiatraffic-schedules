@@ -47,27 +47,47 @@ function virtual_board_append_icons(extras, td) {
     }
 }
 
-function generate_condensed_virtual_board_table(routes, tbody, date) {
-    routes.forEach((route, row_index) => {
-        generate_virtual_board_row(route, row_index, tbody, date);
+function generate_virtual_board_table(routes, tbody, date, is_verbose) {
+    let new_data = routes;
+    if(is_verbose) {
+        new_data = [];
+        for(let route of routes) {
+            for(let time of route.times) {
+                new_data.push({
+                    route_ref: route.route_ref,
+                    type: route.type,
+                    times: [{t: time.t, extras: time.extras}],
+                    destination: route.destination
+                });
+            }
+        }
+
+        new_data.sort((a, b) => a.times[0].t - b.times[0].t);
+    }
+    
+    // display result
+    new_data.forEach((route, row_index) => {
+        virtual_board_append_row(route, row_index, tbody, date, is_verbose);
     });
 }
 
 function generate_time_el(time, exact_time, date) {
     // type: relative / exact
     let span = html_comp('span');
+    let text;
+    const time_type = exact_time ? 'exact_time' : 'relative_time';
     if(exact_time) {
-        span.setAttribute('data-time-type', 'exact_time');
-        span.innerText = format_time(date.getHours()*60+date.getMinutes()+time, false);
+        text = format_time(date.getHours()*60+date.getMinutes()+time, false);
     }
     else {
-        span.setAttribute('data-time-type', 'relative_time');
-        span.innerText = `${time} мин.`;
+        text = `${time} мин.`;
     }
+    span.innerText = text;
+    span.setAttribute('data-time-type', time_type);
     return span;
 }
 
-function generate_time_and_icons(time, extras, date, td) {
+function virtual_board_append_time_and_icons(time, extras, date, td) {
     const exactTimeEl = generate_time_el(time, true, date);
     const relativeTimeEl = generate_time_el(time, false, date);
     
@@ -86,7 +106,7 @@ function generate_route_td(route) {
     return td;
 }
 
-function generate_virtual_board_row(route, row_index, tbody, date) {
+function virtual_board_append_row(route, row_index, tbody, date, is_verbose=false) {
     let tr = html_comp('tr');
     const td_route = generate_route_td(route);
     tr.appendChild(td_route);
@@ -94,60 +114,30 @@ function generate_virtual_board_row(route, row_index, tbody, date) {
     for(const time of route.times) {
         let td = html_comp('td', {class: 'align-middle'});
         
-        generate_time_and_icons(time.t, time.extras, date, td);
+        virtual_board_append_time_and_icons(time.t, time.extras, date, td);
         tr.appendChild(td);
     }
-    let needed_cells = 3-route.times.length;
+    let needed_cells = (is_verbose?1:3)-route.times.length;
     while(needed_cells>0) {
         tr.appendChild(html_comp('td', {text: '-', class: 'align-middle'}));
         needed_cells--;
     }
-    if(row_index == 0) {
-        tr.children.item(0).classList.add('col-4');
+    if(row_index == 0 && !is_verbose) {
+        tr.children.item(0).classList.add('col-6');
         tr.children.item(1).classList.add('col-2');
         tr.children.item(2).classList.add('col-2');
         tr.children.item(3).classList.add('col-2');
     }
+    else if(row_index == 0 && is_verbose) {
+        tr.children.item(0).classList.add('col-10');
+        tr.children.item(1).classList.add('col-2');
+    }
     tbody.appendChild(tr);
 }
 
-function generate_verbose_virtual_board_table(routes, tbody, date) {
-    let new_data = [];
-
-    for(let route of routes) {
-        for(let time of route.times) {
-            new_data.push({
-                route_ref: route.route_ref,
-                type: route.type,
-                destination: route.destination,
-                time: time.t,
-                extras: time.extras
-            });
-        }
-    }
-
-    new_data.sort((a, b) => a.time - b.time);
-    for(let row of new_data) {
-        let tr = html_comp('tr');
-        const tdRoute = generate_route_td(row);
-        tdRoute.setAttribute('colspan', 2);
-        tr.appendChild(tdRoute);
-
-        {
-            let td = html_comp('td', {class: 'align-middle'});
-            td.setAttribute('colspan', 2);
-
-            generate_time_and_icons(row.time, row.extras, date, td);
-            tr.appendChild(td);
-        }
-
-        tbody.appendChild(tr);
-    }
-}
-
 function populate_virtual_board_table(routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view) {
-    generate_condensed_virtual_board_table(routes, new_condensed_tbody, date);
-    generate_verbose_virtual_board_table(routes, new_verbose_tbody, date);
+    generate_virtual_board_table(routes, new_condensed_tbody, date, false);
+    generate_virtual_board_table(routes, new_verbose_tbody, date, true);
     virtual_board_toggle_exact_times(use_exact_times);
     virtual_board_toggle_condensed_view(show_condensed_view);
 }
