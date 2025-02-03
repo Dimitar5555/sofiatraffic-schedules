@@ -746,10 +746,7 @@ async function load_virtual_board(stop_code) {
 	var new_verbose_tbody = old_verbose_tbody.cloneNode();
 	
 	virtual_board_show_info('loading_row');
-	
-	let no_more_departures_el = table.querySelector('#virtual_board_no_more_departures');
-	no_more_departures_el.classList.add('d-none');
-	
+
 	old_condensed_tbody.replaceWith(new_condensed_tbody);
 	old_verbose_tbody.replaceWith(new_verbose_tbody);
 	
@@ -757,12 +754,12 @@ async function load_virtual_board(stop_code) {
 	.then(data => data.json())
 	.then(routes_data => {
 		virtual_board_show_info(false);
-		if(routes_data.status == 'ok') {
-			if(routes_data.routes.length == 0) {
-				no_more_departures_el.classList.remove('d-none');
-			}
+		if(routes_data.status == 'ok' && routes_data.routes.length > 0) {
 			const date = new Date;
 			populate_virtual_board_table(routes_data.routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view);
+		}
+		else if(routes_data.status == 'ok' && routes_data.routes.length == 0) {
+			virtual_board_show_info('no_more_departures');
 		}
 		else {
 			virtual_board_show_info('no_data');
