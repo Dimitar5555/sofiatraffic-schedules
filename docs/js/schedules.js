@@ -500,16 +500,34 @@ function display_trip_schedule(stop_time_index){
 	var old_tbody = modal.querySelector('tbody');
 	var new_tbody = html_comp('tbody');
 
+	const selected_time = times[route_stops.indexOf(current.stop_code)];
+
 	times.forEach((time, stop_index) => {
 		var tr = html_comp('tr');
-		var highlight_row = route_stops[stop_index]==current.stop_code?'bg-warning':'';
+		var highlight_row = route_stops[stop_index]==current.stop_code;
         const stop = get_stop(route_stops[stop_index]) || false;
 		if(highlight_row){
 			tr.classList.add('bg-warning');
 		}
-		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: 'align-middle'}));
-		tr.appendChild(html_comp('td', {text: get_stop_name(stop?.code)}));
+		tr.appendChild(html_comp('td', {text: get_stop_name(route_stops[stop_index]), class: 'align-middle d-sm-none', colspan: 2}));
+		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: 'align-middle d-none d-sm-table-cell'}));
+		tr.appendChild(html_comp('td', {text: get_stop_name(stop?.code), class: 'd-none d-sm-table-cell align-middle'}));
 		tr.appendChild(html_comp('td', {text: format_time(time), class: 'align-middle'}));
+		const time_from_selected_stop = time - selected_time;
+		let text;
+		if(Math.abs(time_from_selected_stop) == selected_time) {
+			text = '-';
+		}
+		else if(time_from_selected_stop > 0) {
+			text = `+${time_from_selected_stop}`;
+		}
+		else if(time_from_selected_stop < 0) {
+			text = `(${Math.abs(time_from_selected_stop)})`;
+		}
+		else {
+			text = '0';
+		}
+		tr.appendChild(html_comp('td', {text: text, class: 'align-middle'}));
 		new_tbody.append(tr);
 	});
 	old_tbody.replaceWith(new_tbody);

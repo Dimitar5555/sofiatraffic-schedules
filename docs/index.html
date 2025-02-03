@@ -46,14 +46,15 @@
 				<h5 class="modal-title" data-i18n="schedules.modal_title"></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body px-1">
 				<button data-i18n="schedules.previous_course" class="d-none"></button>
 				<button data-i18n="schedules.next_course" class="d-none"></button>
 				<table id="detailed_schedule" class="table table-bordered table-sm table-text-left">
 					<thead>
 						<tr>
-							<th data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation" colspan="2"></th>
-							<th data-i18n="schedules.departure_time"></th>
+							<th class="col-10 col-sm-8"data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation" colspan="2"></th>
+							<th class="col-1 col-sm-2" data-i18n="schedules.departure_time"></th>
+							<th class="col-1 col-sm-2" data-i18n="schedules.travel_time"></th>
 						</tr>
 					</thead>
 					<tbody></tbody>
