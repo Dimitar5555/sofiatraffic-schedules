@@ -119,6 +119,22 @@ async function fetch_all_data() {
 
 		// sort directions by code
 		directions.sort((a, b) => a.code - b.code);
+
+		// add route indexes to stops
+		for(const direction of directions) {
+			const route_index = trips.find(trip => trip.direction == direction.code).route_index;
+			for(const stop_code of direction.stops) {
+				const stop = stops.find(stop => stop.code == stop_code);
+				if(stop) {
+					if(!stop.route_indexes) {
+						stop.route_indexes = [];
+					}
+					if(!stop.route_indexes.includes(route_index)) {
+						stop.route_indexes.push(route_index);
+					}
+				}
+			}
+		}
 		
 		var files_to_save = [
 			{
