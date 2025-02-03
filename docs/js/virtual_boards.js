@@ -15,7 +15,7 @@ function virtual_board_toggle_condensed_view(show_condensed_view) {
     verbose_tbody.classList.toggle('d-none', show_condensed_view);
 }
 
-function virtual_board_add_icons(extras, td) {
+function virtual_board_append_icons(extras, td) {
     const icons = [
         {
             // air conditioning
@@ -73,7 +73,7 @@ function generate_time_and_icons(time, extras, date, td) {
     
     td.appendChild(exactTimeEl);
     td.appendChild(relativeTimeEl);
-    virtual_board_add_icons(extras, td);
+    virtual_board_append_icons(extras, td);
 }
 
 
