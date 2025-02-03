@@ -1,27 +1,18 @@
-function virtual_board_toggle_exact_times(use_exact_times) {
+function virtual_board_toggle_exact_times(show_exact_times) {
     const els = document.querySelectorAll('span[data-time-type]');
     for(let el of els) {
-        let is_exact_time = el.dataset.timeType == 'exact_time';
-        if(is_exact_time === use_exact_times) {
-            el.classList.remove('d-none');
-        }
-        else {
-            el.classList.add('d-none');
-        }
+        const is_exact_time = el.dataset.timeType == 'exact_time';
+        const should_hide = is_exact_time != show_exact_times;
+        el.classList.toggle('d-none', should_hide);
     }
 }
 
-function virtual_board_toggle_condensed_view(use_condensed_view) {
+function virtual_board_toggle_condensed_view(show_condensed_view) {
     const condensed_tbody = document.querySelector('tbody#virtual_board_condensed_view');
     const verbose_tbody = document.querySelector('tbody#virtual_board_verbose_view');
-    if(use_condensed_view) {
-        condensed_tbody.classList.remove('d-none');
-        verbose_tbody.classList.add('d-none');
-    }
-    else {
-        verbose_tbody.classList.remove('d-none');
-        condensed_tbody.classList.add('d-none');
-    }
+
+    condensed_tbody.classList.toggle('d-none', !show_condensed_view);
+    verbose_tbody.classList.toggle('d-none', show_condensed_view);
 }
 
 function virtual_board_add_icons(extras, td) {
