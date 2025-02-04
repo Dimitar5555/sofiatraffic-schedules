@@ -206,6 +206,7 @@ function update_versions(){
 }
 
 function fetch_data(metadata=false){
+	console.time('Fetching data');
 	var promises = [];
 
 	promises.push(fetch('data/stops.json')
@@ -240,6 +241,8 @@ function fetch_data(metadata=false){
 	}));
 	return Promise.all(promises)
 	.then((response)=>{
+		console.timeEnd('Fetching data');
+		console.time('Starting init');
 		let organised_data = {
 			stops: response[0],
 			directions: response[1],
@@ -247,15 +250,20 @@ function fetch_data(metadata=false){
 			trips: response[3],
 			stop_times: response[4]
 		};
+		console.time('Init schedules data');
 		init_schedules_data(organised_data);
+		console.time('Init favourites data');
 		init_favourites();
+		console.time('Init schedules');
 		init_schedules();
+		console.time('Init virtual boards');
 		init_virtual_boards();
+		console.time('Init stops');
 		init_stops_list();
-	})
-	.then(() => {
+		console.timeEnd('Init stops');
 		document.body.classList.remove('no-scroll');
 		document.querySelector('.loading_screen').classList.add('d-none');
+		console.timeEnd('Starting init');
 	});
 }
 
