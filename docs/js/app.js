@@ -252,12 +252,16 @@ function fetch_data(metadata=false){
 		};
 		console.time('Init schedules data');
 		init_schedules_data(organised_data);
+		console.timeEnd('Init schedules data');
 		console.time('Init favourites data');
 		init_favourites();
+		console.timeEnd('Init favourites data');
 		console.time('Init schedules');
 		init_schedules();
+		console.timeEnd('Init schedules');
 		console.time('Init virtual boards');
 		init_virtual_boards();
+		console.timeEnd('Init virtual boards');
 		console.time('Init stops');
 		init_stops_list();
 		console.timeEnd('Init stops');
