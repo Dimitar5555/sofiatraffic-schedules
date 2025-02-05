@@ -57,19 +57,15 @@ function init_schedules_data(loc_data){
 		}
 	});
 
-	//add directions and routes to stops
-	loc_data.stops.forEach(stop => {
-		// stop.direction_codes = [];
-		stop.route_types = new Set();
-	});
-
 	// add route types to each stop, for map filtering
-	for(const stop of loc_data.stops) {
+	loc_data.stops.forEach(stop => {
+		stop.route_types = new Set();
 		for(const route_index of stop.route_indexes) {
 			const route = loc_data.routes[route_index];
 			stop.route_types.add(route.type);
 		}
-	}
+	});
+
 
 	data = loc_data;
 }
