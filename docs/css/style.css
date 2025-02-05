@@ -7,12 +7,6 @@ td, th {
 	vertical-align: top;
 	text-align: center;
 }
-#stops_list {
-	list-style: none;
-}
-#stops_list > li:hover {
-	background-color: #dedede;
-}
 #line_selector > button {
 	margin: 0 2px;
 	min-width: 45px;
