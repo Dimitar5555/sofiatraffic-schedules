@@ -4,11 +4,20 @@ function toggle_star(star, event){
 	}
 	const fill = 'bi-star-fill';
 	const empty = 'bi-star';
-	if(event=='out'){
-		star.classList.replace(...star.dataset.style=='none'?[fill, empty]:[empty, fill]);
+	
+	const star_style = star.dataset.style;
+
+	const should_be_filled = star_style=='fill';
+
+	if(event == 'out') {
+		// mouseout
+		star.classList.toggle(fill, should_be_filled);
+		star.classList.toggle(empty, !should_be_filled);
 	}
-	else{
-		star.classList.replace(...star.dataset.style=='none'?[empty, fill]:[fill, empty]);
+	else {
+		// mouseover
+		star.classList.toggle(fill, !should_be_filled);
+		star.classList.toggle(empty, should_be_filled);
 	}
 }
 
