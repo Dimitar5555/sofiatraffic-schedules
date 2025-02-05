@@ -77,17 +77,17 @@ function init_schedules_data(loc_data){
 function generate_routes_thumbs(route_indexes, parent) {
 	route_indexes.forEach(route_index => {
 		const route = data.routes[route_index];
-		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref}))
+		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref}));
 		parent.appendChild(document.createTextNode(' '));
 	});
 }
 
 function generate_stop_row(stop) {
-	let tr = html_comp('tr', {'data-stop-code': stop.code});
+	const tr = html_comp('tr', {'data-stop-code': stop.code});
 	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
 	tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle'}));
 
-	let lines_td = html_comp('td', {class: 'align-middle'});
+	const lines_td = html_comp('td', {class: 'align-middle'});
 	generate_routes_thumbs(stop.route_indexes, lines_td);
 	tr.appendChild(lines_td);
 
@@ -96,9 +96,11 @@ function generate_stop_row(stop) {
 	let btn_group_2 = btn_group_1.cloneNode(true);
 	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
 	btn_group_2.setAttribute('class', 'btn-group-vertical d-block d-md-none');
+
 	td3.appendChild(btn_group_1);
 	td3.appendChild(btn_group_2);
 	tr.appendChild(td3);
+
 	return tr;
 }
 
@@ -281,7 +283,7 @@ function are_options_matching(current_options, required_options) {
 
 function configure_all_selectors(predefined_values={}, overwrite_selectors=false){
 	var route = current.route;
-	console.log('predef', predefined_values)
+	console.log('predef', predefined_values);
 	schedule_div.querySelector('#line').innerHTML = `${lang.line_type[route.type]} ${route.route_ref}`;
 	schedule_div.querySelector('#line').setAttribute('class', get_route_colour_classes(route)+' fs-6');
 	
@@ -310,7 +312,7 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	var direction = parseInt(schedule_div.querySelector('#direction').value);
 	
 	var current_stop_options = Array.from(schedule_div.querySelector('#route_stop_selector').querySelectorAll('option')).map(el => Number(el.value));
-	console.log(data.directions.find(dir => dir.code==direction), direction)
+	console.log(data.directions.find(dir => dir.code==direction), direction);
 	var new_stop_options = data.directions.find(dir => dir.code==direction).stops;
 	var stop_options_ok = JSON.stringify(current_stop_options)==JSON.stringify(new_stop_options);
 	if(!stop_options_ok || overwrite_selectors){
@@ -627,7 +629,7 @@ function show_stop_schedule(stop_code, type){
 			//var trip_index = data[0];
 			var div = html_comp('div');
 			var num_div = html_comp('div');
-			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}))
+			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}));
 			num_div.appendChild(html_comp('br'));
 			num_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops)}`}));
 			div.appendChild(num_div);
@@ -769,7 +771,7 @@ async function load_virtual_board(stop_code) {
 	.then(routes_data => {
 		virtual_board_show_info(false);
 		if(routes_data.status == 'ok' && routes_data.routes.length > 0) {
-			const date = new Date;
+			const date = new Date();
 			populate_virtual_board_table(routes_data.routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view);
 		}
 		else if(routes_data.status == 'ok' && routes_data.routes.length == 0) {
