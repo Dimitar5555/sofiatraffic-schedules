@@ -85,7 +85,7 @@ function generate_routes_thumbs(route_indexes, parent) {
 function generate_stop_row(stop) {
 	let tr = html_comp('tr', {'data-stop-code': stop.code});
 	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
-	tr.appendChild(html_comp('td', {text: get_stop_name(stop), class: 'align-middle'}));
+	tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle'}));
 
 	let lines_td = html_comp('td', {class: 'align-middle'});
 	generate_routes_thumbs(stop.route_indexes, lines_td);
@@ -367,7 +367,7 @@ function configure_weekday_selector(values, selected_index){
 function generate_from_to_text(stops){
 	let key_stops = [stops[0], 1038, stops[stops.length-1]]
 	.filter((stop, index, arr) => arr.indexOf(stop) == index);
-	let stops_names = key_stops.map(key_stop => stops.includes(key_stop)?get_stop_name(key_stop):false)
+	let stops_names = key_stops.map(key_stop => stops.includes(key_stop)?get_stop_name_by_code(key_stop):false)
 	.filter(stop_name => stop_name);
 	return stops_names.join(' => ');
 }
@@ -505,9 +505,9 @@ function display_trip_schedule(stop_time_index){
 		if(highlight_row){
 			tr.classList.add('bg-warning');
 		}
-		tr.appendChild(html_comp('td', {text: get_stop_name(route_stops[stop_index]), class: 'align-middle d-sm-none', colspan: 2}));
+		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle d-sm-none', colspan: 2}));
 		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: 'align-middle d-none d-sm-table-cell'}));
-		tr.appendChild(html_comp('td', {text: get_stop_name(stop?.code), class: 'd-none d-sm-table-cell align-middle'}));
+		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'd-none d-sm-table-cell align-middle'}));
 		tr.appendChild(html_comp('td', {text: format_time(time), class: 'align-middle'}));
 		const time_from_selected_stop = time - selected_time;
 		let text;

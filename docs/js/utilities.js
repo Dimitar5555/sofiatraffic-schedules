@@ -31,7 +31,7 @@ function get_stop(stop_arg){
 }
 
 //accepts stop_code or stop object, in order to maintain consistent stop names
-function get_stop_name(stop_code){
+function get_stop_name_by_code(stop_code){
 	if(!stop_code || stop_code==undefined){
 		return `(${lang.schedules.unknown_stop})`;
 	}
@@ -39,21 +39,27 @@ function get_stop_name(stop_code){
 	if(!stop){
         console.error(`Missing stop with code: ${stop_code}`);
 	}
-    stop_code = stop?.code;
-    if(is_metro_stop(stop_code)){
-        return stop.names[lang.code].replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim() || "(НЕИЗВЕСТНА СПИРКА)";
+    return get_stop_name_from_object(stop);
+}
+
+function get_stop_name_from_object(stop_obj) {
+    const stop_name = stop_obj.names[lang.code];
+    if(!stop_name){
+        return `(${lang.schedules.unknown_stop})`;
     }
-    let stop_name = stop?.names[lang.code];
-    // TODO: Remove this monkey patch, when SUMC fixes their data
+    if(is_metro_stop(stop_obj.code)) {
+        return stop_name.replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim();
+    }
+   // TODO: Remove this monkey patch, when SUMC fixes their data
     if(stop_name == 'Ж. К. ОБЕЛЯ 3') {
         stop_name = 'Ж. К. ОБЕЛЯ 2';
     }
-    return stop_name || `(${lang.schedules.unknown_stop})`;
+    return stop_name;
 }
 
 function get_stop_string(stop_code_or_object) {
     let stop_obj = get_stop(stop_code_or_object);
-    return `[${format_stop_code(stop_obj.code)}] ${get_stop_name(stop_obj)}`;
+    return `[${format_stop_code(stop_obj.code)}] ${get_stop_name_from_object(stop_obj)}`;
 }
 
 function format_date_string(string){
