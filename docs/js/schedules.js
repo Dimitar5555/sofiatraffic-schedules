@@ -91,9 +91,10 @@ function generate_stop_row(stop) {
 	generate_routes_thumbs(stop.route_indexes, lines_td);
 	tr.appendChild(lines_td);
 
-	let td3 = html_comp('td', {class: 'align-middle'});
-	let btn_group_1 = generate_btn_group({stop_code: stop.code, buttons: ['departures_board', 'schedule', 'locate_stop'], text: false});
-	let btn_group_2 = btn_group_1.cloneNode(true);
+	const td3 = html_comp('td', {class: 'align-middle'});
+	const btn_group_1 = generate_btn_group(stop.code, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule, STOP_BTN_TYPES.locate_stop], false);
+	const btn_group_2 = btn_group_1.cloneNode(true);
+	
 	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
 	btn_group_2.setAttribute('class', 'btn-group-vertical d-block d-md-none');
 
@@ -223,26 +224,38 @@ function filter_stops(text) {
 		show_stops = data.stops.filter(stop => stop.names[lang.code].includes(text)).map(stop => stop.code);
 	}
 
-	let stops_trs = document.querySelectorAll('tr[data-stop-code]');
-	console.log(code, text, show_stops)
+	const favourite_stops_tbody = document.querySelector('#favourite_stops_tbody');
+	favourite_stops_tbody.innerHTML = '';
+	const stops_tbody = document.querySelector('#stops_list');
+	stops_tbody.innerHTML = '';
+
+	console.log(code, text, show_stops);
 	let currently_shown_stops = 0;
-	for(let stop_row of stops_trs) {
-		let is_stop_in_show_stops = show_stops.includes(Number(stop_row.dataset.stopCode));
-		let show_stop = 
-		(
-			is_stop_in_show_stops
-			|| show_stops.length == 0
-		)
-		&& stop_row.dataset.hidden != '1'
-		&& currently_shown_stops<=maximum_stops_shown_at_once;
-		if(show_stop) {
-			stop_row.classList.remove('d-none');
-			currently_shown_stops++;
+	const favourite_stops = get_favourite_stops();
+	show_stops.sort((a, b) => favourite_stops.includes(b) - favourite_stops.includes(a));
+
+	let shown_favourite_stops = false;
+	for(const stop_code of show_stops) {
+		const is_favorite = favourite_stops.includes(stop_code);
+		let parent = stops_tbody;
+		if(is_favorite) {
+			parent = favourite_stops_tbody;
 		}
-		else {
-			stop_row.classList.add('d-none');
+
+		parent.appendChild(generate_stop_row(get_stop(stop_code)));
+
+		if(favourite_stops.includes(stop_code)) {
+			shown_favourite_stops = true;
+		}
+
+		currently_shown_stops++;
+		if(currently_shown_stops > maximum_stops_shown_at_once) {
+			break;
 		}
 	}
+
+	favourite_stops_tbody.classList.toggle('d-none', !shown_favourite_stops);
+	document.querySelector('#favourite_stops_header').classList.toggle('d-none', !shown_favourite_stops);
 }
 
 function show_schedule(new_globals, overwrite_selectors=false, update_url=false){

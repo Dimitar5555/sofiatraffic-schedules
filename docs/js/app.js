@@ -68,7 +68,7 @@ function init(debug=false){
 	
 	check_metadata()
 	.then(() => {
-		let new_item = generate_btn_group({stop_code:1, buttons: ['departures_board', 'schedule'], text: true});
+		let new_item = generate_btn_group(1, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule], true);
 		let old_item = document.querySelector('#route_btn_group');
 		new_item.setAttribute('id', 'route_btn_group');
 		new_item.classList.add(...Array.from(old_item.classList));
@@ -85,9 +85,8 @@ function init(debug=false){
 
 is_map_done = false;
 async function init_map() {
+	filter_stops(document.querySelector('[name="search_for_stop"]').value);
 	if(is_map_done) {
-		show_favourite_stops();
-		filter_stops(document.querySelector('[name="search_for_stop"]').value);
 		return;
 	}
 	is_map_done = true;
@@ -119,7 +118,7 @@ async function init_map() {
 		generate_routes_thumbs(route_indexes, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
-		popup.appendChild(generate_btn_group({buttons: ['departures_board', 'schedule'], stop_code: stop.code, text: true}));
+		popup.appendChild(generate_btn_group(stop.code, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule], true));
 		return popup;
 	}
 	let markers = [];
@@ -135,17 +134,16 @@ async function init_map() {
 	cluster_group.addLayers(markers);
 	map.fitBounds(cluster_group.getBounds());
 	console.timeEnd('Adding stops to map');
-	show_favourite_stops();
 }
 
-async function init_stops_list() {
+function init_stops_list() {
 	const stops_list = document.querySelector('#stops_list');
-	let curently_shown_stops = 0;
-	for(let stop of data.stops) {
-		let stop_row = generate_stop_row(stop);
-		curently_shown_stops++;
-		if(curently_shown_stops > maximum_stops_shown_at_once) {
-			stop_row.classList.add('d-none');
+	let currently_shown_stops = 0;
+	for(const stop of data.stops) {
+		const stop_row = generate_stop_row(stop);
+		currently_shown_stops++;
+		if(currently_shown_stops > maximum_stops_shown_at_once) {
+			break;
 		}
 		stops_list.appendChild(stop_row);
 	}
@@ -207,7 +205,7 @@ function update_versions(){
 
 function fetch_data(metadata=false){
 	console.time('Fetching data');
-	var promises = [];
+	let promises = [];
 
 	promises.push(fetch('data/stops.json')
 	.then(response => response.json())

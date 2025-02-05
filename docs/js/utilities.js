@@ -70,16 +70,17 @@ function is_metro_stop(stop_code){
     return 2900 < Number(stop_code) && Number(stop_code) < 3400
 }
 
-function generate_button(options) {
+function generate_button(stop_code, type, text) {
     /*
     options:
+        stop_code: integer
+
         type: [schedule / departures_board / locate_stop]
         type specifies the used icon as well
 
         text: [true / false]
         whether to show any text, true by default
 
-        stop_code: integer
     */
     const btns_data = {
         departures_board: {
@@ -101,40 +102,44 @@ function generate_button(options) {
         }
     };
 
-    const btn_data = btns_data[options.type];
+    const btn_data = btns_data[type];
 
-    let btn = html_comp(btn_data.type, {
+    const btn = html_comp(btn_data.type, {
         class: 'btn btn-outline-primary'
     });
-    btn.appendChild(html_comp('i', {class: `bi ${btn_data.icon}`}));
-    if(options.text) {
-        btn.classList.add('text-nowrap')
-        btn.appendChild(html_comp('span', {text: ` ${btn_data.text}`, class: 'd-none d-md-inline'}));
+    btn.appendChild(html_comp('i', {class: `bi ${btn_data.icon}${text?'':' text-nowrap'}`}));
+    if(text) {
+        btn.appendChild(document.createTextNode(' '));
+        btn.appendChild(html_comp('span', {text: btn_data.text, class: 'd-none d-md-inline'}));
     }
     else {
         btn.setAttribute('title', btn_data.text);
     }
 
-    if(btn_data.disable_condition && btn_data.disable_condition(options.stop_code)) {
-        btn.setAttribute('disabled', '');
+    
+    if(type === STOP_BTN_TYPES.departures_board) {
+        if(btn_data.disable_condition(stop_code)) {
+            btn.setAttribute('disabled', '');
+        }
+        else {
+            btn.setAttribute('data-code', stop_code);
+            btn.setAttribute('data-bs-toggle', 'modal');
+            btn.setAttribute('data-bs-target', '#sofiatraffic_live_data');
+            btn.setAttribute('onclick', 'load_virtual_board(this.dataset.code)');
+        }
     }
-
-    if(options.type == 'departures_board') {
-        btn.setAttribute('data-code', options.stop_code);
-        btn.setAttribute('data-bs-toggle', 'modal');
-        btn.setAttribute('data-bs-target', '#sofiatraffic_live_data');
-        btn.setAttribute('onclick', 'load_virtual_board(this.dataset.code)');
+    else if(type === STOP_BTN_TYPES.schedule) {
+        btn.setAttribute('href', `${url_prefix}stop/${stop_code}/`);
     }
-    else if(options.type == 'schedule') {
-        btn.setAttribute('href', `${url_prefix}stop/${options.stop_code}/`);
+    else if(type === STOP_BTN_TYPES.locate_stop) {
+        btn.setAttribute('data-code', stop_code);
+        btn.setAttribute('onclick', `zoom_to_stop(this.dataset.code)`);
     }
-    else if(options.type == 'locate_stop') {
-        btn.setAttribute('onclick', `zoom_to_stop(${options.stop_code})`);
-    }
+    
     return btn;
 }
     
-function generate_btn_group(options, btn_group=false) {
+function generate_btn_group(stop_code, btn_types, text) {
     /*
     options:
         type: [schedule / departures_board / locate_stop]
@@ -145,11 +150,10 @@ function generate_btn_group(options, btn_group=false) {
 
         stop_code: integer
     */
-    if(!btn_group) {
-        btn_group = html_comp('div', {class: 'btn-group'});
-    }
-    for(let btn of options.buttons) {
-        btn_group.appendChild(generate_button({stop_code: options.stop_code, type: btn, text: options.text}));
+   const btn_group = html_comp('div', {class: 'btn-group'});
+    for(const btn_type of btn_types) {
+        const btn = generate_button(stop_code, btn_type, text);
+        btn_group.appendChild(btn);
     }
     return btn_group;
 }
@@ -170,7 +174,8 @@ function html_comp(tag, attributes={}){
 			el.innerText = attributes[key];
 			return;
 		}
-		el.setAttribute(key, attributes[key])});
+		el.setAttribute(key, attributes[key]);
+    });
 	return el;
 }
 function generate_line_btn(route){

@@ -8,6 +8,12 @@ const enable_schedules_by_cars = false;
 
 const VIRTUAL_BOARDS_DEFAULT_SETTINGS = {show_condensed_view: true, use_exact_times: true};
 
+const STOP_BTN_TYPES = {
+    departures_board: 'departures_board',
+    schedule: 'schedule',
+    locate_stop: 'locate_stop'
+}
+
 window.onload = function() {
     if(window.location.search.length > 0) {
         const params = new URLSearchParams(window.location.search);
