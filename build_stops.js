@@ -36,7 +36,7 @@ function process_stops_data(stops) {
 				code: Number(new_cgm_stop.code),
 				coords: round_stop_coords(new_cgm_stop.latitude, new_cgm_stop.longitude),
 				names: {
-					bg: new_cgm_stop.name.toUpperCase()
+					bg: new_cgm_stop.name.toUpperCase().trim().replaceAll('  ', ' ')
 				}
 			});
 		}
