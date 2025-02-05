@@ -1,10 +1,11 @@
 import { parse_time, fetch_data_from_sofiatraffic } from "./build_utilities.js";
 import { routes_url, schedule_url, main_types } from "./config.js";
 
+function format_stop_code(stop_code) {
+	return stop_code.toString().padStart(4, '0');
+}
+
 function normalise_metro_stop_codes(start_code, end_code) {
-	function pad_code(code) {
-		return code.toString().padStart(4, '0');
-	}
 	const bindings = {
 		// M1 => Obelya
 		'0016->0000': [
@@ -46,13 +47,17 @@ function normalise_metro_stop_codes(start_code, end_code) {
 			2999, 3001, 3003, 3005, 3007, 3009, 3011, 3013, 3015, 3017, 3019, 3021, 3023, 3025, 3027, 3029, 3031, 3033, 3035, 3037
 		]
 	};
-	let key = `${pad_code(start_code)}->${pad_code(end_code)}`;
+	let key = `${format_stop_code(start_code)}->${format_stop_code(end_code)}`;
 	return bindings[key];
 }
 
 function fetch_routes_data() {
 	let routes = fetch_data_from_sofiatraffic(routes_url)
-	.then(response => response.json());
+	.then(response => response.json())
+	.catch(error => {
+		console.error('Failed to fetch routes data', error);
+		return [];
+	});
 	return routes;
 }
 
@@ -85,19 +90,18 @@ function determine_route_type(route, type_string) {
 		route.subtype = 'school';
 	}
 }
-
 function determine_route_ref(ref) {
 	let number = ref.replace(/[a-zа-я]/gi, '');
-    if(ref.startsWith('E')){
-        ref = ref.replace('E', '');
-    }
-    else if(ref.startsWith('N')){
-        ref = `N${number}`;
-    }
+	if(ref.startsWith('E')){
+		ref = ref.replace('E', '');
+	}
+	else if(ref.startsWith('N')){
+		ref = `N${number}`;
+	}
 	else if(ref.startsWith('Y')) {
 		ref = `У${number}`;
 	}
-    return ref;
+	return ref;
 }
 
 function process_routes_data(input_routes) {
@@ -109,7 +113,6 @@ function process_routes_data(input_routes) {
 			temp_ref: Number(input_route.name.replace(/[a-zа-я]/gi, '')),
 			cgm_id: input_route.ext_id,
 		};
-		console.log(input_route, output_route);
 		determine_route_type(output_route, input_route.icon);
 		output_route.temp_ref = Number(output_route.route_ref.replace(/[a-zа-я]/gi, ''));
 
@@ -180,7 +183,7 @@ function generate_route_variants(segments) {
 }
 
 function merge_partial_variants(variants) {
-    // use longets one as master
+	// use longest one as master
     const lengths = variants.map(variant=>variant.stops.length);
     const master_index = lengths.indexOf(Math.max(...lengths));
     let master = variants[master_index];
@@ -203,6 +206,7 @@ function merge_partial_variants(variants) {
 }
 
 function process_stop_times(variants, segments) {
+	// The function is used to regroup the stop times by variant (direction)
     variants.forEach(variant => variant.stop_times = []);
     segments.forEach(segment => {
         segment.stop.times.forEach(time => {
@@ -222,50 +226,57 @@ export function process_schedule_data(cgm_route, route_index, directions, stop_t
 	cgm_route.routes.forEach(route => {
 		let variants = generate_route_variants(route.segments);
 		merge_partial_variants(variants);
-		//console.log(variants);
 		process_stop_times(variants, route.segments);
-		variants.forEach(variant => {
-			let start_stop_times_index = stop_times.length;
-			directions.push({code: variant.route_ids[0], stops: variant.stops});
-			let has_weekday = variant.stop_times.some(stop_time => stop_time.is_weekend === false);
-			let trip_weekday_index;
-			let has_weekend = variant.stop_times.some(stop_time => stop_time.is_weekend === true);
-			let trip_weekend_index;
-			if(has_weekday) {
-				trip_weekday_index = trips.push({route_index: route_index, direction: variant.route_ids[0], is_weekend: false}) - 1;
-			}
-			if(has_weekend) {
-				trip_weekend_index = trips.push({route_index: route_index, direction: variant.route_ids[0], is_weekend: true}) - 1;
-			}
-			variant.stop_times.forEach(stop_time => {
-				stop_times.push({times: stop_time.times, trip: stop_time.is_weekend?trip_weekend_index:trip_weekday_index})
-			})
-			if(is_metro) {
-				let stops_arr = variant.stops;
-			let start_stop = stops_arr[0];
-			let end_stop = stops_arr[stops_arr.length-1];
-			directions[directions.length-1].stops = normalise_metro_stop_codes(start_stop, end_stop);
-			if(start_stop == 212 || end_stop == 212) {
-				//M2 since first/last station is Vitosha
-				//used to remove the times for Slivnitsa station
-				//see https://github.com/Dimitar5555/sofiatraffic-schedules/issues/15
-				stop_times.forEach((stop_time, index) => {
-					if(index < start_stop_times_index) {
-						return;
-					}
-					if(stop_time.times.length > stops_arr.length - 1) {
-						if(start_stop == 212) {
-							console.log('popped ', stop_time.times.pop());
-						}
-						else {
-							console.log('shifted ', stop_time.times.shift());
-						}
-					}
-				})
-			}
+		process_variants(variants, route_index, directions, stop_times, trips, is_metro);
+	});
+}
+
+function process_variants(variants, route_index, directions, stop_times, trips, is_metro) {
+	variants.forEach(variant => {
+		let start_stop_times_index = stop_times.length;
+		directions.push({code: variant.route_ids[0], stops: variant.stops});
+		let has_weekday = variant.stop_times.some(stop_time => stop_time.is_weekend === false);
+		let trip_weekday_index;
+		let has_weekend = variant.stop_times.some(stop_time => stop_time.is_weekend === true);
+		let trip_weekend_index;
+		if(has_weekday) {
+			trip_weekday_index = trips.push({route_index: route_index, direction: variant.route_ids[0], is_weekend: false}) - 1;
+		}
+		if(has_weekend) {
+			trip_weekend_index = trips.push({route_index: route_index, direction: variant.route_ids[0], is_weekend: true}) - 1;
+		}
+		process_stop_times_for_variant(variant, stop_times, trip_weekday_index, trip_weekend_index);
+		if(is_metro) {
+			adjust_metro_stop_times(variant, directions, stop_times, start_stop_times_index);
 		}
 	});
+}
+
+function process_stop_times_for_variant(variant, stop_times, trip_weekday_index, trip_weekend_index) {
+	variant.stop_times.forEach(stop_time => {
+		stop_times.push({times: stop_time.times, trip: stop_time.is_weekend ? trip_weekend_index : trip_weekday_index});
 	});
+}
+
+function adjust_metro_stop_times(variant, directions, stop_times, start_stop_times_index) {
+	let stops_arr = variant.stops;
+	let start_stop = stops_arr[0];
+	let end_stop = stops_arr[stops_arr.length - 1];
+	directions[directions.length - 1].stops = normalise_metro_stop_codes(start_stop, end_stop);
+	if (start_stop == 212 || end_stop == 212) {
+		stop_times.forEach((stop_time, index) => {
+			if (index < start_stop_times_index) {
+				return;
+			}
+			if (stop_time.times.length > stops_arr.length - 1) {
+				if (start_stop == 212) {
+					console.log('popped ', stop_time.times.pop());
+				} else {
+					console.log('shifted ', stop_time.times.shift());
+				}
+			}
+		});
+	}
 }
 
 export function get_routes_data() {
