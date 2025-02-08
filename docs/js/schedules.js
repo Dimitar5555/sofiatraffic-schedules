@@ -207,17 +207,17 @@ function update_stop_labels(){
 	stop_labels.forEach(label => label.innerText = string);
 }
 
-function filter_stops(text) {
-	let code = Number(text);
+function filter_stops() {
+	const search_string = document.querySelector('[name="search_for_stop"]').value.toUpperCase();
+	let code = Number(search_string);
 	code = code!=0?code:false;
-	text = text.toUpperCase();
 	let show_stops = [];
 	if(Number.isFinite(code)) {
 		let str_code = code.toString();
 		show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
 	}
 	if(!Number.isFinite(code)) {
-		show_stops = data.stops.filter(stop => stop.names[lang.code].includes(text)).map(stop => stop.code);
+		show_stops = data.stops.filter(stop => stop.names[lang.code].includes(search_string)).map(stop => stop.code);
 	}
 
 	const favourite_stops_tbody = document.querySelector('#favourite_stops_tbody');
@@ -225,7 +225,8 @@ function filter_stops(text) {
 	const stops_tbody = document.querySelector('#stops_list');
 	stops_tbody.innerHTML = '';
 
-	console.log(code, text, show_stops);
+	console.log(code, search_string, show_stops);
+
 	let currently_shown_stops = 0;
 	const favourite_stops = get_favourite_stops();
 	show_stops.sort((a, b) => favourite_stops.includes(b) - favourite_stops.includes(a));
