@@ -213,15 +213,19 @@ function update_stop_labels(){
 
 function filter_stops() {
 	const search_string = document.querySelector('[name="search_for_stop"]').value.toUpperCase();
-	let code = Number(search_string);
-	code = code!=0?code:false;
+	const code = Number(search_string);
 	let show_stops = [];
-	if(Number.isFinite(code)) {
-		let str_code = code.toString();
-		show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
+	if(search_string.length == 0) {
+		show_stops = data.stops.map(stop => stop.code);
 	}
-	if(!Number.isFinite(code)) {
-		show_stops = data.stops.filter(stop => stop.names[lang.code].includes(search_string)).map(stop => stop.code);
+	else {
+		if(code > 0 && Number.isFinite(code)) {
+			let str_code = code.toString();
+			show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
+		}
+		if(!Number.isFinite(code)) {
+			show_stops = data.stops.filter(stop => stop.names[lang.code].includes(search_string)).map(stop => stop.code);
+		}
 	}
 
 	const favourite_stops_tbody = document.querySelector('#favourite_stops_tbody');
