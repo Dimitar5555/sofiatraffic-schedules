@@ -214,7 +214,7 @@ function process_stop_times(variants, segments) {
             let stop_index = variant.stops.indexOf(Number(segment.stop.code));
             let time_obj = variant.stop_times.find(a_time => a_time.id == time.id);
             if(!time_obj) {
-                time_obj = {id: time.id, is_weekend: time.weekend === 1, times: []};
+                time_obj = {id: time.id, is_weekend: time.weekend === 1, times: [], code: time.code};
                 variant.stop_times.push(time_obj);
             }
             time_obj.times[stop_index] = parse_time(time.time);
@@ -233,17 +233,19 @@ export function process_schedule_data(cgm_route, route_index, directions, stop_t
 
 function process_variants(variants, route_index, directions, stop_times, trips, is_metro) {
 	variants.forEach(variant => {
-		let start_stop_times_index = stop_times.length;
+		const start_stop_times_index = stop_times.length;
 		directions.push({code: variant.route_ids[0], stops: variant.stops});
-		let has_weekday = variant.stop_times.some(stop_time => stop_time.is_weekend === false);
+		const weekday_time = variant.stop_times.find(stop_time => stop_time.is_weekend === false);
 		let trip_weekday_index;
-		let has_weekend = variant.stop_times.some(stop_time => stop_time.is_weekend === true);
+		const weekend_time = variant.stop_times.find(stop_time => stop_time.is_weekend === true);
 		let trip_weekend_index;
-		if(has_weekday) {
-			trip_weekday_index = trips.push({route_index: route_index, direction: variant.route_ids[0], is_weekend: false}) - 1;
+		if(weekday_time) {
+			const trip = {route_index: route_index, direction: variant.route_ids[0], is_weekend: false, code: weekday_time.code};
+			trip_weekday_index = trips.push(trip) - 1;
 		}
-		if(has_weekend) {
-			trip_weekend_index = trips.push({route_index: route_index, direction: variant.route_ids[0], is_weekend: true}) - 1;
+		if(weekend_time) {
+			const trip = {route_index: route_index, direction: variant.route_ids[0], is_weekend: true, code: weekend_time.code};
+			trip_weekend_index = trips.push(trip) - 1;
 		}
 		process_stop_times_for_variant(variant, stop_times, trip_weekday_index, trip_weekend_index);
 		if(is_metro) {
