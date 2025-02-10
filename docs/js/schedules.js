@@ -88,7 +88,11 @@ function generate_stop_row(stop) {
 	tr.appendChild(lines_td);
 
 	const td3 = html_comp('td', {class: 'align-middle'});
-	const btn_group_1 = generate_btn_group(stop.code, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule, STOP_BTN_TYPES.locate_stop], false);
+	const buttons = [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule];
+	if(navigator.onLine) {
+		buttons.push(STOP_BTN_TYPES.locate_stop);
+	}
+	const btn_group_1 = generate_btn_group(stop.code, buttons, false);
 	const btn_group_2 = btn_group_1.cloneNode(true);
 	
 	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
@@ -514,13 +518,14 @@ function display_trip_schedule(stop_time_index){
 		var tr = html_comp('tr');
 		var highlight_row = route_stops[stop_index]==current.stop_code;
         const stop = get_stop(route_stops[stop_index]) || false;
+		let warning_class = '';
 		if(highlight_row){
-			tr.classList.add('bg-warning');
+			warning_class = ' bg-warning text-dark';
 		}
-		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle d-sm-none', colspan: 2}));
-		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: 'align-middle d-none d-sm-table-cell'}));
-		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'd-none d-sm-table-cell align-middle'}));
-		tr.appendChild(html_comp('td', {text: format_time(time), class: 'align-middle'}));
+		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: `align-middle d-sm-none${warning_class}`, colspan: 2}));
+		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: `align-middle d-none d-sm-table-cell${warning_class}`}));
+		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: `d-none d-sm-table-cell align-middle${warning_class}`}));
+		tr.appendChild(html_comp('td', {text: format_time(time), class: `align-middle${warning_class}`}));
 		const time_from_selected_stop = time - selected_time;
 		let text;
 		if(Math.abs(time_from_selected_stop) == selected_time) {
@@ -535,7 +540,7 @@ function display_trip_schedule(stop_time_index){
 		else {
 			text = '0';
 		}
-		tr.appendChild(html_comp('td', {text: text, class: 'align-middle'}));
+		tr.appendChild(html_comp('td', {text: text, class: `align-middle${warning_class}`}));
 		new_tbody.append(tr);
 	});
 	old_tbody.replaceWith(new_tbody);
