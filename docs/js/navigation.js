@@ -87,7 +87,7 @@ function handle_page_change() {
     if(main_tab_index != -1) {
 		tab_btns[main_tab_index].show();
 		if(hash[0] == 'stops_map') {
-			init_map();
+			// init_map();
 		}
 	}
 

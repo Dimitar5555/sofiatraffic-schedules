@@ -35,9 +35,11 @@ async function toggle_stop_type_visibility() {
 }
 
 is_map_initialised = false;
-async function init_map() {
+was_map_centered = false;
+function init_map() {
 	filter_stops();
 	if(is_map_initialised || !is_online()) {
+		center_map();
 		return;
 	}
 	is_map_initialised = true;
@@ -47,12 +49,11 @@ async function init_map() {
 		iconAnchor: [12, 41],
 		popupAnchor: [1, -34]
 	});
-	document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
+	// document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
 	map = L.map('map', {
 		center: [42.69671, 23.32129],
 		zoom: 13
 	});
-	map.invalidateSize();
 	const attribution_text = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: attribution_text}).addTo(map);
 
@@ -83,8 +84,9 @@ async function init_map() {
 		markers.push(marker);
 	}
 	cluster_group.addLayers(markers);
-	map.fitBounds(cluster_group.getBounds());
 	console.timeEnd('Adding stops to map');
+
+	center_map();
 }
 
 window.addEventListener('online', update_network_status);
@@ -94,18 +96,26 @@ function update_network_status() {
 	const is_online_bool = is_online();
     const status = is_online_bool ? 'online' : 'offline';
     console.warn(`Network status changed: ${status}`);
-    const statusElement = document.getElementById('network-status');
-    const map_col = document.querySelector('#map').parentElement;
+
+	const map_col = document.querySelector('#map').parentElement;
 	const map_warning_col = map_col.nextElementSibling;
-    const stops_col = map_col.previousElementSibling
 
     map_col.classList.toggle('d-none', !is_online_bool);
 	map_warning_col.classList.toggle('d-none', is_online_bool);
-    // stops_col.classList.toggle('col-lg-5', is_online_bool);
-    filter_stops();
+
+	filter_stops();
 	init_map();
-    // if (statusElement) {
-    //     statusElement.textContent = `You are currently ${status}`;
-    //     statusElement.className = status;
-    // }
+}
+
+function center_map() {
+	setTimeout(() => {
+		const map_el = document.querySelector('#map');
+		const is_map_visible = map_el.checkVisibility();
+		if(is_map_initialised && !was_map_centered && is_map_visible) {
+			was_map_centered = true;
+			map.invalidateSize();
+			bounds = cluster_group.getBounds();
+			map.fitBounds(bounds);
+		}
+	}, 50);
 }

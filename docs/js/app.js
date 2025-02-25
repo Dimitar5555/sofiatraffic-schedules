@@ -166,6 +166,7 @@ function fetch_data(metadata=false){
 		console.timeEnd('Init stops');
 		document.body.classList.remove('no-scroll');
 		console.timeEnd('Starting init');
+
 		update_network_status();
 	})
 	.then(() => {
