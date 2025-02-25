@@ -89,7 +89,7 @@ function generate_stop_row(stop) {
 
 	const td3 = html_comp('td', {class: 'align-middle'});
 	const buttons = [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule];
-	if(navigator.onLine) {
+	if(is_online()) {
 		buttons.push(STOP_BTN_TYPES.locate_stop);
 	}
 	const btn_group_1 = generate_btn_group(stop.code, buttons, false);

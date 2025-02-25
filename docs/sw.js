@@ -15,7 +15,9 @@ const files_to_cache = [
 	'js/vendor/leaflet.js',
 	'js/vendor/leaflet.markercluster.js',
 	'js/vendor/leaflet.featuregroup.subgroup.js',
+
 	'js/config.js',
+	'js/map.js',
 	'js/virtual_boards.js',
 	'js/utilities.js',
 	'js/app.js',

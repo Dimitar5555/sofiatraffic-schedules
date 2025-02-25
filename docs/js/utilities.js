@@ -201,3 +201,7 @@ function is_weekend(boolean){
 function return_weekday_text(boolean){
     return is_weekend(boolean)?'weekend':'workday';
 }
+
+function is_online() {
+    return navigator.onLine;
+}
