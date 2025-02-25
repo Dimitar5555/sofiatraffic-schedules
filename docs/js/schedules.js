@@ -505,6 +505,18 @@ function display_schedule(){
 	// schedule_div.querySelector('#valid_from').innerText = format_date_string(data.trips[trip_index].valid_from);
 	generate_stop_times_table(stop_times, stop_index, table, display_by_car);
 }
+
+function calculate_time_difference(time1, time2) {
+	const diff = time1 - time2;
+	if(time2 < 10*60 && time1 > 16*60) {
+		return diff - 24*60;
+	}
+	else if(time2 > 16*60 && time1 < 10*60) {
+		return diff + 24*60;
+	}
+	return diff;
+}
+
 function display_trip_schedule(stop_time_index){
 	const stop_time = data.stop_times[stop_time_index];
 
@@ -530,7 +542,7 @@ function display_trip_schedule(stop_time_index){
 		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: `align-middle d-none d-sm-table-cell${warning_class}`}));
 		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: `d-none d-sm-table-cell align-middle${warning_class}`}));
 		tr.appendChild(html_comp('td', {text: format_time(time), class: `align-middle${warning_class}`}));
-		const time_from_selected_stop = time - selected_time;
+		const time_from_selected_stop = calculate_time_difference(time, selected_time);
 		let text;
 		if(Math.abs(time_from_selected_stop) == selected_time) {
 			text = '-';
