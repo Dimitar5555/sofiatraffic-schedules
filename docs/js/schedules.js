@@ -506,13 +506,25 @@ function display_schedule(){
 	generate_stop_times_table(stop_times, stop_index, table, display_by_car);
 }
 
-function calculate_time_difference(time1, time2) {
-	const diff = time1 - time2;
-	if(time2 < 10*60 && time1 > 16*60) {
-		return diff - 24*60;
+function calculate_time_difference(base_time, other_time) {
+	if(!base_time || !other_time) {
+		return false;
 	}
-	else if(time2 > 16*60 && time1 < 10*60) {
-		return diff + 24*60;
+
+	const diff = base_time - other_time;
+	const day_in_minutes = 24*60;
+	const morning_time = 4*60;
+	const evening_time = 20*60;
+
+	if(base_time < morning_time && other_time > evening_time) {
+		// base_time is in the morning and other_time is in the evening
+		// so we should add a day to the difference
+		return diff + day_in_minutes;
+	}
+	else if(base_time > evening_time && other_time < morning_time) {
+		// base_time is in the evening and other_time is in the morning
+		// so we should subtract a day from the difference
+		return diff - day_in_minutes;
 	}
 	return diff;
 }
@@ -544,7 +556,7 @@ function display_trip_schedule(stop_time_index){
 		tr.appendChild(html_comp('td', {text: format_time(time), class: `align-middle${warning_class}`}));
 		const time_from_selected_stop = calculate_time_difference(time, selected_time);
 		let text;
-		if(Math.abs(time_from_selected_stop) == selected_time) {
+		if(typeof time_from_selected_stop != 'number' || Math.abs(time_from_selected_stop) == selected_time) {
 			text = '-';
 		}
 		else if(time_from_selected_stop > 0) {
