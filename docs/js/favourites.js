@@ -10,21 +10,22 @@ function show_favourite_lines(favourite_lines=false){
 		favourite_lines = get_favourite_lines();
 	}
 	favourite_lines = favourite_lines.map(fl => fl.split('_'));
-	var old_div = document.querySelector('#line_selector_favourites').querySelector('.lines');
+	const old_div = document.querySelector('#line_selector_favourites').querySelector('.lines');
 	if(favourite_lines.length==0){
 		old_div.parentElement.classList.add('d-none');
 		return;
 	}
 	
 	old_div.parentElement.classList.remove('d-none');
-	var new_div = old_div.cloneNode();
-	let routes = favourite_lines.map(fav_line => data.routes.find(route => route.type == fav_line[0] && route.route_ref == fav_line[1]))
+	const new_div = old_div.cloneNode();
+	const routes = favourite_lines
+	.map(([type, route_ref]) => data.routes.find(route => route.type == type && route.route_ref == route_ref))
 	.toSorted((a, b) => a.index - b.index);
 	
-	routes.forEach(route => {
-		var line_btn = generate_line_btn(route);
+	for(const route of routes) {
+		const line_btn = generate_line_btn(route);
 		new_div.appendChild(line_btn);
-	});
+	}
 	old_div.replaceWith(new_div);
 }
 function get_favourite_lines(){
