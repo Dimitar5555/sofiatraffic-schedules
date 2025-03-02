@@ -149,13 +149,9 @@ function virtual_board_show_info(id) {
         return;
     }
     const rows = tbody.querySelectorAll('tr');
-    for(let row of rows) {
-        if(row.id != id || id == false) {
-            row.classList.add('d-none');
-        }
-        else {
-            row.classList.remove('d-none');
-        }
+    for(const row of rows) {
+        const should_be_hidden = row.id != id || id === false;
+        row.classList.toggle('d-none', should_be_hidden);
     }
     tbody.classList.remove('d-none');
 }
