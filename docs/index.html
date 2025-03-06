@@ -116,7 +116,7 @@
 							<label for="line" data-i18n="schedules.line"></label>
 						</div>
 						<div class="col col-8 col-md-5">
-							<i class="lh-1 align-top h5 bi-star text-warning" onclick="add_remove_favourite_line()"></i>
+							<i class="lh-1 align-top h5 bi-star text-warning" onclick="toggle_favourite_line()"></i>
 							<span id="line"></span>
 						</div>
 					</div>
@@ -155,7 +155,7 @@
 						</div>
 						<div class="col col-12 col-sm-8 col-md-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
 							<div class="d-flex flex-nowrap flex-grow-1">
-								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="add_remove_favourite_stop(Number(this.nextElementSibling.value))"></i>
+								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="toggle_favourite_stop(Number(this.nextElementSibling.value))"></i>
 								<select class="form-select d-inline-block" onchange="current.stop_code = Number(this.value); updateURL();" id="route_stop_selector"></select>
 							</div>
 							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>

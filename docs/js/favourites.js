@@ -31,7 +31,7 @@ function show_favourite_lines(favourite_lines=false){
 function get_favourite_lines(){
 	return JSON.parse(window.localStorage.getItem('favourite_lines')) || [];
 }
-function add_remove_favourite_line(){
+function toggle_favourite_line(){
 	var favourite_lines = get_favourite_lines();
 	var cur_route_json = gen_route_json();
 	if(favourite_lines.indexOf(cur_route_json)==-1){
@@ -48,7 +48,7 @@ function add_remove_favourite_line(){
 function get_favourite_stops(){
 	return JSON.parse(window.localStorage.getItem('favourite_stops')).map(stop => parseInt(stop)) || [];
 }
-function add_remove_favourite_stop(stop_code){
+function toggle_favourite_stop(stop_code){
 	var favourite_stops = get_favourite_stops();
 	if(favourite_stops.indexOf(stop_code)==-1){
 		favourite_stops.push(stop_code);
