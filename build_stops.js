@@ -1,4 +1,4 @@
-import { stops_url } from "./config.js";
+import { stops_url, osm_stops_types, osm_network_name } from "./config.js";
 import { fetch_data_from_sofiatraffic } from "./build_utilities.js";
 
 function fetch_stops_data() {
@@ -45,13 +45,9 @@ function process_stops_data(stops) {
 }
 
 function fetch_osm_stops_data() {
+	const elements = osm_stops_types.map(type => `node[${type.type}=yes][public_transport=${type.public_transport}][ref][network="${osm_network_name}"];`).join('');
 	const query = '[out:json][timeout:25];'
-	+ '('
-	+ 'node[subway=yes][public_transport=stop_position][ref][network="Градски транспорт София"];'
-	+ 'node[tram=yes][public_transport=stop_position][ref][network="Градски транспорт София"];'
-	+ 'node[bus=yes][public_transport=platform][ref][network="Градски транспорт София"];'
-	+ 'node[trolleybus=yes][public_transport=platform][ref][network="Градски транспорт София"];'
-	+ ');'
+	+ `(${elements});`
 	+ 'out geom;';
 	let req = fetch("https://overpass.kumi.systems/api/interpreter", {
 		"body": `data=${encodeURIComponent(query)}`,
