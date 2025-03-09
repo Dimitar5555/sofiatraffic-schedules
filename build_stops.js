@@ -14,7 +14,7 @@ function fetch_stops_data() {
 
 function round_stop_coords(lat, lon) {
 	// 5 digits give precission of 1.1 meters
-	let toFixed = n => Number(Number(n).toFixed(5));
+	const toFixed = n => Math.round(n * 1e5) / 1e5;
 	return [
 		toFixed(lat),
 		toFixed(lon)
