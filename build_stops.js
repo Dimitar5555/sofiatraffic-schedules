@@ -66,6 +66,9 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 	osm_stops.forEach(osm_stop => {
 		let stop_to_override = cgm_stops.find(cgm_stop => cgm_stop.code == osm_stop.tags.ref);
 		if(!stop_to_override){
+			if(!osm_stop.tags.name && osm_stop.tags?.request_stop === 'yes') {
+				osm_stop.tags.name = 'по желание';
+			}
 			cgm_stops.push({
 				code: Number(osm_stop.tags.ref),
 				coords: round_stop_coords(osm_stop.lat, osm_stop.lon),
