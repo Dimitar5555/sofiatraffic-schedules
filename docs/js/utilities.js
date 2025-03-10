@@ -83,6 +83,11 @@ function generate_button(stop_code, type, text) {
 
     */
     const btns_data = {
+        favourite_stop: {
+            type: 'btn',
+            icon: 'bi-star',
+            text: '',
+        },
         departures_board: {
             type: 'button',
             icon: 'bi-clock',
@@ -116,8 +121,23 @@ function generate_button(stop_code, type, text) {
         btn.setAttribute('title', btn_data.text);
     }
 
-    
-    if(type === STOP_BTN_TYPES.departures_board) {
+    if(type === STOP_BTN_TYPES.favourite_stop) {
+        const is_favorite = get_favourite_stops().includes(stop_code);
+        btn.setAttribute('data-code', stop_code);
+        btn.setAttribute('onclick', `toggle_favourite_stop(Number(this.dataset.code));filter_stops();`);
+
+        btn.setAttribute('onmouseover', "toggle_star(this.children[0], 'over')");
+        btn.setAttribute('onmouseout', "toggle_star(this.children[0], 'out')");
+        
+        const star = btn.children[0];
+        star.dataset.style = 'empty';
+        if(is_favorite) {
+            star.dataset.style = 'fill';
+            star.classList.add('bi-star-fill');
+            star.classList.remove('bi-star');
+        }
+    }
+    else if(type === STOP_BTN_TYPES.departures_board) {
         if(btn_data.disable_condition(stop_code)) {
             btn.setAttribute('disabled', '');
         }

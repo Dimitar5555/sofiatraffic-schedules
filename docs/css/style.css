@@ -58,7 +58,7 @@ span.line-break:after {
 }
 .bi-star, .b-star-fill {
 	vertical-align: middle;
-	line-height: 37.6px;
+	line-height: 100%;
 	text-align: center;
 }
 .bg-danger::after, .bg-warning::after {
