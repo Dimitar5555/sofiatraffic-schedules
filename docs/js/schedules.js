@@ -78,8 +78,9 @@ function generate_routes_thumbs(route_indexes, parent) {
 	});
 }
 
-function generate_stop_row(stop) {
+function generate_stop_row(stop, is_favorite) {
 	const tr = html_comp('tr', {'data-stop-code': stop.code});
+
 	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
 	tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle'}));
 
@@ -88,11 +89,11 @@ function generate_stop_row(stop) {
 	tr.appendChild(lines_td);
 
 	const td3 = html_comp('td', {class: 'align-middle'});
-	const buttons = [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule];
+	const buttons = [STOP_BTN_TYPES.favourite_stop, STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule];
 	if(is_online()) {
 		buttons.push(STOP_BTN_TYPES.locate_stop);
 	}
-	const btn_group_1 = generate_btn_group(stop.code, buttons, false);
+	const btn_group_1 = generate_btn_group(stop.code, buttons, false, is_favorite);
 	const btn_group_2 = btn_group_1.cloneNode(true);
 	
 	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
@@ -247,7 +248,7 @@ function filter_stops() {
 			parent = favourite_stops_tbody;
 		}
 
-		parent.appendChild(generate_stop_row(get_stop(stop_code)));
+		parent.appendChild(generate_stop_row(get_stop(stop_code), is_favorite));
 
 		if(favourite_stops.includes(stop_code)) {
 			shown_favourite_stops = true;
@@ -443,7 +444,7 @@ function configure_favourite_line_button(favourite_lines=false){
 	}
 }
 function configure_favourite_stop_button(favourite_stops=false){
-	var star = schedule_div.querySelectorAll('i').item(2);
+	const star = schedule_div.querySelectorAll('i').item(2);
 	star.setAttribute('onmouseover', "toggle_star(this, 'over')");
 	star.setAttribute('onmouseout', "toggle_star(this, 'out')");
 	if(!favourite_stops){

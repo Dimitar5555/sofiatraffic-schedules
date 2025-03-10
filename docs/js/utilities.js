@@ -70,7 +70,7 @@ function is_metro_stop(stop_code){
     return 2900 < Number(stop_code) && Number(stop_code) < 3400
 }
 
-function generate_button(stop_code, type, text) {
+function generate_button(stop_code, type, text, is_favorite) {
     /*
     options:
         stop_code: integer
@@ -122,7 +122,6 @@ function generate_button(stop_code, type, text) {
     }
 
     if(type === STOP_BTN_TYPES.favourite_stop) {
-        const is_favorite = get_favourite_stops().includes(stop_code);
         btn.setAttribute('data-code', stop_code);
         btn.setAttribute('onclick', `toggle_favourite_stop(Number(this.dataset.code));filter_stops();`);
 
@@ -159,7 +158,7 @@ function generate_button(stop_code, type, text) {
     return btn;
 }
     
-function generate_btn_group(stop_code, btn_types, text) {
+function generate_btn_group(stop_code, btn_types, text, is_favorite) {
     /*
     options:
         type: [schedule / departures_board / locate_stop]
@@ -172,7 +171,7 @@ function generate_btn_group(stop_code, btn_types, text) {
     */
    const btn_group = html_comp('div', {class: 'btn-group'});
     for(const btn_type of btn_types) {
-        const btn = generate_button(stop_code, btn_type, text);
+        const btn = generate_button(stop_code, btn_type, text, is_favorite);
         btn_group.appendChild(btn);
     }
     return btn_group;

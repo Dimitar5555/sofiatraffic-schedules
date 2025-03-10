@@ -56,6 +56,6 @@ function toggle_favourite_stop(stop_code){
 	else{
 		favourite_stops.splice(favourite_stops.indexOf(stop_code), 1);
 	}
-	configure_favourite_stop_button(false, favourite_stops);
+	configure_favourite_stop_button(favourite_stops);
 	window.localStorage.setItem('favourite_stops', JSON.stringify(favourite_stops));
 }
