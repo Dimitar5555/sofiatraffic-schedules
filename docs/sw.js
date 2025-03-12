@@ -1,6 +1,5 @@
 const files_to_cache = [
 	'./',
-	'404.html',
 	'index.html',
 	'manifest.json',
 
