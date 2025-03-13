@@ -1,11 +1,14 @@
 import { stops_url, osm_stops_types, osm_network_name } from "./config.js";
 import { fetch_data_from_sofiatraffic } from "./build_utilities.js";
+import fs from 'fs';
+import { save_all_data } from "./build_utilities.js";
 
 function fetch_stops_data() {
 	// let stops_bg = fetch(`${old_stops_url}resources/stops-bg.json`)
 	// .then(response => response.json());
 	// let stops_en = fetch(`${old_stops_url}resources/stops-en.json`)
 	// .then(response => response.json());
+	console.log('Fetching stops data from SUMC...');
 	let stops = fetch_data_from_sofiatraffic(stops_url)
 	.then(response => response.json());
 	return stops;
@@ -29,6 +32,7 @@ function process_stops_data(stops) {
 	// stops_en.forEach(cgm_stop => {
 	// 	processed_stops[processed_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
 	// });
+	console.log('Processing stops data...');
 	stops.forEach(new_cgm_stop => {
 		// let proc_stop = processed_stops.find(stop => stop.code == Number(new_cgm_stop.code));
 		if(new_cgm_stop.code.length === 4) {
@@ -36,7 +40,8 @@ function process_stops_data(stops) {
 				code: Number(new_cgm_stop.code),
 				coords: round_stop_coords(new_cgm_stop.latitude, new_cgm_stop.longitude),
 				names: {
-					bg: new_cgm_stop.name.toUpperCase().trim().replaceAll('  ', ' ')
+					bg: new_cgm_stop.name.toUpperCase().trim().replaceAll('  ', ' '),
+					en: ''
 				}
 			});
 		}
@@ -45,6 +50,7 @@ function process_stops_data(stops) {
 }
 
 function fetch_osm_stops_data() {
+	console.log('Fetching stops data from OSM...');
 	const elements = osm_stops_types.map(type => `node[${type.type}=yes][public_transport=${type.public_transport}][ref][network="${osm_network_name}"];`).join('');
 	const query = '[out:json][timeout:25];'
 	+ `(${elements});`
@@ -61,21 +67,30 @@ function fetch_osm_stops_data() {
 function process_osm_stops_data(cgm_stops, osm_stops) {
 	osm_stops.forEach(osm_stop => {
 		let stop_to_override = cgm_stops.find(cgm_stop => cgm_stop.code == osm_stop.tags.ref);
+		
+		if(!osm_stop.tags.name && osm_stop.tags?.request_stop === 'yes') {
+			osm_stop.tags.name = 'по желание';
+		}
+		
+		if(osm_stop.tags['name:en']) {
+			console.log(`${osm_stop.tags.ref} ${osm_stop.tags.name} ${osm_stop.tags['name:en']}`);
+		}
+
 		if(!stop_to_override){
-			if(!osm_stop.tags.name && osm_stop.tags?.request_stop === 'yes') {
-				osm_stop.tags.name = 'по желание';
-			}
 			cgm_stops.push({
 				code: Number(osm_stop.tags.ref),
 				coords: round_stop_coords(osm_stop.lat, osm_stop.lon),
 				names: {
-					bg: osm_stop.tags.name.toUpperCase()
+					bg: osm_stop.tags.name.toUpperCase(),
+					en: ''
 				}
 			});
+			stop_to_override = cgm_stops[cgm_stops.length - 1];
 		}
-		else if(osm_stop.tags.tram) {
-			stop_to_override.coords = round_stop_coords(osm_stop.lat, osm_stop.lon)
+		if(osm_stop.tags.tram) {
+			stop_to_override.coords = round_stop_coords(osm_stop.lat, osm_stop.lon);
 		}
+		stop_to_override.names.en = osm_stop.tags['name:en']?.toUpperCase();
 	});
 }
 
@@ -85,8 +100,44 @@ export function get_stops_data() {
 	let osm_stops = fetch_osm_stops_data();
     return Promise.all([cgm_stops, osm_stops])
     .then(([stops, osm_stops]) => {
+		console.log('All data is downloaded');
         process_osm_stops_data(stops, osm_stops);
 		stops.sort((a, b) => a.code - b.code);
+
+		// add route indexes to stops
+		stops.forEach(stop => {
+			stop.route_indexes = [];
+		});
+
+		const directions = JSON.parse(fs.readFileSync('./docs/data/directions.json'));
+		const trips = JSON.parse(fs.readFileSync('./docs/data/trips.json'));
+		for(const direction of directions) {
+			const route_index = trips.find(trip => trip.direction == direction.code).route_index;
+			for(const stop_code of direction.stops) {
+				const stop = stops.find(stop => stop.code == stop_code);
+				if(stop) {
+					if(!stop.route_indexes.includes(route_index)) {
+						stop.route_indexes.push(route_index);
+					}
+				}
+			}
+		}
+
+		stops.forEach(stop => {
+			stop.route_indexes.sort((a, b) => a - b);
+		});
+
+		// console.table(stops);
+		save_all_data([
+			{
+				name: 'stops',
+				data: stops,
+				split_rows_by: /,({"code)/g
+			},
+		]);
+
         return stops;
     });
 }
+
+get_stops_data();

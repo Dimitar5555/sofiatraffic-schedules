@@ -1,6 +1,5 @@
 import fs from "fs";
 import crypto from "crypto"
-import { get_stops_data } from "./build_stops.js";
 import { get_routes_data, fetch_schedule_data, process_schedule_data } from "./build_routes.js";
 
 var metadata = {
@@ -29,8 +28,6 @@ function sleep(time) {
 async function fetch_all_data() {
 	console.log('Starting build script');
 	console.log('Fetching tokens');
-	console.log('Fetching stops data');
-	let stops = get_stops_data();
 
 
 	
@@ -38,8 +35,8 @@ async function fetch_all_data() {
 	let routes = get_routes_data();
 
 
-	Promise.all([stops, routes])
-	.then(async([stops, routes]) => {
+	routes
+	.then(async(routes) => {
 		//let stops = data[0];
 		//let routes = data[1];
 		let directions = [];
@@ -120,27 +117,6 @@ async function fetch_all_data() {
 
 		// sort directions by code
 		directions.sort((a, b) => a.code - b.code);
-
-		// add route indexes to stops
-		stops.forEach(stop => {
-			stop.route_indexes = [];
-		});
-
-		for(const direction of directions) {
-			const route_index = trips.find(trip => trip.direction == direction.code).route_index;
-			for(const stop_code of direction.stops) {
-				const stop = stops.find(stop => stop.code == stop_code);
-				if(stop) {
-					if(!stop.route_indexes.includes(route_index)) {
-						stop.route_indexes.push(route_index);
-					}
-				}
-			}
-		}
-
-		stops.forEach(stop => {
-			stop.route_indexes.sort((a, b) => a - b);
-		});
 		
 		var files_to_save = [
 			{
@@ -156,11 +132,6 @@ async function fetch_all_data() {
 			{
 				name: 'directions',
 				data: directions,
-				split_rows_by: /,({"code)/g
-			},
-			{
-				name: 'stops',
-				data: stops,
 				split_rows_by: /,({"code)/g
 			},
 			{
