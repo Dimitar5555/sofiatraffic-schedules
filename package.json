@@ -4,8 +4,10 @@
   "description": "A tool designed to take Sofia public transit schedules and convert them into machine readeble format..",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js && node build_sitemap.js",
+    "build": "node build.js && npm run build_stops && npm run build_metadata && npm run build_sitemap",
+    "build_stops": "node build_stops.js",
     "build_sitemap": "node build_sitemap.js",
+    "build_metadata": "node build_metadata.js",
     "serve": "http-server ./docs -c-1 -g -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

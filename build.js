@@ -1,12 +1,4 @@
-import fs from "fs";
-import crypto from "crypto"
 import { get_routes_data, fetch_schedule_data, process_schedule_data } from "./build_routes.js";
-
-var metadata = {
-	app_version: '2025-01-31',
-	retrieval_date: new Date().toISOString().split('T')[0],
-	hashes: {}
-};
 import { save_all_data } from "./build_utilities.js";
 
 const timeout = 1000; // ms
