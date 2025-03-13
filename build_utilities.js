@@ -1,3 +1,5 @@
+import fs from "fs";
+
 export function parse_time(time) {
 	let split = time.split(':').map(Number);
 	return split[0]*60+split[1];
@@ -41,4 +43,19 @@ export async function fetch_data_from_sofiatraffic(url, body={}) {
         "body": JSON.stringify(body),
         "mode": "cors"
     });
+}
+
+export async function save_all_data(files_to_write) {
+	String.prototype.beautifyJSON = function(find, replace=',\n$1'){
+		return this
+		.replace(/^\[/, '[\n')
+		.replace(/\]$/, '\n]')
+		.replace(find, replace)
+	}
+	
+	for(const file of files_to_write) {
+		console.log(`Writing data to ${file.name}.json`);
+		let json = JSON.stringify(file.data).beautifyJSON(file.split_rows_by);
+		fs.writeFileSync(`docs/data/${file.name}.json`, json);
+	}
 }

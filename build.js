@@ -8,6 +8,7 @@ var metadata = {
 	retrieval_date: new Date().toISOString().split('T')[0],
 	hashes: {}
 };
+import { save_all_data } from "./build_utilities.js";
 
 const timeout = 1000; // ms
 
@@ -171,24 +172,6 @@ async function fetch_all_data() {
 	
 		await save_all_data(files_to_save);
 	});
-}
-
-async function save_all_data(files_to_write) {
-	String.prototype.beautifyJSON = function(find, replace=',\n$1'){
-		return this
-		.replace(/^\[/, '[\n')
-		.replace(/\]$/, '\n]')
-		.replace(find, replace)
-	}
-	
-	for(const file of files_to_write) {
-		console.log(`Writing data to ${file.name}.json`);
-		let json = JSON.stringify(file.data).beautifyJSON(file.split_rows_by);
-		metadata.hashes[file.name] = crypto.createHash('sha256').update(json).digest('hex');
-		fs.writeFileSync(`docs/data/${file.name}.json`, json);
-	}
-
-	fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
 }
 
 fetch_all_data();
