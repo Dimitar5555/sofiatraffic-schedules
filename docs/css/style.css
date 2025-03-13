@@ -173,3 +173,7 @@ span.line-break:after {
 .no-scroll {
 	overflow: hidden;
 }
+
+.leaflet-container a {
+	color: initial !important;
+}
