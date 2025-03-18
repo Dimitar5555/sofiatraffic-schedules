@@ -758,7 +758,7 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 			hour -= 24;
 		}
 		if(stop_time.incomplete_course_start){
-			el_class = 'bg-warning';
+			el_class = 'text-dark bg-warning';
 		}
 		else if(stop_time.incomplete_course_final){
 			el_class = 'text-white bg-danger';
