@@ -70,6 +70,32 @@
 		  </div>
 		</div>
 	</div>
+	<div class="modal fade" id="settings_modal" tabindex="-1" aria-labelledby="settings_modal" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header" data-i18n="modals.settings.header"></div>
+				<div class="modal-body">
+						<span data-i18n="modals.settings.theme_label"></span>
+						<br>
+						<input value="auto" class="form-check-input" type="radio" name="setting_theme" id="settings_auto_theme" onchange="change_theme(this.value);">
+						<label class="form-check-label" for="settings_auto_theme" data-i18n="modals.settings.auto_theme"></label>
+						<br>
+						<input value="light" class="form-check-input" type="radio" name="setting_theme" id="settings_light_theme" onchange="change_theme(this.value);">
+						<label class="form-check-label" for="settings_light_theme" data-i18n="modals.settings.light_theme"></label>
+						<br>
+						<input value="dark" class="form-check-input" type="radio" name="setting_theme" id="settings_dark_theme" onchange="change_theme(this.value);">
+						<label class="form-check-label" for="settings_dark_theme" data-i18n="modals.settings.dark_theme"></label>
+
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+		</div>
+	</div>
+
+	<button class="btn btn-primary floating-btn fs-4" data-bs-toggle="modal" data-bs-target="#settings_modal">
+        <i class="bi bi-gear"></i>
+    </button>
+
 	<div id="main_app" class="wrapper p-2 d-none">
 		<nav class="nav nav-pills nav-justified" id="nav-main" role="tablist">
 			<a data-bs-toggle="pill" data-i18n="nav.schedules" data-bs-target="#schedules" class="nav-item nav-link active" href="#schedules" onclick="navigate_to_home();"></a>

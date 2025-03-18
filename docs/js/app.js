@@ -83,7 +83,11 @@ function init(debug=false){
 
 }
 
-function check_metadata(){
+function check_metadata() {
+	const theme = localStorage.getItem('theme') || 'auto';
+	document.querySelector(`#settings_${theme}_theme`).checked = true;
+	change_theme(theme);
+
 	return fetch('data/metadata.json')
 	.then(response => response.json())
 	.then(metadata => {
@@ -195,3 +199,29 @@ init();
 function drop_current() {
 	current = {};
 }
+
+function change_theme(new_theme) {
+	const html_el = document.querySelector('html');
+	localStorage.setItem('theme', new_theme);
+	if(new_theme == 'auto') {
+		if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			new_theme = 'dark';
+		}
+		else {
+			new_theme = 'light';
+		}
+	}
+	html_el.setAttribute('data-bs-theme', new_theme);
+
+	const loading_screen = document.querySelector('.loading_screen');
+	loading_screen.classList.toggle('bg-dark', new_theme == 'dark');
+	loading_screen.classList.toggle('bg-white', new_theme == 'light');
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+	const currently_selected = localStorage.getItem('theme') || 'auto';
+	if(currently_selected == 'auto') {
+		change_theme(currently_selected);
+		return;
+	}
+});

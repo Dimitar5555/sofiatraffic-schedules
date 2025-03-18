@@ -163,6 +163,37 @@ td, th {
 	overflow: hidden;
 }
 
-.leaflet-container a {
-	color: initial !important;
+.floating-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1000;
+	border-radius: 50%;
+	padding: 15px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0;
+	/* font-size: 15px; */
+}
+
+.marker-cluster {
+	color: #000;
+}
+
+html[data-bs-theme="dark"] .leaflet-tile-container > img {
+	filter: brightness(0.8);
+}
+
+html[data-bs-theme="dark"] .leaflet-bar > a,
+html[data-bs-theme="dark"] .leaflet-popup-content-wrapper,
+html[data-bs-theme="dark"] .leaflet-popup-tip {
+	background-color: var(--bs-dark);
+	color: #fff !important;
+}
+
+.leaflet-control-attribution > a {
+	color: #0078A8;
 }
