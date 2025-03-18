@@ -171,6 +171,7 @@ function fetch_data(metadata=false){
 	})
 	.then(() => {
 		document.querySelector('.loading_screen').classList.add('d-none');
+		document.querySelector('#main_app').classList.remove('d-none');
 	})
 }
 
