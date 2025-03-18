@@ -84,7 +84,7 @@ function generate_stop_row(stop, is_favorite) {
 	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
 	tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle'}));
 
-	const lines_td = html_comp('td', {class: 'align-middle'});
+	const lines_td = html_comp('td', {class: 'align-middle lh-lg'});
 	generate_routes_thumbs(stop.route_indexes, lines_td);
 	tr.appendChild(lines_td);
 

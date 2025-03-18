@@ -213,9 +213,9 @@ function get_route_colour_classes(route, padding=true){
     const route_ref = route.route_ref
 
     const bg_color = `${route_type!=='metro'?route_type:route_ref}-bg-color`;
-    const padding_class = padding?' p-1':'';
+    const padding_class = padding?' py-1 px-2':'';
     const fg_color = `text-${route_ref=='M4'?'dark':'light'}`;
-    return  `fw-bolder rounded-1 ${bg_color} ${fg_color} ${padding_class}`;
+    return  `fw-bolder rounded-1 ${bg_color} ${fg_color} ${padding?padding_class:''}`;
 }
 function is_weekend(boolean){
     let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1 || boolean === 'weekend';
