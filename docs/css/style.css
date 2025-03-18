@@ -50,12 +50,6 @@ td, th {
 	vertical-align: middle;
 	line-height: 30px;
 }
-span.line-break {
-	display: block;
-}
-span.line-break:after {
-	content: none;
-}
 .bi-star, .b-star-fill {
 	vertical-align: middle;
 	line-height: 100%;
@@ -83,7 +77,7 @@ span.line-break:after {
 // by David Bushell
 */
 
-@media screen and (max-width:850px){
+@media screen and (max-width:992px){
 	td > span:nth-child(even) {
 		margin-left: 3px;
 		margin-right: 3px;
@@ -93,10 +87,6 @@ span.line-break:after {
 	}
 	.schedule_table > tbody > tr >td {
 		text-align: left;
-	}
-	span.line-break {
-		content: " ";
-		display: inline;
 	}
 	.table,
 	.table-flip tbody {

@@ -734,36 +734,38 @@ function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 	.toSorted((a, b) => a.time-b.time);
 }
 function generate_stop_times_table(stop_times, stop_index, table, by_cars=false){
-	var new_tbody = html_comp('tbody');
-    var tr_thead = html_comp('tr');
-    var tr_tbody = html_comp('tr');
-	var processed_stop_times = preprocess_stop_times(stop_times, stop_index, by_cars);
+	const new_tbody = html_comp('tbody');
+    const tr_thead = html_comp('tr');
+    const tr_tbody = html_comp('tr');
+	const processed_stop_times = preprocess_stop_times(stop_times, stop_index, by_cars);
 
-	var total_columns = by_cars?Math.max(...processed_stop_times.map(a => a.car)):24;
+	const total_columns = by_cars?Math.max(...processed_stop_times.map(a => a.car)):24;
 	for(let i=0;i<total_columns;i++){
-		let head_cell = html_comp('th', {text: by_cars?i+1:i});
+		const head_cell = html_comp('th', {text: by_cars?i+1:i});
 		tr_thead.appendChild(head_cell);
-		let body_cell = html_comp('td');
+		const body_cell = html_comp('td');
 		tr_tbody.appendChild(body_cell);
+		const cell_div = html_comp('div', {class: 'd-flex flex-row flex-lg-column'});
+		body_cell.appendChild(cell_div);
 	}
 
-	var body_cells = Array.from(tr_tbody.querySelectorAll('td'));
+	const body_cells = Array.from(tr_tbody.querySelectorAll('div'));
 	processed_stop_times.forEach(stop_time => {
 		if(stop_time.time === '' || stop_time.time === null){
 			return;
 		}
-		var el_class = '';
-		var hour = Math.floor(stop_time.time/60);
+		let el_class = 'mb-lg-2 me-2 me-lg-0';
+		let hour = Math.floor(stop_time.time/60);
 		if(hour>=24 && !by_cars){
 			hour -= 24;
 		}
 		if(stop_time.incomplete_course_start){
-			el_class = 'text-dark bg-warning';
+			el_class += ' text-dark bg-warning';
 		}
 		else if(stop_time.incomplete_course_final){
-			el_class = 'text-white bg-danger';
+			el_class += ' text-white bg-danger';
 		}
-		var el = html_comp('span', {
+		const el = html_comp('span', {
 			text: format_time(by_cars?stop_time.time:stop_time.time%60, !by_cars),
 			'data-bs-toggle': 'modal',
 			'data-bs-target': '#schedule_modal',
@@ -774,12 +776,10 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 		});
 		if(!by_cars/* || !enable_schedules_by_cars*/){
 			body_cells[hour].appendChild(el);
-			body_cells[hour].appendChild(html_comp('span', {class: 'line-break'}));
 		}
 		else{
 			console.log(stop_time.car);
 			body_cells[stop_time.car-1].appendChild(el);
-			body_cells[stop_time.car-1].appendChild(html_comp('span', {class: 'line-break'}));
 		}
 	});
     new_tbody.appendChild(tr_thead);
