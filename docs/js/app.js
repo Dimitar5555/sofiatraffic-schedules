@@ -225,3 +225,123 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
 		return;
 	}
 });
+
+function get_metro_mappings() {
+	const mappings = [
+		{ old_code: 2975, new_code: 212 },
+		{ old_code: 2976, new_code: 212 },
+		{ old_code: 2977, new_code: 211 },
+		{ old_code: 2978, new_code: 211 },
+		{ old_code: 2979, new_code: 210 },
+		{ old_code: 2980, new_code: 210 },
+		{ old_code: 2981, new_code: 209 },
+		{ old_code: 2982, new_code: 209 },
+		{ old_code: 2983, new_code: 208 },
+		{ old_code: 2984, new_code: 208 },
+		{ old_code: 2985, new_code: 207 },
+		{ old_code: 2986, new_code: 207 },
+		{ old_code: 2987, new_code: 206 },
+		{ old_code: 2988, new_code: 206 },
+		{ old_code: 2989, new_code: 205 },
+		{ old_code: 2990, new_code: 205 },
+		{ old_code: 2991, new_code: 204 },
+		{ old_code: 2992, new_code: 204 },
+		{ old_code: 2993, new_code: 203 },
+		{ old_code: 2994, new_code: 203 },
+		{ old_code: 2995, new_code: 202 },
+		{ old_code: 2996, new_code: 202 },
+		{ old_code: 2997, new_code: 201 },
+		{ old_code: 2998, new_code: 201 },
+		{ old_code: 2999, new_code: 0 },
+		{ old_code: 3000, new_code: 0 },
+	
+		// M1
+		{ old_code: 3001, new_code: 1 },
+		{ old_code: 3002, new_code: 1 },
+		{ old_code: 3003, new_code: 2 },
+		{ old_code: 3004, new_code: 2 },
+		{ old_code: 3005, new_code: 3 },
+		{ old_code: 3006, new_code: 3 },
+		{ old_code: 3007, new_code: 4 },
+		{ old_code: 3008, new_code: 4 },
+		{ old_code: 3009, new_code: 5 },
+		{ old_code: 3010, new_code: 5 },
+		{ old_code: 3011, new_code: 6 },
+		{ old_code: 3012, new_code: 6 },
+		{ old_code: 3013, new_code: 7 },
+		{ old_code: 3014, new_code: 7 },
+		{ old_code: 3015, new_code: 8 },
+		{ old_code: 3016, new_code: 8 },
+		{ old_code: 3017, new_code: 9 },
+		{ old_code: 3018, new_code: 9 },
+		{ old_code: 3019, new_code: 10 },
+		{ old_code: 3020, new_code: 10 },
+		{ old_code: 3021, new_code: 11 },
+		{ old_code: 3022, new_code: 11 },
+		{ old_code: 3023, new_code: 12 },
+		{ old_code: 3024, new_code: 12 },
+		{ old_code: 3025, new_code: 13 },
+		{ old_code: 3026, new_code: 13 },
+	
+		// Branch towards Sofia Airport
+		{ old_code: 3027, new_code: 18 },
+		{ old_code: 3028, new_code: 18 },
+		{ old_code: 3029, new_code: 19 },
+		{ old_code: 3030, new_code: 19 },
+		{ old_code: 3031, new_code: 20 },
+		{ old_code: 3032, new_code: 20 },
+		{ old_code: 3033, new_code: 21 },
+		{ old_code: 3034, new_code: 21 },
+		{ old_code: 3035, new_code: 22 },
+		{ old_code: 3036, new_code: 22 },
+		{ old_code: 3037, new_code: 23 },
+		{ old_code: 3038, new_code: 23 },
+	
+		// Branch towards Business Park
+		{ old_code: 3039, new_code: 14 },
+		{ old_code: 3040, new_code: 14 },
+		{ old_code: 3041, new_code: 15 },
+		{ old_code: 3042, new_code: 15 },
+		{ old_code: 3043, new_code: 16 },
+		{ old_code: 3044, new_code: 16 },
+	
+		// M3 Hadzi Dimitar => Gorna Banya
+		{ old_code: 3309, new_code: 305 },
+		{ old_code: 3310, new_code: 305 },
+		{ old_code: 3311, new_code: 306 },
+		{ old_code: 3312, new_code: 306 },
+		{ old_code: 3315, new_code: 308 },
+		{ old_code: 3316, new_code: 308 },
+		{ old_code: 3317, new_code: 309 },
+		{ old_code: 3318, new_code: 309 },
+		{ old_code: 3319, new_code: 310 },
+		{ old_code: 3320, new_code: 310 },
+		{ old_code: 3321, new_code: 311 },
+		{ old_code: 3322, new_code: 311 },
+		{ old_code: 3323, new_code: 312 },
+		{ old_code: 3324, new_code: 312 },
+		{ old_code: 3327, new_code: 314 },
+		{ old_code: 3328, new_code: 314 },
+		{ old_code: 3329, new_code: 315 },
+		{ old_code: 3330, new_code: 315 },
+		{ old_code: 3331, new_code: 316 },
+		{ old_code: 3332, new_code: 316 },
+		{ old_code: 3333, new_code: 317 },
+		{ old_code: 3334, new_code: 317 },
+		{ old_code: 3335, new_code: 318 },
+		{ old_code: 3336, new_code: 318 }
+	];
+	return mappings;
+}
+
+function get_old_code_from_new_code(new_code) {
+	const mappings = get_metro_mappings();
+	const mapping = mappings.find(mapping => mapping.new_code == new_code);
+	return mapping.old_code;
+}
+
+function get_new_code_from_old_code(old_code) {
+	const mappings = get_metro_mappings();
+	const mapping = mappings.find(mapping => mapping.old_code == old_code);
+	return mapping.new_code;
+}

@@ -772,7 +772,32 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 	table.querySelector('tbody').replaceWith(new_tbody);
 }
 
+function preprocess_metro_virtual_board_data(virtual_board_data, stop_code) {
+	const directions_with_stop = data.directions.filter(dir => dir.stops.includes(stop_code));
+	let next_stops = new Set();
+	directions_with_stop.map(dir => {
+		const stop_index = dir.stops.indexOf(stop_code);
+		for(let i=stop_index; i<dir.stops.length; i++) {
+			next_stops.add(get_new_code_from_old_code(dir.stops[i]));
+		}
+	});
+
+	const direction_stops = data.directions.find(dir => dir.stops.includes(stop_code)).stops;
+	const stop_index = direction_stops.indexOf(stop_code);
+	// const next_stops = direction_stops.slice(stop_index-1>0?stop_index-1:0);
+	for(let i=virtual_board_data.routes.length-1; i>=0; i--) {
+		const route = virtual_board_data.routes[i];
+		if(!next_stops.has(route.destination)) {
+			virtual_board_data.routes.splice(i, 1);
+			continue;
+		}
+		route.destination = get_old_code_from_new_code(route.destination);
+	}
+}
+
 async function load_virtual_board(stop_code) {
+	stop_code = Number(stop_code);
+
     const use_exact_times = document.querySelector('#virtual_board_show_exact_time').checked;
     const show_condensed_view = document.querySelector('#virtual_board_show_condensed').checked;
 	
@@ -795,10 +820,19 @@ async function load_virtual_board(stop_code) {
 	old_condensed_tbody.replaceWith(new_condensed_tbody);
 	old_verbose_tbody.replaceWith(new_verbose_tbody);
 	
-	fetch(`${virtual_board_proxy_url}${format_stop_code(stop_code)}`)
+	const is_metro = is_metro_stop(stop_code);
+	const stop_code_for_url = is_metro?get_new_code_from_old_code(stop_code):format_stop_code(stop_code);
+	const extra_params = is_metro?`&metro`:'';
+	const params = `${stop_code_for_url}${extra_params}`;
+	fetch(`${virtual_board_proxy_url}${params}`)
 	.then(data => data.json())
 	.then(routes_data => {
 		virtual_board_show_info(false);
+
+		if(is_metro_stop(stop_code)) {
+			preprocess_metro_virtual_board_data(routes_data, stop_code);
+		}
+
 		if(routes_data.status == 'ok' && routes_data.routes.length > 0) {
 			const date = new Date();
 			populate_virtual_board_table(routes_data.routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view);
