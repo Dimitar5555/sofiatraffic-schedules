@@ -443,39 +443,24 @@ function configure_favourite_line_button(favourite_lines=false){
 		star.setAttribute('title', lang.schedules.add_to_favourites);
 	}
 }
-function configure_favourite_stop_button(favourite_stops=false){
-	const star = schedule_div.querySelectorAll('i').item(2);
-	star.setAttribute('onmouseover', "toggle_star(this, 'over')");
-	star.setAttribute('onmouseout', "toggle_star(this, 'out')");
+
+function configure_favourite_stop_button(favourite_stops=false) {
+	const stop_stars = Array.from(document.querySelectorAll('i[data-star="stop"]'));
+
 	if(!favourite_stops){
 		favourite_stops = get_favourite_stops();
 	}
-	/*if(current.stop_code==null){
-		star.classList.remove('bi-star-fill');
-		star.classList.add('bi-star');
-		star.dataset.style = "disabled";
-		star.classList.remove('text-warning');
-		star.classList.add('text-secondary');
-		return;
-	}
-	else{
-		star.classList.add('text-warning');
-		star.classList.remove('text-secondary');
-	}*/
 	
-	if(favourite_stops.indexOf(current.stop_code)==-1){
-        //not in list, unfill star
-		star.classList.remove('bi-star-fill');
-		star.classList.add('bi-star');
-		star.dataset.style = "none";
-		star.setAttribute('title', lang.schedules.add_to_favourites);
-	}
-	else{
-        //in list, fill star
-		star.classList.add('bi-star-fill');
-		star.classList.remove('bi-star');
-		star.dataset.style = "fill";
-		star.setAttribute('title', lang.schedules.remove_from_favourites);
+	const should_be_filled = favourite_stops.includes(current.stop_code);
+	for(const star of stop_stars) {
+		star.classList.toggle('bi-star-fill', should_be_filled);
+		star.classList.toggle('bi-star', !should_be_filled);
+
+		star.dataset.style = should_be_filled ? 'fill' : 'none';
+
+		const title_key = should_be_filled ? 'remove_from' : 'add_to';
+		const title = lang.schedules[`${title_key}_favourites`];
+		star.setAttribute('title', title);
 	}
 }
 function display_schedule(){

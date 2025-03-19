@@ -48,8 +48,11 @@ function toggle_favourite_line(){
 function get_favourite_stops(){
 	return JSON.parse(window.localStorage.getItem('favourite_stops')).map(stop => parseInt(stop)) || [];
 }
-function toggle_favourite_stop(stop_code){
-	var favourite_stops = get_favourite_stops();
+function toggle_favourite_stop(stop_code=false) {
+	if(!stop_code){
+		stop_code = current.stop_code;
+	}
+	let favourite_stops = get_favourite_stops();
 	if(favourite_stops.indexOf(stop_code)==-1){
 		favourite_stops.push(stop_code);
 	}

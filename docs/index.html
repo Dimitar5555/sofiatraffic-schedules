@@ -184,7 +184,7 @@
 						</div>
 						<div class="col col-12 col-sm-8 col-md-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
 							<div class="d-flex flex-nowrap flex-grow-1">
-								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="toggle_favourite_stop(Number(this.nextElementSibling.value))"></i>
+								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="toggle_favourite_stop()" data-star="stop"></i>
 								<select class="form-select d-inline-block" onchange="current.stop_code = Number(this.value); updateURL();" id="route_stop_selector"></select>
 							</div>
 							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>
@@ -210,7 +210,10 @@
 					<div>
 						<div class="row m-2">
 							<div class="col col-4 col-md-3" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></div>
-							<div class="col col-8 col-md-4" id="stop_name"></div>
+							<div class="col col-8 col-md-4">
+								<i class="lh-1 align-top h5 text-warning bi bi-star" onclick="toggle_favourite_stop()" onmouseover="toggle_star(this, 'over')" onmouseout="toggle_star(this, 'out')" data-style="none" data-star="stop"></i>
+								<span id="stop_name"></span>
+							</div>
 						</div>
 						<div class="row m-2">
 							<div class="col col-4 col-md-3" data-i18n="schedules.schedule"></div>
