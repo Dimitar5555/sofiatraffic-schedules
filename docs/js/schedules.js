@@ -285,6 +285,7 @@ function show_schedule(new_globals, overwrite_selectors=false, update_url=false)
 	if(new_globals.stop_code && (current.view=='stop' || current.is_stop)){
 		//show stop schedule
 		show_stop_schedule(new_globals.stop_code, new_globals.schedule_type);
+		configure_favourite_stop_button();
 	}
 	else{
 		configure_all_selectors(new_globals, overwrite_selectors);
