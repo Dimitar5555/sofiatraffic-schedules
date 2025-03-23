@@ -132,5 +132,6 @@
 {"route_ref":"N2","cgm_id":"A225","type":"bus","subtype":"night"},
 {"route_ref":"У2","cgm_id":"A243","type":"bus","subtype":"school"},
 {"route_ref":"N3","cgm_id":"A226","type":"bus","subtype":"night"},
-{"route_ref":"N4","cgm_id":"A227","type":"bus","subtype":"night"}
+{"route_ref":"N4","cgm_id":"A227","type":"bus","subtype":"night"},
+{"route_ref":"6TM","cgm_id":"TB44","type":"bus","subtype":"temporary"}
 ]
