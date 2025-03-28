@@ -56,7 +56,9 @@
 	},
 	"footer":{
 		"last_data_update": "Last data update",
-		"last_site_update": "Last site update"
+		"last_site_update": "Last site update",
+		"data_attribution": "Data: SUMC, OpenStreetMap",
+		"realtime_map": "Real-time map (in Bulgarian)"
 	},
 	"stats":{
 		"schedules_by_date": "New schedules by date",

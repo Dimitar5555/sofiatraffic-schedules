@@ -56,7 +56,9 @@
 	},
 	"footer": {
 		"last_data_update": "Последно обновяване на разписанията",
-		"last_site_update": "Последно обновяване на сайта"
+		"last_site_update": "Последно обновяване на сайта",
+		"data_attribution": "Данни: ЦГМ, OpenStreetMap",
+		"realtime_map": "Карта в реално време"
 	},
 	"stats": {
 		"schedules_by_date": "Нови разписания по дати",

@@ -382,11 +382,23 @@
 		  </div>
 		</div>
 	</div>-->
-	<footer class="footer p-2 border-top">
-		<!--<a href="#data_sources" data-bs-toggle="modal" data-bs-target="#data_sources" data-i18n="other.data_sources">fd</a><br>-->
-		<span data-i18n="footer.last_data_update"></span>: <span id="last_data_update"></span><!--<a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a>--><br>
-		<span data-i18n="footer.last_site_update"></span>: <span id="app_version"></span>
-	</footer>
+	<!-- <footer class="footer p-2 border-top">
+		<a href="#data_sources" data-bs-toggle="modal" data-bs-target="#data_sources" data-i18n="other.data_sources">fd</a><br>
+	</footer> -->
+	<footer class="footer">
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+			<span data-i18n="footer.last_data_update"></span>:
+			<span id="last_data_update"></span>
+			<!-- <a onclick="init_updated_schedules_table()" id="last_data_update" href="#updated_schedules" data-bs-toggle="modal" data-bs-target="#updated_schedules"></a> -->
+			<br>
+			<span data-i18n="footer.last_site_update"></span>: <span id="app_version"></span>
+			<br>
+          	<span data-i18n="footer.data_attribution"></span>
+			<br>
+			<br>
+          	<a href="https://dimitar5555.github.io/sofiatraffic-livemap/" target="_blank" data-i18n="footer.realtime_map"></a>
+        </div>
+    </footer>
 	<script defer src="js/config.js"></script>
 	<script defer src="js/map.js"></script>
 	<script defer src="js/virtual_boards.js"></script>
