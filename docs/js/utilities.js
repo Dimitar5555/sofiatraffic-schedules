@@ -178,6 +178,9 @@ function generate_btn_group(stop_code, btn_types, text, is_favorite) {
 }
 
 function zoom_to_stop(stop_code) {
+    if(is_screen_wdith_lg_or_less()) {
+        document.querySelector('#map').scrollIntoView({behavior: 'smooth'});
+    }
     let marker = get_stop(stop_code).marker;
     map.flyTo(marker.getLatLng(), 17, {
 		animate: false
@@ -227,4 +230,8 @@ function return_weekday_text(boolean){
 
 function is_online() {
     return navigator.onLine;
+}
+
+function is_screen_wdith_lg_or_less() {
+    return window.innerWidth <= 992;
 }
