@@ -1,9 +1,14 @@
 {
 	"code":"en",
 	"title":"Sofia Urban Transport Schedule",
+	"titles": {
+		"short_title": "МГТ София",
+		"title": "Разписание на МГТ София",
+		"schedule_of": "Разписание на ",
+		"stops_map": "Карта на спирките"
+	},
 	"nav":{
 		"schedules":"Schedules",
-		"favourites":"Favourite stops",
 		"map": "Map"
 	},
 	"line_types":{
@@ -31,43 +36,69 @@
 	"schedules":{
 		"line":"Line:",
 		"schedule":"Stop schedule",
-		"valid_from":"Valid from:",
+		"valid_from":"Valid from",
 		"direction":"Direction",
-		"stop":"Stop",
-		"show_by_cars":"Show schedule by cars",
-		"modal_title":"Course schedule",
-		"departure_time":"Departure time",
-		"previous_course":"Previous course",
-		"next_course":"Next course",
-		"partial_trips":"Incomplete courses are marked with a red/yellow background.",
-		"add_to_favourites":"Add to favourites",
-		"remove_from_favourites":"Remove from favourites"
-	},
-	"favourites":{
-		"stop":"Stop",
-		"actions":"Actions",
-		"virtual_board":"Virtual departure board"
+		"stop": "Stop",
+		"metrostation": "Metro station",
+		"travel_time": "Travel time",
+		"show_by_cars": "Show schedule by cars",
+		"modal_title": "Course schedule",
+		"departure_time": "Departure time",
+		"previous_course": "Previous course",
+		"next_course": "Next course",
+		"partial_trips": "Incomplete courses are marked with a red/yellow background.",
+		"add_to_favourites": "Add to favourites",
+		"remove_from_favourites": "Remove from favourites",
+		"unknown_stop": "UNKNOWN STOP",
+		"routes": "Routes",
+		"favourite_stops": "Favourite stops",
+		"stops": "Stops"
 	},
 	"footer":{
-		"last_data_update":"Last data update",
-		"last_site_update":"Last site update"
+		"last_data_update": "Last data update",
+		"last_site_update": "Last site update"
 	},
 	"stats":{
-		"schedules_by_date":"New schedu;es by date",
-		"date":"Date",
-		"lines":"Line"
+		"schedules_by_date": "New schedules by date",
+		"date": "Date",
+		"lines": "Line"
 	},
 	"actions":{
-		"back":" Back",
+		"actions": "Actions",
+		"back": "Back",
 		"schedule": "Schedule",
 		"virtual_board": "Virtual Board",
 		"show_stop_schedule": "Stop Schedule",
-		"close":"Close",
-		"refresh": "Refresh"
+		"close": "Close",
+		"refresh": "Refresh",
+		"locate_stop_on_map": "Locate stop on map",
+		"stop_schedule": "Stop schedule",
+		"search_by_name_or_code": "Search by name or code"
 	},
 	"other":{
 		"sofiatraffic_livedata_warning_1": "The data is provided by SUMC as it. It may be incomplete or incorrect.",
 		"sofiatraffic_livedata_warning_2": "Departure times might be off by ±1 minute.",
-		"generated_at": "Generated at "
+		"generated_at": "Generated at ",
+		"show_exact_time": "Show exact time",
+		"show_condensed": "Show condensed",
+		"no_more_departures": "No more departures for the day",
+		"no_network_connection": "No network connection",
+		"no_data": "Currently, SUMC does not provide data for virtual boards in external applications. Please try again later or use the SUMC website.",
+		"map_no_network_connection": "The map cannot be loaded due to lack of internet connection."
+	},
+	"stops": {
+		"metro": "Metro stations",
+		"tram": "Tram stops",
+		"trolley": "Trolleybus stops",
+		"bus": "Bus stops"
+	},
+	"modals": {
+		"settings": {
+			"header": "Settings",
+			"theme_label": "Theme",
+			"auto_theme": "Auto",
+			"dark_theme": "Dark",
+			"light_theme": "Light"
+		}
 	}
 }
