@@ -197,3 +197,13 @@ html[data-bs-theme="dark"] .leaflet-popup-tip {
 .leaflet-control-attribution > a {
 	color: #0078A8;
 }
+
+html, body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
