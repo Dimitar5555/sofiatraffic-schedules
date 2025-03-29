@@ -63,7 +63,7 @@
 	"stats":{
 		"schedules_by_date": "New schedules by date",
 		"date": "Date",
-		"lines": "Line"
+		"line": "Line"
 	},
 	"actions":{
 		"actions": "Actions",
