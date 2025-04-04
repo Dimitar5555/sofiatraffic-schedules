@@ -62,6 +62,7 @@
 {"route_ref":"46","cgm_id":"A262","type":"bus"},
 {"route_ref":"47","cgm_id":"A193","type":"bus"},
 {"route_ref":"49","cgm_id":"A195","type":"bus"},
+{"route_ref":"X50","cgm_id":"A249","type":"bus"},
 {"route_ref":"54","cgm_id":"A98","type":"bus"},
 {"route_ref":"56","cgm_id":"A22","type":"bus"},
 {"route_ref":"58","cgm_id":"A24","type":"bus"},
