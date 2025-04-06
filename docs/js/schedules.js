@@ -80,9 +80,14 @@ function generate_routes_thumbs(route_indexes, parent) {
 
 function generate_stop_row(stop, is_favorite) {
 	const tr = html_comp('tr', {'data-stop-code': stop.code});
+	{
+		tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle d-none d-sm-table-cell'}));
+		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle d-none d-sm-table-cell'}));
+	}
 
-	tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle'}));
-	tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle'}));
+	{
+		tr.appendChild(html_comp('td', {text: get_stop_string(stop.code), class: 'align-middle d-sm-none', colspan: 2}));
+	}
 
 	const lines_td = html_comp('td', {class: 'align-middle lh-lg'});
 	generate_routes_thumbs(stop.route_indexes, lines_td);
@@ -856,3 +861,5 @@ async function load_virtual_board(stop_code) {
 		generated_at_el.nextElementSibling.removeAttribute('disabled');
 	});
 }
+
+module.exports = { calculate_time_difference };
