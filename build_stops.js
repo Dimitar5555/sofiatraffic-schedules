@@ -87,7 +87,7 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 			});
 			stop_to_override = cgm_stops[cgm_stops.length - 1];
 		}
-		if(osm_stop.tags.tram) {
+		if(osm_stop.tags.tram === 'yes' || osm_stop.tags.trolleybus === 'yes') {
 			stop_to_override.coords = round_stop_coords(osm_stop.lat, osm_stop.lon);
 		}
 		stop_to_override.names.en = osm_stop.tags['name:en']?.toUpperCase();
