@@ -140,8 +140,8 @@
                 </div>
 				<div id="schedule_display" class="d-none">
 					<button onclick="drop_current(); navigate_to_home();" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="actions.back"></span></button>
-					<div class="row m-2">
-						<div class="col col-4 col-md-3">
+					<div class="row my-2">
+						<div class="col col-3">
 							<label for="line" data-i18n="schedules.line"></label>
 						</div>
 						<div class="col col-8 col-md-5">
@@ -149,11 +149,11 @@
 							<span id="line"></span>
 						</div>
 					</div>
-					<div class="row m-2">
-						<div class="col col-4 col-md-3">
+					<div class="row my-2">
+						<div class="col col-3">
 							<label for="date_type" data-i18n="schedules.schedule"></label>
 						</div>
-						<div class="col col-8 col-md-5">
+						<div class="col col-9 col-md-5">
 							<form id="date_type">
 								<input class="form-check-input" onchange="current.is_weekend=false;updateURL()" type="radio" name="route_schedule_type" value="0" id="route_schedule_type_weekday" checked>
 								<label data-i18n="weekdays.weekday" for="route_schedule_type_weekday"></label>
@@ -162,7 +162,7 @@
 							</form>
 						</div>
 					</div>
-					<!-- <div class="row m-2">
+					<!-- <div class="row my-2">
 						<div class="col col-4 col-md-3">
 							<label for="date_type" data-i18n="schedules.valid_from"></label>
 						</div>
@@ -170,19 +170,19 @@
 							<span id="valid_from"></span>
 						</div>
 					</div> -->
-					<div class="row m-2">
-						<div class="col col-12 col-sm-4 col-md-3">
+					<div class="row my-2">
+						<div class="col col-12 col-sm-3">
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
-						<div class="col col-12 col-sm-8 col-md-9">
+						<div class="col col-12 col-sm-9">
 							<select class="form-select" onchange="current.direction = data.directions.find(dir => dir.code == this.value); updateURL();" id="direction"></select>
 						</div>
 					</div>
-					<div class="row m-2">
-						<div class="col col-12 col-sm-4 col-md-3">
+					<div class="row my-2">
+						<div class="col col-12 col-sm-3">
 							<label for="route_stop_selector" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></label>
 						</div>
-						<div class="col col-12 col-sm-8 col-md-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
+						<div class="col col-12 col-sm-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
 							<div class="d-flex flex-nowrap flex-grow-1">
 								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="toggle_favourite_stop()" data-star="stop"></i>
 								<select class="form-select d-inline-block" onchange="current.stop_code = Number(this.value); updateURL();" id="route_stop_selector"></select>
@@ -190,7 +190,7 @@
 							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>
 						</div>
 					</div>
-					<div class="row m-2 schedule_by_cars_related">
+					<div class="row my-2 schedule_by_cars_related">
 						<div class="col col-4 col-md-3">
 							<label for="display_by_car" data-i18n="schedules.show_by_cars"></label>
 						</div>
@@ -208,14 +208,14 @@
 				<div id="stop_schedule" class="d-none">
 					<button onclick="drop_current(); navigate_to_home();" class="btn btn-outline-primary"><i class="bi bi-arrow-left"></i> <span data-i18n="actions.back"> Назад</span></button>
 					<div>
-						<div class="row m-2">
+						<div class="row my-2">
 							<div class="col col-4 col-md-3" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation"></div>
 							<div class="col col-8 col-md-4">
 								<i class="lh-1 align-top h5 text-warning bi bi-star" onclick="toggle_favourite_stop()" onmouseover="toggle_star(this, 'over')" onmouseout="toggle_star(this, 'out')" data-style="none" data-star="stop"></i>
 								<span id="stop_name"></span>
 							</div>
 						</div>
-						<div class="row m-2">
+						<div class="row my-2">
 							<div class="col col-4 col-md-3" data-i18n="schedules.schedule"></div>
 							<div class="col col-8 col-md-4">
 								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value, true)" type="radio" name="stop_schedule_type" value="0" id="stop_schedule_type_weekdays" checked>
@@ -227,7 +227,7 @@
 								
 							</div>
 						</div>
-						<div class="row m-2">
+						<div class="row my-2">
 							<div class="col col-4 col-md-3"></div>
 							<div class="col col-8 col-md-4">
 								<button data-bs-toggle="modal" data-bs-target="#sofiatraffic_live_data" onclick="load_virtual_board(current.stop_code)" class="btn btn-outline-primary text-nowrap"><i class="bi bi-clock"></i> <span data-i18n="actions.virtual_board"></span></button>
