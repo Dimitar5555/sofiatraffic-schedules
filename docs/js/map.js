@@ -75,10 +75,19 @@ function init_map() {
 	}
 	let markers = [];
 	console.time('Adding stops to map');
-	for(let stop of data.stops) {
-		let popup = generate_popup_text(stop, stop.route_indexes);
-		let marker = L.marker(stop.coords, {icon: icon})
+	const metro_icon = new L.Icon({
+		iconUrl: 'images/marker-icon-metro.png',
+		iconSize: [30, 30],
+		iconAnchor: [15, 15],
+		popupAnchor: [1, -16]
+	});
+	for(const stop of data.stops) {
+		const popup = generate_popup_text(stop, stop.route_indexes);
+		const marker = L.marker(stop.coords, {icon: icon})
 		.bindPopup(popup, {maxWidth: 340, closeButton: false});
+		if(is_metro_stop(stop.code)) {
+			marker.setIcon(metro_icon);
+		}
 		stop.marker = marker;
 		stop.is_marker_shown = true;
 		markers.push(marker);
