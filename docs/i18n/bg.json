@@ -1,106 +1,93 @@
 {
 	"code":"bg",
 	"title":"Разписание на МГТ София",
-	"titles": {
-		"short_title": "МГТ София",
-		"title": "Разписание на МГТ София",
-		"schedule_of": "Разписание на ",
-		"stops_map": "Карта на спирките"
-	},
-	"nav": {
-		"schedules": "Разписание",
-		"map": "Карта"
-	},
-	"line_types": {
-		"favourite": "Любими линии",
-		"metro": "Метро",
-		"tram": "Трамваи",
-		"trolley": "Тролейбуси",
-		"bus": "Автобуси",
-		"school": "Училищни автобуси",
-		"temporary":"Заместващи автобуси",
-		"night":"Нощни автобуси"
-	},
-	"line_type": {
-		"metro": "Метролиния",
-		"tram": "Трамвай",
-		"trolley": "Тролейбус",
-		"bus": "Автобус",
-		"temporary":"Заместващ автобус",
-		"night": "Нощен автобус"
-	},
-	"weekdays": {
-		"weekday": "делник",
-		"weekend": "празник"
-	},
-	"schedules": {
-		"line": "Линия",
-		"schedule": "Разписание",
-		"valid_from": "Валидно от",
-		"direction": "Посока",
-		"stop": "Спирка",
-		"metrostation": "Метростанция",
-		"travel_time": "Време на пътуване",
-		"show_by_cars": "Показване на разписанието по коли",
-		"modal_title": "Разписание на курса",
-		"departure_time": "Час на потегляне",
-		"previous_course": "Предишен курс",
-		"next_course": "Следващ курс",
-		"partial_trips": "Непълните курсове са отбелязани с червен/жълт фон",
-		"add_to_favourites": "Добави към списъка с любими",
-		"remove_from_favourites": "Премахни от списъка с любими",
-		"unknown_stop": "НЕИЗВЕСТНА СПИРКА",
-		"routes": "Линии",
-		"favourite_stops": "Любими спирки",
-		"stops": "Спирки"
-	},
-	"footer": {
-		"last_data_update": "Последно обновяване на разписанията",
-		"last_site_update": "Последно обновяване на сайта",
-		"data_attribution": "Данни: ЦГМ, OpenStreetMap",
-		"realtime_map": "Карта в реално време"
-	},
-	"stats": {
-		"schedules_by_date": "Нови разписания по дати",
-		"date": "Дата",
-		"line": "Линия"
-	},
-	"actions": {
-		"actions": "Действия",
-		"close": "Затвори",
-		"schedule": "Разписание",
-		"virtual_board": "Виртуално табло",
-		"show_stop_schedule": "Разписание на спирката",
-		"back": " Назад",
-		"refresh": "Обнови",
-		"locate_stop_on_map": "Покажи спирката на картата",
-		"stop_schedule": "Разписание на спирката",
-		"search_by_name_or_code": "Въведете име или код на спирка"
-	},
-	"other": {
-		"sofiatraffic_livedata_warning_1": "Данните са предоставени от ЦГМ.",
-		"sofiatraffic_livedata_warning_2": "Възможно е да са непълни, неточни и/или да има разлики в времената на потегляне в рамките на ±1 минута.",
-		"generated_at": "Генерирано на ",
-		"show_exact_time": "Показване на точно време",
-		"show_condensed": "Покажи синтезирано",
-		"no_more_departures": "Няма повече потегляния за деня",
-		"no_network_connection": "Няма връзка със сървъра или интернет",
-		"no_data": "В момента ЦГМ не предоставя данни за виртуални табла на външни приложения. Моля, опитайте по-късно или използвайте сайта на ЦГМ.",
-		"map_no_network_connection": "Картата не може да бъде заредена поради липса на връзка с интернет."
-	},
-	"stops": {
-		"metro": "Метростанции",
-		"tram": "Трамвайни спирки",
-		"trolley": "Тролейбусни спирки",
-		"bus": "Автобусни спирки"
-	},
-	"modals": {
-		"settings": {
-			"header": "Настройки",
-			"theme_label": "Тема",
-			"auto_theme": "Автоматична",
-			"dark_theme": "Тъмна",
-			"light_theme": "Светла"
-		}
-	}
+	
+	"titles.short_title": "МГТ София",
+	"titles.title": "Разписание на МГТ София",
+	"titles.schedule_of": "Разписание на ",
+	"titles.stops_map": "Карта на спирките",
+	
+	"nav.schedules": "Разписание",
+	"nav.map": "Карта",
+
+	"line_types.favourite": "Любими линии",
+	"line_types.metro": "Метро",
+	"line_types.tram": "Трамваи",
+	"line_types.trolley": "Тролейбуси",
+	"line_types.bus": "Автобуси",
+	"line_types.school": "Училищни автобуси",
+	"line_types.temporary":"Заместващи автобуси",
+	"line_types.night":"Нощни автобуси",
+	
+	"line_type.metro": "Метро",
+	"line_type.tram": "Трамвай",
+	"line_type.trolley": "Тролейбус",
+	"line_type.bus": "Автобус",
+	"line_type.school": "Училищен автобус",
+	"line_type.temporary":"Заместващ автобус",
+	"line_type.night":"Нощен автобус",
+	
+	"weekdays.weekday": "делник",
+	"weekdays.weekend": "празник",
+	
+	"schedules.line": "Линия",
+	"schedules.schedule": "Разписание",
+	"schedules.valid_from": "Валидно от",
+	"schedules.direction": "Посока",
+	"schedules.stop": "Спирка",
+	"schedules.metrostation": "Метростанция",
+	"schedules.travel_time": "Време на пътуване",
+	"schedules.show_by_cars": "Показване на разписанието по коли",
+	"schedules.modal_title": "Разписание на курса",
+	"schedules.departure_time": "Час на потегляне",
+	"schedules.previous_course": "Предишен курс",
+	"schedules.next_course": "Следващ курс",
+	"schedules.partial_trips": "Непълните курсове са отбелязани с червен/жълт фон",
+	"schedules.add_to_favourites": "Добави към списъка с любими",
+	"schedules.remove_from_favourites": "Премахни от списъка с любими",
+	"schedules.unknown_stop": "НЕИЗВЕСТНА СПИРКА",
+	"schedules.routes": "Линии",
+	"schedules.favourite_stops": "Любими спирки",
+	"schedules.stops": "Спирки",
+	
+	"footer.last_data_update": "Последно обновяване на разписанията",
+	"footer.last_site_update": "Последно обновяване на сайта",
+	"footer.data_attribution": "Данни: ЦГМ, OpenStreetMap",
+	"footer.realtime_map": "Карта в реално време",
+	
+	"stats.schedules_by_date": "Нови разписания по дати",
+	"stats.date": "Дата",
+	"stats.line": "Линия",
+
+	"actions.actions": "Действия",
+	"actions.close": "Затвори",
+	"actions.schedule": "Разписание",
+	"actions.virtual_board": "Виртуално табло",
+	"actions.show_stop_schedule": "Разписание на спирката",
+	"actions.back": "Назад",
+	"actions.refresh": "Обнови",
+	"actions.locate_stop_on_map": "Покажи спирката на картата",
+	"actions.stop_schedule": "Разписание на спирката",
+	"actions.search_by_name_or_code": "Въведете име или код на спирка",
+	
+	"other.sofiatraffic_livedata_warning_1": "Данните са предоставени от ЦГМ.",
+	"other.sofiatraffic_livedata_warning_2": "Възможно е да са непълни, неточни и/или да има разлики в времената на потегляне в рамките на ±1 минута.",
+	"other.generated_at": "Генерирано на ",
+	"other.show_exact_time": "Показване на точно време",
+	"other.show_condensed": "Покажи синтезирано",
+	"other.no_more_departures": "Няма повече потегляния за деня",
+	"other.no_network_connection": "Няма връзка със сървъра или интернет",
+	"other.no_data": "В момента ЦГМ не предоставя данни за виртуални табла на външни приложения. Моля, опитайте по-късно или използвайте сайта на ЦГМ.",
+	"other.map_no_network_connection": "Картата не може да бъде заредена поради липса на връзка с интернет.",
+	
+	"stops.metro": "Метростанции",
+	"stops.tram": "Трамвайни спирки",
+	"stops.trolley": "Тролейбусни спирки",
+	"stops.bus": "Автобусни спирки",
+	
+	"modals.settings.header": "Настройки",
+	"modals.settings.theme_label": "Тема",
+	"modals.settings.auto_theme": "Автоматична",
+	"modals.settings.dark_theme": "Тъмна",
+	"modals.settings.light_theme": "Светла"
 }

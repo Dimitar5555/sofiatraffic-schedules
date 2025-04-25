@@ -209,11 +209,11 @@ function create_line_selector(routes, type){
 
 function update_stop_labels(){
 	var stop_labels = Array.from(document.querySelectorAll('[data-i18n="schedules.stop"]'));
-	var path = stop_labels[0].dataset.i18n.split('.');
+	var path = stop_labels[0].dataset.i18n;
 	if(current.route && current.route.type=='metro'){
-		path = stop_labels[0].dataset.i18nAlt.split('.');
+		path = stop_labels[0].dataset.i18nAlt;
 	}
-	let string = path.reduce((acc, cur) => acc[cur], lang);
+	const string = lang[path]
 	stop_labels.forEach(label => label.innerText = string);
 }
 
@@ -309,7 +309,7 @@ function are_options_matching(current_options, required_options) {
 function configure_all_selectors(predefined_values={}, overwrite_selectors=false){
 	var route = current.route;
 	console.log('predef', predefined_values);
-	schedule_div.querySelector('#line').innerHTML = `${lang.line_type[route.type]} ${route.route_ref}`;
+	schedule_div.querySelector('#line').innerHTML = `${lang['line_type.'+route.type]} ${route.route_ref}`;
 	schedule_div.querySelector('#line').setAttribute('class', get_route_colour_classes(route)+' fs-6');
 	
 	var current_weekday_options = Array.from(document.querySelectorAll('[name=route_schedule_type]:not(.d-none)')).map(el => is_weekend(el.value));
@@ -440,13 +440,13 @@ function configure_favourite_line_button(favourite_lines=false){
 		star.classList.add('bi-star-fill');
 		star.classList.remove('bi-star');
 		star.dataset.style = "fill";
-		star.setAttribute('title', lang.schedules.remove_from_favourites);
+		star.setAttribute('title', lang['schedules.remove_from_favourites']);
 	}
 	else{
 		star.classList.remove('bi-star-fill');
 		star.classList.add('bi-star');
 		star.dataset.style = "none";
-		star.setAttribute('title', lang.schedules.add_to_favourites);
+		star.setAttribute('title', lang['schedules.add_to_favourites']);
 	}
 }
 
@@ -465,7 +465,7 @@ function configure_favourite_stop_button(favourite_stops=false) {
 		star.dataset.style = should_be_filled ? 'fill' : 'none';
 
 		const title_key = should_be_filled ? 'remove_from' : 'add_to';
-		const title = lang.schedules[`${title_key}_favourites`];
+		const title = lang[`schedules.${title_key}_favourites`];
 		star.setAttribute('title', title);
 	}
 }
@@ -664,7 +664,7 @@ function show_stop_schedule(stop_code, type){
 			//var trip_index = data[0];
 			var div = html_comp('div');
 			var num_div = html_comp('div', {class: 'mt-4 mb-2'});
-			num_div.appendChild(html_comp('span', {text: `${lang.line_type[route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}));
+			num_div.appendChild(html_comp('span', {text: `${lang['line_type.'+route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}));
 			num_div.appendChild(document.createTextNode(' '));
 			num_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops)}`}));
 			div.appendChild(num_div);

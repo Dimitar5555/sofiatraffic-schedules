@@ -26,14 +26,14 @@ function get_stop(stop_arg){
 		return stop_arg;
 	}
 	else if(typeof stop_arg=='number'){
-		return data.stops.find(stop => stop.code === stop_arg) || {code: stop_arg, names: {bg: `(${lang.schedules.unknown_stop})`}};
+		return data.stops.find(stop => stop.code === stop_arg) || {code: stop_arg, names: {bg: `(${lang['schedules.unknown_stop']})`}};
 	}
 }
 
 //accepts stop_code or stop object, in order to maintain consistent stop names
 function get_stop_name_by_code(stop_code){
 	if(!stop_code || stop_code==undefined){
-		return `(${lang.schedules.unknown_stop})`;
+		return `(${lang['schedules.unknown_stop']})`;
 	}
     var stop = get_stop(stop_code);
 	if(!stop){
@@ -45,7 +45,7 @@ function get_stop_name_by_code(stop_code){
 function get_stop_name_from_object(stop_obj) {
     const stop_name = stop_obj.names[lang.code];
     if(!stop_name){
-        return `(${lang.schedules.unknown_stop})`;
+        return `(${lang['schedules.unknown_stop']})`;
     }
     if(is_metro_stop(stop_obj.code)) {
         return stop_name.replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim();
@@ -91,19 +91,19 @@ function generate_button(stop_code, type, text, is_favorite) {
         departures_board: {
             type: 'button',
             icon: 'bi-clock',
-            text: lang.actions.virtual_board,
+            text: lang['actions.virtual_board'],
             disable_condition: (stop_code) => !enable_virtual_boards ||
             ( !enable_virtual_boards_for_subway_stations && is_metro_stop(stop_code) )
         },
         schedule: {
             type: 'a',
             icon: 'bi-table',
-            text: lang.actions.schedule
+            text: lang['actions.schedule']
         },
         locate_stop: {
             type: 'button',
             icon: 'bi-crosshair',
-            text: lang.actions.locate_stop_on_map
+            text: lang['actions.locate_stop_on_map']
         }
     };
 

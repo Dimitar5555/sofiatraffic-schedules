@@ -45,9 +45,8 @@ function init(debug=false){
 		function show_string(el, key='innerText') {
 			const i18n_key = key!='innerText'?`data-i18n-${key}`:'data-i18n';
 			const full_path = el.getAttribute(i18n_key);
-			const split_path = full_path.split('.');
 			try {
-				const string = split_path.reduce((acc, cur) => acc[cur], response);
+				const string = response[full_path];
 				if(!string){
 					throw(new Error());
 				}

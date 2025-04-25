@@ -40,16 +40,16 @@ function handle_seo() {
 
 	function generate_title(hash) {
 		if(hash.includes('stops_map')) {
-			return `${lang.titles.stops_map} - ${lang.titles.short_title}`;
+			return `${lang['titles.stops_map']} - ${lang['titles.short_title']}`;
 		}
 		else if(main_types_order.some(main_type => hash.includes(main_type))) {
-			return  `${lang.titles.schedule_of} ${lang.line_type[line_type].toLowerCase()} ${route_ref} - ${lang.titles.short_title}`;
+			return  `${lang['titles.schedule_of']} ${lang['line_type.'+line_type].toLowerCase()} ${route_ref} - ${lang['titles.short_title']}`;
 		}
 		else if(hash.includes('stop')) {
-			return `${lang.titles.schedule_of} спирка ${get_stop_string(stop_code)} - ${lang.titles.short_title}`;
+			return `${lang['titles.schedule_of']} спирка ${get_stop_string(stop_code)} - ${lang['titles.short_title']}`;
 		}
 		else {
-			return lang.titles.title;
+			return lang['titles.title'];
 		}
 	}
 	let new_title = generate_title(split_hash);
@@ -66,7 +66,7 @@ function handle_seo() {
 		}
 		else if(main_types_order.some(main_type => split_hash.includes(main_type))) {
 			set_canonical_url(`${line_type}/${route_ref}/`);
-			set_page_description(`Актуално разписание и маршрут на ${lang.line_type[line_type].toLowerCase()} ${route_ref}.`);
+			set_page_description(`Актуално разписание и маршрут на ${lang['line_type.'+line_type].toLowerCase()} ${route_ref}.`);
 		}
 		else if(split_hash.includes('#stop')) {
 			set_canonical_url(`stop/${stop_code}/`);
