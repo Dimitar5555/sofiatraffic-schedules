@@ -29,7 +29,6 @@
 {"route_ref":"7","cgm_id":"TB7","type":"trolley"},
 {"route_ref":"8","cgm_id":"TB4","type":"trolley"},
 {"route_ref":"9","cgm_id":"TB8","type":"trolley"},
-{"route_ref":"9А","cgm_id":"TB21","type":"trolley"},
 {"route_ref":"11","cgm_id":"TB2","type":"trolley"},
 {"route_ref":"1","cgm_id":"A66","type":"bus"},
 {"route_ref":"3","cgm_id":"A68","type":"bus"},
