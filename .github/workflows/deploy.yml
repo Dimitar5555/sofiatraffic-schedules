@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Copy index.html to 404.html
+        run: cp docs/index.html docs/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
