@@ -1,1 +1,5 @@
-permalink: /:title/
+routes:
+  - path: /metro/:line
+    template: index.html
+clean_urls: true
+trailing_slash: true
