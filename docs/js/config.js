@@ -24,15 +24,15 @@ window.onload = function() {
             new_url += 'sofiatraffic-schedules/';
         }
         if(['schedules', 'stops_map'].includes(type)) {
-            new_url += `#!${type}/`;
+            new_url += `${url_prefix}${type}/`;
         }
         else if(['metro', 'tram', 'trolley', 'bus'].includes(type)) {
             const route_ref = params.get('route');
-            new_url += `#!${type}/${route_ref}/`;
+            new_url += `${url_prefix}${type}/${route_ref}/`;
         }
         else if(type == 'stop') {
             const stop_code = params.get('code');
-            new_url += `#!stop/${stop_code}/`;
+            new_url += `${url_prefix}stop/${stop_code}/`;
         }
         window.history.replaceState({}, '', new_url);
     }
