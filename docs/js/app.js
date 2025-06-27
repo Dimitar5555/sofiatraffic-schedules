@@ -25,10 +25,12 @@ current = {
 	route: null, trip: null, stop_code: null, view: null
 };
 
-function init(debug=false){
-	if(!localStorage.getItem('lang')){
-		var cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.indexOf(lang)!==-1);
-		localStorage.setItem('lang', cur_lang?cur_lang:'bg');
+function init(debug=false) {
+	const redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect != location.href) {
+        history.replaceState(null, null, redirect);
+    }
 	}
 	if(!localStorage.getItem('favourite_stops')){
 		localStorage.setItem('favourite_stops', '[]');
