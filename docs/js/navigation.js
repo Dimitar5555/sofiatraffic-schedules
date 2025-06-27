@@ -136,25 +136,12 @@ function get_globals_from_hash(hash) {
 }
 
 function navigate_to_home() {
-	if(current.view == 'stop') {
-		line_selector_div.classList.add('d-none');
-		stop_schedule_div.classList.remove('d-none');
-		schedule_display.classList.add('d-none');
-		manual_push_state(generate_current_hash());
-		
-	}
-	else if(current.view == 'route') {
-		line_selector_div.classList.add('d-none');
-		stop_schedule_div.classList.add('d-none');
-		schedule_display.classList.remove('d-none');
-		manual_push_state(generate_current_hash());
-	}
-	else {
-		line_selector_div.classList.remove('d-none');
-		stop_schedule_div.classList.add('d-none');
-		schedule_display.classList.add('d-none');
-		manual_push_state(`${url_prefix}schedules`);
-	}
+	const is_stop_view = current.view == 'stop';
+	const is_route_view = current.view == 'route';
+	line_selector_div.classList.toggle('d-none', is_stop_view || is_route_view);
+	stop_schedule_div.classList.toggle('d-none', !is_stop_view);
+	schedule_display_div.classList.toggle('d-none', !is_route_view);
+	manual_push_state(generate_current_hash());
 }
 
 function generate_current_hash() {
