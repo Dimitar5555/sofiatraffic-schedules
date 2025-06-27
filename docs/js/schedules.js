@@ -230,7 +230,7 @@ function filter_stops() {
 			show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
 		}
 		if(!Number.isFinite(code)) {
-			show_stops = data.stops.filter(stop => stop.names[lang.code].includes(search_string)).map(stop => stop.code);
+			show_stops = data.stops.filter(stop => stop.names[lang.code]?.includes(search_string)).map(stop => stop.code);
 		}
 	}
 
