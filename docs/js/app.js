@@ -26,12 +26,6 @@ current = {
 };
 
 function init(debug=false) {
-	const redirect = sessionStorage.redirect;
-    delete sessionStorage.redirect;
-    if (redirect && redirect != location.href) {
-        history.replaceState(null, null, redirect);
-    }
-
 	if(!localStorage.getItem('lang')) {
 		const cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.includes(lang));
 		localStorage.setItem('lang', cur_lang ? cur_lang : 'bg');
@@ -81,8 +75,7 @@ function init(debug=false) {
 		new_item.classList.add(...Array.from(old_item.classList));
 		new_item.children.item(0).classList.add('text-nowrap');
 		old_item.replaceWith(new_item);
-		let hash_from_param = (new URL(document.location)).searchParams.get('_escaped_fragment_');
-		if(window.location.hash || hash_from_param){
+		if(get_split_hash().length != 0) {
 			handle_page_change();
 		}
 	});

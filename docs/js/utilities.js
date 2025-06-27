@@ -1,14 +1,17 @@
 function get_split_hash() {
-    let hash = window.location.hash;
-    if(hash == '') {
-        hash = (new URL(document.location)).searchParams.get('_escaped_fragment_');
-
+    const url = new URL(document.location);
+    let hash = url.hash;
+    if(!hash && url.searchParams.has('_escaped_fragment_')) {
+        hash = url.searchParams.get('_escaped_fragment_');
+    }
+    else if(!hash) {
+        hash = document.location.pathname;
     }
     return decodeURIComponent(hash)
     .replace('#', '')
     .replace('!', '')
     .split('/')
-    .filter(el => el);
+    .filter(el => el && el != 'sofiatraffic-schedules');
 }
 
 function format_stop_code(stop_code) {

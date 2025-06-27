@@ -81,7 +81,7 @@ function handle_seo() {
 
 function handle_page_change() {
 	handle_seo();
-	let hash = get_split_hash().filter(el => el);
+	let hash = get_split_hash();
 	let main_tab_index = ['schedules', 'stops_map'].indexOf(hash[0]);
     console.log(hash)
     if(main_tab_index != -1) {
@@ -151,6 +151,7 @@ function generate_current_hash() {
 	else if(current.view == 'route') {
 		return `${url_prefix}${current.route.type}/${current.route.route_ref}/${current.direction.code}/${current.stop_code}`;
 	}
+	return `${url_prefix}schedules/`;
 }
 
 
