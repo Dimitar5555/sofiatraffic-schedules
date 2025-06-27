@@ -1,6 +1,6 @@
 const schedule_div = document.querySelector('#schedules');
 const schedule_display_div = document.querySelector('#schedule_display');
-var line_selector_div = document.querySelector('#line_selector');
+const line_selector_div = document.querySelector('#line_selector');
 const stop_schedule_div = document.querySelector('#stop_schedule');
 
 const allowed_languages = ['bg'];
@@ -31,21 +31,27 @@ function init(debug=false) {
     if (redirect && redirect != location.href) {
         history.replaceState(null, null, redirect);
     }
+
+	if(!localStorage.getItem('lang')) {
+		const cur_lang = navigator.languages.map(lang => lang.split('-')[0]).find(lang => allowed_languages.includes(lang));
+		localStorage.setItem('lang', cur_lang ? cur_lang : 'bg');
 	}
-	if(!localStorage.getItem('favourite_stops')){
+
+	if(!localStorage.getItem('favourite_stops')) {
 		localStorage.setItem('favourite_stops', '[]');
 	}
-	if(!localStorage.getItem('favourite_lines')){
+
+	if(!localStorage.getItem('favourite_lines')) {
 		localStorage.setItem('favourite_lines', '[]');
 	}
 
-	fetch(`i18n/${localStorage.lang}.json`)
+	fetch(`i18n/${localStorage.getItem('lang')}.json`)
 	.then(response => response.json())
 	.then(response => {
         lang = response;
 	    
 		function show_string(el, key='innerText') {
-			const i18n_key = key!='innerText'?`data-i18n-${key}`:'data-i18n';
+			const i18n_key = key != 'innerText' ? `data-i18n-${key}` : 'data-i18n';
 			const full_path = el.getAttribute(i18n_key);
 			try {
 				const string = response[full_path];
