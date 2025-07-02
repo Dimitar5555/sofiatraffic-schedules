@@ -25,14 +25,14 @@ function generate_url_entry(query_string, priority, sitemap) {
 function run(routes, trips, directions, stops){
 	var sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'];
 	for(const page of ['schedules', 'stops_map']) {
-		generate_url_entry(`${page}`, 1, sitemap);
+		generate_url_entry(`${page}/`, 1, sitemap);
 	}
 	routes.forEach(route => {
-		generate_url_entry(`${route.type}/${route.route_ref}`, 0.7, sitemap);
+		generate_url_entry(`${route.type}/${route.route_ref}/`, 0.7, sitemap);
 	});
 	
 	stops.forEach(stop => {
-		generate_url_entry(`stop/${stop.code}`, 0.5, sitemap);
+		generate_url_entry(`stop/${stop.code}/`, 0.5, sitemap);
 	})
 
 	sitemap.push('</urlset>');
