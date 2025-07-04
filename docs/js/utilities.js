@@ -207,7 +207,7 @@ function generate_line_btn(route){
     let font_size = `fs-${route.subtype=='temporary'?6:5}`;
 	var el = html_comp('a', {
 		text: route.route_ref,
-		class: `line_selector_btn rounded-1 ${get_route_colour_classes(route, false)} ${font_size} fw-bolder`,
+		class: `line_selector_btn ${get_route_colour_classes(route, false)} ${font_size}`,
 		//'onclick': `show_schedule({route: data.routes[${route.index}], is_route: true})`,
         href: `${url_prefix}${route.type}/${route.route_ref}/`,
         //onclick: 'event.preventDefault(); manual_push_state(this.href);'
@@ -221,7 +221,7 @@ function get_route_colour_classes(route, padding=true){
     const bg_color = `${route_type!=='metro'?route_type:route_ref}-bg-color`;
     const padding_class = padding?' py-1 px-2':'';
     const fg_color = `text-${route_ref=='M4'?'dark':'light'}`;
-    return  `fw-bolder rounded-1 ${bg_color} ${fg_color} ${padding?padding_class:''}`;
+    return  `${bg_color} ${fg_color} ${padding?padding_class:''} rounded-1 fw-bolder `;
 }
 function is_weekend(boolean){
     let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1 || boolean === 'weekend';

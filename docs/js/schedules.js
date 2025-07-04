@@ -310,7 +310,7 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	var route = current.route;
 	console.log('predef', predefined_values);
 	schedule_div.querySelector('#line').innerHTML = `${lang['line_type.'+route.type]} ${route.route_ref}`;
-	schedule_div.querySelector('#line').setAttribute('class', get_route_colour_classes(route)+' fs-6');
+	schedule_div.querySelector('#line').setAttribute('class', `${get_route_colour_classes(route)} fs-6`);
 	
 	var current_weekday_options = Array.from(document.querySelectorAll('[name=route_schedule_type]:not(.d-none)')).map(el => is_weekend(el.value));
 	var new_weekday_options = route.trip_indexes.map(trip_index => data.trips[trip_index].is_weekend).filter((item, index, arr) => arr.indexOf(item)==index);
