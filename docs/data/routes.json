@@ -9,7 +9,6 @@
 {"route_ref":"5","cgm_id":"TM25","type":"tram"},
 {"route_ref":"6","cgm_id":"TM32","type":"tram"},
 {"route_ref":"7","cgm_id":"TM30","type":"tram"},
-{"route_ref":"8","cgm_id":"TM23","type":"tram"},
 {"route_ref":"10","cgm_id":"TM24","type":"tram"},
 {"route_ref":"11","cgm_id":"TM29","type":"tram"},
 {"route_ref":"12","cgm_id":"TM33","type":"tram"},
@@ -131,5 +130,6 @@
 {"route_ref":"N1","cgm_id":"A224","type":"bus","subtype":"night"},
 {"route_ref":"N2","cgm_id":"A225","type":"bus","subtype":"night"},
 {"route_ref":"N3","cgm_id":"A226","type":"bus","subtype":"night"},
-{"route_ref":"N4","cgm_id":"A227","type":"bus","subtype":"night"}
+{"route_ref":"N4","cgm_id":"A227","type":"bus","subtype":"night"},
+{"route_ref":"8TM","cgm_id":"A121","type":"bus","subtype":"temporary"}
 ]
