@@ -78,6 +78,11 @@ function determine_route_type(route, type_string) {
 		console.error(`Unrecognised line type: ${type_string}`);
 	}
 	const route_ref = route.route_ref;
+	if(route.type == 'trolley' && route_ref == '9А') {
+		route.type = 'bus';
+		route.route_ref = '9';
+		return;
+	}
 	/*   Cyrrilic                     Latin */
 	if(route_ref.includes('Т') || route_ref.includes('T')) {
 		route.type = 'bus';
