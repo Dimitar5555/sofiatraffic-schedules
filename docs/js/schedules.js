@@ -392,10 +392,12 @@ function configure_weekday_selector(values, selected_index){
 	is_weekend_options[selected_index].checked = true;
 }
 function generate_from_to_text(stops){
-	const key_stops = [1006, 1038, 2454];
+	const key_stops = [1006, 1038, 2454, 6435, 6436];
 	// 1006 - Терминал 1
 	// 1038 - Мелницата Чепинци (А20)
 	// 2454 - Терминал 2 крайна
+	// 6435 - Трансферна спирка нощни автобуси (източна посока)
+	// 6436 - Трансферна спирка нощни автобуси (западна посока)
 	const stops_names = stops.map((stop, index) => {
 		const should_be_included = index == 0 || key_stops.includes(stop) || index == stops.length - 1;
 		return should_be_included ? get_stop_name_by_code(stop) : false;
