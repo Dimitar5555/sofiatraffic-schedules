@@ -392,9 +392,14 @@ function configure_weekday_selector(values, selected_index){
 	is_weekend_options[selected_index].checked = true;
 }
 function generate_from_to_text(stops){
-	let key_stops = [stops[0], 1038, stops[stops.length-1]]
-	.filter((stop, index, arr) => arr.indexOf(stop) == index);
-	let stops_names = key_stops.map(key_stop => stops.includes(key_stop)?get_stop_name_by_code(key_stop):false)
+	const key_stops = [1006, 1038, 2454];
+	// 1006 - Терминал 1
+	// 1038 - Мелницата Чепинци (А20)
+	// 2454 - Терминал 2 крайна
+	const stops_names = stops.map((stop, index) => {
+		const should_be_included = index == 0 || key_stops.includes(stop) || index == stops.length - 1;
+		return should_be_included ? get_stop_name_by_code(stop) : false;
+	})
 	.filter(stop_name => stop_name);
 	return stops_names.join(' => ');
 }
@@ -548,7 +553,7 @@ function display_trip_schedule(stop_time_index){
 		tr.appendChild(html_comp('td', {text: format_time(time), class: `align-middle${warning_class}`}));
 		const time_from_selected_stop = calculate_time_difference(time, selected_time);
 		let text;
-		if(typeof time_from_selected_stop != 'number' || Math.abs(time_from_selected_stop) == selected_time) {
+		if(typeof time_from_selected_stop != 'number') {
 			text = '-';
 		}
 		else if(time_from_selected_stop > 0) {
