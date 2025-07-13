@@ -79,8 +79,6 @@ function init(debug=false) {
 			handle_page_change();
 		}
 	});
-
-
 }
 
 function check_metadata() {
