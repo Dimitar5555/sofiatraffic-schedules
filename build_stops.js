@@ -131,7 +131,7 @@ export function get_stops_data() {
 		save_all_data([
 			{
 				name: 'stops',
-				data: stops,
+				data: stops.filter(stop => stop.route_indexes.length > 0),
 				split_rows_by: /,({"code)/g
 			},
 		]);
