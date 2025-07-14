@@ -105,7 +105,6 @@
 {"route_ref":"120","cgm_id":"A37","type":"bus"},
 {"route_ref":"123","cgm_id":"TB24","type":"bus"},
 {"route_ref":"150","cgm_id":"A103","type":"bus"},
-{"route_ref":"184","cgm_id":"A220","type":"bus"},
 {"route_ref":"204","cgm_id":"A84","type":"bus"},
 {"route_ref":"213","cgm_id":"A85","type":"bus"},
 {"route_ref":"260","cgm_id":"A108","type":"bus"},
