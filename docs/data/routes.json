@@ -1,5 +1,6 @@
 [
 {"route_ref":"M1","cgm_id":"M1","type":"metro"},
+{"route_ref":"M2","cgm_id":"M2","type":"metro"},
 {"route_ref":"M3","cgm_id":"M3","type":"metro"},
 {"route_ref":"M4","cgm_id":"M4","type":"metro"},
 {"route_ref":"1","cgm_id":"TM27","type":"tram"},
