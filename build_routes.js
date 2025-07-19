@@ -270,7 +270,7 @@ function adjust_metro_stop_times(variant, directions, stop_times, start_stop_tim
 	let start_stop = stops_arr[0];
 	let end_stop = stops_arr[stops_arr.length - 1];
 	directions[directions.length - 1].stops = normalise_metro_stop_codes(start_stop, end_stop);
-	if (start_stop == 212 || end_stop == 212) {
+	/*if (start_stop == 212 || end_stop == 212) {
 		stop_times.forEach((stop_time, index) => {
 			if (index < start_stop_times_index) {
 				return;
@@ -283,7 +283,7 @@ function adjust_metro_stop_times(variant, directions, stop_times, start_stop_tim
 				}
 			}
 		});
-	}
+	}*/
 }
 
 export function get_routes_data() {
