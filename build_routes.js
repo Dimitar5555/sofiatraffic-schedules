@@ -1,5 +1,6 @@
 import { parse_time, fetch_data_from_sofiatraffic } from "./build_utilities.js";
 import { routes_url, schedule_url, main_types } from "./config.js";
+import { normalise_route } from 'sofiatraffic-library'
 
 function format_stop_code(stop_code) {
 	return stop_code.toString().padStart(4, '0');
@@ -78,9 +79,7 @@ function determine_route_type(route, type_string) {
 		console.error(`Unrecognised line type: ${type_string}`);
 	}
 	const route_ref = route.route_ref;
-	if(route.type == 'trolley' && route_ref == '9А') {
-		route.type = 'bus';
-		route.route_ref = '9';
+	if(normalise_route(route)) {
 		return;
 	}
 	/*   Cyrrilic                     Latin */
