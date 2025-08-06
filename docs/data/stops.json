@@ -922,7 +922,7 @@
 {"code":1008,"coords":[42.54775,23.36105],"names":{"bg":"ЛИФТА - ПО ЖЕЛАНИЕ"},"route_indexes":[73,74,92]},
 {"code":1009,"coords":[42.56628,23.36351],"names":{"bg":"МАНАСТИР СВ. ЙОАКИМ И АНА - ПО ЖЕЛАНИЕ"},"route_indexes":[73,74,92]},
 {"code":1011,"coords":[42.61703,23.34891],"names":{"bg":"ЛИФТА СИМЕОНОВО"},"route_indexes":[104]},
-{"code":1012,"coords":[42.65036,23.35788],"names":{"bg":"Ж.К. ДЪРВЕНИЦА"},"route_indexes":[73,74,89,104,119]},
+{"code":1012,"coords":[42.65037,23.35788],"names":{"bg":"Ж.К. ДЪРВЕНИЦА"},"route_indexes":[73,74,89,104,119]},
 {"code":1015,"coords":[42.65104,23.35892],"names":{"bg":"Ж.К. ДЪРВЕНИЦА"},"route_indexes":[73,74,89,104]},
 {"code":1016,"coords":[42.6503,23.39356],"names":{"bg":"МЕТРОСТАНЦИЯ ЦАРИГРАДСКО ШОСЕ","en":"TSARIGRADSKO SHOSE METRO STATION"},"route_indexes":[30,31,33,34]},
 {"code":1017,"coords":[42.64917,23.39359],"names":{"bg":"МЕТРОСТАНЦИЯ ЦАРИГРАДСКО ШОСЕ","en":"TSARIGRADSKO SHOSE METRO STATION"},"route_indexes":[30,31,33,34]},
