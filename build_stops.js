@@ -55,7 +55,7 @@ function fetch_osm_stops_data() {
 	const query = '[out:json][timeout:25];'
 	+ `(${elements});`
 	+ 'out geom;';
-	let req = fetch("https://overpass.kumi.systems/api/interpreter", {
+	let req = fetch("https://overpass-api.de/api/interpreter", {
 		"body": `data=${encodeURIComponent(query)}`,
 		"method": "POST",
 	})
