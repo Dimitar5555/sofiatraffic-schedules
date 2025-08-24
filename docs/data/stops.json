@@ -556,6 +556,7 @@
 {"code":598,"coords":[42.65942,23.29935],"names":{"bg":"УЛ. ТОДОР КАБЛЕШКОВ","en":"TODOR KABLESHKOV STR."},"route_indexes":[121]},
 {"code":599,"coords":[42.66016,23.29727],"names":{"bg":"Ж.К. ГОЦЕ ДЕЛЧЕВ","en":"GOTSE DELCHEV"},"route_indexes":[25,26,27,77,121,129]},
 {"code":600,"coords":[42.65999,23.29784],"names":{"bg":"Ж.К. ГОЦЕ ДЕЛЧЕВ","en":"GOTSE DELCHEV"},"route_indexes":[25,26,27,79,106,121,129]},
+{"code":601,"coords":[42.65969,23.29941],"names":{"bg":"УЛ. ТОДОР КАБЛЕШКОВ","en":"TODOR KABLESHKOV STR."},"route_indexes":[121]},
 {"code":602,"coords":[42.65707,23.33629],"names":{"bg":"Ж.К. ДИАНАБАД"},"route_indexes":[71,95]},
 {"code":603,"coords":[42.65737,23.33771],"names":{"bg":"Ж.К. ДИАНАБАД"},"route_indexes":[71,95,111]},
 {"code":604,"coords":[42.67007,23.39822],"names":{"bg":"Ж.К. ДРУЖБА-1"},"route_indexes":[39,89,120]},
