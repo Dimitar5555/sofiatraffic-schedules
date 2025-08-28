@@ -506,7 +506,7 @@ function display_schedule(){
 }
 
 function calculate_time_difference(base_time, other_time) {
-	if(!base_time || !other_time) {
+	if(base_time == null || other_time == null) {
 		return false;
 	}
 
