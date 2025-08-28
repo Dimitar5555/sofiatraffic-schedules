@@ -256,8 +256,8 @@
 			</div>
 			<div class="tab-pane p-2 fade" role="tabpanel" id="stops_map">
 				<div class="row">
-					<div class="col col-12 col-lg-5"> 
-						<input class="form-control my-3" name="search_for_stop" type="text" oninput="filter_stops()" data-i18n-placeholder="actions.search_by_name_or_code">
+					<div class="col col-12 col-lg-5 pt-3"> 
+						<input class="form-control mb-3" name="search_for_stop" type="text" oninput="filter_stops()" data-i18n-placeholder="actions.search_by_name_or_code">
 						<table class="table table-bordered table-sm">
 							<thead>
 								<tr>
@@ -278,7 +278,7 @@
 							<tbody id="stops_list"></tbody>
 						</table>
 					</div>
-					<div class="col col-12 col-lg-7">
+					<div class="col col-12 col-lg-7 pt-3">
 						<div class="text-end">
 							<input checked type="checkbox" onclick="toggle_stop_type_visibility()" id="metro_stops_visibility"></input>
 							<label for="metro_stops_visibility" data-i18n="stops.metro"></label>
@@ -291,7 +291,7 @@
 						</div>
 						<div id="map"></div>
 					</div>
-					<div class="col col-12 col-lg-7 d-none">
+					<div class="col col-12 col-lg-7 d-none pt-3">
 						<div class="alert alert-primary" data-i18n="other.map_no_network_connection"></div>
 					</div>
 				</div>
