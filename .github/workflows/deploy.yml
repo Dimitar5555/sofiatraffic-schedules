@@ -1,8 +1,9 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Deploy content to Github Pages
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
+  push:
+    branches:
+      - master
   workflow_dispatch:
 permissions:
   contents: read
