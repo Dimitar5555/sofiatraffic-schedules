@@ -3,7 +3,7 @@
 	"name": "ЦГМ Разписания",
 	"icons": [
 		{
-		"src": "images/logo-vector.svg",
+		"src": "images/logo.svg",
 		"type": "image/svg+xml",
 		"sizes": "512x512"
 		},
