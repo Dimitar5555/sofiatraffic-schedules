@@ -17,15 +17,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Copy index.html to 404.html
-        run: cp docs/index.html docs/404.html
+
+      - name: Copy files to docs
+        run: npm run build-github
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+
         with:
-          # Upload entire repository
-          path: './docs/'
+          path: './dist/'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

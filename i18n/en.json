@@ -50,8 +50,7 @@
 	"schedules.favourite_stops": "Favourite stops",
 	"schedules.stops": "Stops",
 	
-	"footer.last_data_update": "Last data update",
-	"footer.last_site_update": "Last site update",
+	"footer.last_data_update": "Schedules are up to date as of",
 	"footer.data_attribution": "Data: SUMC, OpenStreetMap",
 	"footer.realtime_map": "Real-time map (in Bulgarian)",
 	"footer.feedback": "Feedback",

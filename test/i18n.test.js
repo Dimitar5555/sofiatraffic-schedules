@@ -1,5 +1,5 @@
 const master_lang = 'bg';
-const languages = ['en'];
+const languages = ['bg', 'en'];
 
 function get_all_keys(obj) {
     const key_set = new Set();
@@ -11,12 +11,17 @@ function get_all_keys(obj) {
 
 describe('i18n', () => {
     test('should have the same keys in all languages', () => {
-        const master_lang_data = require(`../docs/i18n/${master_lang}.json`);
-        const master_lang_set = get_all_keys(master_lang_data);
+        const language_data = new Map();
+
+        languages.forEach(lang => {
+            language_data.set(lang, require(`../i18n/${lang}.json`) || {});
+        });
+        const master_lang_set = get_all_keys(language_data.get(master_lang));
         for (const lang of languages) {
-            const data = require(`../docs/i18n/${lang}.json`) || {};
-            const lang_set = get_all_keys(data);
-            const symmetric_diff = master_lang_set.symmetricDifference(lang_set);
+            if(lang == master_lang) continue;
+
+            const other_lang_set = get_all_keys(language_data.get(lang));
+            const symmetric_diff = master_lang_set.symmetricDifference(other_lang_set);
             expect(symmetric_diff).toEqual(new Set());
         }
     });
