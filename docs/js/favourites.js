@@ -20,6 +20,7 @@ function show_favourite_lines(favourite_lines=false){
 	const new_div = old_div.cloneNode();
 	const routes = favourite_lines
 	.map(([type, route_ref]) => data.routes.find(route => route.type == type && route.route_ref == route_ref))
+	.filter(route => route)
 	.toSorted((a, b) => a.index - b.index);
 	
 	for(const route of routes) {
