@@ -817,6 +817,7 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 }
 
 function generate_stop_times_table_combined(routes, stop_code, type, div, data) {
+	return;
 	console.log('generating combined table', routes, stop_code, type);
 	const new_tbody = html_comp('tbody');
     const tr_thead = html_comp('tr');
