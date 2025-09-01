@@ -68,8 +68,12 @@ function process_osm_stops_data(cgm_stops, osm_stops) {
 	osm_stops.forEach(osm_stop => {
 		let stop_to_override = cgm_stops.find(cgm_stop => cgm_stop.code == osm_stop.tags.ref);
 		
-		if(!osm_stop.tags.name && osm_stop.tags?.request_stop === 'yes') {
-			osm_stop.tags.name = 'по желание';
+		if(!osm_stop.tags.name || osm_stop.tags?.noname === 'yes') {
+			osm_stop.tags.name = '(БЕЗИМЕННА СПИРКА)';
+		}
+
+		if(osm_stop.tags?.request_stop === 'yes') {
+			osm_stop.tags.name += ' (ПО ЖЕЛАНИЕ)';
 		}
 		
 		if(osm_stop.tags['name:en']) {
@@ -109,8 +113,8 @@ export function get_stops_data() {
 			stop.route_indexes = [];
 		});
 
-		const directions = JSON.parse(fs.readFileSync('./docs/data/directions.json'));
-		const trips = JSON.parse(fs.readFileSync('./docs/data/trips.json'));
+		const directions = JSON.parse(fs.readFileSync('./data/directions.json'));
+		const trips = JSON.parse(fs.readFileSync('./data/trips.json'));
 		for(const direction of directions) {
 			const route_index = trips.find(trip => trip.direction == direction.code).route_index;
 			for(const stop_code of direction.stops) {
@@ -127,11 +131,14 @@ export function get_stops_data() {
 			stop.route_indexes.sort((a, b) => a - b);
 		});
 
+		const final_stops = stops
+			.filter(stop => stop.route_indexes.length > 0)
+			.map(stop => { delete stop.route_indexes; return stop; });
 		// console.table(stops);
 		save_all_data([
 			{
 				name: 'stops',
-				data: stops.filter(stop => stop.route_indexes.length > 0),
+				data: final_stops,
 				split_rows_by: /,({"code)/g
 			},
 		]);

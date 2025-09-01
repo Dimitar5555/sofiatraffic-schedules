@@ -7,7 +7,7 @@
     "build_stops": "node build_stops.js",
     "build_sitemap": "node build_sitemap.js",
     "build_metadata": "node build_metadata.js",
-    "prebuild": "mkdir dist && cp -R ./i18n ./dist && cp -R ./docs/* ./dist",
+    "prebuild": "mkdir dist && cp -R ./i18n ./dist && cp -R ./data ./dist && cp -R ./docs/* ./dist",
     "build-github": "npm run prebuild",
     "test": "jest"
   },

@@ -56,6 +56,6 @@ export async function save_all_data(files_to_write) {
 	for(const file of files_to_write) {
 		console.log(`Writing data to ${file.name}.json`);
 		let json = JSON.stringify(file.data).beautifyJSON(file.split_rows_by);
-		fs.writeFileSync(`docs/data/${file.name}.json`, json);
+		fs.writeFileSync(`data/${file.name}.json`, json);
 	}
 }

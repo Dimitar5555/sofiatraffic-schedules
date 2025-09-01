@@ -31,7 +31,7 @@ jobs:
         message: 'Update schedules'
         add: '*'
         remove: ''
-        cwd: 'docs/data/'
+        cwd: 'data/'
         pull: '--rebase --autostash'
         author_name: 'github-actions[bot]'
         author_email: 'bot@github.com'

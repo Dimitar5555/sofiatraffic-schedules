@@ -3,7 +3,7 @@ const site = 'https://dimitar5555.github.io/sofiatraffic-schedules/';
 const url_prefix = '#!';
 
 function read_file(file) {
-	return JSON.parse(fs.readFileSync(`docs/data/${file}.json`).toString());
+	return JSON.parse(fs.readFileSync(`data/${file}.json`).toString());
 }
 
 function init(){
@@ -36,6 +36,6 @@ function run(routes, trips, directions, stops){
 	})
 
 	sitemap.push('</urlset>');
-	fs.writeFileSync('docs/sitemap.xml', sitemap.join('\n'));
+	fs.writeFileSync('dist/sitemap.xml', sitemap.join('\n'));
 }
 init();

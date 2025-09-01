@@ -8,12 +8,12 @@ function generate_metadata() {
         hashes: {}
     };
     for(const file of ['directions', 'routes', 'stops', 'stop_times', 'trips']) {
-        const file_content = fs.readFileSync(`./docs/data/${file}.json`);
+        const file_content = fs.readFileSync(`./data/${file}.json`);
         const hash = crypto.createHash('sha256').update(file_content).digest('hex');
         metadata.hashes[file] = hash;
     }
 
-    fs.writeFileSync('docs/data/metadata.json', JSON.stringify(metadata));
+    fs.writeFileSync('data/metadata.json', JSON.stringify(metadata));
 }
 
 generate_metadata();
