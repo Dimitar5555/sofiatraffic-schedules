@@ -249,6 +249,7 @@ function change_theme(new_theme) {
 	loading_screen.classList.toggle('bg-dark', new_theme == 'dark');
 	loading_screen.classList.toggle('bg-white', new_theme == 'light');
 }
+window.change_theme = change_theme;
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
 	const currently_selected = localStorage.getItem('theme') || 'auto';
