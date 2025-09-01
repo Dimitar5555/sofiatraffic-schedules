@@ -127,7 +127,7 @@ function check_metadata() {
 }
 
 function update_versions(){
-	document.querySelector('#last_data_update').innerText = format_date_string(localStorage.retrieval_date);
+	document.querySelector('#last_data_update').innerText = localStorage.retrieval_date.split('-').toReversed().join('.') ;
 }
 
 export var data = {};
