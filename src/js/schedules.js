@@ -65,9 +65,28 @@ export function init_schedules_data(loc_data){
 		}
 	});
 
-	// add route types to each stop, for map filtering
 	loc_data.stops.forEach(stop => {
 		stop.route_types = new Set();
+		stop.route_indexes = [];
+	});
+
+
+	for(const direction of loc_data.directions) {
+		const route_index = loc_data.trips.find(trip => trip.direction == direction.code).route_index;
+		for(const stop_code of direction.stops) {
+			const stop = loc_data.stops.find(stop => stop.code == stop_code);
+			if(stop) {
+				if(!stop.route_indexes.includes(route_index)) {
+					stop.route_indexes.push(route_index);
+				}
+			}
+		}
+	}
+
+	// add route types to each stop, for map filtering
+	loc_data.stops.forEach(stop => {
+		stop.route_indexes.sort((a, b) => a - b);
+
 		for(const route_index of stop.route_indexes) {
 			const route = loc_data.routes[route_index];
 			stop.route_types.add(route.type);
@@ -151,6 +170,10 @@ window.set_virtual_boards_settings = function() {
 		use_exact_times: document.querySelector('#virtual_board_show_exact_time').checked,
 	};
 	localStorage.setItem('virtual_boards_settings', JSON.stringify(virtual_boards_settings));
+}
+
+export function init_stops() {
+
 }
 
 function init_updated_schedules_table(){
