@@ -64,7 +64,7 @@ window.init_map = function() {
 	icon.options.shadowSize = [0, 0];
 	
 	// document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
-	map = L.map('map', {
+	window.map = L.map('map', {
 		center: [42.69671, 23.32129],
 		zoom: 13
 	});
