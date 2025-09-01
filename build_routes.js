@@ -95,11 +95,12 @@ function determine_route_type(route, type_string) {
 	}
 }
 function determine_route_ref(ref) {
-	let number = ref.replace(/[a-zа-я]/gi, '');
-	if(ref.startsWith('E')){
-		ref = ref.replace('E', '');
+	const number = ref.replace(/[a-zа-я]/gi, '');
+	//         Latin          Cyrrilic
+	if(ref.startsWith('E') || ref.startsWith('Е')) {
+		ref = number;
 	}
-	else if(ref.startsWith('N')){
+	else if(ref.startsWith('N')) {
 		ref = `N${number}`;
 	}
 	else if(ref.startsWith('Y')) {
