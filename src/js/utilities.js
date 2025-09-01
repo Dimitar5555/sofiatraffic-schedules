@@ -1,6 +1,5 @@
 import { lang, data } from "./app";
 import { STOP_BTN_TYPES, enable_virtual_boards, enable_virtual_boards_for_subway_stations, url_prefix } from './config';
-import { html_comp } from './utilities';
 
 export function get_split_hash() {
     const url = new URL(document.location);

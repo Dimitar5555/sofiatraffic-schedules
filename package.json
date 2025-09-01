@@ -8,8 +8,8 @@
     "build_sitemap": "node build_sitemap.js",
     "build_metadata": "node build_metadata.js",
     "prebuild": "mkdir dist && cp -R ./i18n ./dist && cp -R ./data ./dist",
-    "build-github": "npm run prebuild && npx parcel build ./src/index.html --public-url ./sofiatraffic-schedules",
-    "dev": "npm run prebuild && npx parcel serve ./docs/index.html",
+    "build-github": "npm run prebuild && npx parcel build ./src/index.html --public-url https://dimitar5555.github.io/sofiatraffic-schedules/",
+    "dev": "npm run prebuild && npx parcel serve ./src/index.html",
     "test": "jest"
   },
   "author": "Dimitar5555",
