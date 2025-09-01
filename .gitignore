@@ -10,3 +10,5 @@ TODO
 .vscode
 
 node_modules/
+.parcel-cache/
+dist/

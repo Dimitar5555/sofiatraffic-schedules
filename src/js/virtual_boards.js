@@ -1,4 +1,8 @@
-function virtual_board_toggle_exact_times(show_exact_times) {
+import { get_route_colour_classes, get_stop_name_by_code } from './utilities';
+import { html_comp } from './utilities';
+import { format_time } from './schedules';
+
+window.virtual_board_toggle_exact_times = function(show_exact_times) {
     const els = document.querySelectorAll('span[data-time-type]');
     for(let el of els) {
         const is_exact_time = el.dataset.timeType == 'exact_time';
@@ -7,7 +11,7 @@ function virtual_board_toggle_exact_times(show_exact_times) {
     }
 }
 
-function virtual_board_toggle_condensed_view(show_condensed_view) {
+window.virtual_board_toggle_condensed_view = function(show_condensed_view) {
     const condensed_tbody = document.querySelector('tbody#virtual_board_condensed_view');
     const verbose_tbody = document.querySelector('tbody#virtual_board_verbose_view');
 
@@ -135,14 +139,14 @@ function virtual_board_append_row(route, row_index, tbody, date, is_verbose=fals
     tbody.appendChild(tr);
 }
 
-function populate_virtual_board_table(routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view) {
+export function populate_virtual_board_table(routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view) {
     generate_virtual_board_table(routes, new_condensed_tbody, date, false);
     generate_virtual_board_table(routes, new_verbose_tbody, date, true);
     virtual_board_toggle_exact_times(use_exact_times);
     virtual_board_toggle_condensed_view(show_condensed_view);
 }
 
-function virtual_board_show_info(id) {
+export function virtual_board_show_info(id) {
     const tbody = document.querySelector('#virtual_board_information');
     if(id === false) {
         tbody.classList.add('d-none');

@@ -1,4 +1,15 @@
-async function toggle_stop_type_visibility() {
+import "leaflet";
+import "leaflet.markercluster";
+import "leaflet.featuregroup.subgroup";
+import "leaflet-arrowheads";
+import { decode } from "google-polyline";
+
+import { main_types, data } from "./app";
+import { generate_routes_thumbs } from "./schedules";
+import { STOP_BTN_TYPES } from "./config";
+import { is_online, generate_btn_group, html_comp, get_stop_string, is_metro_stop } from "./utilities";
+
+window.toggle_stop_type_visibility = async function() {
 	let to_remove = [];
 	let to_add = [];
 
@@ -34,9 +45,10 @@ async function toggle_stop_type_visibility() {
 	cluster_group.addLayers(to_add, {chunkedLoading: true});
 }
 
-is_map_initialised = false;
-was_map_centered = false;
-function init_map() {
+var is_map_initialised = false;
+var was_map_centered = false;
+var cluster_group;
+window.init_map = function() {
 	filter_stops();
 	if(is_map_initialised || !is_online()) {
 		center_map();
@@ -44,11 +56,13 @@ function init_map() {
 	}
 	is_map_initialised = true;
 	let icon = new L.Icon({
-		iconUrl: 'images/marker-icon.png',
+		iconUrl: new URL('../../node_modules/leaflet/dist/images/marker-icon.png', import.meta.url).href,
 		iconSize: [25, 41],
 		iconAnchor: [12, 41],
-		popupAnchor: [1, -34]
-	});
+		popupAnchor: [1, -34],
+	})
+	icon.options.shadowSize = [0, 0];
+	
 	// document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
 	map = L.map('map', {
 		center: [42.69671, 23.32129],
@@ -61,7 +75,6 @@ function init_map() {
 		disableClusteringAtZoom: 16,
 		showCoverageOnHover: false
 	}).addTo(map);
-
 
 	function generate_popup_text(stop, route_indexes) {
 		let popup = html_comp('div', {class: 'text-center'});
@@ -76,7 +89,7 @@ function init_map() {
 	let markers = [];
 	console.time('Adding stops to map');
 	const metro_icon = new L.Icon({
-		iconUrl: 'images/marker-icon-metro.png',
+		iconUrl: new URL('../images/marker-icon-metro.png', import.meta.url).href,
 		iconSize: [30, 30],
 		iconAnchor: [15, 15],
 		popupAnchor: [1, -16]
@@ -101,7 +114,7 @@ function init_map() {
 window.addEventListener('online', update_network_status);
 window.addEventListener('offline', update_network_status);
 
-function update_network_status() {
+export function update_network_status() {
 	const is_online_bool = is_online();
     const status = is_online_bool ? 'online' : 'offline';
     console.warn(`Network status changed: ${status}`);
@@ -123,7 +136,7 @@ function center_map() {
 		if(is_map_initialised && !was_map_centered && is_map_visible) {
 			was_map_centered = true;
 			map.invalidateSize();
-			bounds = cluster_group.getBounds();
+			const bounds = cluster_group.getBounds();
 			map.fitBounds(bounds);
 		}
 	}, 50);

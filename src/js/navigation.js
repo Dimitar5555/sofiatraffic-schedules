@@ -1,4 +1,9 @@
-function updateURL(page=false) {
+import { divs, main_types, main_types_order, lang, data, tab_btns } from './app';
+import { get_split_hash, format_stop_code, get_stop_string, html_comp, is_weekend, return_weekday_text } from './utilities';
+import { url_prefix } from './config';
+import { update_globals, show_schedule } from './schedules';
+
+window.updateURL = function(page=false) {
 	let new_hash = '';
 	if(page){
 		new_hash = page;
@@ -79,7 +84,7 @@ function handle_seo() {
 	}
 }
 
-function handle_page_change() {
+export function handle_page_change() {
 	handle_seo();
 	let hash = get_split_hash();
 	let main_tab_index = ['schedules', 'stops_map'].indexOf(hash[0]);
@@ -99,7 +104,7 @@ function handle_page_change() {
 	}
 }
 
-function manual_push_state(new_href) {
+window.manual_push_state = function(new_href) {
 	//window.location.replace(new_href)
     debugger;
 	history.replaceState(null, null, new_href);
@@ -135,12 +140,12 @@ function get_globals_from_hash(hash) {
 	return globals;
 }
 
-function navigate_to_home() {
+window.navigate_to_home = function() {
 	const is_stop_view = current.view == 'stop';
 	const is_route_view = current.view == 'route';
-	line_selector_div.classList.toggle('d-none', is_stop_view || is_route_view);
-	stop_schedule_div.classList.toggle('d-none', !is_stop_view);
-	schedule_display_div.classList.toggle('d-none', !is_route_view);
+	divs.line_selector_div.classList.toggle('d-none', is_stop_view || is_route_view);
+	divs.stop_schedule_div.classList.toggle('d-none', !is_stop_view);
+	divs.schedule_display_div.classList.toggle('d-none', !is_route_view);
 	manual_push_state(generate_current_hash());
 }
 

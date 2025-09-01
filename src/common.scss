@@ -1,5 +1,12 @@
-@font-face { font-family: SofiaSans; src: url('../fonts/SofiaSans-Medium.ttf'); } 
-@font-face { font-family: SofiaSans; font-weight: bold; src: url('../fonts/SofiaSans-Bold.ttf');}
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import "/node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "/node_modules/leaflet/dist/leaflet.css";
+@import "/node_modules/leaflet.markercluster/dist/MarkerCluster.css";
+@import "/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
+
+
+@font-face { font-family: SofiaSans; src: url('./fonts/SofiaSans-Medium.ttf'); } 
+@font-face { font-family: SofiaSans; font-weight: bold; src: url('./fonts/SofiaSans-Bold.ttf');}
 * {
 	font-family: SofiaSans;
 }
@@ -194,8 +201,9 @@ html[data-bs-theme="dark"] .leaflet-popup-tip {
 	color: #fff !important;
 }
 
+/* For a.btn.btn-... inside leaflet popups */
 .leaflet-control-attribution > a {
-	color: #0078A8;
+	color: unset !important;
 }
 
 html, body {
