@@ -206,6 +206,10 @@ html[data-bs-theme="dark"] .leaflet-popup-tip {
 	color: unset !important;
 }
 
+.leaflet-popup-content-wrapper a.btn.btn-outline-primary {
+	color: var(--bs-btn-color) !important;
+}
+
 html, body {
     display: flex;
     min-height: 100vh;
