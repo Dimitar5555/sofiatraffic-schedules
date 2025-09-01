@@ -663,7 +663,55 @@ function show_stop_schedule(stop_code, type){
 		stop_code = Number(stop_code);
 	}
 
+	const nearby_stops = new Map();
+	const dist_in_m = 250; // meters
+	const dist_ns = dist_in_m * (1 / 111_111); // ~1m in degrees
+	const dist_ew = dist_in_m * (1 / (111_111 * 0.73)); // 1 / (111 111 m * cost(42.8))
+	const stop = get_stop(stop_code);
+	const nw_corner = [stop.coords[0]-dist_ns, stop.coords[1]-dist_ew];
+	const se_corner = [stop.coords[0]+dist_ns, stop.coords[1]+dist_ew];
+
+	for(const s of data.stops) {
+		const within_ns = nw_corner[0] <= s.coords[0] && nw_corner[1] <= s.coords[1];
+		const within_ew = s.coords[0] <= se_corner[0] && s.coords[1] <= se_corner[1];
+		if(within_ns && within_ew) {
+			nearby_stops.set(s.code, s);
+		}
 	}
+
+	const unique_stop_names = new Map();
+	for(const s of nearby_stops.values()) {
+		if(!unique_stop_names.has(s.names['bg'])) {
+			unique_stop_names.set(s.names['bg'], [s]);
+		}
+		else {
+			unique_stop_names.get(s.names['bg']).push(s);
+		}
+	}
+
+	const stops_by_names_el = divs.stop_schedule_div.querySelector('#nearby_stops');
+	stops_by_names_el.innerHTML = '';
+	stops_by_names_el.parentElement.parentElement.classList.toggle('d-none', unique_stop_names.size <= 1);
+	for(const name of unique_stop_names.keys()) {
+		const lowest_code = Math.min(...unique_stop_names.get(name).map(s => s.code));
+		const stop_list_item = html_comp('a', {text: name, href: `${url_prefix}stop/${lowest_code}/`});
+		if(name === stop.names['bg']) {
+			stop_list_item.classList.add('fw-bolder', 'text-decoration-none', 'border', 'border-2', 'border-primary', 'rounded', 'px-1');
+		}
+		stops_by_names_el.appendChild(stop_list_item);
+		stops_by_names_el.appendChild(document.createTextNode(' '));
+	}
+
+	const stops_by_codes_el = divs.stop_schedule_div.querySelector('#nearby_codes');
+	stops_by_codes_el.innerHTML = '';
+	stops_by_codes_el.parentElement.parentElement.classList.toggle('d-none', unique_stop_names.size <= 1);
+	for(const s of unique_stop_names.get(stop.names['bg'])) {
+		const stop_list_item = html_comp('a', {text: format_stop_code(s.code), href: `${url_prefix}stop/${s.code}/`});
+		if(s.code == stop_code) {
+			stop_list_item.classList.add('fw-bolder', 'text-decoration-none', 'border', 'border-2', 'border-primary', 'rounded', 'px-1');
+		}
+		stops_by_codes_el.appendChild(stop_list_item);
+		stops_by_codes_el.appendChild(document.createTextNode(' '));
 	}
 	
 	const virtual_board_btn = divs.stop_schedule_div.querySelector('button[data-bs-target]');
