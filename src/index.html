@@ -184,7 +184,7 @@
 							<label for="direction" data-i18n="schedules.direction"></label>
 						</div>
 						<div class="col col-12 col-sm-9">
-							<select class="form-select" onchange="current.direction = data.directions.find(dir => dir.code == this.value); updateURL();" id="direction"></select>
+							<select class="form-select" onchange="set_current_direction(this.value); updateURL();" id="direction"></select>
 						</div>
 					</div>
 					<div class="row my-2">

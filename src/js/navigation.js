@@ -159,6 +159,14 @@ function generate_current_hash() {
 	return `${url_prefix}schedules/`;
 }
 
+window.set_current_direction = function(direction_code) {
+	for(const dir of data.directions) {
+		if(dir.code == direction_code) {
+			current.direction = dir;
+			break;
+		}
+	}
+}
 
 window.addEventListener('popstate', function(event) {
 	handle_page_change();
