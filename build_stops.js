@@ -3,18 +3,6 @@ import { fetch_data_from_sofiatraffic } from "./build_utilities.js";
 import fs from 'fs';
 import { save_all_data } from "./build_utilities.js";
 
-function fetch_stops_data() {
-	// let stops_bg = fetch(`${old_stops_url}resources/stops-bg.json`)
-	// .then(response => response.json());
-	// let stops_en = fetch(`${old_stops_url}resources/stops-en.json`)
-	// .then(response => response.json());
-	console.log('Fetching stops data from SUMC...');
-	let stops = fetch_data_from_sofiatraffic(stops_url)
-	.then(response => response.json());
-	return stops;
-	return Promise.all([stops_bg, stops_en, new_stops]);
-}
-
 function round_stop_coords(lat, lon) {
 	// 5 digits give precission of 1.1 meters
 	const toFixed = n => Math.round(n * 1e5) / 1e5;
@@ -24,117 +12,154 @@ function round_stop_coords(lat, lon) {
 	];
 }
 
-function process_stops_data(stops) {
-	let processed_stops = [];
-	// stops_bg.forEach(stop => {
-	// 	processed_stops.push({code: Number(stop.c), coords: round_stop_coords(stop.y, stop.x), names: {bg: stop.n}});
-	// });
-	// stops_en.forEach(cgm_stop => {
-	// 	processed_stops[processed_stops.findIndex(stop => stop.code === Number(cgm_stop.c))].names.en = cgm_stop.n;
-	// });
-	console.log('Processing stops data...');
-	stops.forEach(new_cgm_stop => {
-		// let proc_stop = processed_stops.find(stop => stop.code == Number(new_cgm_stop.code));
-		if(new_cgm_stop.code.length === 4) {
-			processed_stops.push({
-				code: Number(new_cgm_stop.code),
-				coords: round_stop_coords(new_cgm_stop.latitude, new_cgm_stop.longitude),
-				names: {
-					bg: new_cgm_stop.name.toUpperCase().trim().replaceAll('  ', ' '),
-					en: ''
-				}
-			});
-		}
-	});
-	return processed_stops;
+async function fetch_sumc_stops() {
+	// let stops_bg = fetch(`${old_stops_url}resources/stops-bg.json`)
+	// .then(response => response.json());
+	// let stops_en = fetch(`${old_stops_url}resources/stops-en.json`)
+	// .then(response => response.json());
+	// return Promise.all([stops_bg, stops_en, new_stops]);
+	console.time('Fetching SUMC stops data');
+	let stops = await fetch_data_from_sofiatraffic(stops_url)
+	.then(response => response.json());
+	console.timeEnd('Fetching SUMC stops data');
+	return stops;
 }
 
-function fetch_osm_stops_data() {
-	console.log('Fetching stops data from OSM...');
+function process_sumc_stops(sumc_stops) {
+	console.time('Processing SUMC stops data');
+	const result = sumc_stops
+	.filter(stop => stop.code && stop.code.length === 4)
+	.map(stop => ({
+		code: Number(stop.code),
+		coords: round_stop_coords(stop.latitude, stop.longitude),
+		names: {
+			bg: stop.name.toUpperCase().trim().replaceAll('  ', ' '),
+			en: ''
+		},
+		route_indexes: new Set()
+	}));
+	console.timeEnd('Processing SUMC stops data');
+	return result;
+}
+
+async function fetch_osm_stops() {
+	console.time('Fetching OSM stops data');
 	const elements = osm_stops_types.map(type => `node[${type.type}=yes][public_transport=${type.public_transport}][ref][network="${osm_network_name}"];`).join('');
 	const query = '[out:json][timeout:25];'
 	+ `(${elements});`
 	+ 'out geom;';
-	let req = fetch("https://overpass-api.de/api/interpreter", {
+	const req = await fetch("https://overpass-api.de/api/interpreter", {
 		"body": `data=${encodeURIComponent(query)}`,
 		"method": "POST",
 	})
 	.then(response => response.json())
 	.then(data => data.elements);
+	console.timeEnd('Fetching OSM stops data');
 	return req;
 }
 
-function process_osm_stops_data(cgm_stops, osm_stops) {
-	osm_stops.forEach(osm_stop => {
-		let stop_to_override = cgm_stops.find(cgm_stop => cgm_stop.code == osm_stop.tags.ref);
-		
+function process_osm_stops(osm_stops) {
+	console.time('Processing OSM stops data');
+	const result = osm_stops
+	.map(osm_stop => {
+		const stop = {
+			code: Number(osm_stop.tags.ref),
+			coords: round_stop_coords(osm_stop.lat, osm_stop.lon),
+			names: {
+				bg: '',
+				en: ''
+			},
+			route_indexes: new Set()
+		};
 		if(!osm_stop.tags.name || osm_stop.tags?.noname === 'yes') {
-			osm_stop.tags.name = '(БЕЗИМЕННА СПИРКА)';
+			stop.names.bg = '(БЕЗИМЕННА СПИРКА)';
+		}
+		else {
+			stop.names.bg = osm_stop.tags.name.toUpperCase().trim().replaceAll('  ', ' ');
+		}
+
+		if(osm_stop.tags['name:en']) {
+			stop.names.en = osm_stop.tags['name:en'].toUpperCase().trim().replaceAll('  ', ' ');
+		}
+		else {
+			delete stop.names.en;
 		}
 
 		if(osm_stop.tags?.request_stop === 'yes') {
-			osm_stop.tags.name += ' (ПО ЖЕЛАНИЕ)';
-		}
-		
-		if(osm_stop.tags['name:en']) {
-			console.log(`${osm_stop.tags.ref} ${osm_stop.tags.name} ${osm_stop.tags['name:en']}`);
+			stop.names.bg += ' (ПО ЖЕЛАНИЕ)';
+			if(stop.names.en) {
+				stop.names.en += ' (ON DEMAND)';
+			}
 		}
 
-		if(!stop_to_override){
-			cgm_stops.push({
-				code: Number(osm_stop.tags.ref),
-				coords: round_stop_coords(osm_stop.lat, osm_stop.lon),
-				names: {
-					bg: osm_stop.tags.name.toUpperCase(),
-					en: ''
-				}
-			});
-			stop_to_override = cgm_stops[cgm_stops.length - 1];
-		}
-		if(osm_stop.tags.tram === 'yes' || osm_stop.tags.trolleybus === 'yes') {
-			stop_to_override.coords = round_stop_coords(osm_stop.lat, osm_stop.lon);
-		}
-		stop_to_override.names.en = osm_stop.tags['name:en']?.toUpperCase();
+		return stop;
 	});
+	console.timeEnd('Processing OSM stops data');
+	return result;
 }
 
-export function get_stops_data() {
-    let cgm_stops = fetch_stops_data()
-	.then(data => process_stops_data(data))
-	let osm_stops = fetch_osm_stops_data();
-    return Promise.all([cgm_stops, osm_stops])
-    .then(([stops, osm_stops]) => {
-		console.log('All data is downloaded');
-        process_osm_stops_data(stops, osm_stops);
-		stops.sort((a, b) => a.code - b.code);
+function merge_stops(sumc_stops, osm_stops) {
+	const stops = new Map();
+	sumc_stops.forEach(stop => {
+		stops.set(stop.code, stop);
+	});
 
-		// add route indexes to stops
-		stops.forEach(stop => {
-			stop.route_indexes = [];
-		});
+	osm_stops.forEach(osm_stop => {
+		const code = osm_stop.code;
+		
+		if(!stops.has(code)) {
+			stops.set(code, osm_stop);
+		}
+		else {
+			const stop = stops.get(code);
+
+			const sumc_on_demand = stop.names.bg.includes('ПО ЖЕЛАНИЕ');
+			const osm_on_demand = osm_stop.names.bg.includes('ПО ЖЕЛАНИЕ');
+			if(sumc_on_demand !== osm_on_demand) {
+				console.warn(`Спирка с код ${code} има статус "по желание" според ${sumc_on_demand ? 'ЦГМ' : 'OSM'}, но не и в ${sumc_on_demand ? 'OSM' : 'ЦГМ'}.`);
+			}
+
+			stop.coords = osm_stop.coords;
+			stop.names.bg = osm_stop.names.bg;
+			stop.names.en = osm_stop.names.en;
+		}
+	});
+	return stops;
+}
+
+function run() {
+    const sumc_stops = fetch_sumc_stops()
+	.then(data => process_sumc_stops(data));
+	const osm_stops = fetch_osm_stops()
+	.then(data => process_osm_stops(data));
+
+    return Promise.all([sumc_stops, osm_stops])
+    .then(([sumc_stops, osm_stops]) => {
+		console.time('Merging stops data');
+
+        const merged_stops = merge_stops(sumc_stops, osm_stops);
 
 		const directions = JSON.parse(fs.readFileSync('./data/directions.json'));
 		const trips = JSON.parse(fs.readFileSync('./data/trips.json'));
 		for(const direction of directions) {
 			const route_index = trips.find(trip => trip.direction == direction.code).route_index;
 			for(const stop_code of direction.stops) {
-				const stop = stops.find(stop => stop.code == stop_code);
+				const stop = merged_stops.get(stop_code);
 				if(stop) {
-					if(!stop.route_indexes.includes(route_index)) {
-						stop.route_indexes.push(route_index);
+					if(!stop.route_indexes.has(route_index)) {
+						stop.route_indexes.add(route_index);
 					}
 				}
 			}
 		}
 
-		stops.forEach(stop => {
-			stop.route_indexes.sort((a, b) => a - b);
-		});
-
-		const final_stops = stops
-			.filter(stop => stop.route_indexes.length > 0)
+		const final_stops = Array.from(merged_stops.values())
+			.filter(stop => stop.route_indexes.size > 0)
 			.map(stop => { delete stop.route_indexes; return stop; });
-		// console.table(stops);
+		final_stops.sort((a, b) => a.code - b.code);
+
+		console.timeEnd('Merging stops data');
+
 		save_all_data([
 			{
 				name: 'stops',
@@ -142,9 +167,7 @@ export function get_stops_data() {
 				split_rows_by: /,({"code)/g
 			},
 		]);
-
-        return stops;
     });
 }
 
-get_stops_data();
+run();
