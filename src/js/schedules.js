@@ -663,12 +663,13 @@ function show_stop_schedule(stop_code, type){
 		stop_code = Number(stop_code);
 	}
 
-	if(is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards) {
-		divs.stop_schedule_div.querySelector('button[data-bs-target]').disabled = true;
 	}
-	else {
-		divs.stop_schedule_div.querySelector('button[data-bs-target]').disabled = false;
 	}
+	
+	const virtual_board_btn = divs.stop_schedule_div.querySelector('button[data-bs-target]');
+	const should_enable_virtual_board = is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards;
+	virtual_board_btn.disabled = should_enable_virtual_board;
+
 	divs.stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code);
 	var relevant_directions = data.directions.filter(dir => dir.stops.indexOf(stop_code)!==-1);
 	//var stop_indexes = relevant_directions.map(dir => dir.stops.indexOf(stop_code));
