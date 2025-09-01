@@ -2,7 +2,7 @@ name: Generate schedules and commit changes
 
 on:
   schedule:
-    - cron: '45 2 */1 * *'
+    - cron: '30 2,5 */1 * *'
   workflow_dispatch:
 
 permissions:
