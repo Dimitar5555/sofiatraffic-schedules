@@ -1,14 +1,14 @@
-const url_prefix = '#!';
+export const url_prefix = '#!';
 
-const enable_virtual_boards = true;
-const enable_virtual_boards_for_subway_stations = true;
-const virtual_board_proxy_url = 'https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=';
+export const enable_virtual_boards = true;
+export const enable_virtual_boards_for_subway_stations = true;
+export const virtual_board_proxy_url = 'https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=';
 
-const enable_schedules_by_cars = false;
+export const enable_schedules_by_cars = false;
 
-const VIRTUAL_BOARDS_DEFAULT_SETTINGS = {show_condensed_view: true, use_exact_times: true};
+export const VIRTUAL_BOARDS_DEFAULT_SETTINGS = {show_condensed_view: true, use_exact_times: true};
 
-const STOP_BTN_TYPES = {
+export const STOP_BTN_TYPES = {
     favourite_stop: 'favourite_stop',
     departures_board: 'departures_board',
     schedule: 'schedule',

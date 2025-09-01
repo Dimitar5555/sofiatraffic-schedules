@@ -1,0 +1,213 @@
+@font-face { font-family: SofiaSans; src: url('../fonts/SofiaSans-Medium.ttf'); } 
+@font-face { font-family: SofiaSans; font-weight: bold; src: url('../fonts/SofiaSans-Bold.ttf');}
+* {
+	font-family: SofiaSans;
+}
+td, th {
+	vertical-align: top;
+	text-align: center;
+}
+#line_selector > button {
+	margin: 0 2px;
+	min-width: 45px;
+	font-weight: bold;
+}
+.M1-2-bg-color {
+    background: linear-gradient(to right, #ec2029 0%, #1077bc 100%) !important;
+}
+.M1-bg-color {
+	background-color: #ec2029 !important;
+}
+.M2-bg-color {
+	background-color: #1077bc !important;
+}
+.M3-bg-color {
+	background-color: #3bb44b !important;
+}
+.M4-bg-color {
+	background-color: #fcd403 !important;
+}
+.tram-bg-color {
+	background-color: #f6921e !important;
+}
+.trolley-bg-color {
+	background-color: #0095da !important;
+}
+.bus-bg-color {
+	background-color: #be1e2d !important;
+}
+.btn:hover {
+	background-color: #26a9e0;
+}
+.line_selector_btn {
+	width: 60px;
+	height: 30px;
+	margin: 2.5px;
+	text-wrap: nowrap;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 30px;
+}
+.bi-star, .b-star-fill {
+	vertical-align: middle;
+	line-height: 100%;
+	text-align: center;
+}
+.bg-danger::after, .bg-warning::after {
+	background-color: white;
+}
+.schedule_table > tbody > tr > td {
+	min-width: 36px;
+	min-height: 40px;
+}
+#detailed_schedule > thead > tr > th {
+	vertical-align: middle;
+}
+
+#map {
+	width: 100%;
+	height: 750px;
+}
+
+/*!
+// CSS only Responsive Tables
+// http://dbushell.com/2016/03/04/css-only-responsive-tables/
+// by David Bushell
+*/
+
+@media screen and (max-width:992px){
+	td > span:nth-child(even) {
+		margin-left: 3px;
+		margin-right: 3px;
+	}
+	td {
+		font-variant-numeric: tabular-nums;
+	}
+	.schedule_table > tbody > tr >td {
+		text-align: left;
+	}
+	.table,
+	.table-flip tbody {
+		-webkit-overflow-scrolling: touch;
+		
+		background: radial-gradient(left, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 0 center,
+					radial-gradient(right, ellipse, rgba(0,0,0, .2) 0%, rgba(0,0,0, 0) 75%) 100% center;
+		background-size: 10px 100%, 10px 100%;
+		background-attachment: scroll, scroll;
+		background-repeat: no-repeat;
+	}
+	
+	.table-flip tbody tr:first-child {
+		background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+		background-repeat: no-repeat;
+		background-size: 20px 100%;
+	}
+	
+	.table-flip tbody tr:last-child {
+		background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+		background-repeat: no-repeat;
+		background-position: 100% 0;
+		background-size: 20px 100%;
+	}
+	
+	.table-flip {
+		display: flex;
+		overflow: hidden;
+		background: none;
+	}
+	
+	.table-flip thead {
+		display: flex;
+		flex-shrink: 0;
+		min-width: min-content;
+	}
+	
+	.table-flip tbody {
+		display: flex;
+		position: relative;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	
+	.table-flip tr {
+		display: flex;
+		flex-direction: column;
+		min-width: min-content;
+		flex-shrink: 0;
+	}
+	
+	.table-flip td,
+	.table-flip th {
+		display: block;
+	}
+	
+	.table-flip td {
+		background-image: none !important;
+		border-left: 0;
+	}
+}
+
+.loading_screen {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10000;
+	overflow: hidden;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
+
+.floating-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1000;
+	border-radius: 50%;
+	padding: 15px;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0;
+	/* font-size: 15px; */
+}
+
+.marker-cluster {
+	color: #000;
+}
+
+html[data-bs-theme="dark"] .leaflet-tile-container > img {
+	filter: brightness(0.8);
+}
+
+html[data-bs-theme="dark"] .leaflet-bar > a,
+html[data-bs-theme="dark"] .leaflet-popup-content-wrapper,
+html[data-bs-theme="dark"] .leaflet-popup-tip {
+	background-color: var(--bs-dark);
+	color: #fff !important;
+}
+
+.leaflet-control-attribution > a {
+	color: #0078A8;
+}
+
+html, body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.leaflet-container a {
+	color: unset !important;
+}

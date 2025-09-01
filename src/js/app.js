@@ -1,29 +1,52 @@
+import "bootstrap";
+// import "bootstrap-icons";
+
+import { Tab } from "bootstrap";
+
+import { STOP_BTN_TYPES } from './config';
+import { update_network_status} from './map';
+import './virtual_boards';
+import './utilities';
+import { handle_page_change} from './navigation';
+import { init_schedules_data, format_time, init_schedules, init_virtual_boards } from './schedules';
+import { init_favourites } from './favourites';
+import { format_date_string, html_comp, generate_btn_group, get_split_hash } from './utilities';
+
 const schedule_div = document.querySelector('#schedules');
 const schedule_display_div = document.querySelector('#schedule_display');
 const line_selector_div = document.querySelector('#line_selector');
 const stop_schedule_div = document.querySelector('#stop_schedule');
 
+export const divs = {
+	schedule_div,
+	schedule_display_div,
+	line_selector_div,
+	stop_schedule_div
+};
+
 const allowed_languages = ['bg'];
-const main_types = {
+export const main_types = {
 	metro: 'metro',
 	tram: 'tram',
 	trolley: 'trolley',
 	bus: 'bus'
 };
-const main_types_order = [
+export const main_types_order = [
 	main_types.metro, 
 	main_types.tram, 
 	main_types.trolley,
 	main_types.bus];
-const sec_types = ['temporary', 'school', 'night'];
+export const sec_types = ['temporary', 'school', 'night'];
 
-const tab_btns = Array.from(document.querySelector('nav').children).map(btn => new bootstrap.Tab(btn));
+export const tab_btns = Array.from(document.querySelector('nav').children).map(btn => new Tab(btn));
 
-const maximum_stops_shown_at_once = 6;
+export const maximum_stops_shown_at_once = 6;
 
-current = {
+window.current = {
 	route: null, trip: null, stop_code: null, view: null
 };
+
+export var lang = {};
 
 function init(debug=false) {
 	if(!localStorage.getItem('lang')) {
@@ -39,7 +62,7 @@ function init(debug=false) {
 		localStorage.setItem('favourite_lines', '[]');
 	}
 
-	fetch(`i18n/${localStorage.getItem('lang')}.json`)
+	fetch(`/i18n/${localStorage.getItem('lang')}.json`)
 	.then(response => response.json())
 	.then(response => {
         lang = response;
@@ -82,18 +105,20 @@ function init(debug=false) {
 }
 
 function check_metadata() {
+	console.log('Checking metadata');
 	const theme = localStorage.getItem('theme') || 'auto';
 	document.querySelector(`#settings_${theme}_theme`).checked = true;
 	change_theme(theme);
 
-	return fetch('data/metadata.json')
+	return fetch('/data/metadata.json')
 	.then(response => response.json())
 	.then(metadata => {
 		if((localStorage.app_version == metadata.app_version || localStorage.retrieval_date == metadata.retrieval_date) && typeof data != 'undefined') {
-			return;
+			// return;
 		}
 		localStorage.app_version = metadata.app_version;
 		localStorage.retrieval_date = metadata.retrieval_date;
+		console.log('Calling fetch_data');
 		return fetch_data(metadata);
 	})
 	.then(() => {
@@ -105,35 +130,38 @@ function update_versions(){
 	document.querySelector('#last_data_update').innerText = format_date_string(localStorage.retrieval_date);
 }
 
+export var data = {};
+
 function fetch_data(metadata=false){
+	console.log('Fetching data');
 	console.time('Fetching data');
 	let promises = [];
 
-	promises.push(fetch('data/stops.json')
+	promises.push(fetch('/data/stops.json')
 	.then(response => response.json())
 	.then(stops => {
 		localStorage.stops_hash = metadata.hashes.stops;
 		return stops;
 	}));
-	promises.push(fetch('data/directions.json')
+	promises.push(fetch('/data/directions.json')
 	.then(response => response.json())
 	.then(directions => {
 		localStorage.directions_hash = metadata.hashes.directions;
 		return directions;
 	}));
-	promises.push(fetch('data/routes.json')
+	promises.push(fetch('/data/routes.json')
 	.then(response => response.json())
 	.then(routes => {
 		localStorage.routes_hash = metadata.hashes.routes;
 		return routes;
 	}));
-	promises.push(fetch('data/trips.json')
+	promises.push(fetch('/data/trips.json')
 	.then(response => response.json())
 	.then(trips => {
 		localStorage.trips_hash = metadata.hashes.trips;
 		return trips;
 	}));
-	promises.push(fetch('data/stop_times.json')
+	promises.push(fetch('/data/stop_times.json')
 	.then(response => response.json())
 	.then(stop_times => {
 		localStorage.stop_times_hash = metadata.hashes.stop_times;
@@ -152,6 +180,7 @@ function fetch_data(metadata=false){
 		};
 		console.time('Init schedules data');
 		init_schedules_data(organised_data);
+		data = organised_data;
 		console.timeEnd('Init schedules data');
 		console.time('Init favourites data');
 		init_favourites();
@@ -188,12 +217,18 @@ addEventListener('offline', (event) => {
 
 //register service worker
 if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('sw.js')
-	.catch((err) => console.error('Service worker registration FAIL:', err));
+	try {
+		navigator.serviceWorker.register(new URL('/src/sw.js', import.meta.url), { type: 'module' })
+	} catch (err) {
+		const span = document.querySelector('#error_msg');
+		span.previousElementSibling.previousElementSibling.classList.remove('d-none');
+		span.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('d-none');
+		span.innerText = err;
+	}
 }
 init();
 
-function drop_current() {
+window.drop_current = function() {
 	current = {};
 }
 
@@ -331,13 +366,13 @@ function get_metro_mappings() {
 	return mappings;
 }
 
-function get_old_code_from_new_code(new_code) {
+export function get_old_code_from_new_code(new_code) {
 	const mappings = get_metro_mappings();
 	const mapping = mappings.find(mapping => mapping.new_code == new_code);
 	return mapping.old_code;
 }
 
-function get_new_code_from_old_code(old_code) {
+export function get_new_code_from_old_code(old_code) {
 	const mappings = get_metro_mappings();
 	const mapping = mappings.find(mapping => mapping.old_code == old_code);
 	return mapping.new_code;

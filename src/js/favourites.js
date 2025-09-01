@@ -1,8 +1,12 @@
+import { generate_line_btn } from './utilities';
+import { data } from './app';
+import { configure_favourite_line_button, configure_favourite_stop_button } from './schedules';
+
 const favourite_stops_div = document.querySelector('#favourite_stops');
-function gen_route_json(){
+export function gen_route_json(){
 	return `${current.route.type}\_${current.route.route_ref}`;
 }
-function init_favourites(){
+export function init_favourites(){
 	show_favourite_lines();
 }
 function show_favourite_lines(favourite_lines=false){
@@ -11,7 +15,7 @@ function show_favourite_lines(favourite_lines=false){
 	}
 	favourite_lines = favourite_lines.map(fl => fl.split('_'));
 	const old_div = document.querySelector('#line_selector_favourites').querySelector('.lines');
-	if(favourite_lines.length==0){
+	if(favourite_lines.length == 0) {
 		old_div.parentElement.classList.add('d-none');
 		return;
 	}
@@ -29,10 +33,10 @@ function show_favourite_lines(favourite_lines=false){
 	}
 	old_div.replaceWith(new_div);
 }
-function get_favourite_lines(){
+export function get_favourite_lines(){
 	return JSON.parse(window.localStorage.getItem('favourite_lines')) || [];
 }
-function toggle_favourite_line(){
+window.toggle_favourite_line = function(){
 	var favourite_lines = get_favourite_lines();
 	var cur_route_json = gen_route_json();
 	if(favourite_lines.indexOf(cur_route_json)==-1){
@@ -46,10 +50,10 @@ function toggle_favourite_line(){
 	configure_favourite_line_button(favourite_lines);
 	window.localStorage.setItem('favourite_lines', JSON.stringify(favourite_lines));
 }
-function get_favourite_stops(){
+export function get_favourite_stops(){
 	return JSON.parse(window.localStorage.getItem('favourite_stops')).map(stop => parseInt(stop)) || [];
 }
-function toggle_favourite_stop(stop_code=false) {
+window.toggle_favourite_stop = function(stop_code=false) {
 	if(!stop_code){
 		stop_code = current.stop_code;
 	}

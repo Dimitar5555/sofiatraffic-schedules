@@ -1,4 +1,8 @@
-function get_split_hash() {
+import { lang, data } from "./app";
+import { STOP_BTN_TYPES, enable_virtual_boards, enable_virtual_boards_for_subway_stations, url_prefix } from './config';
+import { html_comp } from './utilities';
+
+export function get_split_hash() {
     const url = new URL(document.location);
     let hash = url.hash;
     if(!hash && url.searchParams.has('_escaped_fragment_')) {
@@ -14,14 +18,14 @@ function get_split_hash() {
     .filter(el => el && el != 'sofiatraffic-schedules');
 }
 
-function format_stop_code(stop_code) {
+export function format_stop_code(stop_code) {
     if(!stop_code) {
         return '????'
     }
 	return stop_code.toString().padStart(4, '0');
 }
 
-function get_stop(stop_arg){
+export function get_stop(stop_arg){
 	if(typeof stop_arg=='string'){
 		stop_arg = Number(stop_arg);
 	}
@@ -34,7 +38,7 @@ function get_stop(stop_arg){
 }
 
 //accepts stop_code or stop object, in order to maintain consistent stop names
-function get_stop_name_by_code(stop_code){
+export function get_stop_name_by_code(stop_code){
 	if(!stop_code || stop_code==undefined){
 		return `(${lang['schedules.unknown_stop']})`;
 	}
@@ -45,7 +49,7 @@ function get_stop_name_by_code(stop_code){
     return get_stop_name_from_object(stop);
 }
 
-function get_stop_name_from_object(stop_obj) {
+export function get_stop_name_from_object(stop_obj) {
     const stop_name = stop_obj.names[lang.code];
     if(!stop_name){
         return `(${lang['schedules.unknown_stop']})`;
@@ -60,16 +64,16 @@ function get_stop_name_from_object(stop_obj) {
     return stop_name;
 }
 
-function get_stop_string(stop_code_or_object) {
+export function get_stop_string(stop_code_or_object) {
     let stop_obj = get_stop(stop_code_or_object);
     return `[${format_stop_code(stop_obj.code)}] ${get_stop_name_from_object(stop_obj)}`;
 }
 
-function format_date_string(string){
+export function format_date_string(string){
     return new Date(string).toLocaleDateString(lang.code);
 }
 
-function is_metro_stop(stop_code){
+export function is_metro_stop(stop_code){
     return 2900 < Number(stop_code) && Number(stop_code) < 3400
 }
 
@@ -161,7 +165,7 @@ function generate_button(stop_code, type, text, is_favorite) {
     return btn;
 }
     
-function generate_btn_group(stop_code, btn_types, text, is_favorite) {
+export function generate_btn_group(stop_code, btn_types, text, is_favorite) {
     /*
     options:
         type: [schedule / departures_board / locate_stop]
@@ -180,7 +184,7 @@ function generate_btn_group(stop_code, btn_types, text, is_favorite) {
     return btn_group;
 }
 
-function zoom_to_stop(stop_code) {
+window.zoom_to_stop = function(stop_code) {
     if(is_screen_width_lg_or_less()) {
         document.querySelector('#map').scrollIntoView({behavior: 'smooth'});
     }
@@ -191,7 +195,7 @@ function zoom_to_stop(stop_code) {
     marker.openPopup();
 }
 
-function html_comp(tag, attributes={}){
+export function html_comp(tag, attributes={}){
 	var el = document.createElement(tag);
 	var keys = Object.keys(attributes);
 	keys.forEach(key => {
@@ -203,7 +207,7 @@ function html_comp(tag, attributes={}){
     });
 	return el;
 }
-function generate_line_btn(route){
+export function generate_line_btn(route){
     let font_size = `fs-${route.subtype=='temporary'?6:5}`;
 	var el = html_comp('a', {
 		text: route.route_ref,
@@ -214,7 +218,7 @@ function generate_line_btn(route){
 	});
 	return el;
 }
-function get_route_colour_classes(route, padding=true){
+export function get_route_colour_classes(route, padding=true){
     const route_type = route.type;
     const route_ref = route.route_ref
 
@@ -223,15 +227,15 @@ function get_route_colour_classes(route, padding=true){
     const fg_color = `text-${route_ref=='M4'?'dark':'light'}`;
     return  `${bg_color} ${fg_color} ${padding?padding_class:''} rounded-1 fw-bolder `;
 }
-function is_weekend(boolean){
+export function is_weekend(boolean){
     let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1 || boolean === 'weekend';
     return result;
 }
-function return_weekday_text(boolean){
+export function return_weekday_text(boolean){
     return is_weekend(boolean)?'weekend':'workday';
 }
 
-function is_online() {
+export function is_online() {
     return navigator.onLine;
 }
 
