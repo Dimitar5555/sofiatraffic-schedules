@@ -19,6 +19,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: 22
+      
+      - run: npm install
+
       - name: Copy files to docs
         run: npm run build-github
 
