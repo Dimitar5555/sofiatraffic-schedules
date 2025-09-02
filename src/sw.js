@@ -19,7 +19,7 @@ function cache_all() {
 			}
 			console.log('[ServiceWorker] Caching app shell');
 			const unduplicated_set = new Set(manifest);
-			unduplicated_set.add('/');
+			unduplicated_set.add('./');
 			const unduplicated = Array.from(unduplicated_set);
 			console.log(unduplicated);
 			return cache.addAll(unduplicated);
