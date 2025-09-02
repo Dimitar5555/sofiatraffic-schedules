@@ -7,7 +7,7 @@
     "build_stops": "node build_stops.js",
     "build_sitemap": "node build_sitemap.js",
     "build_metadata": "node build_metadata.js",
-    "pre-build": "cp -R ./i18n ./dist && cp -R ./data ./dist && npm run build_sitemap",
+    "pre-build": "cp -R ./i18n ./data ./dist && npm run build_sitemap",
     "build-github": "npm run pre-build && npx parcel build ./src/index.html --public-url https://dimitar5555.github.io/sofiatraffic-schedules/",
     "dev": "npm run pre-build && npx parcel serve ./src/index.html",
     "test": "jest"
