@@ -3,7 +3,7 @@ import crypto from "crypto";
 
 function generate_metadata() {
     let metadata = {
-        app_version: '2025-03-19',
+        app_version: '2025-09-01',
         retrieval_date: new Date().toISOString().split('T')[0],
         hashes: {}
     };
