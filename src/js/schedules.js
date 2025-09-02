@@ -664,7 +664,7 @@ function show_stop_schedule(stop_code, type){
 	}
 
 	const nearby_stops = new Map();
-	const dist_in_m = 250; // meters
+	const dist_in_m = 350; // meters
 	const dist_ns = dist_in_m * (1 / 111_111); // ~1m in degrees
 	const dist_ew = dist_in_m * (1 / (111_111 * 0.73)); // 1 / (111 111 m * cost(42.8))
 	const stop = get_stop(stop_code);
