@@ -16,6 +16,9 @@ function cache_all() {
 			}
 			console.log('[ServiceWorker] Caching app shell');
 			return cache.addAll(manifest);
+		})
+		.catch(function(error) {
+			console.error('[ServiceWorker] Failed to cache', error);
 		});
 }
 
