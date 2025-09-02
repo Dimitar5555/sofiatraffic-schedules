@@ -26,7 +26,7 @@ function cache_all() {
 		});
 }
 
-async function is_data_fresh() {
+async function is_data_stale() {
 	return await caches
 		.open(OFFLINE_CACHE)
 		.then(function(cache) {
@@ -34,21 +34,17 @@ async function is_data_fresh() {
 		})
 		.then(function(response) {
 			if(!response) {
-				return false;
+				return true;
 			}
 			return response.json();
 		})
 		.then(function(data) {
 			const today_iso = (new Date()).toISOString().split('T')[0];
 			if(data.retrieval_date < today_iso) {
-				return false;
+				return true;
 			}
-			return true;
+			return false;
 		});
-}
-
-async function is_data_stale() {
-	return !(await is_data_fresh());
 }
 
 async function install() {
