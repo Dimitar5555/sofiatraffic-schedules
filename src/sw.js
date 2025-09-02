@@ -22,6 +22,9 @@ function cache_all() {
 			console.log(unduplicated);
 			return cache.addAll(unduplicated);
 		})
+		.then(function() {
+			console.log('[ServiceWorker] All required resources have been cached');
+		})
 		.catch(function(error) {
 			console.error('[ServiceWorker] Failed to cache', error);
 		});
