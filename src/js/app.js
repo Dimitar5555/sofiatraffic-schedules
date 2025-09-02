@@ -62,7 +62,12 @@ function init(debug=false) {
 		localStorage.setItem('favourite_lines', '[]');
 	}
 
-	fetch(`i18n/${localStorage.getItem('lang')}.json`)
+	const lang_urls = {
+		'bg': new URL('../i18n/bg.json', import.meta.url).href,
+		'en': new URL('../i18n/en.json', import.meta.url).href
+	};
+
+	fetch(lang_urls[localStorage.getItem('lang')])
 	.then(response => response.json())
 	.then(response => {
         lang = response;
@@ -110,7 +115,7 @@ function check_metadata() {
 	document.querySelector(`#settings_${theme}_theme`).checked = true;
 	change_theme(theme);
 
-	return fetch('data/metadata.json')
+	return fetch(new URL('/data/metadata.json', import.meta.url).href)
 	.then(response => response.json())
 	.then(metadata => {
 		if((localStorage.app_version == metadata.app_version || localStorage.retrieval_date == metadata.retrieval_date) && typeof data != 'undefined') {
@@ -137,31 +142,37 @@ function fetch_data(metadata=false){
 	console.time('Fetching data');
 	let promises = [];
 
-	promises.push(fetch('data/stops.json')
+	const stops_url = new URL('/data/stops.json', import.meta.url).href;
+	promises.push(fetch(stops_url)
 	.then(response => response.json())
 	.then(stops => {
 		localStorage.stops_hash = metadata.hashes.stops;
 		return stops;
 	}));
-	promises.push(fetch('data/directions.json')
+
+	const directions_url = new URL('/data/directions.json', import.meta.url).href;
+	promises.push(fetch(directions_url)
 	.then(response => response.json())
 	.then(directions => {
 		localStorage.directions_hash = metadata.hashes.directions;
 		return directions;
 	}));
-	promises.push(fetch('data/routes.json')
+	const routes_url = new URL('/data/routes.json', import.meta.url).href;
+	promises.push(fetch(routes_url)
 	.then(response => response.json())
 	.then(routes => {
 		localStorage.routes_hash = metadata.hashes.routes;
 		return routes;
 	}));
-	promises.push(fetch('data/trips.json')
+	const trips_url = new URL('/data/trips.json', import.meta.url).href;
+	promises.push(fetch(trips_url)
 	.then(response => response.json())
 	.then(trips => {
 		localStorage.trips_hash = metadata.hashes.trips;
 		return trips;
 	}));
-	promises.push(fetch('data/stop_times.json')
+	const stop_times_url = new URL('/data/stop_times.json', import.meta.url).href;
+	promises.push(fetch(stop_times_url)
 	.then(response => response.json())
 	.then(stop_times => {
 		localStorage.stop_times_hash = metadata.hashes.stop_times;
