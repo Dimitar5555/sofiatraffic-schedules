@@ -10,12 +10,14 @@ function cache_all() {
 				console.log('[ServiceWorker] Offline, skipping cache update.');
 				return;
 			}
-			console.log('[ServiceWorker] Clearing old cache');
-			await cache.keys().then(function(keys) {
-				for(let key of keys) {
-					cache.delete(key);
-				}
-			});
+			if(is_data_stale()) {
+				console.log('[ServiceWorker] Clearing old cache');
+				await cache.keys().then(function(keys) {
+					for(let key of keys) {
+						cache.delete(key);
+					}
+				});
+			}
 			console.log('[ServiceWorker] Caching app shell');
 			return await cache.addAll(manifest);
 		})
@@ -45,14 +47,18 @@ async function is_data_fresh() {
 		});
 }
 
+async function is_data_stale() {
+	return !(await is_data_fresh());
+}
+
 async function install() {
-	cache_all();
+	await cache_all();
 }
 
 addEventListener('install', e => e.waitUntil(install()));
 
 async function activate() {
-	if(!(await is_data_fresh())) {
+	if(is_data_stale()) {
 		await cache_all();
 	}
 	await self.clients.claim();
