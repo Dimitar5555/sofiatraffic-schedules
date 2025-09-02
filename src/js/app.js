@@ -63,8 +63,8 @@ function init(debug=false) {
 	}
 
 	const lang_urls = {
-		'bg': new URL('../i18n/bg.json', import.meta.url).href,
-		'en': new URL('../i18n/en.json', import.meta.url).href
+		'bg': new URL('/i18n/bg.json', import.meta.url).href,
+		'en': new URL('/i18n/en.json', import.meta.url).href
 	};
 
 	fetch(lang_urls[localStorage.getItem('lang')])
