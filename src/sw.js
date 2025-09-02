@@ -5,17 +5,19 @@ const OFFLINE_CACHE = 'pwa-assets';
 function cache_all() {
 	return caches
 		.open(OFFLINE_CACHE)
-		.then(function(cache) {
+		.then(async function(cache) {
 			if(!navigator.onLine) {
 				console.log('[ServiceWorker] Offline, skipping cache update.');
 				return;
 			}
 			console.log('[ServiceWorker] Clearing old cache');
-			for(const key of cache.keys()) {
-				cache.delete(key);
-			}
+			await cache.keys().then(function(keys) {
+				for(let key of keys) {
+					cache.delete(key);
+				}
+			});
 			console.log('[ServiceWorker] Caching app shell');
-			return cache.addAll(manifest);
+			return await cache.addAll(manifest);
 		})
 		.catch(function(error) {
 			console.error('[ServiceWorker] Failed to cache', error);
