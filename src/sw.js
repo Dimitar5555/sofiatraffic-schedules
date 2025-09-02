@@ -18,8 +18,9 @@ function cache_all() {
 				}
 			}
 			console.log('[ServiceWorker] Caching app shell');
-			console.log(manifest);
-			return cache.addAll(manifest);
+			const unduplicated = Array.from(new Set(manifest));
+			console.log(unduplicated);
+			return cache.addAll(unduplicated);
 		})
 		.catch(function(error) {
 			console.error('[ServiceWorker] Failed to cache', error);
