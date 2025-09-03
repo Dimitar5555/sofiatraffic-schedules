@@ -36,7 +36,7 @@ function is_data_stale() {
 	return caches
 		.open(OFFLINE_CACHE)
 		.then(function(cache) {
-			return cache.match('data/metadata.json');
+			return cache.match(new URL('../data/metadata.json', import.meta.url).href);
 		})
 		.then(function(response) {
 			if(!response) {
