@@ -4,6 +4,7 @@
 @import "/node_modules/leaflet.markercluster/dist/MarkerCluster.css";
 @import "/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
 
+@import "/node_modules/sofiatraffic-library/common.scss";
 
 @font-face { font-family: SofiaSans; src: url('./fonts/SofiaSans-Medium.ttf'); } 
 @font-face { font-family: SofiaSans; font-weight: bold; src: url('./fonts/SofiaSans-Bold.ttf');}
@@ -18,33 +19,6 @@ td, th {
 	margin: 0 2px;
 	min-width: 45px;
 	font-weight: bold;
-}
-.M1-2-bg-color {
-    background: linear-gradient(to right, #ec2029 0%, #1077bc 100%) !important;
-}
-.M1-bg-color {
-	background-color: #ec2029 !important;
-}
-.M2-bg-color {
-	background-color: #1077bc !important;
-}
-.M3-bg-color {
-	background-color: #3bb44b !important;
-}
-.M4-bg-color {
-	background-color: #fcd403 !important;
-}
-.tram-bg-color {
-	background-color: #f6921e !important;
-}
-.trolley-bg-color {
-	background-color: #0095da !important;
-}
-.bus-bg-color {
-	background-color: #be1e2d !important;
-}
-.btn:hover {
-	background-color: #26a9e0;
 }
 .line_selector_btn {
 	width: 60px;
