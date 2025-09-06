@@ -317,7 +317,7 @@ window.filter_stops = function() {
 	}
 
 	for(const tooltipEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
-		new Tooltip(tooltipEl, { trigger: 'hover click' });
+		new Tooltip(tooltipEl, { trigger: 'hover' });
 	}
 
 	favourite_stops_tbody.classList.toggle('d-none', !shown_favourite_stops);

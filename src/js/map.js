@@ -85,7 +85,7 @@ window.init_map = function() {
 		popup.appendChild(p2);
 		popup.appendChild(generate_btn_group(stop.code, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule], true));
 		popup.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(tooltipEl => {
-			new Tooltip(tooltipEl, { trigger: 'hover click' });
+			new Tooltip(tooltipEl, { trigger: 'hover' });
 		});
 		return popup;
 	}
