@@ -51,6 +51,7 @@
 	"schedules.stops": "Спирки",
 	"schedules.nearby_stops": "Близки спирки",
 	"schedules.nearby_codes": "Близки спиркознаци",
+	"schedules.final_stop": "Крайна спирка",
 	
 	"footer.last_data_update": "Разписанията са актуални към",
 	"footer.data_attribution": "Данни: ЦГМ, OpenStreetMap",

@@ -78,19 +78,24 @@ export function init_schedules_data(loc_data){
 		for(const stop_code of direction.stops) {
 			const stop = loc_data.stops.find(stop => stop.code == stop_code);
 			if(stop) {
+				const last_stop_code = direction.stops.at(-1);
 				if(!stop.route_indexes[route_index]) {
-					stop.route_indexes[route_index] = [direction.stops.at(-1)];
+					stop.route_indexes[route_index] = new Set();
 				}
-				else {
-					stop.route_indexes[route_index].push(direction.stops.at(-1));
+				if(last_stop_code == stop_code) {
+					stop.route_indexes[route_index].add(-1);
+					continue;
 				}
+				stop.route_indexes[route_index].add(last_stop_code);
 			}
 		}
 	}
 
 	// add route types to each stop, for map filtering
 	loc_data.stops.forEach(stop => {
-		// stop.route_indexes.sort((a, b) => a.split('/')[0] - b.split('/')[0]);
+		for(const route_index of Object.keys(stop.route_indexes)) {
+			stop.route_indexes[route_index] = Array.from(stop.route_indexes[route_index]);
+		}
 
 		for(const [route_index, stops] of Object.entries(stop.route_indexes)) {
 			const route = loc_data.routes[route_index];

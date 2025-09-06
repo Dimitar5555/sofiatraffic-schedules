@@ -51,6 +51,7 @@
 	"schedules.stops": "Stops",
 	"schedules.nearby_stops": "Nearby stops",
 	"schedules.nearby_codes": "Nearby stop codes",
+	"schedules.final_stop": "Final stop",
 	
 	"footer.last_data_update": "Schedules are up to date as of",
 	"footer.data_attribution": "Data: SUMC, OpenStreetMap",

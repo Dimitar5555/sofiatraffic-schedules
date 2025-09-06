@@ -37,7 +37,10 @@ export function get_stop(stop_arg){
 }
 
 //accepts stop_code or stop object, in order to maintain consistent stop names
-export function get_stop_name_by_code(stop_code){
+export function get_stop_name_by_code(stop_code) {
+    if(stop_code == -1) {
+        return lang['schedules.final_stop'];
+    }
 	if(!stop_code || stop_code==undefined){
 		return `(${lang['schedules.unknown_stop']})`;
 	}
