@@ -1,3 +1,5 @@
+import { Tooltip } from "bootstrap";
+
 import { format_date_string, html_comp, generate_line_btn, get_stop, format_stop_code, get_stop_name_from_object, get_stop_string, get_route_colour_classes, is_online, generate_btn_group, is_metro_stop, is_weekend, get_stop_name_by_code } from "./utilities";
 import { divs, main_types_order, maximum_stops_shown_at_once, divs, tab_btns, get_new_code_from_old_code, get_old_code_from_new_code } from "./app";
 import { get_favourite_stops, get_favourite_lines, gen_route_json } from "./favourites";
@@ -67,7 +69,7 @@ export function init_schedules_data(loc_data){
 
 	loc_data.stops.forEach(stop => {
 		stop.route_types = new Set();
-		stop.route_indexes = [];
+		stop.route_indexes = {};
 	});
 
 
@@ -76,8 +78,11 @@ export function init_schedules_data(loc_data){
 		for(const stop_code of direction.stops) {
 			const stop = loc_data.stops.find(stop => stop.code == stop_code);
 			if(stop) {
-				if(!stop.route_indexes.includes(route_index)) {
-					stop.route_indexes.push(route_index);
+				if(!stop.route_indexes[route_index]) {
+					stop.route_indexes[route_index] = [direction.stops.at(-1)];
+				}
+				else {
+					stop.route_indexes[route_index].push(direction.stops.at(-1));
 				}
 			}
 		}
@@ -85,9 +90,9 @@ export function init_schedules_data(loc_data){
 
 	// add route types to each stop, for map filtering
 	loc_data.stops.forEach(stop => {
-		stop.route_indexes.sort((a, b) => a - b);
+		// stop.route_indexes.sort((a, b) => a.split('/')[0] - b.split('/')[0]);
 
-		for(const route_index of stop.route_indexes) {
+		for(const [route_index, stops] of Object.entries(stop.route_indexes)) {
 			const route = loc_data.routes[route_index];
 			stop.route_types.add(route.type);
 		}
@@ -97,9 +102,20 @@ export function init_schedules_data(loc_data){
 }
 
 export function generate_routes_thumbs(route_indexes, parent) {
-	route_indexes.forEach(route_index => {
+	Object.entries(route_indexes).forEach(([route_index, stops]) => {
 		const route = data.routes[route_index];
-		parent.appendChild(html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref}));
+		const tooltip = Array.from(
+			new Set(stops.map(code => get_stop_name_by_code(code)))
+		).join(';<br>');
+		const span = html_comp('span', {
+			class: 'cursor-pointer '+get_route_colour_classes(route),
+			text: route.route_ref,
+			'data-bs-title': tooltip,
+			'data-bs-toggle': 'tooltip',
+			'data-bs-placement': 'top',
+			'data-bs-html': 'true'
+		});
+		parent.appendChild(span);
 		parent.appendChild(document.createTextNode(' '));
 	});
 }
@@ -293,6 +309,10 @@ window.filter_stops = function() {
 		if(currently_shown_stops > maximum_stops_shown_at_once) {
 			break;
 		}
+	}
+
+	for(const tooltipEl of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
+		new Tooltip(tooltipEl, { trigger: 'hover click' });
 	}
 
 	favourite_stops_tbody.classList.toggle('d-none', !shown_favourite_stops);

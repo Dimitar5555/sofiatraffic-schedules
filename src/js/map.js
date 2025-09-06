@@ -2,7 +2,7 @@ import "leaflet";
 import "leaflet.markercluster";
 import "leaflet.featuregroup.subgroup";
 import "leaflet-arrowheads";
-import { decode } from "google-polyline";
+import { Tooltip } from "bootstrap";
 
 import { main_types, data } from "./app";
 import { generate_routes_thumbs } from "./schedules";
@@ -77,13 +77,16 @@ window.init_map = function() {
 	}).addTo(map);
 
 	function generate_popup_text(stop, route_indexes) {
-		let popup = html_comp('div', {class: 'text-center'});
-		let p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', text: get_stop_string(stop)})
-		let p2 = html_comp('p', {class: 'mt-2 mb-3 fs-6 lh-lg'});
+		const popup = html_comp('div', {class: 'text-center'});
+		const p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', text: get_stop_string(stop)})
+		const p2 = html_comp('p', {class: 'mt-2 mb-3 fs-6 lh-lg'});
 		generate_routes_thumbs(route_indexes, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
 		popup.appendChild(generate_btn_group(stop.code, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule], true));
+		popup.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(tooltipEl => {
+			new Tooltip(tooltipEl, { trigger: 'hover click' });
+		});
 		return popup;
 	}
 	let markers = [];
