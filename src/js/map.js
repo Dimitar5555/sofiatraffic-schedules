@@ -1,7 +1,7 @@
 import "leaflet";
 import "leaflet.markercluster";
 import "leaflet.featuregroup.subgroup";
-import "leaflet-arrowheads";
+import { LocateControl} from "leaflet.locatecontrol";
 import { Tooltip } from "bootstrap";
 
 import { main_types, data } from "./app";
@@ -111,6 +111,7 @@ window.init_map = function() {
 	console.timeEnd('Adding stops to map');
 
 	center_map();
+	new LocateControl().addTo(map);
 }
 
 window.addEventListener('online', update_network_status);

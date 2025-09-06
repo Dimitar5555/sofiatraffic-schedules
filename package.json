@@ -30,6 +30,7 @@
     "leaflet": "^1.9.4",
     "leaflet-arrowheads": "^1.4.0",
     "leaflet.featuregroup.subgroup": "^1.0.2",
+    "leaflet.locatecontrol": "^0.84.2",
     "leaflet.markercluster": "^1.5.3",
     "parcel": "^2.15.4",
     "sofiatraffic-library": "github:Dimitar5555/sofiatraffic-library#master"

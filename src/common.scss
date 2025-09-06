@@ -3,6 +3,7 @@
 @import "/node_modules/leaflet/dist/leaflet.css";
 @import "/node_modules/leaflet.markercluster/dist/MarkerCluster.css";
 @import "/node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css";
 
 @import "/node_modules/sofiatraffic-library/common.scss";
 
@@ -173,6 +174,11 @@ html[data-bs-theme="dark"] .leaflet-popup-content-wrapper,
 html[data-bs-theme="dark"] .leaflet-popup-tip {
 	background-color: var(--bs-dark);
 	color: #fff !important;
+}
+
+html[data-bs-theme="dark"] .leaflet-control-locate-location-arrow, 
+html[data-bs-theme="dark"] .leaflet-control-locate-spinner {
+	filter: invert(1);
 }
 
 .leaflet-popup-content-wrapper a.btn.btn-outline-primary {
