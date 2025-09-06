@@ -2,8 +2,7 @@ name: Deploy content to Github Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
   workflow_dispatch:
 permissions:
   contents: read
