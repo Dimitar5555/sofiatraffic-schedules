@@ -201,13 +201,12 @@ html[data-bs-theme="dark"] .leaflet-popup-tip {
 	color: #fff !important;
 }
 
-/* For a.btn.btn-... inside leaflet popups */
-.leaflet-control-attribution > a {
-	color: unset !important;
+.leaflet-popup-content-wrapper a.btn.btn-outline-primary {
+	color: var(--bs-btn-color);
 }
 
-.leaflet-popup-content-wrapper a.btn.btn-outline-primary {
-	color: var(--bs-btn-color) !important;
+.leaflet-popup-content-wrapper a.btn.btn-outline-primary:hover {
+	color: var(--bs-btn-hover-color);
 }
 
 html, body {
