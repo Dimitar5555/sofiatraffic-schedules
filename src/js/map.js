@@ -95,9 +95,8 @@ window.init_map = function() {
 		popupAnchor: [1, -16]
 	});
 	for(const stop of data.stops) {
-		const popup = generate_popup_text(stop, stop.route_indexes);
-		const marker = L.marker(stop.coords, {icon: icon})
-		.bindPopup(popup, {maxWidth: 340, closeButton: false});
+		const marker = L.marker(stop.coords, {icon: icon});
+		marker.bindPopup(() => generate_popup_text(stop, stop.route_indexes), {maxWidth: 340, closeButton: false});
 		if(is_metro_stop(stop.code)) {
 			marker.setIcon(metro_icon);
 		}
