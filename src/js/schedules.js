@@ -1043,6 +1043,11 @@ window.load_virtual_board = async function(stop_code) {
 
 		if(routes_data.status == 'ok' && routes_data.routes.length > 0) {
 			const date = new Date();
+			for(const route of routes_data.routes) {
+				if(typeof route.route_ref == 'string' && route.route_ref.startsWith('N')) {
+					route.subtype = 'night';
+				}
+			}
 			populate_virtual_board_table(routes_data.routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view);
 		}
 		else if(routes_data.status == 'ok' && routes_data.routes.length == 0) {

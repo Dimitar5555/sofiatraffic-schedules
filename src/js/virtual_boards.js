@@ -60,6 +60,7 @@ function generate_virtual_board_table(routes, tbody, date, is_verbose) {
                 new_data.push({
                     route_ref: route.route_ref,
                     type: route.type,
+                    subtype: route.subtype,
                     times: [{t: time.t, extras: time.extras}],
                     destination: route.destination
                 });

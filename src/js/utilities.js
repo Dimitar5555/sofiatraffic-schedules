@@ -222,12 +222,24 @@ export function generate_line_btn(route){
 }
 export function get_route_colour_classes(route, padding=true){
     const route_type = route.type;
-    const route_ref = route.route_ref
+    const route_ref = route.route_ref;
+    const route_subtype = route.subtype?route.subtype:null;
 
-    const bg_color = `${route_type!=='metro'?route_type:route_ref}-bg-color`;
-    const padding_class = padding?' py-1 px-2':'';
+    let bg_class;
+    if(route_type === 'metro') {
+        bg_class = route_ref;
+    }
+    else if (route_subtype === 'night') {
+        bg_class = route_subtype;
+    }
+    else {
+        bg_class = route_type;
+    }
+    bg_class += '-bg-color';
+
+    const padding_class = 'py-1 px-2';
     const fg_color = `text-${route_ref=='M4'?'dark':'light'}`;
-    return  `${bg_color} ${fg_color} ${padding?padding_class:''} rounded-1 fw-bolder `;
+    return  `${bg_class} ${fg_color} ${padding?padding_class:''} rounded-1 fw-bolder `;
 }
 export function is_weekend(boolean){
     let result = boolean === '1' || boolean === true || boolean === 'true' || boolean === 1 || boolean === 'weekend';
