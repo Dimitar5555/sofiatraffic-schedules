@@ -55,15 +55,7 @@ window.init_map = function() {
 		return;
 	}
 	is_map_initialised = true;
-	let icon = new L.Icon({
-		iconUrl: new URL('../../node_modules/leaflet/dist/images/marker-icon.png', import.meta.url).href,
-		iconSize: [25, 41],
-		iconAnchor: [12, 41],
-		popupAnchor: [1, -34],
-	})
-	icon.options.shadowSize = [0, 0];
 	
-	// document.querySelector('a[data-bs-target="#stops_map"]').setAttribute('onclick', 'manual_push_state(this.href)');
 	window.map = L.map('map', {
 		center: [42.69671, 23.32129],
 		zoom: 13
@@ -91,6 +83,14 @@ window.init_map = function() {
 	}
 	let markers = [];
 	console.time('Adding stops to map');
+	const stop_icon = new L.DivIcon({
+		html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+		<circle cx="12" cy="12" r="12" fill="#3388ff"/>
+		<circle cx="12" cy="12" r="8" fill="#fff"/>
+		</svg>`,
+		iconSize: [24, 24],
+		popupAnchor: [0, -11.5],
+	});
 	const metro_icon = new L.Icon({
 		iconUrl: new URL('../images/marker-icon-metro.png', import.meta.url).href,
 		iconSize: [30, 30],
@@ -98,10 +98,24 @@ window.init_map = function() {
 		popupAnchor: [1, -16]
 	});
 	for(const stop of data.stops) {
-		const marker = L.marker(stop.coords, {icon: icon});
+		const marker = L.marker(stop.coords)
+		.on('mouseover', function(e) {
+			if(this.isPopupOpen()) return;
+			const tooltip = get_stop_string(stop);
+			this.bindTooltip(tooltip, {className: 'text-center fs-6', direction: 'top', offset: [0, -11.5]}).openTooltip();
+		})
+		.on('mouseout', function(e) {
+			// this.unbindTooltip();
+		})
+		.on('popupopen', function(e) {
+			this.unbindTooltip();
+		});
 		marker.bindPopup(() => generate_popup_text(stop, stop.route_indexes), {maxWidth: 340, closeButton: false});
 		if(is_metro_stop(stop.code)) {
 			marker.setIcon(metro_icon);
+		}
+		else {
+			marker.setIcon(stop_icon);
 		}
 		stop.marker = marker;
 		stop.is_marker_shown = true;

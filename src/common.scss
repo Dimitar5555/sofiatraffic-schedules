@@ -171,9 +171,19 @@ html[data-bs-theme="dark"] .leaflet-tile-container > img {
 
 html[data-bs-theme="dark"] .leaflet-bar > a,
 html[data-bs-theme="dark"] .leaflet-popup-content-wrapper,
-html[data-bs-theme="dark"] .leaflet-popup-tip {
+html[data-bs-theme="dark"] .leaflet-popup-tip,
+html[data-bs-theme="dark"] .leaflet-tooltip 
+{
 	background-color: var(--bs-dark);
 	color: #fff !important;
+}
+
+html[data-bs-theme="dark"] .leaflet-tooltip-top::before {
+	border-top-color: var(--bs-dark);
+}
+
+html[data-bs-theme="dark"] .leaflet-tooltip {
+	border: none;
 }
 
 html[data-bs-theme="dark"] .leaflet-control-locate-location-arrow, 
@@ -187,6 +197,11 @@ html[data-bs-theme="dark"] .leaflet-control-locate-spinner {
 
 .leaflet-popup-content-wrapper a.btn.btn-outline-primary:hover {
 	color: var(--bs-btn-hover-color);
+}
+
+.leaflet-div-icon {
+	background: none;
+	border: none;
 }
 
 html, body {
