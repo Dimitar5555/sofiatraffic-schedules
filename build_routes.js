@@ -1,6 +1,6 @@
 import { parse_time, fetch_data_from_sofiatraffic } from "./build_utilities.js";
 import { routes_url, schedule_url, main_types } from "./config.js";
-import { normalise_route } from 'sofiatraffic-library'
+import { normalise_route, secondary_route_types } from 'sofiatraffic-library'
 
 function format_stop_code(stop_code) {
 	return stop_code.toString().padStart(4, '0');
@@ -147,7 +147,12 @@ function process_routes_data(input_routes) {
 
 	output_routes.sort((a, b) => {
 		if(a.type != b.type) {
-			return main_types.indexOf(a.type)-main_types.indexOf(b.type);
+			return main_types.indexOf(a.type) - main_types.indexOf(b.type);
+		}
+		if(a.subtype && b.subtype) {
+			const a_index = secondary_route_types.indexOf(a.subtype);
+			const b_index = secondary_route_types.indexOf(b.subtype);
+			return a_index - b_index;
 		}
 		if(a.subtype && !b.subtype) {
 			return 1;
