@@ -203,7 +203,6 @@ function fetch_data(metadata=false){
 		init_virtual_boards();
 		console.timeEnd('Init virtual boards');
 		console.time('Init stops');
-		filter_stops();
 		console.timeEnd('Init stops');
 		document.body.classList.remove('no-scroll');
 		console.timeEnd('Starting init');

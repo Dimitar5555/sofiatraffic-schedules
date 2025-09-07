@@ -128,7 +128,6 @@ export function update_network_status() {
     map_col.classList.toggle('d-none', !is_online_bool);
 	map_warning_col.classList.toggle('d-none', is_online_bool);
 
-	filter_stops();
 	init_map();
 }
 
