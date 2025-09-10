@@ -4,6 +4,11 @@ on:
   push:
     branches: [ "master" ]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Generate schedules and commit changes"]
+    types:
+      - completed
+
 permissions:
   contents: read
   pages: write
