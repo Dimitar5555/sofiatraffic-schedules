@@ -15,6 +15,7 @@
   "license": "GPL-3.0",
   "type": "module",
   "devDependencies": {
+    "@parcel/optimizer-htmlnano": "^2.15.4",
     "@parcel/packager-raw-url": "^2.15.4",
     "@parcel/transformer-sass": "^2.15.4",
     "@parcel/transformer-webmanifest": "^2.15.4",
