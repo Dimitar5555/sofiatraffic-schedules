@@ -56,6 +56,7 @@
 {"route_ref":"30","cgm_id":"A109","type":"bus"},
 {"route_ref":"31","cgm_id":"A13","type":"bus"},
 {"route_ref":"42","cgm_id":"A101","type":"bus"},
+{"route_ref":"42А","cgm_id":"A174","type":"bus"},
 {"route_ref":"X43","cgm_id":"A259","type":"bus"},
 {"route_ref":"44","cgm_id":"A31","type":"bus"},
 {"route_ref":"46","cgm_id":"A262","type":"bus"},
