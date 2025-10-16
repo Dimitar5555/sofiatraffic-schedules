@@ -115,6 +115,9 @@ function check_metadata() {
 	document.querySelector(`#settings_${theme}_theme`).checked = true;
 	change_theme(theme);
 
+	const default_screen = localStorage.getItem('default_screen') || 'schedules';
+	document.querySelector(`#settings_default_screen_${default_screen}`).checked = true;
+
 	return fetch(new URL('/data/metadata.json', import.meta.url).href)
 	.then(response => response.json())
 	.then(metadata => {
@@ -268,6 +271,11 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
 		return;
 	}
 });
+
+function set_default_screen(screen) {
+	localStorage.setItem('default_screen', screen);
+}
+window.set_default_screen = set_default_screen;
 
 function get_metro_mappings() {
 	const mappings = [

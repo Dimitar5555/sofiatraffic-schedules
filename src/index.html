@@ -28,7 +28,7 @@
 	<link rel="shortcut icon" href="/src/favicon.ico" type="image/x-icon">
 	<meta name="description" content="Актуални разписания на софийския градски транспорт.">
 	
-    <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0">
+    <meta name="google-site-verification" content="yMgwlee8W4U8rwPi7uCgLwa2mLZ-O0-LUyIaw6D7Xp0" />
 
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-NH3TDJNG2C"></script>
@@ -79,7 +79,7 @@
 		</div>
 	</div>
 	<div class="modal fade" id="settings_modal" tabindex="-1" aria-labelledby="settings_modal" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header" data-i18n="modals.settings.header"></div>
 				<div class="modal-body">
@@ -93,7 +93,16 @@
 						<br>
 						<input value="dark" class="form-check-input" type="radio" name="setting_theme" id="settings_dark_theme" onchange="change_theme(this.value);">
 						<label class="form-check-label" for="settings_dark_theme" data-i18n="modals.settings.dark_theme"></label>
+						<br>
+						<hr>
 
+						<span data-i18n="modals.settings.default_screen.header"></span>
+						<br>
+						<input value="schedules" class="form-check-input" type="radio" name="setting_default_screen" id="settings_default_screen_schedules" onchange="set_default_screen(this.value);">
+						<label class="form-check-label" for="settings_default_screen_schedules" data-i18n="nav.schedules"></label>
+						<br>
+						<input value="stops_map" class="form-check-input" type="radio" name="setting_default_screen" id="settings_default_screen_stops_map" onchange="set_default_screen(this.value);">
+						<label class="form-check-label" for="settings_default_screen_stops_map" data-i18n="nav.map"></label>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-i18n="actions.close"></button>

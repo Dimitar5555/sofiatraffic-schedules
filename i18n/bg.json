@@ -89,8 +89,10 @@
 	"stops.bus": "Автобусни спирки",
 	
 	"modals.settings.header": "Настройки",
-	"modals.settings.theme_label": "Тема",
+	"modals.settings.theme_label": "Цветова схема",
 	"modals.settings.auto_theme": "Автоматична",
 	"modals.settings.dark_theme": "Тъмна",
-	"modals.settings.light_theme": "Светла"
+	"modals.settings.light_theme": "Светла",
+
+	"modals.settings.default_screen.header": "Начален екран"
 }
