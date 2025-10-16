@@ -55,8 +55,8 @@ function generate_virtual_board_table(routes, tbody, date, is_verbose) {
     let new_data = routes;
     if(is_verbose) {
         new_data = [];
-        for(let route of routes) {
-            for(let time of route.times) {
+        for(const route of routes) {
+            for(const time of route.times) {
                 new_data.push({
                     route_ref: route.route_ref,
                     type: route.type,
@@ -140,7 +140,10 @@ function virtual_board_append_row(route, row_index, tbody, date, is_verbose=fals
     tbody.appendChild(tr);
 }
 
-export function populate_virtual_board_table(routes, new_condensed_tbody, new_verbose_tbody, date, use_exact_times, show_condensed_view) {
+export function populate_virtual_board_table(routes, new_condensed_tbody, new_verbose_tbody, date) {
+    const use_exact_times = document.querySelector('#virtual_board_show_exact_time').checked;
+    const show_condensed_view = document.querySelector('#virtual_board_show_condensed').checked;
+
     generate_virtual_board_table(routes, new_condensed_tbody, date, false);
     generate_virtual_board_table(routes, new_verbose_tbody, date, true);
     virtual_board_toggle_exact_times(use_exact_times);

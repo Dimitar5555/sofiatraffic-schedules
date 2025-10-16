@@ -12,23 +12,15 @@ window.toggle_star = function(star, event){
 	if(star.dataset.style=='disabled'){
 		return;
 	}
-	const fill = 'bi-star-fill';
-	const empty = 'bi-star';
+	const fill_class = 'bi-star-fill';
+	const empty_class = 'bi-star';
 	
-	const star_style = star.dataset.style;
+	const curr_star_style = star.dataset.style;
 
-	const should_be_filled = star_style=='fill';
-
-	if(event == 'out') {
-		// mouseout
-		star.classList.toggle(fill, should_be_filled);
-		star.classList.toggle(empty, !should_be_filled);
-	}
-	else {
-		// mouseover
-		star.classList.toggle(fill, !should_be_filled);
-		star.classList.toggle(empty, should_be_filled);
-	}
+	const should_be_filled = curr_star_style == 'fill' && event == 'out' 
+	|| curr_star_style == 'empty' && event == 'over';
+	star.classList.toggle(fill_class, should_be_filled);
+	star.classList.toggle(empty_class, !should_be_filled);
 }
 
 export function format_time(time, only_one_number=false){
@@ -1005,23 +997,20 @@ function preprocess_metro_virtual_board_data(virtual_board_data, stop_code) {
 
 window.load_virtual_board = async function(stop_code) {
 	stop_code = Number(stop_code);
-
-    const use_exact_times = document.querySelector('#virtual_board_show_exact_time').checked;
-    const show_condensed_view = document.querySelector('#virtual_board_show_condensed').checked;
 	
-	let generated_at_el = document.querySelector('#generated_at');
+	const generated_at_el = document.querySelector('#generated_at');
 	generated_at_el.innerText = '';
 	generated_at_el.nextElementSibling.setAttribute('disabled', '');
 	
-	var table = document.querySelector('table#virtual_board_table');
-	var thead = table.querySelector('thead');
+	const table = document.querySelector('table#virtual_board_table');
+	const thead = table.querySelector('thead');
 	thead.querySelector('th').innerText = get_stop_string(stop_code);
 	
-	var old_condensed_tbody = table.querySelector('tbody#virtual_board_condensed_view');
-	var new_condensed_tbody = old_condensed_tbody.cloneNode();
+	const old_condensed_tbody = table.querySelector('tbody#virtual_board_condensed_view');
+	const new_condensed_tbody = old_condensed_tbody.cloneNode();
 	
-	var old_verbose_tbody = table.querySelector('tbody#virtual_board_verbose_view');
-	var new_verbose_tbody = old_verbose_tbody.cloneNode();
+	const old_verbose_tbody = table.querySelector('tbody#virtual_board_verbose_view');
+	const new_verbose_tbody = old_verbose_tbody.cloneNode();
 	
 	virtual_board_show_info('loading_row');
 
