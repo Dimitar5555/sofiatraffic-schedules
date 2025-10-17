@@ -92,5 +92,8 @@
 	"modals.settings.theme_label": "Theme",
 	"modals.settings.auto_theme": "Auto",
 	"modals.settings.dark_theme": "Dark",
-	"modals.settings.light_theme": "Light"
+	"modals.settings.light_theme": "Light",
+
+
+	"modals.settings.default_screen.header": "Default screen"
 }
