@@ -16,26 +16,30 @@ export const STOP_BTN_TYPES = {
 }
 
 window.onload = function() {
-    if(window.location.search.length > 0) {
-        const params = new URLSearchParams(window.location.search);
-        const type = params.get('type');
-        let new_url = '/';
-        if(window.location.hostname.includes('github')) {
-            new_url += 'sofiatraffic-schedules/';
-        }
-        if(['schedules', 'stops_map'].includes(type)) {
-            new_url += `${url_prefix}${type}/`;
-        }
-        else if(['metro', 'tram', 'trolley', 'bus'].includes(type)) {
-            const route_ref = params.get('route');
-            new_url += `${url_prefix}${type}/${route_ref}/`;
-        }
-        else if(type == 'stop') {
-            const stop_code = params.get('code');
-            new_url += `${url_prefix}stop/${stop_code}/`;
-        }
-        window.history.replaceState({}, '', new_url);
+    const default_screen = localStorage.getItem('default_screen');
+    if(window.location.hash.length == 0 && default_screen) {
+        window.location.hash = url_prefix + default_screen + '/';
     }
+    // if(window.location.search.length > 0) {
+        // const params = new URLSearchParams(window.location.search);
+        // const type = params.get('type');
+        // let new_url = '/';
+        // if(window.location.hostname.includes('github')) {
+            // new_url += 'sofiatraffic-schedules/';
+        // }
+        // if(['schedules', 'stops_map'].includes(type)) {
+        //     new_url += `${url_prefix}${type}/`;
+        // }
+        // else if(['metro', 'tram', 'trolley', 'bus'].includes(type)) {
+        //     const route_ref = params.get('route');
+        //     new_url += `${url_prefix}${type}/${route_ref}/`;
+        // }
+        // else if(type == 'stop') {
+        //     const stop_code = params.get('code');
+        //     new_url += `${url_prefix}stop/${stop_code}/`;
+        // }
+        // window.history.replaceState({}, '', new_url);
+    // }
     if(!enable_schedules_by_cars) {
         document.querySelectorAll('.schedule_by_cars_related')
         .forEach(el => {
