@@ -18,7 +18,7 @@ window.toggle_star = function(star, event){
 	const curr_star_style = star.dataset.style;
 
 	const should_be_filled = curr_star_style == 'fill' && event == 'out' 
-	|| curr_star_style == 'empty' && event == 'over';
+	|| curr_star_style == 'none' && event == 'over';
 	star.classList.toggle(fill_class, should_be_filled);
 	star.classList.toggle(empty_class, !should_be_filled);
 }
@@ -482,26 +482,21 @@ function configure_stop_selector(values, selected_index){
 	old_stop_el.replaceWith(new_stop_el);
 	new_stop_el.selectedIndex = selected_index;
 }
-export function configure_favourite_line_button(favourite_lines=false){
-	var star = divs.schedule_div.querySelectorAll('i').item(1);
+
+export function configure_favourite_line_button(favourite_lines=false) {
+	const star = divs.schedule_div.querySelectorAll('i').item(1);
 	star.setAttribute('onmouseover', "toggle_star(this, 'over')");
 	star.setAttribute('onmouseout', "toggle_star(this, 'out')");
 	if(!favourite_lines){
 		favourite_lines = get_favourite_lines();
 	}
-	var id = gen_route_json();
-	if(favourite_lines.indexOf(id)!==-1){
-		star.classList.add('bi-star-fill');
-		star.classList.remove('bi-star');
-		star.dataset.style = "fill";
-		star.setAttribute('title', lang['schedules.remove_from_favourites']);
-	}
-	else{
-		star.classList.remove('bi-star-fill');
-		star.classList.add('bi-star');
-		star.dataset.style = "none";
-		star.setAttribute('title', lang['schedules.add_to_favourites']);
-	}
+	const id = gen_route_json();
+	const is_line_favourite = favourite_lines.indexOf(id) !== -1;
+
+	star.classList.toggle('bi-star-fill', is_line_favourite);
+	star.classList.toggle('bi-star', !is_line_favourite);
+	star.dataset.style = is_line_favourite ? "fill" : "none";
+	star.setAttribute('title', lang[`schedules.${is_line_favourite ? 'remove_from' : 'add_to'}_favourites`]);
 }
 
 export function configure_favourite_stop_button(favourite_stops=false) {

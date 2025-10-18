@@ -203,7 +203,7 @@
 						</div>
 						<div class="col col-12 col-sm-9 d-flex flex-wrap flex-lg-nowrap justify-content-between">
 							<div class="d-flex flex-nowrap flex-grow-1">
-								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="toggle_favourite_stop()" data-star="stop"></i>
+								<i class="me-2 pe-0 my-auto bi bi-star h5 text-warning w-auto d-inline-block" onclick="toggle_favourite_stop()" data-star="stop" onmouseover="toggle_star(this, 'over')" onmouseout="toggle_star(this, 'out')" data-style="none"></i>
 								<select class="form-select d-inline-block" onchange="current.stop_code = Number(this.value); updateURL();" id="route_stop_selector"></select>
 							</div>
 							<div id="route_btn_group" class="btn-group mt-2 mt-lg-0 ms-0 ms-lg-2"></div>

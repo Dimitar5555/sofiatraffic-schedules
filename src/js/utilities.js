@@ -138,7 +138,7 @@ function generate_button(stop_code, type, text, is_favorite) {
         btn.setAttribute('onmouseout', "toggle_star(this.children[0], 'out')");
         
         const star = btn.children[0];
-        star.dataset.style = 'empty';
+        star.dataset.style = 'none';
         if(is_favorite) {
             star.dataset.style = 'fill';
             star.classList.add('bi-star-fill');
