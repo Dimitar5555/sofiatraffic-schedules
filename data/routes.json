@@ -125,7 +125,6 @@
 {"route_ref":"803","cgm_id":"A254","type":"bus"},
 {"route_ref":"804","cgm_id":"A255","type":"bus"},
 {"route_ref":"805","cgm_id":"A256","type":"bus"},
-{"route_ref":"6ТМ","cgm_id":"TB44","type":"bus","subtype":"temporary"},
 {"route_ref":"8TM","cgm_id":"A121","type":"bus","subtype":"temporary"},
 {"route_ref":"У1","cgm_id":"A242","type":"bus","subtype":"school"},
 {"route_ref":"У2","cgm_id":"A243","type":"bus","subtype":"school"},
