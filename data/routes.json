@@ -31,6 +31,7 @@
 {"route_ref":"11","cgm_id":"TB2","type":"trolley"},
 {"route_ref":"1","cgm_id":"A66","type":"bus"},
 {"route_ref":"3","cgm_id":"A68","type":"bus"},
+{"route_ref":"M3","cgm_id":"A241","type":"bus"},
 {"route_ref":"4","cgm_id":"A69","type":"bus"},
 {"route_ref":"5","cgm_id":"A70","type":"bus"},
 {"route_ref":"6","cgm_id":"TB33","type":"bus"},
