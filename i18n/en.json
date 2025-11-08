@@ -73,8 +73,6 @@
 	"actions.stop_schedule": "Stop schedule",
 	"actions.search_by_name_or_code": "Enter stop name or code",
 
-	"other.sofiatraffic_livedata_warning_1": "The data is provided by SUMC as it is. It may be incomplete or incorrect.",
-	"other.sofiatraffic_livedata_warning_2": "Departure times might be off by ±1 minute.",
 	"other.generated_at": "Generated at ",
 	"other.show_exact_time": "Show exact time",
 	"other.show_condensed": "Show condensed",

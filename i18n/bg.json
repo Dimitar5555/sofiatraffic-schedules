@@ -73,8 +73,6 @@
 	"actions.stop_schedule": "Разписание на спирката",
 	"actions.search_by_name_or_code": "Въведете име или код на спирка",
 	
-	"other.sofiatraffic_livedata_warning_1": "Данните са предоставени от ЦГМ.",
-	"other.sofiatraffic_livedata_warning_2": "Възможно е да са непълни, неточни и/или да има разлики в времената на потегляне в рамките на ±1 минута.",
 	"other.generated_at": "Генерирано на ",
 	"other.show_exact_time": "Показване на точно време",
 	"other.show_condensed": "Покажи синтезирано",
