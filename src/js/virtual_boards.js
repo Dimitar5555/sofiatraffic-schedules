@@ -103,7 +103,7 @@ function virtual_board_append_time_and_icons(time, extras, date, td) {
 
 
 function generate_route_td(route) {
-    const td = html_comp('td', {class: 'align-middle'});
+    const td = html_comp('td');
     const span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
     td.appendChild(span);
     td.appendChild(html_comp('i', {class: 'bi bi-caret-right-fill'}));
@@ -112,32 +112,39 @@ function generate_route_td(route) {
 }
 
 function virtual_board_append_row(route, row_index, tbody, date, is_verbose=false) {
-    let tr = html_comp('tr');
+    const header_tr = html_comp('tr');
     const td_route = generate_route_td(route);
-    tr.appendChild(td_route);
+    if(!is_verbose) {
+        td_route.setAttribute('colspan', 3);
+    }
+    header_tr.appendChild(td_route);
     
+    const times_tr = is_verbose ? header_tr : html_comp('tr');
     for(const time of route.times) {
-        let td = html_comp('td', {class: 'align-middle'});
+        const td = html_comp('td');
         
         virtual_board_append_time_and_icons(time.t, time.extras, date, td);
-        tr.appendChild(td);
+        times_tr.appendChild(td);
     }
     let needed_cells = (is_verbose?1:3)-route.times.length;
     while(needed_cells>0) {
-        tr.appendChild(html_comp('td', {text: '-', class: 'align-middle'}));
+        times_tr.appendChild(html_comp('td', {text: '-'}));
         needed_cells--;
     }
     if(row_index == 0 && !is_verbose) {
-        tr.children.item(0).classList.add('col-6');
-        tr.children.item(1).classList.add('col-2');
-        tr.children.item(2).classList.add('col-2');
-        tr.children.item(3).classList.add('col-2');
+        // header_tr.children.item(0).classList.add('col-12');
+        times_tr.children.item(0).classList.add('col-4');
+        times_tr.children.item(1).classList.add('col-4');
+        times_tr.children.item(2).classList.add('col-4');
     }
     else if(row_index == 0 && is_verbose) {
-        tr.children.item(0).classList.add('col-10');
-        tr.children.item(1).classList.add('col-2');
+        times_tr.children.item(0).classList.add('col-10');
+        times_tr.children.item(1).classList.add('col-2');
     }
-    tbody.appendChild(tr);
+    tbody.appendChild(header_tr);
+    if(!is_verbose) {
+        tbody.appendChild(times_tr);
+    }
 }
 
 export function populate_virtual_board_table(routes, new_condensed_tbody, new_verbose_tbody, date) {

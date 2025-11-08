@@ -61,7 +61,7 @@
 			<div class="modal-body px-1">
 				<button data-i18n="schedules.previous_course" class="d-none"></button>
 				<button data-i18n="schedules.next_course" class="d-none"></button>
-				<table id="detailed_schedule" class="table table-bordered table-sm table-text-left">
+				<table id="detailed_schedule" class="table table-bordered table-sm text-center align-middle">
 					<thead>
 						<tr>
 							<th class="col-10 col-sm-8" data-i18n="schedules.stop" data-i18n-alt="schedules.metrostation" colspan="2"></th>
@@ -218,7 +218,7 @@
 						</div>
 					</div>
 					<div class="table-responsive">
-						<table class="schedule_table table table-bordered table-striped-columns table-flip" id="route_schedule_table">
+						<table class="schedule_table table table-bordered table-striped-columns table-flip text-center" id="route_schedule_table">
 							<tbody></tbody>
 						</table>
 					</div>
@@ -273,7 +273,7 @@
 				<div class="row">
 					<div class="col col-12 col-lg-5 pt-3"> 
 						<input class="form-control mb-3" name="search_for_stop" type="text" oninput="filter_stops()" data-i18n-placeholder="actions.search_by_name_or_code">
-						<table class="table table-bordered table-sm">
+						<table class="table table-bordered table-sm text-center align-middle">
 							<thead>
 								<tr>
 									<th data-i18n="schedules.stop" colspan="2" class="col-4"></th>
@@ -341,7 +341,7 @@
 		</div>
 	</div>-->
     <div class="modal fade" id="sofiatraffic_live_data" tabindex="-1" aria-labelledby="sofiatraffic_live_data" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-md">
 		  <div class="modal-content">
 			<div class="modal-body">
 				<div class="alert alert-warning">
@@ -356,7 +356,7 @@
 					<input class="form-check-input" type="checkbox" id="virtual_board_show_condensed" onclick="virtual_board_toggle_condensed_view(this.checked); set_virtual_boards_settings();">
 					<label class="form-check-label" for="virtual_board_show_condensed" data-i18n="other.show_condensed"></label>
 				</div>
-				<table id="virtual_board_table" class="table table-bordered">
+				<table id="virtual_board_table" class="table table-bordered text-center align-middle">
 					<thead>
 						<tr>
 							<th colspan="4"></th>
@@ -364,7 +364,7 @@
 					</thead>
 					<tbody id="virtual_board_information">
 						<tr id="no_more_departures">
-							<td class="text-center" colspan="4" data-i18n="other.no_more_departures"></td>
+							<td colspan="4" data-i18n="other.no_more_departures"></td>
 						</tr>
 						<tr id="loading_row">
 							<th colspan="4">

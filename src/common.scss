@@ -12,15 +12,13 @@
 * {
 	font-family: SofiaSans;
 }
-td, th {
-	vertical-align: top;
-	text-align: center;
-}
+
 #line_selector > button {
 	margin: 0 2px;
 	min-width: 45px;
 	font-weight: bold;
 }
+
 .line_selector_btn {
 	width: 60px;
 	height: 30px;
@@ -32,18 +30,22 @@ td, th {
 	vertical-align: middle;
 	line-height: 30px;
 }
+
 .bi-star, .b-star-fill {
 	vertical-align: middle;
 	line-height: 100%;
 	text-align: center;
 }
+
 .bg-danger::after, .bg-warning::after {
 	background-color: white;
 }
+
 .schedule_table > tbody > tr > td {
 	min-width: 36px;
 	min-height: 40px;
 }
+
 #detailed_schedule > thead > tr > th {
 	vertical-align: middle;
 }
@@ -67,7 +69,7 @@ td, th {
 	td {
 		font-variant-numeric: tabular-nums;
 	}
-	.schedule_table > tbody > tr >td {
+	.schedule_table > tbody > tr > td {
 		text-align: left;
 	}
 	.table,
