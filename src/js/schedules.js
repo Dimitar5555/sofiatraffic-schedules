@@ -761,7 +761,7 @@ function show_stop_schedule(stop_code, type) {
 			div.appendChild(header_div);
 			div.dataset.is_weekend = data.trips[trip_index].is_weekend;
 			const table = html_comp('table');
-			table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip');
+			table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip', 'text-center');
 			const tbody = html_comp('tbody');
 			table.appendChild(tbody);
 			const stop_times = data.stop_times.filter(stop_time => stop_time.trip === trip_index);
