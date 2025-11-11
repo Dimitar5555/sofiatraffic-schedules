@@ -6,7 +6,7 @@
     "build": "node scripts/build.js && npm run build-stops && npm run build-metadata",
     "build-stops": "node scripts/build_stops.js",
     "build-sitemap": "node scripts/build_sitemap.js",
-    "build-metadata": "node scripts/build_metadata.js",
+    "build-metadata": "node scripts/build_metadata.js && node scripts/build_url_file.js",
     "build-github": "npx parcel build ./src/index.html --public-url https://dimitar5555.github.io/sofiatraffic-schedules/ && npm run build-sitemap && cp ./src/robots.txt ./dist",
     "dev": "npx parcel serve ./src/index.html",
     "test": "jest"
