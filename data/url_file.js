@@ -124,7 +124,6 @@ new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/802');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/803');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/804');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/805');
-new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/12TM');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/8TM');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/У1');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/У2');
