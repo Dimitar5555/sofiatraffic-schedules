@@ -193,6 +193,10 @@ html[data-bs-theme="dark"] .leaflet-control-locate-spinner {
 	filter: invert(1);
 }
 
+html[data-bs-theme="dark"] .leaflet-container {
+	background: var(--bs-dark);
+}
+
 .leaflet-popup-content-wrapper a.btn.btn-outline-primary {
 	color: var(--bs-btn-color);
 }
