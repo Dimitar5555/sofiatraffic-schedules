@@ -18,6 +18,7 @@ new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/tram/21');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/tram/22');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/tram/23');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/tram/27');
+new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/tram/92');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/trolley/1');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/trolley/2');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/trolley/3');
