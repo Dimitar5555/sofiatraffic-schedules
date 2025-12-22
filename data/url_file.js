@@ -1914,6 +1914,8 @@ new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1937');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1938');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1939');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1940');
+new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1942');
+new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1943');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1944');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1945');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/1946');
