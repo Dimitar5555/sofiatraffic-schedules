@@ -58,7 +58,7 @@ window.init_map = function() {
 	
 	window.map = L.map('map', {
 		center: [42.69671, 23.32129],
-		zoom: 13
+		zoom: 15
 	});
 	const attribution_text = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: attribution_text}).addTo(map);
@@ -152,8 +152,6 @@ function center_map() {
 		if(is_map_initialised && !was_map_centered && is_map_visible) {
 			was_map_centered = true;
 			map.invalidateSize();
-			const bounds = cluster_group.getBounds();
-			map.fitBounds(bounds);
 		}
 	}, 50);
 }
