@@ -2961,4 +2961,3 @@ new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/6725');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/6758');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/6769');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/6783');
-new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/stop/6789');
