@@ -128,7 +128,6 @@
 {"route_ref":"803","cgm_id":"A254","type":"bus"},
 {"route_ref":"804","cgm_id":"A255","type":"bus"},
 {"route_ref":"805","cgm_id":"A256","type":"bus"},
-{"route_ref":"10T","cgm_id":"TB45","type":"bus","subtype":"temporary"},
 {"route_ref":"10ТМ","cgm_id":"A145","type":"bus","subtype":"temporary"},
 {"route_ref":"1Tb","cgm_id":"A190","type":"bus","subtype":"temporary"},
 {"route_ref":"У1","cgm_id":"A242","type":"bus","subtype":"school"},
