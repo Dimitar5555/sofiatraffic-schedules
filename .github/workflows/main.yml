@@ -29,9 +29,10 @@ jobs:
 
     - run: npm run build-schedules
 
-    - run: npm run build-stops
-      retry:
+    - uses: nick-fields/retry@v4
+      with:
         command: npm run build-stops
+        timeout_seconds: 90
         max_attempts: 3
         retry_wait_seconds: 60
 
