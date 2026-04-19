@@ -51,6 +51,10 @@ async function fetch_osm_stops() {
 	const req = await fetch("https://overpass-api.de/api/interpreter", {
 		"body": `data=${encodeURIComponent(query)}`,
 		"method": "POST",
+		"headers": {
+			"Referer": "https://overpass-turbo.eu/",
+			"User-Agent": "github/Dimitar5555/sofiatraffic-schedules"
+		}
 	})
 	.then(response => response.json())
 	.then(data => data.elements);
