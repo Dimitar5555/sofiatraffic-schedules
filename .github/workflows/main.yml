@@ -30,6 +30,10 @@ jobs:
     - run: npm run build-schedules
 
     - run: npm run build-stops
+      retry:
+        command: npm run build-stops
+        max_attempts: 3
+        retry_wait_seconds: 60
 
     - run: npm run build-metadata
 
