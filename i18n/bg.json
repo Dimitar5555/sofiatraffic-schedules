@@ -47,7 +47,7 @@
 	"schedules.remove_from_favourites": "Премахни от списъка с любими",
 	"schedules.unknown_stop": "НЕИЗВЕСТНА СПИРКА",
 	"schedules.routes": "Линии",
-	"schedules.favourite_stops": "Любими спирки",
+	"schedules.favourite_stops": "⭐ Любими спирки",
 	"schedules.stops": "Спирки",
 	"schedules.nearby_stops": "Близки спирки",
 	"schedules.nearby_codes": "Близки спиркознаци",
@@ -69,7 +69,7 @@
 	"actions.show_stop_schedule": "Разписание на спирката",
 	"actions.back": "Назад",
 	"actions.refresh": "Обнови",
-	"actions.locate_stop_on_map": "Покажи спирката на картата",
+	"actions.locate_stop_on_map": "Покажи на картата",
 	"actions.stop_schedule": "Разписание на спирката",
 	"actions.search_by_name_or_code": "Въведете име или код на спирка",
 	

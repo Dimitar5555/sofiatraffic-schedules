@@ -70,7 +70,7 @@ window.init_map = function() {
 
 	function generate_popup_text(stop, route_indexes) {
 		const popup = html_comp('div', {class: 'text-center'});
-		const p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', text: get_stop_string(stop)})
+		const p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', html: get_stop_string(stop)})
 		const p2 = html_comp('p', {class: 'mt-2 mb-3 fs-6 lh-lg'});
 		generate_routes_thumbs(route_indexes, p2);
 		popup.appendChild(p1);

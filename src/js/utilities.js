@@ -37,7 +37,7 @@ export function get_stop(stop_arg){
 }
 
 //accepts stop_code or stop object, in order to maintain consistent stop names
-export function get_stop_name_by_code(stop_code) {
+export function get_stop_name_by_code(stop_code, no_indexes=false) {
     if(stop_code == -1) {
         return lang['schedules.final_stop'];
     }
@@ -48,10 +48,10 @@ export function get_stop_name_by_code(stop_code) {
 	if(!stop){
         console.error(`Missing stop with code: ${stop_code}`);
 	}
-    return get_stop_name_from_object(stop);
+    return get_stop_name_from_object(stop, no_indexes);
 }
 
-export function get_stop_name_from_object(stop_obj) {
+export function get_stop_name_from_object(stop_obj, no_indexes=false) {
     const stop_name = stop_obj.names[lang.code];
     if(!stop_name){
         return `(${lang['schedules.unknown_stop']})`;
@@ -63,12 +63,26 @@ export function get_stop_name_from_object(stop_obj) {
     if(stop_name == 'Ж. К. ОБЕЛЯ 3') {
         stop_name = 'Ж. К. ОБЕЛЯ 2';
     }
-    return stop_name;
+
+    function format_metro_ref(metro_ref) {
+        return `<span class="bg-warning border border-success border-3 text-success d-inline-block fw-bold rounded-circle text-center" style="width: 1.95rem;">${metro_ref}</span>`;
+    }
+
+    if(stop_obj.local_ref && stop_obj.metro_ref && !no_indexes) {
+        return `${stop_name} ${stop_obj.local_ref} / ${format_metro_ref(stop_obj.metro_ref)}`;
+    }
+    else if(stop_obj.local_ref && !no_indexes) {
+        return `${stop_name} ${stop_obj.local_ref}`;
+    }
+    else if(stop_obj.metro_ref && !no_indexes) {
+        return `${stop_name} ${format_metro_ref(stop_obj.metro_ref)}`;
+    }
+    return `${stop_name}`;
 }
 
-export function get_stop_string(stop_code_or_object) {
+export function get_stop_string(stop_code_or_object, no_indexes=false) {
     let stop_obj = get_stop(stop_code_or_object);
-    return `[${format_stop_code(stop_obj.code)}] ${get_stop_name_from_object(stop_obj)}`;
+    return `[${format_stop_code(stop_obj.code)}] ${get_stop_name_from_object(stop_obj, no_indexes)}`;
 }
 
 export function format_date_string(string){
@@ -197,16 +211,20 @@ window.zoom_to_stop = function(stop_code) {
     marker.openPopup();
 }
 
-export function html_comp(tag, attributes={}){
-	var el = document.createElement(tag);
-	var keys = Object.keys(attributes);
-	keys.forEach(key => {
-		if(key=='text'){
+export function html_comp(tag, attributes={}) {
+	const el = document.createElement(tag);
+	const keys = Object.keys(attributes);
+	for(const key of keys){
+		if(key === 'text') {
 			el.innerText = attributes[key];
-			return;
+			continue;
 		}
+        else if(key === 'html') {
+            el.innerHTML = attributes[key];
+            continue;
+        }
 		el.setAttribute(key, attributes[key]);
-    });
+    }
 	return el;
 }
 export function generate_line_btn(route){

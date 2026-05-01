@@ -271,27 +271,12 @@
 			</div>
 			<div class="tab-pane p-2 fade" role="tabpanel" id="stops_map">
 				<div class="row">
-					<div class="col col-12 col-lg-5 pt-3"> 
+					<div class="col col-12 col-lg-5 pt-3">
 						<input class="form-control mb-3" name="search_for_stop" type="text" oninput="filter_stops()" data-i18n-placeholder="actions.search_by_name_or_code">
-						<table class="table table-bordered table-sm text-center align-middle">
-							<thead>
-								<tr>
-									<th data-i18n="schedules.stop" colspan="2" class="col-4"></th>
-									<th data-i18n="schedules.routes" class="col-5"></th>
-									<th data-i18n="actions.actions" class=""></th>
-								</tr>
-								<tr id="favourite_stops_header">
-									<th data-i18n="schedules.favourite_stops" colspan="4"></th>
-								</tr>
-							</thead>
-							<tbody id="favourite_stops_tbody">
-
-							</tbody>
-							<tr>
-								<th data-i18n="schedules.stops" colspan="4"></th>
-							</tr>
-							<tbody id="stops_list"></tbody>
-						</table>
+						<span data-i18n="schedules.favourite_stops" id="favourite_stops_header"></span>
+						<div id="favourite_stops_list" class="row"></div>
+						<span data-i18n="schedules.stops" id="stops_list_header"></span>
+						<div id="stops_list" class="row"></div>
 					</div>
 					<div class="col col-12 col-lg-7 pt-3">
 						<div class="text-end">

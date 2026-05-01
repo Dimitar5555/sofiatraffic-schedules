@@ -117,37 +117,68 @@ export function generate_routes_thumbs(route_indexes, parent) {
 	});
 }
 
+function generate_stop_card(stop, is_favorite) {
+	const parent = html_comp('div', {class: 'col-12 col-md-6 mb-3'});
+	const card = html_comp('div', {class: 'card', 'data-stop-code': stop.code});
+	parent.appendChild(card);
+	const header = html_comp('span', {class: 'card-header d-flex justify-content-between align-items-center', html: '<span>' + get_stop_string(stop.code) + '</span>'});
+	const star = html_comp('i', {
+		class: 'bi bi-star'+(is_favorite ? '-fill' : ''),
+		'data-star': 'stop',
+		'data-style': is_favorite ? 'fill' : 'none',
+		'onmouseover': "toggle_star(this, 'over')",
+		'onmouseout': "toggle_star(this, 'out')",
+		'onclick': `toggle_favourite_stop(${stop.code});filter_stops();`,
+	});
+	header.appendChild(star);
+	card.appendChild(header);
+
+	const body = html_comp('div', {class: 'card-body'});
+
+
+	const lines_div = html_comp('div', {class: 'mb-2'});
+	generate_routes_thumbs(stop.route_indexes, lines_div);
+	body.appendChild(lines_div);
+
+	const btn_types = [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule, STOP_BTN_TYPES.locate_stop];
+	const btn_group = generate_btn_group(stop.code, btn_types, false, is_favorite);
+	body.appendChild(btn_group);
+	card.appendChild(body);
+	return parent;
+}
+
 function generate_stop_row(stop, is_favorite) {
-	const tr = html_comp('tr', {'data-stop-code': stop.code});
+	const tbody = html_comp('tbody', {'data-stop-code': stop.code});
+	const tr1 = html_comp('tr');
 	{
-		tr.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle d-none d-sm-table-cell'}));
-		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle d-none d-sm-table-cell'}));
+		tr1.appendChild(html_comp('td', {text: format_stop_code(stop.code), class: 'align-middle d-none d-sm-table-cell'}));
+		tr1.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: 'align-middle d-none d-sm-table-cell'}));
 	}
 
 	{
-		tr.appendChild(html_comp('td', {text: get_stop_string(stop.code), class: 'align-middle d-sm-none', colspan: 2}));
+		tr1.appendChild(html_comp('td', {text: get_stop_string(stop.code), class: 'align-middle d-sm-none', colspan: 2}));
 	}
 
 	const lines_td = html_comp('td', {class: 'align-middle lh-lg'});
 	generate_routes_thumbs(stop.route_indexes, lines_td);
-	tr.appendChild(lines_td);
+	tr1.appendChild(lines_td);
 
 	const td3 = html_comp('td', {class: 'align-middle'});
 	const buttons = [STOP_BTN_TYPES.favourite_stop, STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule];
 	if(is_online()) {
 		buttons.push(STOP_BTN_TYPES.locate_stop);
 	}
-	const btn_group_1 = generate_btn_group(stop.code, buttons, false, is_favorite);
-	const btn_group_2 = btn_group_1.cloneNode(true);
-	
-	btn_group_1.setAttribute('class', 'btn-group d-none d-md-block');
-	btn_group_2.setAttribute('class', 'btn-group-vertical d-block d-md-none');
+	const btn_group = generate_btn_group(stop.code, buttons, true, is_favorite);
 
-	td3.appendChild(btn_group_1);
-	td3.appendChild(btn_group_2);
-	tr.appendChild(td3);
+	td3.appendChild(btn_group);
+	const tr2 = html_comp('tr');
+	tr2.appendChild(td3);
+	td3.setAttribute('colspan', '3');
 
-	return tr;
+	tbody.appendChild(tr1);
+	tbody.appendChild(tr2);
+
+	return tbody;
 }
 
 function get_routes_by_type(type){
@@ -278,10 +309,10 @@ window.filter_stops = function() {
 		}
 	}
 
-	const favourite_stops_tbody = document.querySelector('#favourite_stops_tbody');
-	favourite_stops_tbody.innerHTML = '';
-	const stops_tbody = document.querySelector('#stops_list');
-	stops_tbody.innerHTML = '';
+	const favourite_stops_list = document.querySelector('#favourite_stops_list');
+	const stops_list = document.querySelector('#stops_list');
+	favourite_stops_list.innerHTML = '';
+	stops_list.innerHTML = '';
 
 	console.log(code, search_string, show_stops);
 
@@ -292,15 +323,14 @@ window.filter_stops = function() {
 	let shown_favourite_stops = false;
 	for(const stop_code of show_stops) {
 		const is_favorite = favourite_stops.includes(stop_code);
-		let parent = stops_tbody;
+		const stop_card = generate_stop_card(get_stop(stop_code), is_favorite);
+
 		if(is_favorite) {
-			parent = favourite_stops_tbody;
-		}
-
-		parent.appendChild(generate_stop_row(get_stop(stop_code), is_favorite));
-
-		if(favourite_stops.includes(stop_code)) {
 			shown_favourite_stops = true;
+			favourite_stops_list.appendChild(stop_card);
+		}
+		else {
+			stops_list.appendChild(stop_card);
 		}
 
 		currently_shown_stops++;
@@ -313,7 +343,7 @@ window.filter_stops = function() {
 		new Tooltip(tooltipEl, { trigger: 'hover' });
 	}
 
-	favourite_stops_tbody.classList.toggle('d-none', !shown_favourite_stops);
+	favourite_stops_list.classList.toggle('d-none', !shown_favourite_stops);
 	document.querySelector('#favourite_stops_header').classList.toggle('d-none', !shown_favourite_stops);
 }
 
@@ -428,7 +458,7 @@ function configure_weekday_selector(values, selected_index) {
 	is_weekend_options[selected_index].checked = true;
 }
 
-function generate_from_to_text(stops) {
+function generate_from_to_text(stops, no_indexes=false) {
 	const key_stops = [1006, 1038, 2454, 6435, 6436];
 	// 1006 - Терминал 1
 	// 1038 - Мелницата Чепинци (А20)
@@ -437,7 +467,7 @@ function generate_from_to_text(stops) {
 	// 6436 - Трансферна спирка нощни автобуси (западна посока)
 	const stops_names = stops.map((stop, index) => {
 		const should_be_included = index == 0 || key_stops.includes(stop) || index == stops.length - 1;
-		return should_be_included ? get_stop_name_by_code(stop) : false;
+		return should_be_included ? get_stop_name_by_code(stop, no_indexes) : false;
 	})
 	.filter(stop_name => stop_name);
 	return stops_names.join(' => ');
@@ -450,7 +480,7 @@ function configure_direction_selector(possible_directions, selected_index) {
 	for(const dir_code of possible_directions) {
 		const direction = data.directions.find(dir => dir.code==dir_code);
 		new_directions_select.appendChild(html_comp('option', {
-			text: generate_from_to_text(direction.stops),
+			text: generate_from_to_text(direction.stops, true),
 			value: dir_code
 		}));
 	}
@@ -465,7 +495,7 @@ function configure_stop_selector(values, selected_index) {
 
 	for(const stop_code of values) {
 		const option = html_comp('option', {
-			text: get_stop_string(stop_code),
+			html: get_stop_string(stop_code),
 			value: stop_code
 		});
 		new_stop_el.appendChild(option);
@@ -584,9 +614,9 @@ window.display_trip_schedule = function(stop_time_index) {
 		if(highlight_row){
 			warning_class = ' bg-warning text-dark';
 		}
-		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: `align-middle d-sm-none${warning_class}`, colspan: 2}));
+		tr.appendChild(html_comp('td', {html: get_stop_name_from_object(stop, true), class: `align-middle d-sm-none${warning_class}`, colspan: 2}));
 		tr.appendChild(html_comp('td', {text: format_stop_code(route_stops[stop_index]), class: `align-middle d-none d-sm-table-cell${warning_class}`}));
-		tr.appendChild(html_comp('td', {text: get_stop_name_from_object(stop), class: `d-none d-sm-table-cell align-middle${warning_class}`}));
+		tr.appendChild(html_comp('td', {html: get_stop_name_from_object(stop, true), class: `d-none d-sm-table-cell align-middle${warning_class}`}));
 		tr.appendChild(html_comp('td', {text: format_time(time), class: `align-middle${warning_class}`}));
 		const time_from_selected_stop = calculate_time_difference(time, selected_time);
 		let text;
@@ -987,7 +1017,7 @@ window.load_virtual_board = async function(stop_code) {
 	
 	const table = document.querySelector('table#virtual_board_table');
 	const thead = table.querySelector('thead');
-	thead.querySelector('th').innerText = get_stop_string(stop_code);
+	thead.querySelector('th').innerHTML = get_stop_string(stop_code, true);
 	
 	const old_condensed_tbody = table.querySelector('tbody#virtual_board_condensed_view');
 	const new_condensed_tbody = old_condensed_tbody.cloneNode();

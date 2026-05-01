@@ -107,7 +107,7 @@ function generate_route_td(route) {
     const span = html_comp('span', {class: get_route_colour_classes(route), text: route.route_ref});
     td.appendChild(span);
     td.appendChild(html_comp('i', {class: 'bi bi-caret-right-fill'}));
-    td.appendChild(document.createTextNode(get_stop_name_by_code(route.destination)));
+    td.appendChild(html_comp('span', {text: get_stop_name_by_code(route.destination, true)}));
     return td;
 }
 
