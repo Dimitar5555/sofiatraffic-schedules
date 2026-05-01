@@ -89,6 +89,14 @@ function process_osm_stops(osm_stops) {
 			delete stop.names.en;
 		}
 
+		if(osm_stop.tags?.local_ref) {
+			console.log(osm_stop.tags?.local_ref);
+			stop.local_ref = osm_stop.tags.local_ref;
+		}
+		if(osm_stop.tags['local_ref:metro']) {
+			stop.metro_ref = osm_stop.tags['local_ref:metro'];
+		}
+
 		if(osm_stop.tags?.request_stop === 'yes') {
 			stop.names.bg += ' (ПО ЖЕЛАНИЕ)';
 			if(stop.names.en) {
@@ -126,6 +134,12 @@ function merge_stops(sumc_stops, osm_stops) {
 			stop.coords = osm_stop.coords;
 			stop.names.bg = osm_stop.names.bg;
 			stop.names.en = osm_stop.names.en;
+			if(osm_stop.local_ref) {
+				stop.local_ref = osm_stop.local_ref;
+			}
+			if(osm_stop.metro_ref) {
+				stop.metro_ref = osm_stop.metro_ref;
+			}
 		}
 	});
 	return stops;
