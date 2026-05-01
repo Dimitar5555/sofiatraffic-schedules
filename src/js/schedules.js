@@ -755,7 +755,7 @@ function show_stop_schedule(stop_code, type) {
 	const should_enable_virtual_board = is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards;
 	virtual_board_btn.disabled = should_enable_virtual_board;
 
-	divs.stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code);
+	divs.stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code, true);
 	const relevant_directions = data.directions.filter(dir => dir.stops.includes(stop_code));
 	const direction_codes = relevant_directions.map(dir => dir.code);
 	const local_routes = direction_codes.map(direction_code => {
@@ -787,7 +787,7 @@ function show_stop_schedule(stop_code, type) {
 			const header_div = html_comp('div', {class: 'mt-4 mb-2'});
 			header_div.appendChild(html_comp('span', {text: `${lang['line_type.'+route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}));
 			header_div.appendChild(document.createTextNode(' '));
-			header_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops)}`}));
+			header_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops, true)}`}));
 			div.appendChild(header_div);
 			div.dataset.is_weekend = data.trips[trip_index].is_weekend;
 			const table = html_comp('table');

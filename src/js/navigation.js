@@ -51,7 +51,7 @@ function handle_seo() {
 			return  `${lang['titles.schedule_of']} ${lang['line_type.'+line_type].toLowerCase()} ${route_ref} - ${lang['titles.short_title']}`;
 		}
 		else if(hash.includes('stop')) {
-			return `${lang['titles.schedule_of']} спирка ${get_stop_string(stop_code)} - ${lang['titles.short_title']}`;
+			return `${lang['titles.schedule_of']} спирка ${get_stop_string(stop_code, true)} - ${lang['titles.short_title']}`;
 		}
 		else {
 			return lang['titles.title'];
