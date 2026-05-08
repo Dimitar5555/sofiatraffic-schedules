@@ -131,6 +131,7 @@ new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/801');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/802');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/803');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/804');
+new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/11ТМ');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/У1');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/У2');
 new URL('https://dimitar5555.github.io/sofiatraffic-schedules/#!/bus/N1');
