@@ -51,7 +51,8 @@ window.toggle_favourite_line = function(){
 	window.localStorage.setItem('favourite_lines', JSON.stringify(favourite_lines));
 }
 export function get_favourite_stops(){
-	return JSON.parse(window.localStorage.getItem('favourite_stops')).map(stop => parseInt(stop)) || [];
+	return JSON.parse(window.localStorage.getItem('favourite_stops'))
+		.map(stop => typeof stop === 'number' ? stop.toString().padStart(4, '0') : stop) || [];
 }
 window.toggle_favourite_stop = function(stop_code=false) {
 	if(!stop_code){

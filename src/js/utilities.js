@@ -21,17 +21,14 @@ export function format_stop_code(stop_code) {
     if(!stop_code) {
         return '????'
     }
-	return stop_code.toString().padStart(4, '0');
+	return stop_code;
 }
 
-export function get_stop(stop_arg){
-	if(typeof stop_arg=='string'){
-		stop_arg = Number(stop_arg);
-	}
-	if(typeof stop_arg=='object'){
+export function get_stop(stop_arg) {
+	if(typeof stop_arg == 'object') {
 		return stop_arg;
 	}
-	else if(typeof stop_arg=='number'){
+	else if(typeof stop_arg === 'number' || typeof stop_arg === 'string') {
 		return data.stops.find(stop => stop.code === stop_arg) || {code: stop_arg, names: {bg: `(${lang['schedules.unknown_stop']})`}};
 	}
 }
@@ -59,13 +56,9 @@ export function get_stop_name_from_object(stop_obj, no_indexes=false) {
     if(is_metro_stop(stop_obj.code)) {
         return stop_name.replace('МЕТРОСТАНЦИЯ', '').replace('METRO STATION', '').replace('METROSTANTSIA', '').replaceAll('  ', ' ').trim();
     }
-   // TODO: Remove this monkey patch, when SUMC fixes their data
-    if(stop_name == 'Ж. К. ОБЕЛЯ 3') {
-        stop_name = 'Ж. К. ОБЕЛЯ 2';
-    }
 
     function format_metro_ref(metro_ref) {
-        return `<span class="bg-warning border border-success border-3 text-success d-inline-block fw-bold rounded-circle text-center" style="width: 1.95rem;">${metro_ref}</span>`;
+        return `<span class="bg-warning border border-success border-3 text-success d-inline-block fw-bold rounded-circle text-center" style="width: 1.75rem;">${metro_ref}</span>`;
     }
 
     if(stop_obj.local_ref && stop_obj.metro_ref && !no_indexes) {
@@ -90,7 +83,7 @@ export function format_date_string(string){
 }
 
 export function is_metro_stop(stop_code){
-    return 2900 < Number(stop_code) && Number(stop_code) < 3400
+    return stop_code.startsWith('M');
 }
 
 function generate_button(stop_code, type, text, is_favorite) {
@@ -146,7 +139,7 @@ function generate_button(stop_code, type, text, is_favorite) {
 
     if(type === STOP_BTN_TYPES.favourite_stop) {
         btn.setAttribute('data-code', stop_code);
-        btn.setAttribute('onclick', `toggle_favourite_stop(Number(this.dataset.code));filter_stops();`);
+        btn.setAttribute('onclick', `toggle_favourite_stop(this.dataset.code);filter_stops();`);
 
         btn.setAttribute('onmouseover', "toggle_star(this.children[0], 'over')");
         btn.setAttribute('onmouseout', "toggle_star(this.children[0], 'out')");
@@ -204,7 +197,7 @@ window.zoom_to_stop = function(stop_code) {
     if(is_screen_width_lg_or_less()) {
         document.querySelector('#map').scrollIntoView({behavior: 'smooth'});
     }
-    let marker = get_stop(stop_code).marker;
+    const marker = get_stop(stop_code).marker;
     map.flyTo(marker.getLatLng(), 17, {
 		animate: false
 	});
@@ -273,4 +266,11 @@ export function is_online() {
 
 function is_screen_width_lg_or_less() {
     return window.innerWidth <= 992;
+}
+
+export function get_route(cgm_id, routes = data.routes) {
+    if(typeof cgm_id === 'number') {
+        return routes[cgm_id];
+    }
+    return routes.find(route => route.cgm_id === cgm_id);
 }

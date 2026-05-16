@@ -68,11 +68,11 @@ window.init_map = function() {
 		showCoverageOnHover: false
 	}).addTo(map);
 
-	function generate_popup_text(stop, route_indexes) {
+	function generate_popup_text(stop, route_ids) {
 		const popup = html_comp('div', {class: 'text-center'});
 		const p1 = html_comp('p', {class: 'my-1 fs-6 mb-1', html: get_stop_string(stop)})
 		const p2 = html_comp('p', {class: 'mt-2 mb-3 fs-6 lh-lg'});
-		generate_routes_thumbs(route_indexes, p2);
+		generate_routes_thumbs(route_ids, p2);
 		popup.appendChild(p1);
 		popup.appendChild(p2);
 		popup.appendChild(generate_btn_group(stop.code, [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule], true));
@@ -110,7 +110,7 @@ window.init_map = function() {
 		.on('popupopen', function(e) {
 			this.unbindTooltip();
 		});
-		marker.bindPopup(() => generate_popup_text(stop, stop.route_indexes), {maxWidth: 340, closeButton: false});
+		marker.bindPopup(() => generate_popup_text(stop, stop.route_ids), {maxWidth: 340, closeButton: false});
 		if(is_metro_stop(stop.code)) {
 			marker.setIcon(metro_icon);
 		}

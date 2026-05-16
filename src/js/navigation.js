@@ -131,7 +131,7 @@ function get_globals_from_hash(hash) {
 		}
 	}
 	else if(hash[0]=='stop') {
-		globals.stop_code = parseInt(hash[1]);
+		globals.stop_code = hash[1];
 		globals.schedule_type = {workday: 0, weekend: 1}[hash[2]];
 		globals.is_stop = true;
 		globals.view = 'stop';

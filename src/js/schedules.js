@@ -1,6 +1,6 @@
 import { Tooltip } from "bootstrap";
 
-import { format_date_string, html_comp, generate_line_btn, get_stop, format_stop_code, get_stop_name_from_object, get_stop_string, get_route_colour_classes, is_online, generate_btn_group, is_metro_stop, is_weekend, get_stop_name_by_code } from "./utilities";
+import { format_date_string, html_comp, generate_line_btn, get_stop, format_stop_code, get_stop_name_from_object, get_stop_string, get_route_colour_classes, is_online, generate_btn_group, is_metro_stop, is_weekend, get_stop_name_by_code, get_route } from "./utilities";
 import { divs, main_types_order, maximum_stops_shown_at_once, divs, tab_btns, get_new_code_from_old_code, get_old_code_from_new_code } from "./app";
 import { get_favourite_stops, get_favourite_lines, gen_route_json } from "./favourites";
 import { virtual_board_show_info, populate_virtual_board_table } from "./virtual_boards";
@@ -37,20 +37,67 @@ export function format_time(time, only_one_number=false){
 	return `${hour_str}:${mins_str}`;
 }
 
+function determine_route_subtype(route) {
+	const route_ref = route.route_ref;
+	if(route_ref.startsWith('N')) {
+		return 'night';
+	}
+	else if(route_ref.startsWith('У')) {
+		return 'school';
+	}
+	if((route_ref.endsWith('ТБ') || route_ref.endsWith('ТМ') || route_ref.startsWith('M')) && route.type == 'bus') {
+		return 'temporary';
+	}
+	return null;
+}
+
 export function init_schedules_data(loc_data){
+	for(const route of loc_data.routes) {
+		const subtype = determine_route_subtype(route);
+		if(subtype) {
+			route.subtype = subtype;
+		}
+	}
+	const main_types = ['metro', 'tram', 'trolley', 'bus'];
+	const secondary_route_types = ['temporary', 'night', 'school'];
+	loc_data.routes.sort((a, b) => {
+		if(a.type != b.type) {
+			return main_types.indexOf(a.type) - main_types.indexOf(b.type);
+		}
+		if(a.subtype && b.subtype && a.subtype != b.subtype) {
+			const a_index = secondary_route_types.indexOf(a.subtype);
+			const b_index = secondary_route_types.indexOf(b.subtype);
+			return a_index - b_index;
+		}
+		if(a.subtype && !b.subtype) {
+			return 1;
+		}
+		if(b.subtype && !a.subtype) {
+			return -1;
+		}
+		const numeric_a = Number(a.route_ref.replace(/\D/g, ''));
+		const numeric_b = Number(b.route_ref.replace(/\D/g, ''));
+		return numeric_a - numeric_b;
+	});
+
 	//add trips and directions to routes, based on trips
+	console.time('init_schedules_data step 1');
 	loc_data.routes.forEach((route, index) => {
 		route.index = index;
 		route.trip_indexes = [];
 		route.direction_codes = [];
 	});
+	console.timeEnd('init_schedules_data step 1');
 
 	//add indexes to stop_times
+	console.time('init_schedules_data step 2');
 	loc_data.stop_times.forEach((stop_time, index) => stop_time.index = index);
+	console.timeEnd('init_schedules_data step 2');
 
 	//add trip indexes and direction codes to routes
+	console.time('init_schedules_data step 3');
 	loc_data.trips.forEach((trip, trip_index) => {
-		let route = loc_data.routes[trip.route_index];
+		let route = get_route(trip.cgm_id, loc_data.routes);
 		if(!route.trip_indexes.includes(trip_index)){
 			route.trip_indexes.push(trip_index);
 		}
@@ -58,49 +105,63 @@ export function init_schedules_data(loc_data){
 			route.direction_codes.push(trip.direction);
 		}
 	});
+	console.timeEnd('init_schedules_data step 3');
 
+	console.time('init_schedules_data step 4');
 	loc_data.stops.forEach(stop => {
 		stop.route_types = new Set();
-		stop.route_indexes = {};
+		stop.route_ids = {};
 	});
+	console.timeEnd('init_schedules_data step 4');
 
-
+	console.time('init_schedules_data step 5');
+	// TODO FIX IT IS QUITE SLOW
 	for(const direction of loc_data.directions) {
-		const route_index = loc_data.trips.find(trip => trip.direction == direction.code).route_index;
+		const cgm_id = loc_data.trips.find(trip => trip.direction == direction.code).cgm_id;
 		for(const stop_code of direction.stops) {
 			const stop = loc_data.stops.find(stop => stop.code == stop_code);
 			if(stop) {
 				const last_stop_code = direction.stops.at(-1);
-				if(!stop.route_indexes[route_index]) {
-					stop.route_indexes[route_index] = new Set();
+				if(!stop.route_ids[cgm_id]) {
+					stop.route_ids[cgm_id] = new Set();
 				}
 				if(last_stop_code == stop_code) {
-					stop.route_indexes[route_index].add(-1);
+					stop.route_ids[cgm_id].add(-1);
 					continue;
 				}
-				stop.route_indexes[route_index].add(last_stop_code);
+				stop.route_ids[cgm_id].add(last_stop_code);
 			}
 		}
 	}
+	console.timeEnd('init_schedules_data step 5');
 
 	// add route types to each stop, for map filtering
+	console.time('init_schedules_data step 6');
 	loc_data.stops.forEach(stop => {
-		for(const route_index of Object.keys(stop.route_indexes)) {
-			stop.route_indexes[route_index] = Array.from(stop.route_indexes[route_index]);
+		for(const cgm_id of Object.keys(stop.route_ids)) {
+			stop.route_ids[cgm_id] = Array.from(stop.route_ids[cgm_id]);
 		}
 
-		for(const [route_index, stops] of Object.entries(stop.route_indexes)) {
-			const route = loc_data.routes[route_index];
+		for(const [cgm_id, stops] of Object.entries(stop.route_ids)) {
+			const route = loc_data.routes.find(r => r.cgm_id === cgm_id);
 			stop.route_types.add(route.type);
 		}
 	});
+	console.timeEnd('init_schedules_data step 6');
 
 	// data = loc_data;
 }
 
-export function generate_routes_thumbs(route_indexes, parent) {
-	Object.entries(route_indexes).forEach(([route_index, stops]) => {
-		const route = data.routes[route_index];
+export function generate_routes_thumbs(route_ids, parent) {
+	const sorted_route_ids = Object.keys(route_ids)
+		.sort((a, b) => {
+			const index_a = data.routes.findIndex(r => r.cgm_id === a);
+			const index_b = data.routes.findIndex(r => r.cgm_id === b);
+			return index_a - index_b;
+		});
+	for(const cgm_id of sorted_route_ids) {
+		const stops = route_ids[cgm_id];
+		const route = data.routes.find(r => r.cgm_id === cgm_id);
 		const tooltip = Array.from(
 			new Set(stops.map(code => get_stop_name_by_code(code)))
 		).join(';<br>');
@@ -114,21 +175,21 @@ export function generate_routes_thumbs(route_indexes, parent) {
 		});
 		parent.appendChild(span);
 		parent.appendChild(document.createTextNode(' '));
-	});
+	}
 }
 
 function generate_stop_card(stop, is_favorite) {
 	const parent = html_comp('div', {class: 'col-12 col-md-6 mb-3'});
 	const card = html_comp('div', {class: 'card', 'data-stop-code': stop.code});
 	parent.appendChild(card);
-	const header = html_comp('span', {class: 'card-header d-flex justify-content-between align-items-center', html: '<span>' + get_stop_string(stop.code) + '</span>'});
+	const header = html_comp('span', {class: 'card-header d-flex justify-content-between align-items-center', html: '<span>' + get_stop_string(stop.code, true) + '</span>'});
 	const star = html_comp('i', {
 		class: 'bi bi-star'+(is_favorite ? '-fill' : ''),
 		'data-star': 'stop',
 		'data-style': is_favorite ? 'fill' : 'none',
 		'onmouseover': "toggle_star(this, 'over')",
 		'onmouseout': "toggle_star(this, 'out')",
-		'onclick': `toggle_favourite_stop(${stop.code});filter_stops();`,
+		'onclick': `toggle_favourite_stop("${stop.code}");filter_stops();`,
 	});
 	header.appendChild(star);
 	card.appendChild(header);
@@ -137,7 +198,7 @@ function generate_stop_card(stop, is_favorite) {
 
 
 	const lines_div = html_comp('div', {class: 'mb-2'});
-	generate_routes_thumbs(stop.route_indexes, lines_div);
+	generate_routes_thumbs(stop.route_ids, lines_div);
 	body.appendChild(lines_div);
 
 	const btn_types = [STOP_BTN_TYPES.departures_board, STOP_BTN_TYPES.schedule, STOP_BTN_TYPES.locate_stop];
@@ -160,7 +221,7 @@ function generate_stop_row(stop, is_favorite) {
 	}
 
 	const lines_td = html_comp('td', {class: 'align-middle lh-lg'});
-	generate_routes_thumbs(stop.route_indexes, lines_td);
+	generate_routes_thumbs(stop.route_ids, lines_td);
 	tr1.appendChild(lines_td);
 
 	const td3 = html_comp('td', {class: 'align-middle'});
@@ -293,19 +354,33 @@ function update_stop_labels(){
 }
 
 window.filter_stops = function() {
-	const search_string = document.querySelector('[name="search_for_stop"]').value.toUpperCase();
-	const code = Number(search_string);
+	let search_string = document.querySelector('[name="search_for_stop"]').value.toUpperCase();
+	const is_code = isFinite(Number(search_string)) || 
+		(search_string.startsWith('M') || search_string.startsWith('М')) &&
+		isFinite(Number(search_string.slice(1)));
+	if(is_code && search_string.startsWith('М')) {
+		search_string = 'M' + search_string.slice(1);
+	}
 	let show_stops = [];
 	if(search_string.length == 0) {
 		show_stops = data.stops.map(stop => stop.code);
 	}
 	else {
-		if(code > 0 && Number.isFinite(code)) {
-			let str_code = code.toString();
-			show_stops = data.stops.filter(stop => stop.code.toString().includes(str_code)).map(stop => stop.code);
+		if(is_code) {
+			let str_code = search_string;
+			show_stops = data.stops.filter(stop => stop.code.includes(str_code)).map(stop => stop.code);
 		}
-		if(!Number.isFinite(code)) {
-			show_stops = data.stops.filter(stop => stop.names[lang.code]?.includes(search_string)).map(stop => stop.code);
+		else {
+			show_stops = data.stops
+			.filter(stop => {
+				const names = [
+					...Object.keys(stop.names)
+					.filter(key => key.split('_')[0] === lang.code)
+					.map(lang_code => stop.names['name_'+lang_code] || stop.names[lang_code] || false)
+				].filter(Boolean);
+				return names.some(name => name.toUpperCase().includes(search_string));
+			})
+			.map(stop => stop.code);
 		}
 	}
 
@@ -313,8 +388,6 @@ window.filter_stops = function() {
 	const stops_list = document.querySelector('#stops_list');
 	favourite_stops_list.innerHTML = '';
 	stops_list.innerHTML = '';
-
-	console.log(code, search_string, show_stops);
 
 	let currently_shown_stops = 0;
 	const favourite_stops = get_favourite_stops();
@@ -406,6 +479,7 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	const current_direction_options = Array.from(divs.schedule_div.querySelector('#direction').querySelectorAll('option')).map(el => Number(el.value));
 	//only fetch directions for the current valid thru interval
 	const new_direction_options = data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend==is_weekend_val).map(trip => trip.direction);
+	console.log(route.direction_codes, new_direction_options, data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend==is_weekend_val));
 	const direction_options_ok = are_options_matching(current_direction_options, new_direction_options);
 	if(!direction_options_ok || overwrite_selectors){
 		const index = new_direction_options.indexOf(Number(predefined_values.direction));
@@ -414,16 +488,17 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	}
 	const direction = parseInt(divs.schedule_div.querySelector('#direction').value);
 	
-	const current_stop_options = Array.from(divs.schedule_div.querySelector('#route_stop_selector').querySelectorAll('option')).map(el => Number(el.value));
-	console.log(data.directions.find(dir => dir.code==direction), direction);
+	const current_stop_options = Array.from(divs.schedule_div.querySelector('#route_stop_selector').querySelectorAll('option'));
 	const new_stop_options = data.directions.find(dir => dir.code==direction).stops;
 	const stop_options_ok = JSON.stringify(current_stop_options)==JSON.stringify(new_stop_options);
-	if(!stop_options_ok || overwrite_selectors){
-		const stop_index = new_stop_options.indexOf(Number(predefined_values.stop_code));
+	if(!stop_options_ok || overwrite_selectors) {
+		const stop_code_from_globals = predefined_values.stop_code;
+		const stop_index = new_stop_options.indexOf(stop_code_from_globals);
 		const selected_index = stop_index!==-1?stop_index:0;
 		configure_stop_selector(new_stop_options, selected_index);
 	}
-	current.stop_code = Number(document.querySelector('#route_stop_selector').value);
+	const selected_stop_code = document.querySelector('#route_stop_selector').value;
+	current.stop_code = selected_stop_code;
 
 	const btn_group = document.querySelector('#route_btn_group');
 	btn_group.children.item(0).dataset.code = current.stop_code;
@@ -541,7 +616,7 @@ export function configure_favourite_stop_button(favourite_stops=false) {
 	}
 }
 
-function display_schedule(){
+function display_schedule() {
 	const table = divs.schedule_div.querySelector('#route_schedule_table');
 	const old_tbody = table.querySelector('tbody');
 	const route = current.route;
@@ -549,7 +624,7 @@ function display_schedule(){
     const tr_thead = html_comp('tr');
     const tr_tbody = html_comp('tr');
 
-	if(data.trips.filter(trip => trip.route_index == route.index).length == 0) {
+	if(data.trips.filter(trip => trip.cgm_id === route.cgm_id).length === 0) {
 		//no schedule
 		tr_thead.appendChild(html_comp('th', {text: 'Липсва разписание за избраната линия.'}));
 		new_tbody.appendChild(tr_thead);
@@ -560,15 +635,15 @@ function display_schedule(){
 
 	const is_weekend_val = document.querySelector('[name=route_schedule_type]:checked').value === '1';
 	const direction = parseInt(divs.schedule_div.querySelector('#direction').value);
-	// const display_by_car = schedule_div.querySelector('#display_by_car').checked;
-	const display_by_car = false; // temporary disabled
+	const display_by_car = divs.schedule_div.querySelector('#display_by_car').checked;
 	const stop_index = divs.schedule_div.querySelector('#route_stop_selector').selectedIndex;
 	
-	const trip_index = data.trips.findIndex(trip => trip.route_index==current.route.index && trip.is_weekend === is_weekend_val && trip.direction === direction);
-    const stop_times = data.stop_times.filter(stop_times => stop_times.trip === trip_index);
-	// schedule_div.querySelector('#valid_from').innerText = format_date_string(data.trips[trip_index].valid_from);
+	const trip = data.trips.find(trip => trip.cgm_id === route.cgm_id && trip.is_weekend === is_weekend_val && trip.direction === direction);
+    const stop_times = data.stop_times.filter(stop_times => stop_times.trip === trip.id);
+	// schedule_div.querySelector('#valid_from').innerText = format_date_string(data.trips[trip.id].valid_from);
 	generate_stop_times_table(stop_times, stop_index, table, display_by_car);
 }
+window.display_schedule = display_schedule;
 
 export function calculate_time_difference(base_time, other_time) {
 	if(base_time == null || other_time == null) {
@@ -597,8 +672,9 @@ window.display_trip_schedule = function(stop_time_index) {
 	const stop_time = data.stop_times[stop_time_index];
 
     const times = stop_time.times;
-	const dir_code = data.trips[stop_time.trip].direction;
-	const route_stops = data.directions.find(dir => dir.code==dir_code).stops;
+	const dir_code = data.trips.find(trip => trip.id === stop_time.trip).direction;
+	const route_stops = data.directions.find(dir => dir.code == dir_code).stops;
+	console.log(stop_time)
 	
 	const modal = document.querySelector('#schedule_modal');
 	const old_tbody = modal.querySelector('tbody');
@@ -677,10 +753,12 @@ export function update_globals(new_globals=false) {
 			current.direction = data.directions.find(dir => dir.code==current.trip.direction);
 		// }
 		if(new_globals.stop_code) {
-			current.stop_code = parseInt(new_globals.stop_code);
+			const code = new_globals.stop_code;
+			current.stop_code = code;
 		}
 		else {
-			current.stop_code = parseInt(divs.schedule_div.querySelector('#route_stop_selector').value);
+			const code = divs.schedule_div.querySelector('#route_stop_selector').value;
+			current.stop_code = code
 		}
 	}
 	/*if(!current.direction){
@@ -688,7 +766,7 @@ export function update_globals(new_globals=false) {
 	}*/
 	
 	if(new_globals.stop_code) {
-		current.stop_code = parseInt(new_globals.stop_code);
+		current.stop_code = new_globals.stop_code;
 	}
 	else if(!current.stop_code) {
 		current.stop_code = current.direction.stops[0];
@@ -696,10 +774,6 @@ export function update_globals(new_globals=false) {
 }
 
 function show_stop_schedule(stop_code, type) {
-	if(typeof stop_code == 'string'){
-		stop_code = Number(stop_code);
-	}
-
 	const nearby_stops = new Map();
 	const dist_in_m = 350; // meters
 	const dist_ns = dist_in_m * (1 / 111_111); // ~1m in degrees
@@ -730,7 +804,7 @@ function show_stop_schedule(stop_code, type) {
 	stops_by_names_el.innerHTML = '';
 	stops_by_names_el.parentElement.parentElement.classList.toggle('d-none', unique_stop_names.size <= 1);
 	for(const name of unique_stop_names.keys()) {
-		const lowest_code = Math.min(...unique_stop_names.get(name).map(s => s.code));
+		const lowest_code = Math.min(...unique_stop_names.get(name).map(s => s.code)) || unique_stop_names.get(name)[0].code;
 		const stop_list_item = html_comp('a', {text: name, href: `${url_prefix}stop/${lowest_code}/`});
 		if(name === stop.names['bg']) {
 			stop_list_item.classList.add('fw-bolder', 'text-decoration-none', 'border', 'border-2', 'border-primary', 'rounded', 'px-1');
@@ -759,7 +833,7 @@ function show_stop_schedule(stop_code, type) {
 	const relevant_directions = data.directions.filter(dir => dir.stops.includes(stop_code));
 	const direction_codes = relevant_directions.map(dir => dir.code);
 	const local_routes = direction_codes.map(direction_code => {
-		const route = data.routes.find(route => route.direction_codes.indexOf(direction_code)!=-1);
+		const route = data.routes.find(route => route.direction_codes.includes(direction_code));
 		if(!route){
 			//undefined because of M1/M2
 			return;
@@ -771,30 +845,31 @@ function show_stop_schedule(stop_code, type) {
 		}
 		result.route_index = route.index;
 		result.route_ref = route.route_ref;
-		result.stops = data.directions.find(dir => dir.code==direction_code).stops;
-		result.trip_indexes = data.trips.map((trip, index) => {trip.index = index; return trip;}).filter(trip => /*trip.route_index == route.index &&*/ trip.direction == direction_code).map(trip => trip.index);
-		result.stop_times = data.stop_times.filter(stop_time => result.trip_indexes.indexOf(stop_time.trip)!=-1);
+		result.stops = data.directions.find(dir => dir.code === direction_code).stops;
+		result.trip_ids = data.trips.filter(trip => trip.direction == direction_code).map(trip => trip.id);
+		result.stop_times = data.stop_times.filter(stop_time => result.trip_ids.includes(stop_time.trip));
 		return result;
 	})
 	.filter(route => route) //drop undefined because of M1/M2
-	.toSorted((a,b)=>a.route_index>b.route_index);
+	.toSorted((a, b) => a.route_index > b.route_index);
 	console.log(local_routes);
 	
 	const new_stop_schedule_div = divs.stop_schedule_div.querySelector('#stop_schedule_tables').cloneNode();
 	local_routes.forEach(route => {
-		route.trip_indexes.forEach(trip_index => {
+		route.trip_ids.forEach(trip_id => {
+			const trip = data.trips.find(trip => trip.id === trip_id);
 			const div = html_comp('div');
 			const header_div = html_comp('div', {class: 'mt-4 mb-2'});
 			header_div.appendChild(html_comp('span', {text: `${lang['line_type.'+route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}));
 			header_div.appendChild(document.createTextNode(' '));
 			header_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops, true)}`}));
 			div.appendChild(header_div);
-			div.dataset.is_weekend = data.trips[trip_index].is_weekend;
+			div.dataset.is_weekend = trip.is_weekend;
 			const table = html_comp('table');
 			table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip', 'text-center');
 			const tbody = html_comp('tbody');
 			table.appendChild(tbody);
-			const stop_times = data.stop_times.filter(stop_time => stop_time.trip === trip_index);
+			const stop_times = data.stop_times.filter(stop_time => stop_time.trip === trip_id);
 			generate_stop_times_table(stop_times, route.stops.indexOf(stop_code), table);
 			div.appendChild(table);
 			new_stop_schedule_div.appendChild(div);
@@ -882,16 +957,23 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 			onclick: 'display_trip_schedule(this.dataset.stopTimeIndex)',
 			class: el_class
 		});
-		if(!by_cars/* || !enable_schedules_by_cars*/){
+		if(!by_cars) {
 			body_cells[hour].appendChild(el);
 		}
-		else{
-			console.log(stop_time.car);
+		else {
 			body_cells[stop_time.car-1].appendChild(el);
 		}
 	});
     new_tbody.appendChild(tr_thead);
     new_tbody.appendChild(tr_tbody);
+	for(const [index, cell] of Object.entries(tr_tbody.children)) {
+		if(cell.children[0].children.length === 0) {
+			if(by_cars) {
+				tr_tbody.children.item(index).classList.add('d-none');
+				tr_thead.children.item(index).classList.add('d-none');
+			}
+		}
+	}
 	table.querySelector('tbody').replaceWith(new_tbody);
 }
 
@@ -985,32 +1067,35 @@ function generate_stop_times_table_combined(routes, stop_code, type, div, data) 
 	
 }
 
-function preprocess_metro_virtual_board_data(virtual_board_data, stop_code) {
-	const directions_with_stop = data.directions.filter(dir => dir.stops.includes(stop_code));
-	let next_stops = new Set();
-	directions_with_stop.map(dir => {
-		const stop_index = dir.stops.indexOf(stop_code);
-		for(let i=stop_index; i<dir.stops.length; i++) {
-			next_stops.add(get_new_code_from_old_code(dir.stops[i]));
-		}
-	});
-
-	const direction_stops = data.directions.find(dir => dir.stops.includes(stop_code)).stops;
-	const stop_index = direction_stops.indexOf(stop_code);
-	// const next_stops = direction_stops.slice(stop_index-1>0?stop_index-1:0);
-	for(let i=virtual_board_data.routes.length-1; i>=0; i--) {
-		const route = virtual_board_data.routes[i];
-		if(!next_stops.has(route.destination)) {
-			virtual_board_data.routes.splice(i, 1);
-			continue;
-		}
-		route.destination = get_old_code_from_new_code(route.destination);
+function preprocess_metro_virtual_board_data(virtual_board_data) {
+	for(const route of virtual_board_data.routes) {
+		route.destination = `M${route.destination}`;
 	}
+	// const directions_with_stop = data.directions.filter(dir => dir.stops.includes(stop_code));
+	// let next_stops = new Set();
+	// directions_with_stop.map(dir => {
+	// 	const stop_index = dir.stops.indexOf(stop_code);
+	// 	for(let i=stop_index; i<dir.stops.length; i++) {
+	// 		next_stops.add(get_new_code_from_old_code(dir.stops[i]));
+	// 	}
+	// });
+
+	// const direction_stops = data.directions.find(dir => dir.stops.includes(stop_code)).stops;
+	// const stop_index = direction_stops.indexOf(stop_code);
+	// // const next_stops = direction_stops.slice(stop_index-1>0?stop_index-1:0);
+	// for(let i=virtual_board_data.routes.length-1; i>=0; i--) {
+	// 	const route = virtual_board_data.routes[i];
+	// 	if(!next_stops.has(route.destination)) {
+	// 		virtual_board_data.routes.splice(i, 1);
+	// 		continue;
+	// 	}
+	// 	route.destination = get_old_code_from_new_code(route.destination);
+	// }
 }
 
 window.load_virtual_board = async function(stop_code) {
-	stop_code = Number(stop_code);
-	
+	stop_code = stop_code;
+
 	const generated_at_el = document.querySelector('#generated_at');
 	generated_at_el.innerText = '';
 	generated_at_el.nextElementSibling.setAttribute('disabled', '');
@@ -1029,16 +1114,16 @@ window.load_virtual_board = async function(stop_code) {
 	virtual_board_show_info('loading_row');
 	
 	const is_metro = is_metro_stop(stop_code);
-	const stop_code_for_url = is_metro?get_new_code_from_old_code(stop_code):format_stop_code(stop_code);
-	const extra_params = is_metro?`&metro`:'';
+	const stop_code_for_url = is_metro ? stop_code.replace(/\D/g, '') : format_stop_code(stop_code);
+	const extra_params = is_metro ? `&metro` : '';
 	const params = `${stop_code_for_url}${extra_params}`;
 	fetch(`${virtual_board_proxy_url}${params}`)
 	.then(data => data.json())
 	.then(routes_data => {
 		virtual_board_show_info(false);
 
-		if(is_metro_stop(stop_code)) {
-			preprocess_metro_virtual_board_data(routes_data, stop_code);
+		if(is_metro) {
+			preprocess_metro_virtual_board_data(routes_data);
 		}
 
 		if(routes_data.status == 'ok' && routes_data.routes.length > 0) {

@@ -151,6 +151,10 @@ export function populate_virtual_board_table(routes, new_condensed_tbody, new_ve
     const use_exact_times = document.querySelector('#virtual_board_show_exact_time').checked;
     const show_condensed_view = document.querySelector('#virtual_board_show_condensed').checked;
 
+    routes.forEach(route => {
+        route.destination = route.destination.toString().padStart(4, '0');
+    });
+
     generate_virtual_board_table(routes, new_condensed_tbody, date, false);
     generate_virtual_board_table(routes, new_verbose_tbody, date, true);
     virtual_board_toggle_exact_times(use_exact_times);

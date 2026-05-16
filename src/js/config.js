@@ -4,7 +4,7 @@ export const enable_virtual_boards = true;
 export const enable_virtual_boards_for_subway_stations = true;
 export const virtual_board_proxy_url = 'https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=';
 
-export const enable_schedules_by_cars = false;
+export const enable_schedules_by_cars = true;
 
 export const VIRTUAL_BOARDS_DEFAULT_SETTINGS = {show_condensed_view: true, use_exact_times: true};
 
