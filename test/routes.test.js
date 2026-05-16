@@ -1,6 +1,8 @@
+import fs from 'fs';
+
 describe('routes', () => {
     test('should have unique route_ref for each type', () => {
-        const data = require('../data/routes.json');
+        const data = JSON.parse(fs.readFileSync('./data/routes.json'));
         const routes_set = new Set();
         data.forEach(route => {
             const route_id = `${route.type}-${route.route_ref}`;

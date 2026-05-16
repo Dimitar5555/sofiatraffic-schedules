@@ -9,7 +9,7 @@
     "build-metadata": "node scripts/build_metadata.js && node scripts/build_url_file.js",
     "build-github": "npx parcel build ./src/index.html --public-url https://dimitar5555.github.io/sofiatraffic-schedules/ && npm run build-sitemap && cp ./src/robots.txt ./dist",
     "dev": "npx parcel serve ./src/index.html",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "Dimitar5555",
   "license": "GPL-3.0",

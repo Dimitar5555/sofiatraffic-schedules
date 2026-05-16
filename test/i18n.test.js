@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 const master_lang = 'bg';
 const languages = ['bg', 'en'];
 
@@ -14,7 +16,7 @@ describe('i18n', () => {
         const language_data = new Map();
 
         languages.forEach(lang => {
-            language_data.set(lang, require(`../i18n/${lang}.json`) || {});
+            language_data.set(lang, JSON.parse(fs.readFileSync(`./i18n/${lang}.json`)) || {});
         });
         const master_lang_set = get_all_keys(language_data.get(master_lang));
         for (const lang of languages) {
