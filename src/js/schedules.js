@@ -1058,39 +1058,7 @@ function generate_stop_times_table_combined(routes, stop_code, type, div, data) 
 	}
 	header_row.appendChild(tr_thead);
 	new_tbody.appendChild(header_row);
-	new_tbody.appendChild(tr_tbody);
-
-
-
-
-
-	
-}
-
-function preprocess_metro_virtual_board_data(virtual_board_data) {
-	for(const route of virtual_board_data.routes) {
-		route.destination = `M${route.destination}`;
-	}
-	// const directions_with_stop = data.directions.filter(dir => dir.stops.includes(stop_code));
-	// let next_stops = new Set();
-	// directions_with_stop.map(dir => {
-	// 	const stop_index = dir.stops.indexOf(stop_code);
-	// 	for(let i=stop_index; i<dir.stops.length; i++) {
-	// 		next_stops.add(get_new_code_from_old_code(dir.stops[i]));
-	// 	}
-	// });
-
-	// const direction_stops = data.directions.find(dir => dir.stops.includes(stop_code)).stops;
-	// const stop_index = direction_stops.indexOf(stop_code);
-	// // const next_stops = direction_stops.slice(stop_index-1>0?stop_index-1:0);
-	// for(let i=virtual_board_data.routes.length-1; i>=0; i--) {
-	// 	const route = virtual_board_data.routes[i];
-	// 	if(!next_stops.has(route.destination)) {
-	// 		virtual_board_data.routes.splice(i, 1);
-	// 		continue;
-	// 	}
-	// 	route.destination = get_old_code_from_new_code(route.destination);
-	// }
+	new_tbody.appendChild(tr_tbody);	
 }
 
 window.load_virtual_board = async function(stop_code) {
@@ -1121,10 +1089,6 @@ window.load_virtual_board = async function(stop_code) {
 	.then(data => data.json())
 	.then(routes_data => {
 		virtual_board_show_info(false);
-
-		if(is_metro) {
-			preprocess_metro_virtual_board_data(routes_data);
-		}
 
 		if(routes_data.status == 'ok' && routes_data.routes.length > 0) {
 			const date = new Date();
