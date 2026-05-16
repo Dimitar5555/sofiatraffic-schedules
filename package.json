@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "A tool designed to take Sofia public transit schedules and convert them into machine readeble format..",
   "scripts": {
-    "build-schedules": "node scripts/build.js",
-    "build-stops": "node scripts/build_stops.js",
-    "build-sitemap": "node scripts/build_sitemap.js",
-    "build-metadata": "node scripts/build_metadata.js && node scripts/build_url_file.js",
+    "build-schedules": "node scripts/00-prep.js && node scripts/01-download.js && node scripts/02-stops.js && node scripts/03-routes.js && node scripts/04-schedules.js && node scripts/05-filter-stops.js",
+    "build-metadata": "node scripts/06-metadata.js",
+    "build-sitemap": "node scripts/07-sitemap.js",
     "build-github": "npx parcel build ./src/index.html --public-url https://dimitar5555.github.io/sofiatraffic-schedules/ && npm run build-sitemap && cp ./src/robots.txt ./dist",
     "dev": "npx parcel serve ./src/index.html",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
@@ -27,6 +26,7 @@
     "@parcel/service-worker": "^2.15.4",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
+    "csvtojson": "^2.0.14",
     "google-polyline": "^1.0.3",
     "leaflet": "^1.9.4",
     "leaflet-arrowheads": "^1.4.0",
@@ -34,6 +34,7 @@
     "leaflet.locatecontrol": "^0.84.2",
     "leaflet.markercluster": "^1.5.3",
     "parcel": "^2.15.4",
-    "sofiatraffic-library": "github:Dimitar5555/sofiatraffic-library"
+    "sofiatraffic-library": "github:Dimitar5555/sofiatraffic-library",
+    "unzipper": "^0.12.3"
   }
 }
