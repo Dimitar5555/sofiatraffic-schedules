@@ -12,3 +12,6 @@ TODO
 node_modules/
 .parcel-cache/
 dist/
+gtfs/
+old-scripts/
+data/active_service_ids.json
