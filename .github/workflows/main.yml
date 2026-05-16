@@ -19,11 +19,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Use Node.js 22
-      uses: actions/setup-node@v5
+    - name: Use Node.js 24
+      uses: actions/setup-node@v6
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        node-version: 22
+        node-version: 24
     
     - run: npm ci
 
