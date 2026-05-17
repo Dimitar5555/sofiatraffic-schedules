@@ -23,6 +23,7 @@ async function run() {
     const trips = [];
     const directions = [];
     const stop_times = [];
+    const route_direction_map = new Map();
     let trip_counter = 0;
     let startTime = Date.now();
     for(const trip of gtfs_trips) {
@@ -39,13 +40,18 @@ async function run() {
 
         let corresponding_direction = directions.find(d => 
             d.stops.length === trip_stops.length &&
-            d.stops.every((s, index) => trip_stops.indexOf(s) === index));
+            d.stops.every((s, index) => trip_stops.indexOf(s) === index) &&
+            route_direction_map.get(route_sumc_id)?.has(d.code)
+        );
         if(!corresponding_direction) {
             corresponding_direction = {
                 code: directions.length + 1,
                 stops: trip_stops,
             };
             directions.push(corresponding_direction);
+            const directions_set = route_direction_map.get(route_sumc_id) || new Set();
+            directions_set.add(corresponding_direction.code);
+            route_direction_map.set(route_sumc_id, directions_set);
         }
 
         let corresponding_trip = trips.find(t => 
@@ -95,7 +101,7 @@ async function run() {
             const needed_empty_begg_slots = parent.stops.indexOf(child.stops[0]);
             const needed_empty_end_slots = parent.stops.length - needed_empty_begg_slots - child.stops.length;
             child.is_deleted = true;
-            for(const trip of route_trips) {
+            for(const trip of trips) {
                 if(trip.direction !== child.code) {
                     continue;
                 }
@@ -113,6 +119,12 @@ async function run() {
 
         for(let i = directions.length - 1; i >= 0; i--) {
             if(directions[i].is_deleted) {
+                const dir_code = directions[i].code;
+                const has_orphan_trips = trips.some(t => t.direction === dir_code);
+                if(has_orphan_trips) {
+                    console.warn(`Direction ${dir_code} is marked as deleted but still has trips!`);
+                    continue;
+                }
                 directions.splice(i, 1);
             }
         }
@@ -140,6 +152,12 @@ async function run() {
 
         for(let i = trips.length - 1; i >= 0; i--) {
             if(trips[i].is_deleted) {
+                const trip_id = trips[i].id;
+                const has_orphan_stop_times = stop_times.some(st => st.trip === trip_id);
+                if(has_orphan_stop_times) {
+                    console.warn(`Trip ${trip_id} is marked as deleted but still has stop times!`);
+                    continue;
+                }
                 trips.splice(i, 1);
             }
         }
