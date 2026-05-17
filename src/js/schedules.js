@@ -478,8 +478,7 @@ function configure_all_selectors(predefined_values={}, overwrite_selectors=false
 	
 	const current_direction_options = Array.from(divs.schedule_div.querySelector('#direction').querySelectorAll('option')).map(el => Number(el.value));
 	//only fetch directions for the current valid thru interval
-	const new_direction_options = data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend==is_weekend_val).map(trip => trip.direction);
-	console.log(route.direction_codes, new_direction_options, data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend==is_weekend_val));
+	const new_direction_options = data.trips.filter(trip => route.direction_codes.indexOf(trip.direction)!==-1 && trip.is_weekend === is_weekend_val && trip.cgm_id === route.cgm_id).map(trip => trip.direction);
 	const direction_options_ok = are_options_matching(current_direction_options, new_direction_options);
 	if(!direction_options_ok || overwrite_selectors){
 		const index = new_direction_options.indexOf(Number(predefined_values.direction));
