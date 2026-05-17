@@ -831,12 +831,8 @@ function show_stop_schedule(stop_code, type) {
 	divs.stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code, true);
 	const relevant_directions = data.directions.filter(dir => dir.stops.includes(stop_code));
 	const direction_codes = relevant_directions.map(dir => dir.code);
-	const local_routes = direction_codes.map(direction_code => {
-		const route = data.routes.find(route => route.direction_codes.includes(direction_code));
-		if(!route){
-			//undefined because of M1/M2
-			return;
-		}
+	const local_routes = data.routes.filter(route => route.direction_codes.some(dir_code => direction_codes.includes(dir_code)))
+	.map(route => {
 		const result = {};
 		result.type = route.type;
 		if(route.subtype){
@@ -844,8 +840,9 @@ function show_stop_schedule(stop_code, type) {
 		}
 		result.route_index = route.index;
 		result.route_ref = route.route_ref;
+		const direction_code = route.direction_codes.find(dir_code => direction_codes.includes(dir_code));
 		result.stops = data.directions.find(dir => dir.code === direction_code).stops;
-		result.trip_ids = data.trips.filter(trip => trip.direction == direction_code).map(trip => trip.id);
+		result.trip_ids = data.trips.filter(trip => trip.direction == direction_code && trip.cgm_id === route.cgm_id).map(trip => trip.id);
 		result.stop_times = data.stop_times.filter(stop_time => result.trip_ids.includes(stop_time.trip));
 		return result;
 	})
