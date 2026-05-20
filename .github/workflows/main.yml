@@ -29,8 +29,6 @@ jobs:
 
     - run: npm run build-schedules
 
-    - run: npm run build-metadata
-
     - run: npm run test
     - uses: EndBug/add-and-commit@v9
       with:

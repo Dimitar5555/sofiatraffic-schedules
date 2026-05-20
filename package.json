@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "A tool designed to take Sofia public transit schedules and convert them into machine readeble format..",
   "scripts": {
-    "build-schedules": "node scripts/00-prep.js && node scripts/01-download.js && node scripts/02-stops.js && node scripts/03-routes.js && node scripts/04-schedules.js && node scripts/05-filter-stops.js",
-    "build-metadata": "node scripts/06-metadata.js",
+    "build-schedules": "node scripts/00-prep.js && node scripts/01-download.js && node scripts/02-stops.js && node scripts/03-routes.js && node scripts/04-schedules.js && node scripts/05-filter-stops.js && node scripts/06-metadata.js",
     "build-sitemap": "node scripts/07-sitemap.js",
     "build-github": "npx parcel build ./src/index.html --public-url https://dimitar5555.github.io/sofiatraffic-schedules/ && npm run build-sitemap && cp ./src/robots.txt ./dist",
     "dev": "npx parcel serve ./src/index.html",
