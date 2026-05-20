@@ -93,10 +93,13 @@ function is_weekend(date) {
 }
 
 async function get_active_service_ids() {
-    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const day_obj = new Date();
+    const today = day_obj.toISOString().slice(0, 10).replace(/-/g, '');
+    day_obj.setDate(day_obj.getDate() + 15);
+    const next_15_days = day_obj.toISOString().slice(0, 10).replace(/-/g, '');
     const calendar_dates = fs.readFileSync('./gtfs/calendar_dates.txt', 'utf8');
     const calendar_dates_json = Array.from(await csv().fromString(calendar_dates))
-    .filter(cd => cd.exception_type === '1' && today <= cd.date)
+    .filter(cd => cd.exception_type === '1' && today <= cd.date && cd.date <= next_15_days)
     .map(cd => {
         const formatted_date = `${cd.date.slice(0, 4)}-${cd.date.slice(4, 6)}-${cd.date.slice(6)}`;
         const date = new Date(formatted_date);
