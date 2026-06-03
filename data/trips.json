@@ -3685,50 +3685,50 @@
   },
   {
     "id": 959,
-    "cgm_id": "A9",
-    "direction": 446,
-    "is_weekend": false
-  },
-  {
-    "id": 961,
-    "cgm_id": "A9",
-    "direction": 448,
-    "is_weekend": false
-  },
-  {
-    "id": 965,
     "cgm_id": "A12",
     "direction": 107,
     "is_weekend": false
   },
   {
-    "id": 967,
+    "id": 961,
     "cgm_id": "A12",
     "direction": 106,
     "is_weekend": false
   },
   {
-    "id": 974,
+    "id": 968,
     "cgm_id": "TM58",
     "direction": 543,
     "is_weekend": false
   },
   {
-    "id": 975,
+    "id": 969,
     "cgm_id": "TM58",
     "direction": 544,
     "is_weekend": false
   },
   {
-    "id": 978,
+    "id": 972,
     "cgm_id": "TM27",
     "direction": 553,
     "is_weekend": false
   },
   {
-    "id": 979,
+    "id": 973,
     "cgm_id": "TM27",
     "direction": 552,
+    "is_weekend": false
+  },
+  {
+    "id": 978,
+    "cgm_id": "A9",
+    "direction": 446,
+    "is_weekend": false
+  },
+  {
+    "id": 979,
+    "cgm_id": "A9",
+    "direction": 448,
     "is_weekend": false
   },
   {
