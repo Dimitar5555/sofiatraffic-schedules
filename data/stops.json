@@ -379,19 +379,6 @@
     }
   },
   {
-    "code": "1113",
-    "coords": [
-      42.71463,
-      23.31099
-    ],
-    "names": {
-      "bg": "метростанция Княгиня Мария Луиза",
-      "en": "Knyginya Maria Luiza metro station"
-    },
-    "local_ref": "6",
-    "metro_ref": "C"
-  },
-  {
     "code": "0567",
     "coords": [
       42.68557,
@@ -4820,18 +4807,6 @@
       "bg": "Надлез Надежда",
       "en": "Nadezhda Overpass"
     }
-  },
-  {
-    "code": "2665",
-    "coords": [
-      42.70947,
-      23.32202
-    ],
-    "names": {
-      "bg": "Централна автогара",
-      "en": "Central Bus Station"
-    },
-    "metro_ref": "K"
   },
   {
     "code": "0377",
