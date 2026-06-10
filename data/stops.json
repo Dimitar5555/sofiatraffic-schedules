@@ -228,19 +228,6 @@
     "metro_ref": "H"
   },
   {
-    "code": "1255",
-    "coords": [
-      42.71368,
-      23.31441
-    ],
-    "names": {
-      "bg": "Пета градска болница",
-      "en": "Fifth Municipal Hospital"
-    },
-    "local_ref": "1",
-    "metro_ref": "E"
-  },
-  {
     "code": "0060",
     "coords": [
       42.74216,
@@ -4785,19 +4772,6 @@
     "metro_ref": "G"
   },
   {
-    "code": "1254",
-    "coords": [
-      42.71345,
-      23.31487
-    ],
-    "names": {
-      "bg": "Пета градска болница",
-      "en": "Fifth Municipal Hospital"
-    },
-    "local_ref": "2",
-    "metro_ref": "F"
-  },
-  {
     "code": "0359",
     "coords": [
       42.71417,
@@ -4941,28 +4915,6 @@
     "coords": [
       42.7195,
       23.30996
-    ],
-    "names": {
-      "bg": "кв. Триъгълника",
-      "en": "Triagalnika"
-    }
-  },
-  {
-    "code": "1778",
-    "coords": [
-      42.71952,
-      23.30915
-    ],
-    "names": {
-      "bg": "кв. Триъгълника",
-      "en": "Triagalnika"
-    }
-  },
-  {
-    "code": "1777",
-    "coords": [
-      42.71967,
-      23.30923
     ],
     "names": {
       "bg": "кв. Триъгълника",
@@ -27970,30 +27922,6 @@
     }
   },
   {
-    "code": "2477",
-    "coords": [
-      42.72173,
-      23.30762
-    ],
-    "names": {
-      "bg": "метростанция Хан Кубрат",
-      "en": "Han Kubrat metro station"
-    },
-    "local_ref": "2",
-    "metro_ref": "C"
-  },
-  {
-    "code": "2663",
-    "coords": [
-      42.72196,
-      23.30724
-    ],
-    "names": {
-      "bg": "Метростанция Хан Кубрат",
-      "en": "Han Kubrat Metro Station"
-    }
-  },
-  {
     "code": "1838",
     "coords": [
       42.73317,
@@ -28758,17 +28686,6 @@
     "names": {
       "bg": "ул. Ген. Йосиф Гурко",
       "en": "General Yodis Gurko St"
-    }
-  },
-  {
-    "code": "0375",
-    "coords": [
-      42.72678,
-      23.31314
-    ],
-    "names": {
-      "bg": "Модна къща Агресия",
-      "en": "Fashion House Agresia"
     }
   },
   {
@@ -31408,39 +31325,6 @@
     },
     "local_ref": "1",
     "metro_ref": "B"
-  },
-  {
-    "code": "0374",
-    "coords": [
-      42.72671,
-      23.31341
-    ],
-    "names": {
-      "bg": "Модна къща Агресия",
-      "en": "Fashion House Agresia"
-    }
-  },
-  {
-    "code": "0477",
-    "coords": [
-      42.72645,
-      23.31536
-    ],
-    "names": {
-      "bg": "гара София Север",
-      "en": "Sofa Sever Train Station"
-    }
-  },
-  {
-    "code": "0476",
-    "coords": [
-      42.72685,
-      23.31499
-    ],
-    "names": {
-      "bg": "гара София Север",
-      "en": "Sofa Sever Train Station"
-    }
   },
   {
     "code": "6719",
