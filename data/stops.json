@@ -5379,7 +5379,7 @@
     ],
     "names": {
       "bg": "кв. Илиянци",
-      "en": "kv. Iliyantsi"
+      "en": "Iliyantsi"
     }
   },
   {
@@ -5390,7 +5390,7 @@
     ],
     "names": {
       "bg": "кв. Илиянци",
-      "en": "kv. Iliyantsi"
+      "en": "Iliyantsi"
     }
   },
   {
@@ -5401,7 +5401,7 @@
     ],
     "names": {
       "bg": "ул. Кирил Благоев",
-      "en": "ul. Kiril Blagoev"
+      "en": "Kiril Blagoev Str"
     }
   },
   {
@@ -18970,7 +18970,7 @@
     ],
     "names": {
       "bg": "бул. Рожен",
-      "en": "bul. Rozhen"
+      "en": "Rozhen Blvd"
     }
   },
   {
@@ -18981,7 +18981,7 @@
     ],
     "names": {
       "bg": "бул. Рожен",
-      "en": "bul. Rozhen"
+      "en": "Rozhen Blvd"
     }
   },
   {
@@ -28105,7 +28105,7 @@
     ],
     "names": {
       "bg": "ЗАГ Динамик АД",
-      "en": "Sopharma AD"
+      "en": "ZAG Dinamik AD"
     }
   },
   {
@@ -28116,7 +28116,7 @@
     ],
     "names": {
       "bg": "ЗАГ Динамик АД",
-      "en": "Sopharma AD"
+      "en": "ZAG Dinamik AD"
     }
   },
   {
@@ -28182,7 +28182,7 @@
     ],
     "names": {
       "bg": "ул. Кирил Благоев",
-      "en": "ul. Kiril Blagoev"
+      "en": "Kiril Blagoev Str"
     }
   },
   {
@@ -28816,6 +28816,28 @@
     "names": {
       "bg": "Овча купел",
       "en": "Ovcha kupel"
+    }
+  },
+  {
+    "code": "M306",
+    "coords": [
+      42.69706,
+      23.34682
+    ],
+    "names": {
+      "bg": "Театрална",
+      "en": "Teatralna"
+    }
+  },
+  {
+    "code": "M305",
+    "coords": [
+      42.70255,
+      23.35226
+    ],
+    "names": {
+      "bg": "Хаджи Димитър",
+      "en": "Hadzhi Dimitar"
     }
   },
   {
