@@ -1,32 +1,5 @@
 [
   {
-    "cgm_id": "A217",
-    "route_ref": "304",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "M1",
-    "route_ref": "M1",
-    "type": "metro",
-    "text_color": "FFFFFF",
-    "bg_color": "EB2227"
-  },
-  {
-    "cgm_id": "A40",
-    "route_ref": "20",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TM58",
-    "route_ref": "13",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "TM28",
-    "route_ref": "3",
-    "type": "tram"
-  },
-  {
     "cgm_id": "A274",
     "route_ref": "806",
     "type": "bus"
@@ -42,18 +15,8 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A268",
-    "route_ref": "180",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TB46",
-    "route_ref": "186",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A105",
-    "route_ref": "59",
+    "cgm_id": "A26",
+    "route_ref": "108",
     "type": "bus"
   },
   {
@@ -62,18 +25,8 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A253",
-    "route_ref": "802",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A26",
-    "route_ref": "108",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A56",
-    "route_ref": "86",
+    "cgm_id": "A268",
+    "route_ref": "180",
     "type": "bus"
   },
   {
@@ -82,13 +35,70 @@
     "type": "bus"
   },
   {
+    "cgm_id": "M1",
+    "route_ref": "M1",
+    "type": "metro",
+    "text_color": "FFFFFF",
+    "bg_color": "EB2227"
+  },
+  {
+    "cgm_id": "TM58",
+    "route_ref": "13",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "TB46",
+    "route_ref": "186",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A217",
+    "route_ref": "304",
+    "type": "bus"
+  },
+  {
     "cgm_id": "TM29",
     "route_ref": "11",
     "type": "tram"
   },
   {
+    "cgm_id": "A105",
+    "route_ref": "59",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A56",
+    "route_ref": "86",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A253",
+    "route_ref": "802",
+    "type": "bus"
+  },
+  {
     "cgm_id": "A32",
     "route_ref": "100",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A40",
+    "route_ref": "20",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TM30",
+    "route_ref": "7",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "TM28",
+    "route_ref": "3",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "A1",
+    "route_ref": "72",
     "type": "bus"
   },
   {
@@ -97,8 +107,8 @@
     "type": "bus"
   },
   {
-    "cgm_id": "TM40",
-    "route_ref": "15",
+    "cgm_id": "TM24",
+    "route_ref": "10",
     "type": "tram"
   },
   {
@@ -122,28 +132,8 @@
     "type": "bus"
   },
   {
-    "cgm_id": "TM24",
-    "route_ref": "10",
-    "type": "tram"
-  },
-  {
     "cgm_id": "TB36",
     "route_ref": "74",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A226",
-    "route_ref": "N3",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A35",
-    "route_ref": "118",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A44",
-    "route_ref": "101",
     "type": "bus"
   },
   {
@@ -152,13 +142,23 @@
     "type": "trolley"
   },
   {
-    "cgm_id": "A50",
-    "route_ref": "29",
+    "cgm_id": "A44",
+    "route_ref": "101",
     "type": "bus"
   },
   {
-    "cgm_id": "A54",
-    "route_ref": "82",
+    "cgm_id": "TB2",
+    "route_ref": "11",
+    "type": "trolley"
+  },
+  {
+    "cgm_id": "A35",
+    "route_ref": "118",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A195",
+    "route_ref": "49",
     "type": "bus"
   },
   {
@@ -172,23 +172,18 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A63",
-    "route_ref": "66",
+    "cgm_id": "A267",
+    "route_ref": "182",
     "type": "bus"
   },
   {
-    "cgm_id": "TB2",
-    "route_ref": "11",
-    "type": "trolley"
+    "cgm_id": "A226",
+    "route_ref": "N3",
+    "type": "bus"
   },
   {
     "cgm_id": "A2",
     "route_ref": "9",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A267",
-    "route_ref": "182",
     "type": "bus"
   },
   {
@@ -197,65 +192,23 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A195",
-    "route_ref": "49",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TM50",
-    "route_ref": "23",
+    "cgm_id": "TM40",
+    "route_ref": "15",
     "type": "tram"
   },
   {
-    "cgm_id": "TB43",
-    "route_ref": "288",
+    "cgm_id": "A54",
+    "route_ref": "82",
     "type": "bus"
   },
   {
-    "cgm_id": "M3",
-    "route_ref": "M3",
-    "type": "metro",
-    "text_color": "FFFFFF",
-    "bg_color": "39B54A"
-  },
-  {
-    "cgm_id": "TM33",
-    "route_ref": "12",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "A262",
-    "route_ref": "46",
+    "cgm_id": "A50",
+    "route_ref": "29",
     "type": "bus"
   },
   {
-    "cgm_id": "A28",
-    "route_ref": "98",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A99",
-    "route_ref": "84",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A252",
-    "route_ref": "X9",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A108",
-    "route_ref": "260",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A106",
-    "route_ref": "68",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TB39",
-    "route_ref": "73",
+    "cgm_id": "A63",
+    "route_ref": "66",
     "type": "bus"
   },
   {
@@ -264,18 +217,8 @@
     "type": "bus"
   },
   {
-    "cgm_id": "TB3",
-    "route_ref": "5",
-    "type": "trolley"
-  },
-  {
-    "cgm_id": "TM27",
-    "route_ref": "1",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "A201",
-    "route_ref": "285",
+    "cgm_id": "A28",
+    "route_ref": "98",
     "type": "bus"
   },
   {
@@ -289,9 +232,11 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A190",
-    "route_ref": "1ТБ",
-    "type": "bus"
+    "cgm_id": "M3",
+    "route_ref": "M3",
+    "type": "metro",
+    "text_color": "FFFFFF",
+    "bg_color": "39B54A"
   },
   {
     "cgm_id": "TM34",
@@ -299,8 +244,53 @@
     "type": "tram"
   },
   {
-    "cgm_id": "A37",
-    "route_ref": "120",
+    "cgm_id": "A252",
+    "route_ref": "X9",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A262",
+    "route_ref": "46",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TM50",
+    "route_ref": "23",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "TB43",
+    "route_ref": "288",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TM27",
+    "route_ref": "1",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "TB3",
+    "route_ref": "5",
+    "type": "trolley"
+  },
+  {
+    "cgm_id": "A108",
+    "route_ref": "260",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A201",
+    "route_ref": "285",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TB39",
+    "route_ref": "73",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A106",
+    "route_ref": "68",
     "type": "bus"
   },
   {
@@ -309,23 +299,33 @@
     "type": "trolley"
   },
   {
-    "cgm_id": "A1",
-    "route_ref": "72",
+    "cgm_id": "A190",
+    "route_ref": "1ТБ",
     "type": "bus"
   },
   {
-    "cgm_id": "A6",
-    "route_ref": "64",
+    "cgm_id": "A99",
+    "route_ref": "84",
     "type": "bus"
   },
   {
-    "cgm_id": "A8",
-    "route_ref": "77",
+    "cgm_id": "TM33",
+    "route_ref": "12",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "A37",
+    "route_ref": "120",
     "type": "bus"
   },
   {
-    "cgm_id": "A27",
-    "route_ref": "81",
+    "cgm_id": "A57",
+    "route_ref": "94",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A82",
+    "route_ref": "88",
     "type": "bus"
   },
   {
@@ -334,23 +334,30 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A31",
-    "route_ref": "44",
-    "type": "bus"
-  },
-  {
     "cgm_id": "A79",
     "route_ref": "70",
     "type": "bus"
   },
   {
-    "cgm_id": "A9",
-    "route_ref": "83",
+    "cgm_id": "A167",
+    "route_ref": "294",
     "type": "bus"
   },
   {
-    "cgm_id": "A3",
-    "route_ref": "111",
+    "cgm_id": "M4",
+    "route_ref": "M4",
+    "type": "metro",
+    "text_color": "000000",
+    "bg_color": "FFDE17"
+  },
+  {
+    "cgm_id": "A27",
+    "route_ref": "81",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A8",
+    "route_ref": "77",
     "type": "bus"
   },
   {
@@ -364,23 +371,13 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A167",
-    "route_ref": "294",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TM30",
-    "route_ref": "7",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "A200",
-    "route_ref": "314",
-    "type": "bus"
-  },
-  {
     "cgm_id": "A65",
     "route_ref": "103",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A31",
+    "route_ref": "44",
     "type": "bus"
   },
   {
@@ -389,20 +386,28 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A234",
-    "route_ref": "185",
+    "cgm_id": "A3",
+    "route_ref": "111",
     "type": "bus"
   },
   {
-    "cgm_id": "M4",
-    "route_ref": "M4",
-    "type": "metro",
-    "text_color": "000000",
-    "bg_color": "FFDE17"
+    "cgm_id": "A6",
+    "route_ref": "64",
+    "type": "bus"
   },
   {
-    "cgm_id": "A82",
-    "route_ref": "88",
+    "cgm_id": "A200",
+    "route_ref": "314",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A9",
+    "route_ref": "83",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A234",
+    "route_ref": "185",
     "type": "bus"
   },
   {
@@ -411,14 +416,9 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A57",
-    "route_ref": "94",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A193",
-    "route_ref": "47",
-    "type": "bus"
+    "cgm_id": "TB6",
+    "route_ref": "6",
+    "type": "trolley"
   },
   {
     "cgm_id": "TM56",
@@ -426,16 +426,14 @@
     "type": "tram"
   },
   {
-    "cgm_id": "TB8",
-    "route_ref": "9",
-    "type": "trolley"
+    "cgm_id": "TM25",
+    "route_ref": "5",
+    "type": "tram"
   },
   {
-    "cgm_id": "M2",
-    "route_ref": "M2",
-    "type": "metro",
-    "text_color": "FFFFFF",
-    "bg_color": "1C75BC"
+    "cgm_id": "A49",
+    "route_ref": "28",
+    "type": "bus"
   },
   {
     "cgm_id": "A61",
@@ -453,14 +451,16 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A41",
-    "route_ref": "18",
-    "type": "bus"
-  },
-  {
     "cgm_id": "A255",
     "route_ref": "804",
     "type": "bus"
+  },
+  {
+    "cgm_id": "M2",
+    "route_ref": "M2",
+    "type": "metro",
+    "text_color": "FFFFFF",
+    "bg_color": "1C75BC"
   },
   {
     "cgm_id": "A4",
@@ -473,8 +473,23 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A29",
-    "route_ref": "107",
+    "cgm_id": "A41",
+    "route_ref": "18",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A22",
+    "route_ref": "56",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TB8",
+    "route_ref": "9",
+    "type": "trolley"
+  },
+  {
+    "cgm_id": "A193",
+    "route_ref": "47",
     "type": "bus"
   },
   {
@@ -488,29 +503,19 @@
     "type": "bus"
   },
   {
+    "cgm_id": "A270",
+    "route_ref": "183",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A29",
+    "route_ref": "107",
+    "type": "bus"
+  },
+  {
     "cgm_id": "TB32",
     "route_ref": "3",
     "type": "trolley"
-  },
-  {
-    "cgm_id": "A22",
-    "route_ref": "56",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A49",
-    "route_ref": "28",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TB6",
-    "route_ref": "6",
-    "type": "trolley"
-  },
-  {
-    "cgm_id": "TM25",
-    "route_ref": "5",
-    "type": "tram"
   },
   {
     "cgm_id": "A225",
@@ -523,68 +528,8 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A270",
-    "route_ref": "183",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TB7",
-    "route_ref": "7",
-    "type": "trolley"
-  },
-  {
     "cgm_id": "A80",
     "route_ref": "75",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A103",
-    "route_ref": "150",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A55",
-    "route_ref": "85",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A168",
-    "route_ref": "7ТМ",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A58",
-    "route_ref": "280",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A53",
-    "route_ref": "79",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TM51",
-    "route_ref": "4",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "A48",
-    "route_ref": "26",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TM32",
-    "route_ref": "6",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "TB24",
-    "route_ref": "123",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A38",
-    "route_ref": "12",
     "type": "bus"
   },
   {
@@ -593,13 +538,18 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A77",
-    "route_ref": "67",
-    "type": "bus"
+    "cgm_id": "TM20",
+    "route_ref": "20",
+    "type": "tram"
   },
   {
-    "cgm_id": "A272",
-    "route_ref": "188",
+    "cgm_id": "TM32",
+    "route_ref": "6",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "A58",
+    "route_ref": "280",
     "type": "bus"
   },
   {
@@ -608,18 +558,63 @@
     "type": "trolley"
   },
   {
-    "cgm_id": "A36",
-    "route_ref": "119",
+    "cgm_id": "A12",
+    "route_ref": "102",
     "type": "bus"
   },
   {
-    "cgm_id": "TM20",
-    "route_ref": "20",
+    "cgm_id": "A48",
+    "route_ref": "26",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A55",
+    "route_ref": "85",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TM51",
+    "route_ref": "4",
     "type": "tram"
   },
   {
-    "cgm_id": "A12",
-    "route_ref": "102",
+    "cgm_id": "TB24",
+    "route_ref": "123",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A272",
+    "route_ref": "188",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A103",
+    "route_ref": "150",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A77",
+    "route_ref": "67",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A38",
+    "route_ref": "12",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A53",
+    "route_ref": "79",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TB7",
+    "route_ref": "7",
+    "type": "trolley"
+  },
+  {
+    "cgm_id": "A36",
+    "route_ref": "119",
     "type": "bus"
   },
   {
@@ -633,6 +628,26 @@
     "type": "tram"
   },
   {
+    "cgm_id": "A81",
+    "route_ref": "76",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "TM22",
+    "route_ref": "22",
+    "type": "tram"
+  },
+  {
+    "cgm_id": "A75",
+    "route_ref": "10",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A251",
+    "route_ref": "X10",
+    "type": "bus"
+  },
+  {
     "cgm_id": "A254",
     "route_ref": "803",
     "type": "bus"
@@ -643,13 +658,8 @@
     "type": "tram"
   },
   {
-    "cgm_id": "TM22",
-    "route_ref": "22",
-    "type": "tram"
-  },
-  {
-    "cgm_id": "A109",
-    "route_ref": "30",
+    "cgm_id": "A46",
+    "route_ref": "24",
     "type": "bus"
   },
   {
@@ -658,38 +668,18 @@
     "type": "trolley"
   },
   {
+    "cgm_id": "TB41",
+    "route_ref": "801",
+    "type": "bus"
+  },
+  {
     "cgm_id": "A259",
     "route_ref": "X43",
     "type": "bus"
   },
   {
-    "cgm_id": "A251",
-    "route_ref": "X10",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A224",
-    "route_ref": "N1",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A81",
-    "route_ref": "76",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A75",
-    "route_ref": "10",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "A59",
-    "route_ref": "309",
-    "type": "bus"
-  },
-  {
-    "cgm_id": "TB41",
-    "route_ref": "801",
+    "cgm_id": "A109",
+    "route_ref": "30",
     "type": "bus"
   },
   {
@@ -698,8 +688,13 @@
     "type": "bus"
   },
   {
-    "cgm_id": "A46",
-    "route_ref": "24",
+    "cgm_id": "A59",
+    "route_ref": "309",
+    "type": "bus"
+  },
+  {
+    "cgm_id": "A224",
+    "route_ref": "N1",
     "type": "bus"
   }
 ]
