@@ -16,12 +16,14 @@ const schedule_div = document.querySelector('#schedules');
 const schedule_display_div = document.querySelector('#schedule_display');
 const line_selector_div = document.querySelector('#line_selector');
 const stop_schedule_div = document.querySelector('#stop_schedule');
+const quick_access_div = document.querySelector('#quick_access');
 
 export const divs = {
 	schedule_div,
 	schedule_display_div,
 	line_selector_div,
-	stop_schedule_div
+	stop_schedule_div,
+	quick_access_div
 };
 
 const allowed_languages = ['bg'];

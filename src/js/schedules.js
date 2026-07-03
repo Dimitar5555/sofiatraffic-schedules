@@ -187,9 +187,12 @@ function generate_stop_card(stop, is_favorite) {
 		class: 'bi bi-star'+(is_favorite ? '-fill' : ''),
 		'data-star': 'stop',
 		'data-style': is_favorite ? 'fill' : 'none',
-		'onmouseover': "toggle_star(this, 'over')",
-		'onmouseout': "toggle_star(this, 'out')",
-		'onclick': `toggle_favourite_stop("${stop.code}");filter_stops();`,
+		'onmouseover': (e) => toggle_star(e.target, 'over'),
+		'onmouseout': (e) => toggle_star(e.target, 'out'),
+		'onclick': (e) => {
+			toggle_favourite_stop("${stop.code}");
+			filter_stops();
+		}
 	});
 	header.appendChild(star);
 	card.appendChild(header);
@@ -733,9 +736,9 @@ export function update_globals(new_globals=false) {
 		else {
 			try {
 				current.trip = data.trips.find(trip => 
-					trip.route_index==current.route.index 
-					&& trip.direction==document.querySelector('#direction').value 
-					&& trip.is_weekend==document.querySelector('[name=stop_schedule_type]:checked').value
+					trip.cgm_id === current.route.cgm_id 
+					&& trip.direction === document.querySelector('#direction').value 
+					&& trip.is_weekend === document.querySelector('[name=stop_schedule_type]:checked').value
 				);
 			}
 			catch {
@@ -749,7 +752,7 @@ export function update_globals(new_globals=false) {
 		// 	current.direction = data.directions.find(dir => dir.code==new_globals.direction);
 		// }
 		// else{
-			current.direction = data.directions.find(dir => dir.code==current.trip.direction);
+			current.direction = data.directions.find(dir => dir.code === current.trip.direction);
 		// }
 		if(new_globals.stop_code) {
 			const code = new_globals.stop_code;
@@ -828,10 +831,13 @@ function show_stop_schedule(stop_code, type) {
 	const should_enable_virtual_board = is_metro_stop(stop_code) && !enable_virtual_boards_for_subway_stations || !enable_virtual_boards;
 	virtual_board_btn.disabled = should_enable_virtual_board;
 
+	const quick_access_clone = document.querySelector('#quick_access');
+	quick_access_clone.innerHTML = '';
 	divs.stop_schedule_div.querySelector('#stop_name').innerText = get_stop_string(stop_code, true);
 	const relevant_directions = data.directions.filter(dir => dir.stops.includes(stop_code));
 	const direction_codes = relevant_directions.map(dir => dir.code);
-	const local_routes = data.routes.filter(route => route.direction_codes.some(dir_code => direction_codes.includes(dir_code)))
+	const local_routes = data.routes
+	.filter(route => route.direction_codes.some(dir_code => direction_codes.includes(dir_code)))
 	.map(route => {
 		const result = {};
 		result.type = route.type;
@@ -842,7 +848,7 @@ function show_stop_schedule(stop_code, type) {
 		result.route_ref = route.route_ref;
 		const direction_code = route.direction_codes.find(dir_code => direction_codes.includes(dir_code));
 		result.stops = data.directions.find(dir => dir.code === direction_code).stops;
-		result.trip_ids = data.trips.filter(trip => trip.direction == direction_code && trip.cgm_id === route.cgm_id).map(trip => trip.id);
+		result.trip_ids = data.trips.filter(trip => trip.direction == direction_code && trip.cgm_id === route.cgm_id && trip.is_weekend === is_weekend(type)).map(trip => trip.id);
 		result.stop_times = data.stop_times.filter(stop_time => result.trip_ids.includes(stop_time.trip));
 		return result;
 	})
@@ -851,26 +857,33 @@ function show_stop_schedule(stop_code, type) {
 	console.log(local_routes);
 	
 	const new_stop_schedule_div = divs.stop_schedule_div.querySelector('#stop_schedule_tables').cloneNode();
-	local_routes.forEach(route => {
-		route.trip_ids.forEach(trip_id => {
+	for(const route of local_routes) {
+		for(const trip_id of route.trip_ids) {
 			const trip = data.trips.find(trip => trip.id === trip_id);
 			const div = html_comp('div');
 			const header_div = html_comp('div', {class: 'mt-4 mb-2'});
 			header_div.appendChild(html_comp('span', {text: `${lang['line_type.'+route.type]} ${route.route_ref}`, class: get_route_colour_classes(route)}));
 			header_div.appendChild(document.createTextNode(' '));
 			header_div.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops, true)}`}));
+			{
+				const anchor = html_comp('a', {onclick: (e) => {e.preventDefault(); document.scrollingElement.scrollTo(0, header_div.offsetTop); }, class: 'lh-lg text-reset text-decoration-none'});
+				anchor.appendChild(html_comp('span', {text: `${lang['line_type.'+route.type]} ${route.route_ref}`, class: get_route_colour_classes(route, undefined, true)}));
+				anchor.appendChild(document.createTextNode(' '));
+				anchor.appendChild(html_comp('span', {text: `${generate_from_to_text(route.stops, true)}`}));
+				quick_access_clone.appendChild(anchor);
+			}
 			div.appendChild(header_div);
-			div.dataset.is_weekend = trip.is_weekend;
 			const table = html_comp('table');
 			table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip', 'text-center');
 			const tbody = html_comp('tbody');
 			table.appendChild(tbody);
-			const stop_times = data.stop_times.filter(stop_time => stop_time.trip === trip_id);
+			const stop_times = route.stop_times.filter(stop_time => stop_time.trip === trip_id);
 			generate_stop_times_table(stop_times, route.stops.indexOf(stop_code), table);
 			div.appendChild(table);
 			new_stop_schedule_div.appendChild(div);
-		});
-	});
+		}
+	}
+	new_stop_schedule_div.appendChild(html_comp('span', {text: lang['schedules.combined_schedule'] })); 
 	generate_stop_times_table_combined(local_routes, stop_code, type, new_stop_schedule_div, data);
 	
 	divs.stop_schedule_div.querySelector('#stop_schedule_tables').replaceWith(new_stop_schedule_div);
@@ -881,18 +894,9 @@ function show_stop_schedule(stop_code, type) {
 		document.querySelector('[name=stop_schedule_type]').checked = true;
 		type = document.querySelector('[name=stop_schedule_type]:checked').value;
 	}
-	show_stop_schedule_by_type(type);
+	quick_access_clone.appendChild(html_comp('a', {text: lang['schedules.go_to_combined_schedule'], onclick: (e) => {e.preventDefault(); document.scrollingElement.scrollTo(0, Array.from(new_stop_schedule_div.children).at(-2).offsetTop);} }));
 }
-window.show_stop_schedule_by_type = function(type, update_url=false){
-	const requested_weekend = is_weekend(type);
-	divs.stop_schedule_div.querySelectorAll('div[data-is_weekend]').forEach(table => {
-		const table_is_weekend = is_weekend(table.dataset.is_weekend);
-		table.classList.toggle('d-none', table_is_weekend !== requested_weekend);
-	});
-	if(update_url) {
-		updateURL();
-	}
-}
+
 function preprocess_stop_times(stop_times, stop_index, by_cars=false){
 	return stop_times.map(stop_time => {
 		if(stop_time.times[stop_index] === null){
@@ -919,25 +923,38 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 	const processed_stop_times = preprocess_stop_times(stop_times, stop_index, by_cars);
 
 	const total_columns = by_cars?Math.max(...processed_stop_times.map(a => a.car)):24;
+
+	const th_elements = new Array(total_columns);
+	const td_elements = new Array(total_columns);
+	const cell_has_content = new Array(total_columns).fill(false);
+
 	for(let i = 0; i < total_columns; i++) {
 		const head_cell = html_comp('th', {text: by_cars?i+1:i});
 		tr_thead.appendChild(head_cell);
+		th_elements[i] = head_cell;
+
 		const body_cell = html_comp('td');
 		tr_tbody.appendChild(body_cell);
-		const cell_div = html_comp('div', {class: 'd-flex flex-row flex-lg-column'});
-		body_cell.appendChild(cell_div);
+		td_elements[i] = body_cell;
 	}
 
-	const body_cells = Array.from(tr_tbody.querySelectorAll('div'));
 	processed_stop_times.forEach(stop_time => {
 		if(stop_time.time === '' || stop_time.time === null){
 			return;
 		}
-		let el_class = 'mb-lg-2 me-2 me-lg-0';
 		let hour = Math.floor(stop_time.time/60);
 		if(hour>=24 && !by_cars){
 			hour -= 24;
 		}
+		
+		const target_index = by_cars ? stop_time.car - 1 : hour;
+
+		if (target_index < 0 || target_index >= total_columns) {
+			console.warn(`Stop time with index ${stop_time.index} has an invalid target index: ${target_index}. Skipping this stop time.`);
+			return;
+		}
+		
+		let el_class = 'mb-lg-2 me-2 me-lg-0';
 		if(stop_time.incomplete_course_start){
 			el_class += ' text-dark bg-warning';
 		}
@@ -950,32 +967,35 @@ function generate_stop_times_table(stop_times, stop_index, table, by_cars=false)
 			'data-bs-target': '#schedule_modal',
 			type: 'button',
 			'data-stop-time-index': stop_time.index,
-			onclick: 'display_trip_schedule(this.dataset.stopTimeIndex)',
+			onclick: (e) => display_trip_schedule(e.target.dataset.stopTimeIndex),
 			class: el_class
 		});
-		if(!by_cars) {
-			body_cells[hour].appendChild(el);
-		}
-		else {
-			body_cells[stop_time.car-1].appendChild(el);
-		}
+		td_elements[target_index].appendChild(el);
+		cell_has_content[target_index] = true;
 	});
+
     new_tbody.appendChild(tr_thead);
     new_tbody.appendChild(tr_tbody);
-	for(const [index, cell] of Object.entries(tr_tbody.children)) {
-		if(cell.children[0].children.length === 0) {
-			if(by_cars) {
-				tr_tbody.children.item(index).classList.add('d-none');
-				tr_thead.children.item(index).classList.add('d-none');
+
+	if(by_cars) {
+		for(const [index, cell] of Object.entries(tr_tbody.children)) {
+			if(!cell_has_content[index]) {
+				td_elements[index].classList.add('d-none');
+				th_elements[index].classList.add('d-none');
 			}
 		}
 	}
-	table.querySelector('tbody').replaceWith(new_tbody);
+	
+	const existing_tbody = table.querySelector('tbody');
+	if(existing_tbody) {
+		existing_tbody.replaceWith(new_tbody);
+	}
+	else {
+		table.appendChild(new_tbody);
+	}
 }
 
 function generate_stop_times_table_combined(routes, stop_code, type, div, data) {
-	return;
-	console.log('generating combined table', routes, stop_code, type);
 	const new_tbody = html_comp('tbody');
     const tr_thead = html_comp('tr');
     const tr_tbody = html_comp('tr');
@@ -983,20 +1003,19 @@ function generate_stop_times_table_combined(routes, stop_code, type, div, data) 
 	const hours = Array.from({length: 24}, () => []);
 	console.log(data.trips)
 	for(const route of routes) {
-		for(const trip_index of route.trip_indexes) {
+		for(const trip_id of route.trip_ids) {
+			const trip_index = data.trips.findIndex(trip => trip.id === trip_id);
 			if(data.trips[trip_index].is_weekend != is_weekend(type)) {
 				continue;
 			}
 			const stop_index = route.stops.indexOf(stop_code);
-			const relevant_times = preprocess_stop_times(data.stop_times.filter(st => st.trip == trip_index), stop_index, false);
+			const relevant_times = preprocess_stop_times(route.stop_times.filter(st => st.trip == trip_id), stop_index, false);
 			for(const time of relevant_times) {
 				let hour = Math.floor(time.time/60);
 				if(hour >= 24) {
 					hour -= 24;
 				}
-				time.type = route.type;
-				time.route_ref = route.route_ref;
-				time.route_index = route.route_index;
+				time.route = route;
 				hours[hour].push(time);
 			}
 		}
@@ -1006,20 +1025,24 @@ function generate_stop_times_table_combined(routes, stop_code, type, div, data) 
 	});
 
 	//generate table
-	const table = html_comp('table');
-	table.classList.add('schedule_table', 'table', 'table-bordered', 'table-striped-columns', 'table-flip');
-	table.appendChild(new_tbody);
-	div.appendChild(table);
+	const table = html_comp('table', {style: 'max-width: 100%; overflow-x: auto;'});
+	table.classList.add('table', 'table-bordered', 'table-striped', 'text-center', 'd-block');
 	
 
-	const header_row = html_comp('tr');
+	const no_departures_el = html_comp('span', {text: '\n'});
 	for(let i=0;i<24;i++){
-		const head_cell = html_comp('th', {text: i});
-		header_row.appendChild(head_cell);
-		const body_cell = html_comp('td');
-		tr_tbody.appendChild(body_cell);
-		const cell_div = html_comp('div', {class: 'd-flex flex-row flex-lg-column'});
-		body_cell.appendChild(cell_div);
+		const first_row = html_comp('tr');
+		const second_row = html_comp('tr');
+		const head_cell = html_comp('th', {text: i, rowspan: 2, class: 'align-middle sticky-left'});
+
+		const times_cell = html_comp('td', {class: 'd-flex flex-row'});
+
+		const lines_cell = html_comp('td', {class: 'd-flex flex-row'});
+
+		if(hours[i].length === 0) {
+			times_cell.appendChild(no_departures_el.cloneNode());
+			lines_cell.appendChild(no_departures_el.cloneNode());
+		}
 
 		for(const stop_time of hours[i]) {
 			if(stop_time.time === '' || stop_time.time === null){
@@ -1032,29 +1055,33 @@ function generate_stop_times_table_combined(routes, stop_code, type, div, data) 
 			else if(stop_time.incomplete_course_final){
 				el_class += 'text-white bg-danger';
 			}
-			const parent_span = html_comp('span', {class: 'mb-lg-2 me-2 me-lg-0'});
-			const line_el = html_comp('span', {
-				text: stop_time.route_ref,
-				class: `me-1 ${get_route_colour_classes({line: stop_time.route_ref, type: stop_time.type})}`
-			});
 			const time_el = html_comp('span', {
-				text: `${format_time(stop_time.time%60, true)}-${stop_time.route_ref}`,
+				text: `${format_time(stop_time.time%60, true)} `,
 				'data-bs-toggle': 'modal',
 				'data-bs-target': '#schedule_modal',
 				type: 'button',
 				'data-stop-time-index': stop_time.index,
-				onclick: 'display_trip_schedule(this.dataset.stopTimeIndex)',
-				class: el_class
+				onclick: (e) => display_trip_schedule(e.target.dataset.stopTimeIndex),
+				class: el_class + ' text-center me-1',
+				style: 'width: 4ch; border: 2px transparent solid;',
 			});
-			parent_span.appendChild(time_el);
-			// parent_span.appendChild(line_el);
-
-			cell_div.appendChild(parent_span);
+			const line_el = html_comp('span', {
+				text: stop_time.route.route_ref,
+				class: `${get_route_colour_classes(stop_time.route, false, true)} text-center me-1`,
+				style: 'width: 4ch'
+			});
+			times_cell.appendChild(time_el);
+			lines_cell.appendChild(line_el);
 		}
+		first_row.appendChild(head_cell);
+		first_row.appendChild(times_cell);
+		second_row.appendChild(lines_cell);
+
+		new_tbody.appendChild(first_row);
+		new_tbody.appendChild(second_row);
 	}
-	header_row.appendChild(tr_thead);
-	new_tbody.appendChild(header_row);
-	new_tbody.appendChild(tr_tbody);	
+	table.appendChild(new_tbody);
+	div.appendChild(table);
 }
 
 window.load_virtual_board = async function(stop_code) {

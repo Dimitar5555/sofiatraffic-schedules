@@ -61,11 +61,14 @@
 // by David Bushell
 */
 
-@media screen and (max-width:992px){
-	td > span:nth-child(even) {
-		margin-left: 3px;
-		margin-right: 3px;
+@media screen and (min-width: 992px) {
+	.table-flip > tbody > tr > td > span::after {
+		content: '\A';
+		white-space: pre;
 	}
+}
+
+@media screen and (max-width:992px){
 	td {
 		font-variant-numeric: tabular-nums;
 	}
@@ -218,4 +221,9 @@ html, body {
 
 main {
     flex: 1;
+}
+
+.sticky-left {
+	position: sticky;
+	left: 0;
 }

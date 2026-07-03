@@ -237,11 +237,9 @@
 						<div class="row my-2">
 							<div class="col col-4 col-md-3" data-i18n="schedules.schedule"></div>
 							<div class="col col-8 col-md-4">
-								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value, true)" type="radio" name="stop_schedule_type" value="0" id="stop_schedule_type_weekdays" checked>
+								<input class="form-check-input" onchange="updateURL()" type="radio" name="stop_schedule_type" value="0" id="stop_schedule_type_weekdays" checked>
 								<label data-i18n="weekdays.weekday" for="stop_schedule_type_weekdays"></label>
-								<!-- <input class="form-check-input" onchange="show_stop_schedule_by_type(this.value)" type="radio" name="stop_schedule_type" value="010" id="stop_schedule_type_pre_holiday"> -->
-								<!-- <label data-i18n="weekdays.pre_holiday" for="stop_schedule_type_pre_holiday"></label> -->
-								<input class="form-check-input" onchange="show_stop_schedule_by_type(this.value, true)" type="radio" name="stop_schedule_type" value="1" id="stop_schedule_type_weekend">
+								<input class="form-check-input" onchange="updateURL()" type="radio" name="stop_schedule_type" value="1" id="stop_schedule_type_weekend">
 								<label data-i18n="weekdays.weekend" for="stop_schedule_type_weekend"></label>
 								
 							</div>
@@ -262,6 +260,12 @@
 							<div class="col col-4 col-md-3"></div>
 							<div class="col col-8 col-md-4">
 								<button data-bs-toggle="modal" data-bs-target="#sofiatraffic_live_data" onclick="load_virtual_board(current.stop_code)" class="btn btn-outline-primary text-nowrap"><i class="bi bi-clock"></i> <span data-i18n="actions.virtual_board"></span></button>
+							</div>
+						</div>
+						<div class="row my-2">
+							<div class="col col-4 col-md-3" data-i18n="schedules.quick_access"></div>
+							<div class="col col-8 col-md-6">
+								<div id="quick_access" class="d-flex flex-column"></div>
 							</div>
 						</div>
 					</div>
