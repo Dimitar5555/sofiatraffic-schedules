@@ -62,9 +62,8 @@
 */
 
 @media screen and (min-width: 992px) {
-	.table-flip > tbody > tr > td > span::after {
-		content: '\A';
-		white-space: pre;
+	.table-flip > tbody > tr > td > span {
+		display: block;
 	}
 }
 
