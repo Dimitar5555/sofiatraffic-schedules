@@ -410,19 +410,6 @@
     }
   },
   {
-    "code": "1058",
-    "coords": [
-      42.69966,
-      23.31259
-    ],
-    "names": {
-      "bg": "метростанция Опълченска",
-      "en": "Opalchenska metro station"
-    },
-    "local_ref": "3",
-    "metro_ref": "G"
-  },
-  {
     "code": "1274",
     "coords": [
       42.6815,
@@ -4588,17 +4575,6 @@
     }
   },
   {
-    "code": "0379",
-    "coords": [
-      42.70041,
-      23.31782
-    ],
-    "names": {
-      "bg": "Женски пазар",
-      "en": "Woman's Marketplace"
-    }
-  },
-  {
     "code": "0378",
     "coords": [
       42.70068,
@@ -4651,17 +4627,6 @@
     "names": {
       "bg": "бул. Сливница",
       "en": "Slivnitsa Blvd"
-    }
-  },
-  {
-    "code": "0383",
-    "coords": [
-      42.70016,
-      23.3164
-    ],
-    "names": {
-      "bg": "бул. Христо Ботев",
-      "en": "Hristo Botev Blvd"
     }
   },
   {
@@ -4837,56 +4802,6 @@
       "bg": "ул. Клокотница",
       "en": "Klokotnitsa Str"
     }
-  },
-  {
-    "code": "1074",
-    "coords": [
-      42.69856,
-      23.32683
-    ],
-    "names": {
-      "bg": "Младежки театър",
-      "en": "Mladezhki theatre"
-    },
-    "metro_ref": "F"
-  },
-  {
-    "code": "2334",
-    "coords": [
-      42.69989,
-      23.32373
-    ],
-    "names": {
-      "bg": "Централни хали",
-      "en": "Central Market Hall"
-    },
-    "local_ref": "3",
-    "metro_ref": "D"
-  },
-  {
-    "code": "1073",
-    "coords": [
-      42.69822,
-      23.32589
-    ],
-    "names": {
-      "bg": "Младежки театър",
-      "en": "Mladezhki theatre"
-    },
-    "metro_ref": "E"
-  },
-  {
-    "code": "2335",
-    "coords": [
-      42.69992,
-      23.32374
-    ],
-    "names": {
-      "bg": "Централни хали",
-      "en": "Central Market Hall"
-    },
-    "local_ref": "2",
-    "metro_ref": "C"
   },
   {
     "code": "1115",
@@ -5154,17 +5069,6 @@
     "names": {
       "bg": "ул. Нишава",
       "en": "Nishava Str"
-    }
-  },
-  {
-    "code": "0633",
-    "coords": [
-      42.69113,
-      23.27917
-    ],
-    "names": {
-      "bg": "ж.к. Красна поляна",
-      "en": "Krasna polyana"
     }
   },
   {
@@ -27392,18 +27296,6 @@
     }
   },
   {
-    "code": "1928",
-    "coords": [
-      42.70272,
-      23.30149
-    ],
-    "names": {
-      "bg": "пазар Димитър Петков",
-      "en": "Dimitar Petkov market"
-    },
-    "metro_ref": "F"
-  },
-  {
     "code": "1927",
     "coords": [
       42.7028,
@@ -27603,17 +27495,6 @@
     }
   },
   {
-    "code": "2078",
-    "coords": [
-      42.70212,
-      23.30506
-    ],
-    "names": {
-      "bg": "ул. Одрин",
-      "en": "Odrin Str"
-    }
-  },
-  {
     "code": "2077",
     "coords": [
       42.70217,
@@ -27623,19 +27504,6 @@
       "bg": "ул. Одрин",
       "en": "Odrin Str"
     }
-  },
-  {
-    "code": "2083",
-    "coords": [
-      42.70116,
-      23.3107
-    ],
-    "names": {
-      "bg": "храм Св. Николай Софийски",
-      "en": "Sveti Nikolay Sofiyski Church"
-    },
-    "local_ref": "2",
-    "metro_ref": "I"
   },
   {
     "code": "2086",
@@ -31908,6 +31776,17 @@
     }
   },
   {
+    "code": "6753",
+    "coords": [
+      42.70024,
+      23.32203
+    ],
+    "names": {
+      "bg": "ЦЕНТРАЛНИ ХАЛИ - ВРЕМЕННА",
+      "en": "TSENTRALNI HALI - VREMENNA"
+    }
+  },
+  {
     "code": "2444",
     "coords": [
       42.74109,
@@ -31930,6 +31809,39 @@
     }
   },
   {
+    "code": "6399",
+    "coords": [
+      42.70097,
+      23.30428
+    ],
+    "names": {
+      "bg": "УЛ. ОДРИН",
+      "en": "UL. ODRIN"
+    }
+  },
+  {
+    "code": "6831",
+    "coords": [
+      42.69672,
+      23.33701
+    ],
+    "names": {
+      "bg": "ПЛ. ВАСИЛ ЛЕВСКИ - ВРЕМЕННА",
+      "en": "PL. VASIL LEVSKI - VREMENNA"
+    }
+  },
+  {
+    "code": "6162",
+    "coords": [
+      42.70144,
+      23.30148
+    ],
+    "names": {
+      "bg": "УЛ. ПЕРНИК",
+      "en": "UL. PERNIK"
+    }
+  },
+  {
     "code": "6698",
     "coords": [
       42.73219,
@@ -31938,6 +31850,17 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
+    }
+  },
+  {
+    "code": "6497",
+    "coords": [
+      42.69777,
+      23.325
+    ],
+    "names": {
+      "bg": "ПЛОЩАД НЕЗАВИСИМОСТ - ВРЕМЕННА",
+      "en": "PLOSHTAD NEZAVISIMOST - VREMENNA"
     }
   },
   {
@@ -31971,6 +31894,50 @@
     "names": {
       "bg": "АВТОСТАНЦИЯ ГЕО МИЛЕВ",
       "en": "AVTOSTANTSIYA GEO MILEV"
+    }
+  },
+  {
+    "code": "6102",
+    "coords": [
+      42.6967,
+      23.33582
+    ],
+    "names": {
+      "bg": "ПЛ. ВАСИЛ ЛЕВСКИ - ВРЕМЕННА",
+      "en": "PL. VASIL LEVSKI - VREMENNA"
+    }
+  },
+  {
+    "code": "6103",
+    "coords": [
+      42.69665,
+      23.33615
+    ],
+    "names": {
+      "bg": "ПЛ. ВАСИЛ ЛЕВСКИ - ВРЕМЕННА",
+      "en": "PL. VASIL LEVSKI - VREMENNA"
+    }
+  },
+  {
+    "code": "6495",
+    "coords": [
+      42.69769,
+      23.32545
+    ],
+    "names": {
+      "bg": "ПЛОЩАД НЕЗАВИСИМОСТ - ВРЕМЕННА",
+      "en": "PLOSHTAD NEZAVISIMOST - VREMENNA"
+    }
+  },
+  {
+    "code": "1052",
+    "coords": [
+      42.70235,
+      23.29796
+    ],
+    "names": {
+      "bg": "МЕТРОСТАНЦИЯ К.ВЕЛИЧКОВ",
+      "en": "METROSTANTSIYA K.VELICHKOV"
     }
   }
 ]
