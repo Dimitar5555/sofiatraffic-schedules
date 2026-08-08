@@ -423,17 +423,6 @@
     "metro_ref": "G"
   },
   {
-    "code": "1274",
-    "coords": [
-      42.6815,
-      23.33179
-    ],
-    "names": {
-      "bg": "пл. Журналист",
-      "en": "Journalist Sq"
-    }
-  },
-  {
     "code": "0358",
     "coords": [
       42.68732,
@@ -862,17 +851,6 @@
     "names": {
       "bg": "ул. Козлодуй",
       "en": "Kozloduy Str"
-    }
-  },
-  {
-    "code": "1879",
-    "coords": [
-      42.67843,
-      23.33369
-    ],
-    "names": {
-      "bg": "ул. Вишнева",
-      "en": "Vishneva Str"
     }
   },
   {
@@ -2893,20 +2871,6 @@
     }
   },
   {
-    "code": "0387",
-    "coords": [
-      42.68578,
-      23.33106
-    ],
-    "names": {
-      "bg": "УАСГ",
-      "en": "University of Architecture, Civil Engineering and Geodesy",
-      "bg_full": "Университет по архитектура, строителство и геодезия",
-      "en_full": "University of Architecture, Civil Engineering and Geodesy"
-    },
-    "metro_ref": "C"
-  },
-  {
     "code": "M6",
     "coords": [
       42.6997,
@@ -3544,17 +3508,6 @@
     "names": {
       "bg": "бл. 302 ж.к. Надежда 3",
       "en": "bl. 302 zh.k. Nadezhda 3"
-    }
-  },
-  {
-    "code": "1996",
-    "coords": [
-      42.69375,
-      23.3228
-    ],
-    "names": {
-      "bg": "пл. Гарибалди",
-      "en": "Garibaldi Sq"
     }
   },
   {
@@ -4479,90 +4432,6 @@
     "names": {
       "bg": "Семинарията",
       "en": "Seminary"
-    }
-  },
-  {
-    "code": "1880",
-    "coords": [
-      42.67826,
-      23.33371
-    ],
-    "names": {
-      "bg": "ул. Вишнева",
-      "en": "Vishneva Str"
-    }
-  },
-  {
-    "code": "0386",
-    "coords": [
-      42.6857,
-      23.33074
-    ],
-    "names": {
-      "bg": "УАСГ",
-      "en": "University of Architecture, Civil Engineering and Geodesy",
-      "bg_full": "Университет по архитектура, строителство и геодезия",
-      "en_full": "University of Architecture, Civil Engineering and Geodesy"
-    },
-    "metro_ref": "D"
-  },
-  {
-    "code": "0300",
-    "coords": [
-      42.68799,
-      23.32912
-    ],
-    "names": {
-      "bg": "пл. Патриарх Евтимий",
-      "en": "Patriarh Evtimiy Sq"
-    },
-    "local_ref": "4",
-    "metro_ref": "D"
-  },
-  {
-    "code": "0299",
-    "coords": [
-      42.68826,
-      23.32875
-    ],
-    "names": {
-      "bg": "пл. Патриарх Евтимий",
-      "en": "Patriarh Evtimiy Sq"
-    },
-    "local_ref": "3",
-    "metro_ref": "C"
-  },
-  {
-    "code": "1908",
-    "coords": [
-      42.69153,
-      23.32483
-    ],
-    "names": {
-      "bg": "пл. Славейков",
-      "en": "Slaveykov Sq"
-    }
-  },
-  {
-    "code": "1909",
-    "coords": [
-      42.69131,
-      23.32515
-    ],
-    "names": {
-      "bg": "пл. Славейков",
-      "en": "Slaveykov Sq"
-    }
-  },
-  {
-    "code": "1997",
-    "coords": [
-      42.69437,
-      23.32242
-    ],
-    "names": {
-      "bg": "пл. Гарибалди",
-      "en": "Garibaldi Sq"
     }
   },
   {
@@ -28656,17 +28525,6 @@
     }
   },
   {
-    "code": "1273",
-    "coords": [
-      42.68101,
-      23.332
-    ],
-    "names": {
-      "bg": "пл. Журналист",
-      "en": "Journalist Sq"
-    }
-  },
-  {
     "code": "2601",
     "coords": [
       42.68979,
@@ -31853,14 +31711,25 @@
     }
   },
   {
-    "code": "6753",
+    "code": "6469",
     "coords": [
-      42.70024,
-      23.32203
+      42.68468,
+      23.33315
     ],
     "names": {
-      "bg": "ЦЕНТРАЛНИ ХАЛИ - ВРЕМЕННА",
-      "en": "TSENTRALNI HALI - VREMENNA"
+      "bg": "БЪЛГАРСКО НАЦИОНАЛНО РАДИО",
+      "en": "BALGARSKO NATSIONALNO RADIO"
+    }
+  },
+  {
+    "code": "6471",
+    "coords": [
+      42.68127,
+      23.33579
+    ],
+    "names": {
+      "bg": "УЛ. МИТРОПОЛИТ КИРИЛ ВИДИНСКИ",
+      "en": "UL. MITROPOLIT KIRIL VIDINSKI"
     }
   },
   {
@@ -31886,36 +31755,47 @@
     }
   },
   {
-    "code": "6399",
+    "code": "6826",
     "coords": [
-      42.70097,
-      23.30428
+      42.62035,
+      23.36994
     ],
     "names": {
-      "bg": "УЛ. ОДРИН",
-      "en": "UL. ODRIN"
+      "bg": "УЛ. ЕМИЛ ИЛИЕВ - ВРЕМЕННА",
+      "en": "UL. EMIL ILIEV - VREMENNA"
     }
   },
   {
-    "code": "6831",
+    "code": "6828",
     "coords": [
-      42.69672,
-      23.33701
+      42.62257,
+      23.37659
     ],
     "names": {
-      "bg": "ПЛ. ВАСИЛ ЛЕВСКИ - ВРЕМЕННА",
-      "en": "PL. VASIL LEVSKI - VREMENNA"
+      "bg": "УЛ. ВИТОШКИ КАМБАНИ - ВРЕМЕННА",
+      "en": "UL. VITOSHKI KAMBANI - VREMENNA"
     }
   },
   {
-    "code": "6162",
+    "code": "6827",
     "coords": [
-      42.70144,
-      23.30148
+      42.62252,
+      23.37685
     ],
     "names": {
-      "bg": "УЛ. ПЕРНИК",
-      "en": "UL. PERNIK"
+      "bg": "УЛ. ВИТОШКИ КАМБАНИ - ВРЕМЕННА",
+      "en": "UL. VITOSHKI KAMBANI - VREMENNA"
+    }
+  },
+  {
+    "code": "6825",
+    "coords": [
+      42.6203,
+      23.3698
+    ],
+    "names": {
+      "bg": "УЛ. ЕМИЛ ИЛИЕВ - ВРЕМЕННА",
+      "en": "UL. EMIL ILIEV - VREMENNA"
     }
   },
   {
@@ -31927,17 +31807,6 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
-    }
-  },
-  {
-    "code": "6497",
-    "coords": [
-      42.69777,
-      23.325
-    ],
-    "names": {
-      "bg": "ПЛОЩАД НЕЗАВИСИМОСТ - ВРЕМЕННА",
-      "en": "PLOSHTAD NEZAVISIMOST - VREMENNA"
     }
   },
   {
@@ -31971,50 +31840,6 @@
     "names": {
       "bg": "АВТОСТАНЦИЯ ГЕО МИЛЕВ",
       "en": "AVTOSTANTSIYA GEO MILEV"
-    }
-  },
-  {
-    "code": "6102",
-    "coords": [
-      42.6967,
-      23.33582
-    ],
-    "names": {
-      "bg": "ПЛ. ВАСИЛ ЛЕВСКИ - ВРЕМЕННА",
-      "en": "PL. VASIL LEVSKI - VREMENNA"
-    }
-  },
-  {
-    "code": "6103",
-    "coords": [
-      42.69665,
-      23.33615
-    ],
-    "names": {
-      "bg": "ПЛ. ВАСИЛ ЛЕВСКИ - ВРЕМЕННА",
-      "en": "PL. VASIL LEVSKI - VREMENNA"
-    }
-  },
-  {
-    "code": "6495",
-    "coords": [
-      42.69769,
-      23.32545
-    ],
-    "names": {
-      "bg": "ПЛОЩАД НЕЗАВИСИМОСТ - ВРЕМЕННА",
-      "en": "PLOSHTAD NEZAVISIMOST - VREMENNA"
-    }
-  },
-  {
-    "code": "1052",
-    "coords": [
-      42.70235,
-      23.29796
-    ],
-    "names": {
-      "bg": "МЕТРОСТАНЦИЯ К.ВЕЛИЧКОВ",
-      "en": "METROSTANTSIYA K.VELICHKOV"
     }
   }
 ]
