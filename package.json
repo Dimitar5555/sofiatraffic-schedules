@@ -35,5 +35,8 @@
     "parcel": "^2.15.4",
     "sofiatraffic-library": "github:Dimitar5555/sofiatraffic-library",
     "unzipper": "^0.12.3"
+  },
+  "overrides": {
+    "picomatch": "2.3.2"
   }
 }
