@@ -2,7 +2,7 @@ export const url_prefix = '#!';
 
 export const enable_virtual_boards = true;
 export const enable_virtual_boards_for_subway_stations = true;
-export const virtual_board_proxy_url = 'https://sofiatraffic-proxy.onrender.com/virtual-board?stop_code=';
+export const virtual_board_proxy_url = 'https://sft-proxy.onrender.com/virtual-board?stop_code=';
 
 export const enable_schedules_by_cars = true;
 
