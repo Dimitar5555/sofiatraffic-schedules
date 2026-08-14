@@ -30637,6 +30637,39 @@
     }
   },
   {
+    "code": "M304",
+    "coords": [
+      42.70528,
+      23.3597
+    ],
+    "names": {
+      "bg": "Стадион Георги Аспарухов",
+      "en": "Georgi Asparuhov Stadium"
+    }
+  },
+  {
+    "code": "M303",
+    "coords": [
+      42.70857,
+      23.37111
+    ],
+    "names": {
+      "bg": "Бесарабия",
+      "en": "Besarabiya"
+    }
+  },
+  {
+    "code": "M302",
+    "coords": [
+      42.71066,
+      23.38458
+    ],
+    "names": {
+      "bg": "Ген. Владимир Вазов",
+      "en": "General Vladimir Vazov"
+    }
+  },
+  {
     "code": "0448",
     "coords": [
       42.62275,
@@ -31744,17 +31777,6 @@
     }
   },
   {
-    "code": "M303",
-    "coords": [
-      42.70854,
-      23.37114
-    ],
-    "names": {
-      "bg": "БЕСАРАБИЯ",
-      "en": "BESARABIYA"
-    }
-  },
-  {
     "code": "6469",
     "coords": [
       42.68468,
@@ -31763,28 +31785,6 @@
     "names": {
       "bg": "БЪЛГАРСКО НАЦИОНАЛНО РАДИО",
       "en": "BALGARSKO NATSIONALNO RADIO"
-    }
-  },
-  {
-    "code": "M302",
-    "coords": [
-      42.71068,
-      23.38448
-    ],
-    "names": {
-      "bg": "ГЕН. ВЛАДИМИР ВАЗОВ",
-      "en": "GEN. VLADIMIR VAZOV"
-    }
-  },
-  {
-    "code": "M304",
-    "coords": [
-      42.7054,
-      23.36001
-    ],
-    "names": {
-      "bg": "СТАДИОН ГЕОРГИ АСПАРУХОВ",
-      "en": "STADION GEORGI ASPARUHOV"
     }
   },
   {
