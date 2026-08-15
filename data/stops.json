@@ -5936,10 +5936,10 @@
     }
   },
   {
-    "code": "0180",
+    "code": "0179",
     "coords": [
-      42.71332,
-      23.38503
+      42.71269,
+      23.38427
     ],
     "names": {
       "bg": "бл. 28 ж.к. Левски Г",
@@ -5947,14 +5947,14 @@
     }
   },
   {
-    "code": "0646",
+    "code": "0181",
     "coords": [
-      42.71215,
-      23.38811
+      42.71303,
+      23.3845
     ],
     "names": {
-      "bg": "ж.к. Левски Г",
-      "en": "Levski G"
+      "bg": "бл. 28 ж.к. Левски Г",
+      "en": "bl. 28 zh.k. Levski G"
     }
   },
   {
@@ -9651,6 +9651,28 @@
     }
   },
   {
+    "code": "2035",
+    "coords": [
+      42.6555,
+      23.29751
+    ],
+    "names": {
+      "bg": "ул. Луи Айер",
+      "en": "ul. Lui Ayer"
+    }
+  },
+  {
+    "code": "2034",
+    "coords": [
+      42.65523,
+      23.29715
+    ],
+    "names": {
+      "bg": "ул. Луи Айер",
+      "en": "ul. Lui Ayer"
+    }
+  },
+  {
     "code": "1290",
     "coords": [
       42.69083,
@@ -9852,7 +9874,8 @@
     "names": {
       "bg": "Пътя за летище Враждебна",
       "en": "Patya za letishte Vrazhdebna"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1583",
@@ -9863,7 +9886,8 @@
     "names": {
       "bg": "бул. Владимир Вазов",
       "en": "bul. Vladimir Vazov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1580",
@@ -9874,7 +9898,8 @@
     "names": {
       "bg": "бул. Владимир Вазов",
       "en": "bul. Vladimir Vazov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1870",
@@ -9885,7 +9910,8 @@
     "names": {
       "bg": "ул. Витиня",
       "en": "ul. Vitinya"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1874",
@@ -9896,7 +9922,8 @@
     "names": {
       "bg": "ул. Витиня",
       "en": "ul. Vitinya"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1475",
@@ -9907,7 +9934,8 @@
     "names": {
       "bg": "бл. 6 ж.к. Сухата река",
       "en": "bl. 6 zh.k. Suhata reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1476",
@@ -9918,7 +9946,8 @@
     "names": {
       "bg": "бл. 6 ж.к. Сухата река",
       "en": "bl. 6 zh.k. Suhata reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0303",
@@ -10007,8 +10036,8 @@
       23.38406
     ],
     "names": {
-      "bg": "бл. 11 ж.к. Левски В",
-      "en": "bl. 11 zh.k. Levski V"
+      "bg": "метростанция Генерал Владимир Вазов",
+      "en": "metrostantsiya General Vladimir Vazov"
     }
   },
   {
@@ -10029,8 +10058,8 @@
       23.38438
     ],
     "names": {
-      "bg": "бл. 11 ж.к. Левски В",
-      "en": "bl. 11 zh.k. Levski V"
+      "bg": "метростанция Генерал Владимир Вазов",
+      "en": "metrostantsiya General Vladimir Vazov"
     }
   },
   {
@@ -11266,7 +11295,8 @@
     "names": {
       "bg": "бл. 4 ж.к. Сухата река",
       "en": "bl. 4 zh.k. Suhata reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1470",
@@ -11277,7 +11307,8 @@
     "names": {
       "bg": "бл. 4 ж.к. Сухата река",
       "en": "bl. 4 zh.k. Suhata reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1843",
@@ -14652,25 +14683,14 @@
     }
   },
   {
-    "code": "2128",
-    "coords": [
-      42.71046,
-      23.38146
-    ],
-    "names": {
-      "bg": "ул. Поп Груйо",
-      "en": "Pope Gruyo Str."
-    }
-  },
-  {
     "code": "2182",
     "coords": [
       42.71025,
       23.38601
     ],
     "names": {
-      "bg": "ул. Станислав Доспевски",
-      "en": "Stanislav Dospevski Str."
+      "bg": "метростанция Генерал Владимир Вазов",
+      "en": "metrostantsiya General Vladimir Vazov"
     }
   },
   {
@@ -16987,7 +17007,8 @@
     "names": {
       "bg": "Махала Батареята",
       "en": "Mahala Batareyata"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1648",
@@ -16998,7 +17019,8 @@
     "names": {
       "bg": "Махала Батареята",
       "en": "Mahala Batareyata"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0788",
@@ -17009,7 +17031,8 @@
     "names": {
       "bg": "Кантона",
       "en": "Kantona"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0787",
@@ -17020,7 +17043,8 @@
     "names": {
       "bg": "Кантона",
       "en": "Kantona"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2695",
@@ -17031,7 +17055,8 @@
     "names": {
       "bg": "Магистрала Хемус",
       "en": "Magistrala Hemus"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2694",
@@ -17042,7 +17067,8 @@
     "names": {
       "bg": "Магистрала Хемус",
       "en": "Magistrala Hemus"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1658",
@@ -17053,7 +17079,8 @@
     "names": {
       "bg": "Езерото",
       "en": "Ezeroto"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1659",
@@ -17064,7 +17091,8 @@
     "names": {
       "bg": "Езерото",
       "en": "Ezeroto"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2512",
@@ -17075,7 +17103,8 @@
     "names": {
       "bg": "Разклона за с. Долни Богров",
       "en": "Razklona za s. Dolni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1212",
@@ -17084,9 +17113,10 @@
       23.48663
     ],
     "names": {
-      "bg": "Разклона за Д. Богров",
-      "en": "Razklona za D. Bogrov"
-    }
+      "bg": "Разклона за Долни Богров",
+      "en": "Razklona za Dolni Bogrov"
+    },
+    "request_stop": true
   },
   {
     "code": "1479",
@@ -17097,7 +17127,8 @@
     "names": {
       "bg": "Моста с. Долни Богров",
       "en": "Mosta s. Dolni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0954",
@@ -17108,7 +17139,8 @@
     "names": {
       "bg": "Кметство Долни Богров",
       "en": "Kmetstvo Dolni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1478",
@@ -17119,7 +17151,8 @@
     "names": {
       "bg": "Моста с. Долни Богров",
       "en": "Mosta s. Dolni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0953",
@@ -17130,7 +17163,8 @@
     "names": {
       "bg": "Кметство Долни Богров",
       "en": "Kmetstvo Dolni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1525",
@@ -23212,7 +23246,8 @@
     "names": {
       "bg": "ул. Рилска Обител",
       "en": "ul. Rilska Obitel"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2158",
@@ -23223,7 +23258,8 @@
     "names": {
       "bg": "ул. Рилска Обител",
       "en": "ul. Rilska Obitel"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2131",
@@ -23234,7 +23270,8 @@
     "names": {
       "bg": "ул. Поп Груйо",
       "en": "Pop Gruyo street"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2126",
@@ -23245,7 +23282,8 @@
     "names": {
       "bg": "ул. Поп Груйо",
       "en": "Pop Gruyo street"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1434",
@@ -23256,7 +23294,8 @@
     "names": {
       "bg": "Разклона за летището",
       "en": "Razklona za letishteto"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2024",
@@ -23267,7 +23306,8 @@
     "names": {
       "bg": "Автостанция Изток",
       "en": "Iztok (east) bus station"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2021",
@@ -23278,7 +23318,8 @@
     "names": {
       "bg": "Автостанция Изток",
       "en": "Iztok (east) bus station"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1435",
@@ -23289,7 +23330,8 @@
     "names": {
       "bg": "Разклона за летището",
       "en": "Razklona za letishteto"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1601",
@@ -23300,7 +23342,8 @@
     "names": {
       "bg": "СПИ Проф. П. Мутафчиев",
       "en": "SPI Prof. P. Mutafchiev"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1600",
@@ -23311,7 +23354,8 @@
     "names": {
       "bg": "СПИ Проф. П. Мутафчиев",
       "en": "SPI Prof. P. Mutafchiev"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1097",
@@ -23322,7 +23366,8 @@
     "names": {
       "bg": "Моста на р. Искър",
       "en": "Mosta na r. Iskar"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1098",
@@ -23333,7 +23378,8 @@
     "names": {
       "bg": "Моста на р. Искър",
       "en": "Mosta na r. Iskar"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1213",
@@ -23342,9 +23388,10 @@
       23.48959
     ],
     "names": {
-      "bg": "Разклона за Д. Богров",
-      "en": "Razklona za D. Bogrov"
-    }
+      "bg": "Разклона за Долни Богров",
+      "en": "Razklona za Dolni Bogrov"
+    },
+    "request_stop": true
   },
   {
     "code": "1080",
@@ -23355,7 +23402,8 @@
     "names": {
       "bg": "Моста на р. Лесновска",
       "en": "Mosta na r. Lesnovska"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1079",
@@ -23366,7 +23414,8 @@
     "names": {
       "bg": "Моста на р. Лесновска",
       "en": "Mosta na r. Lesnovska"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2302",
@@ -23377,7 +23426,8 @@
     "names": {
       "bg": "Ханчето",
       "en": "Hancheto"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2301",
@@ -23388,7 +23438,8 @@
     "names": {
       "bg": "Ханчето",
       "en": "Hancheto"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1520",
@@ -23399,7 +23450,8 @@
     "names": {
       "bg": "село Горни Богров",
       "en": "selo Gorni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1522",
@@ -23410,7 +23462,8 @@
     "names": {
       "bg": "село Горни Богров",
       "en": "selo Gorni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0781",
@@ -23421,7 +23474,8 @@
     "names": {
       "bg": "Каваците",
       "en": "Kavatsite"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0780",
@@ -23432,7 +23486,8 @@
     "names": {
       "bg": "Каваците",
       "en": "Kavatsite"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2708",
@@ -23454,7 +23509,8 @@
     "names": {
       "bg": "Шлаков цех",
       "en": "SHlakov tseh"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0479",
@@ -23487,7 +23543,8 @@
     "names": {
       "bg": "Шлаков цех",
       "en": "SHlakov tseh"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0993",
@@ -23498,7 +23555,8 @@
     "names": {
       "bg": "Културен дом",
       "en": "Kulturen dom"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0992",
@@ -23509,7 +23567,8 @@
     "names": {
       "bg": "Културен дом",
       "en": "Kulturen dom"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0504",
@@ -23531,7 +23590,8 @@
     "names": {
       "bg": "ул. Захари Попов",
       "en": "ul. Zahari Popov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2683",
@@ -23542,7 +23602,8 @@
     "names": {
       "bg": "ул. Захари Попов",
       "en": "ul. Zahari Popov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2654",
@@ -24394,28 +24455,6 @@
     "request_stop": true
   },
   {
-    "code": "0056",
-    "coords": [
-      42.70362,
-      23.38694
-    ],
-    "names": {
-      "bg": "Автостанция Изток",
-      "en": "Iztok Bus Station"
-    }
-  },
-  {
-    "code": "0057",
-    "coords": [
-      42.70399,
-      23.38694
-    ],
-    "names": {
-      "bg": "Автостанция Изток",
-      "en": "Iztok Bus Station"
-    }
-  },
-  {
     "code": "1441",
     "coords": [
       42.70983,
@@ -24447,7 +24486,8 @@
     "names": {
       "bg": "Моста на Лесновска река",
       "en": "Mosta na Lesnovska reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1690",
@@ -24458,7 +24498,8 @@
     "names": {
       "bg": "Моста на Лесновска река",
       "en": "Mosta na Lesnovska reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1375",
@@ -24469,7 +24510,8 @@
     "names": {
       "bg": "Разклона кв. Кремиковци",
       "en": "Razklona kv. Kremikovtsi"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1376",
@@ -24480,7 +24522,8 @@
     "names": {
       "bg": "Разклона кв. Кремиковци",
       "en": "Razklona kv. Kremikovtsi"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1756",
@@ -24491,7 +24534,8 @@
     "names": {
       "bg": "Община Кремиковци",
       "en": "Obshtina Kremikovtsi"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1755",
@@ -24502,7 +24546,8 @@
     "names": {
       "bg": "Община Кремиковци",
       "en": "Obshtina Kremikovtsi"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1774",
@@ -24513,7 +24558,8 @@
     "names": {
       "bg": "16-ти ДКЦ",
       "en": "16-ti DKTS"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1773",
@@ -24524,7 +24570,8 @@
     "names": {
       "bg": "16-ти ДКЦ",
       "en": "16-ti DKTS"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0768",
@@ -25076,7 +25123,8 @@
     "names": {
       "bg": "Център кв. Ботунец",
       "en": "TSentar kv. Botunets"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1236",
@@ -25087,7 +25135,8 @@
     "names": {
       "bg": "Център кв. Ботунец",
       "en": "TSentar kv. Botunets"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1160",
@@ -25098,7 +25147,8 @@
     "names": {
       "bg": "Металика ООД",
       "en": "Metalika OOD"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1159",
@@ -25109,7 +25159,8 @@
     "names": {
       "bg": "Металика ООД",
       "en": "Metalika OOD"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1521",
@@ -25120,18 +25171,20 @@
     "names": {
       "bg": "село Горни Богров",
       "en": "selo Gorni Bogrov"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1887",
     "coords": [
-      42.72277,
-      23.53119
+      42.72287,
+      23.53123
     ],
     "names": {
       "bg": "115-то ОУ",
       "en": "115-to OU"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1888",
@@ -25142,7 +25195,8 @@
     "names": {
       "bg": "115-то ОУ",
       "en": "115-to OU"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2263",
@@ -25153,7 +25207,8 @@
     "names": {
       "bg": "ул. Юрий Гагарин",
       "en": "ul. YUriy Gagarin"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2262",
@@ -25164,7 +25219,8 @@
     "names": {
       "bg": "ул. Юрий Гагарин",
       "en": "ul. YUriy Gagarin"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0951",
@@ -25175,7 +25231,8 @@
     "names": {
       "bg": "Кметство село Яна",
       "en": "Kmetstvo selo YAna"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0950",
@@ -25186,7 +25243,8 @@
     "names": {
       "bg": "Кметство село Яна",
       "en": "Kmetstvo selo YAna"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2185",
@@ -25287,7 +25345,8 @@
     "names": {
       "bg": "Моста на Лесновска река",
       "en": "Mosta na Lesnovska reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1688",
@@ -25298,7 +25357,8 @@
     "names": {
       "bg": "Моста на Лесновска река",
       "en": "Mosta na Lesnovska reka"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1561",
@@ -25309,7 +25369,8 @@
     "names": {
       "bg": "кв. Челопечене",
       "en": "kv. CHelopechene"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1560",
@@ -25320,7 +25381,8 @@
     "names": {
       "bg": "кв. Челопечене",
       "en": "kv. CHelopechene"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "0183",
@@ -25331,7 +25393,8 @@
     "names": {
       "bg": "бл. 3 ж.к. Ботунец 1",
       "en": "bl. 3 zh.k. Botunets 1"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2315",
@@ -25342,7 +25405,8 @@
     "names": {
       "bg": "Хлебозавод Ботунец АД",
       "en": "Hlebozavod Botunets AD"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1707",
@@ -29532,7 +29596,8 @@
     "names": {
       "bg": "ул. Ботевградско шосе",
       "en": "ul. Botevgradsko shose"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "2817",
@@ -29543,7 +29608,8 @@
     "names": {
       "bg": "ул. Ботевградско шосе",
       "en": "ul. Botevgradsko shose"
-    }
+    },
+    "request_stop": true
   },
   {
     "code": "1156",
@@ -29949,6 +30015,17 @@
     },
     "local_ref": "1",
     "metro_ref": "J"
+  },
+  {
+    "code": "2933",
+    "coords": [
+      42.7105,
+      23.38673
+    ],
+    "names": {
+      "bg": "метростанция Генерал Владимир Вазов",
+      "en": "metrostantsiya General Vladimir Vazov"
+    }
   },
   {
     "code": "2566",
@@ -31240,28 +31317,6 @@
     }
   },
   {
-    "code": "6599",
-    "coords": [
-      42.71329,
-      23.38406
-    ],
-    "names": {
-      "bg": "бл. 28 ж.к. Левски Г",
-      "en": "bl. 28 zh.k. Levski G"
-    }
-  },
-  {
-    "code": "6600",
-    "coords": [
-      42.71196,
-      23.38804
-    ],
-    "names": {
-      "bg": "ж.к. Левски Г",
-      "en": "Levski G"
-    }
-  },
-  {
     "code": "6576",
     "coords": [
       42.72614,
@@ -31496,50 +31551,6 @@
       "en": "ul. Voyneshki pat"
     },
     "request_stop": true
-  },
-  {
-    "code": "6786",
-    "coords": [
-      42.70652,
-      23.38629
-    ],
-    "names": {
-      "bg": "92 ОДЗ - временна",
-      "en": "92 ODZ - vremenna"
-    }
-  },
-  {
-    "code": "6787",
-    "coords": [
-      42.70649,
-      23.38614
-    ],
-    "names": {
-      "bg": "92 ОДЗ - временна",
-      "en": "92 ODZ - vremenna"
-    }
-  },
-  {
-    "code": "6784",
-    "coords": [
-      42.70942,
-      23.38817
-    ],
-    "names": {
-      "bg": "бул. Владимир Вазов - временна",
-      "en": "bul. Vladimir Vazov - vremenna"
-    }
-  },
-  {
-    "code": "6785",
-    "coords": [
-      42.70933,
-      23.388
-    ],
-    "names": {
-      "bg": "бул. Владимир Вазов - временна",
-      "en": "bul. Vladimir Vazov - vremenna"
-    }
   },
   {
     "code": "2919",
@@ -31785,17 +31796,6 @@
     "names": {
       "bg": "БЪЛГАРСКО НАЦИОНАЛНО РАДИО",
       "en": "BALGARSKO NATSIONALNO RADIO"
-    }
-  },
-  {
-    "code": "2933",
-    "coords": [
-      42.71053,
-      23.38608
-    ],
-    "names": {
-      "bg": "МС ГЕНЕРАЛ ВЛАДИМИР ВАЗОВ",
-      "en": "MS GENERAL VLADIMIR VAZOV"
     }
   },
   {
