@@ -423,6 +423,17 @@
     "metro_ref": "G"
   },
   {
+    "code": "1274",
+    "coords": [
+      42.6815,
+      23.33179
+    ],
+    "names": {
+      "bg": "пл. Журналист",
+      "en": "Journalist Sq"
+    }
+  },
+  {
     "code": "0358",
     "coords": [
       42.68732,
@@ -851,6 +862,17 @@
     "names": {
       "bg": "ул. Козлодуй",
       "en": "Kozloduy Str"
+    }
+  },
+  {
+    "code": "1879",
+    "coords": [
+      42.67843,
+      23.33369
+    ],
+    "names": {
+      "bg": "ул. Вишнева",
+      "en": "Vishneva Str"
     }
   },
   {
@@ -2871,6 +2893,20 @@
     }
   },
   {
+    "code": "0387",
+    "coords": [
+      42.68578,
+      23.33106
+    ],
+    "names": {
+      "bg": "УАСГ",
+      "en": "University of Architecture, Civil Engineering and Geodesy",
+      "bg_full": "Университет по архитектура, строителство и геодезия",
+      "en_full": "University of Architecture, Civil Engineering and Geodesy"
+    },
+    "metro_ref": "C"
+  },
+  {
     "code": "M6",
     "coords": [
       42.6997,
@@ -3508,6 +3544,17 @@
     "names": {
       "bg": "бл. 302 ж.к. Надежда 3",
       "en": "bl. 302 zh.k. Nadezhda 3"
+    }
+  },
+  {
+    "code": "1996",
+    "coords": [
+      42.69375,
+      23.3228
+    ],
+    "names": {
+      "bg": "пл. Гарибалди",
+      "en": "Garibaldi Sq"
     }
   },
   {
@@ -4432,6 +4479,90 @@
     "names": {
       "bg": "Семинарията",
       "en": "Seminary"
+    }
+  },
+  {
+    "code": "1880",
+    "coords": [
+      42.67826,
+      23.33371
+    ],
+    "names": {
+      "bg": "ул. Вишнева",
+      "en": "Vishneva Str"
+    }
+  },
+  {
+    "code": "0386",
+    "coords": [
+      42.6857,
+      23.33074
+    ],
+    "names": {
+      "bg": "УАСГ",
+      "en": "University of Architecture, Civil Engineering and Geodesy",
+      "bg_full": "Университет по архитектура, строителство и геодезия",
+      "en_full": "University of Architecture, Civil Engineering and Geodesy"
+    },
+    "metro_ref": "D"
+  },
+  {
+    "code": "0300",
+    "coords": [
+      42.68799,
+      23.32912
+    ],
+    "names": {
+      "bg": "пл. Патриарх Евтимий",
+      "en": "Patriarh Evtimiy Sq"
+    },
+    "local_ref": "4",
+    "metro_ref": "D"
+  },
+  {
+    "code": "0299",
+    "coords": [
+      42.68826,
+      23.32875
+    ],
+    "names": {
+      "bg": "пл. Патриарх Евтимий",
+      "en": "Patriarh Evtimiy Sq"
+    },
+    "local_ref": "3",
+    "metro_ref": "C"
+  },
+  {
+    "code": "1908",
+    "coords": [
+      42.69153,
+      23.32483
+    ],
+    "names": {
+      "bg": "пл. Славейков",
+      "en": "Slaveykov Sq"
+    }
+  },
+  {
+    "code": "1909",
+    "coords": [
+      42.69131,
+      23.32515
+    ],
+    "names": {
+      "bg": "пл. Славейков",
+      "en": "Slaveykov Sq"
+    }
+  },
+  {
+    "code": "1997",
+    "coords": [
+      42.69437,
+      23.32242
+    ],
+    "names": {
+      "bg": "пл. Гарибалди",
+      "en": "Garibaldi Sq"
     }
   },
   {
@@ -28619,6 +28750,17 @@
     "names": {
       "bg": "село Негован",
       "en": "selo Negovan"
+    }
+  },
+  {
+    "code": "1273",
+    "coords": [
+      42.68101,
+      23.332
+    ],
+    "names": {
+      "bg": "пл. Журналист",
+      "en": "Journalist Sq"
     }
   },
   {
