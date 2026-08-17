@@ -1575,2002 +1575,1990 @@
     "id": 424,
     "cgm_id": "A28",
     "direction": 291,
-    "is_weekend": true
+    "is_weekend": false
   },
   {
     "id": 425,
     "cgm_id": "A28",
-    "direction": 290,
-    "is_weekend": true
-  },
-  {
-    "id": 428,
-    "cgm_id": "A28",
-    "direction": 290,
+    "direction": 293,
     "is_weekend": false
   },
   {
-    "id": 429,
-    "cgm_id": "A28",
-    "direction": 291,
-    "is_weekend": false
-  },
-  {
-    "id": 430,
+    "id": 426,
     "cgm_id": "TB2",
     "direction": 175,
     "is_weekend": false
   },
   {
-    "id": 431,
+    "id": 427,
     "cgm_id": "A105",
     "direction": 286,
     "is_weekend": true
   },
   {
-    "id": 432,
+    "id": 428,
     "cgm_id": "A105",
     "direction": 287,
     "is_weekend": true
   },
   {
-    "id": 433,
+    "id": 429,
     "cgm_id": "A259",
     "direction": 294,
     "is_weekend": true
   },
   {
-    "id": 434,
+    "id": 430,
     "cgm_id": "TB2",
     "direction": 176,
     "is_weekend": false
   },
   {
-    "id": 435,
+    "id": 431,
     "cgm_id": "A105",
     "direction": 288,
     "is_weekend": true
   },
   {
-    "id": 436,
+    "id": 432,
     "cgm_id": "A209",
     "direction": 295,
     "is_weekend": true
   },
   {
-    "id": 437,
+    "id": 433,
     "cgm_id": "A209",
     "direction": 296,
     "is_weekend": true
   },
   {
-    "id": 438,
+    "id": 434,
     "cgm_id": "A275",
     "direction": 297,
     "is_weekend": true
   },
   {
-    "id": 439,
+    "id": 435,
     "cgm_id": "A275",
     "direction": 298,
     "is_weekend": true
   },
   {
-    "id": 440,
+    "id": 436,
     "cgm_id": "A104",
     "direction": 299,
     "is_weekend": false
   },
   {
-    "id": 442,
+    "id": 438,
     "cgm_id": "A34",
     "direction": 301,
     "is_weekend": true
   },
   {
-    "id": 444,
+    "id": 440,
     "cgm_id": "A34",
     "direction": 302,
     "is_weekend": true
   },
   {
-    "id": 445,
+    "id": 441,
     "cgm_id": "A48",
     "direction": 300,
     "is_weekend": false
   },
   {
-    "id": 446,
+    "id": 442,
     "cgm_id": "A57",
     "direction": 16,
     "is_weekend": false
   },
   {
-    "id": 448,
+    "id": 444,
     "cgm_id": "A34",
     "direction": 301,
     "is_weekend": false
   },
   {
-    "id": 449,
+    "id": 445,
     "cgm_id": "A34",
     "direction": 302,
     "is_weekend": false
   },
   {
-    "id": 450,
+    "id": 446,
     "cgm_id": "A209",
     "direction": 296,
     "is_weekend": false
   },
   {
-    "id": 451,
+    "id": 447,
     "cgm_id": "A209",
     "direction": 295,
     "is_weekend": false
   },
   {
-    "id": 452,
+    "id": 448,
     "cgm_id": "A35",
     "direction": 305,
     "is_weekend": true
   },
   {
-    "id": 453,
+    "id": 449,
     "cgm_id": "A35",
     "direction": 305,
     "is_weekend": false
   },
   {
-    "id": 454,
+    "id": 450,
     "cgm_id": "A35",
     "direction": 306,
     "is_weekend": true
   },
   {
-    "id": 457,
+    "id": 453,
     "cgm_id": "TM25",
     "direction": 280,
     "is_weekend": true
   },
   {
-    "id": 458,
+    "id": 454,
     "cgm_id": "A35",
     "direction": 306,
     "is_weekend": false
   },
   {
-    "id": 459,
+    "id": 455,
     "cgm_id": "TM25",
     "direction": 279,
     "is_weekend": true
   },
   {
-    "id": 460,
+    "id": 456,
     "cgm_id": "A275",
     "direction": 297,
     "is_weekend": false
   },
   {
-    "id": 461,
+    "id": 457,
     "cgm_id": "A275",
     "direction": 298,
     "is_weekend": false
   },
   {
-    "id": 466,
+    "id": 462,
     "cgm_id": "A26",
     "direction": 308,
     "is_weekend": true
   },
   {
-    "id": 471,
+    "id": 467,
     "cgm_id": "A43",
     "direction": 201,
     "is_weekend": false
   },
   {
-    "id": 472,
+    "id": 468,
     "cgm_id": "A43",
     "direction": 202,
     "is_weekend": false
   },
   {
-    "id": 474,
+    "id": 470,
     "cgm_id": "A57",
     "direction": 11,
     "is_weekend": false
   },
   {
-    "id": 475,
+    "id": 471,
     "cgm_id": "M3",
     "direction": 309,
     "is_weekend": false
   },
   {
-    "id": 477,
+    "id": 473,
     "cgm_id": "A48",
     "direction": 300,
     "is_weekend": true
   },
   {
-    "id": 478,
+    "id": 474,
     "cgm_id": "A57",
     "direction": 9,
     "is_weekend": false
   },
   {
-    "id": 479,
+    "id": 475,
     "cgm_id": "A55",
     "direction": 263,
     "is_weekend": false
   },
   {
-    "id": 480,
+    "id": 476,
     "cgm_id": "A55",
     "direction": 88,
     "is_weekend": false
   },
   {
-    "id": 481,
+    "id": 477,
     "cgm_id": "M3",
     "direction": 307,
     "is_weekend": false
   },
   {
-    "id": 487,
+    "id": 483,
     "cgm_id": "A50",
     "direction": 315,
     "is_weekend": true
   },
   {
-    "id": 490,
+    "id": 486,
     "cgm_id": "A50",
     "direction": 315,
     "is_weekend": false
   },
   {
-    "id": 495,
+    "id": 491,
     "cgm_id": "TB4",
     "direction": 150,
     "is_weekend": true
   },
   {
-    "id": 497,
+    "id": 493,
     "cgm_id": "TM51",
     "direction": 320,
     "is_weekend": false
   },
   {
-    "id": 498,
+    "id": 494,
     "cgm_id": "A50",
     "direction": 323,
     "is_weekend": true
   },
   {
-    "id": 499,
+    "id": 495,
     "cgm_id": "TM51",
     "direction": 319,
     "is_weekend": false
+  },
+  {
+    "id": 500,
+    "cgm_id": "A50",
+    "direction": 323,
+    "is_weekend": false
+  },
+  {
+    "id": 502,
+    "cgm_id": "TM51",
+    "direction": 320,
+    "is_weekend": true
   },
   {
     "id": 504,
-    "cgm_id": "A50",
-    "direction": 323,
-    "is_weekend": false
-  },
-  {
-    "id": 506,
-    "cgm_id": "TM51",
-    "direction": 320,
-    "is_weekend": true
-  },
-  {
-    "id": 508,
     "cgm_id": "TM51",
     "direction": 319,
     "is_weekend": true
   },
   {
-    "id": 509,
+    "id": 505,
     "cgm_id": "M3",
     "direction": 307,
     "is_weekend": true
   },
   {
-    "id": 510,
+    "id": 506,
     "cgm_id": "TB4",
     "direction": 148,
     "is_weekend": true
   },
   {
-    "id": 511,
+    "id": 507,
     "cgm_id": "TM29",
     "direction": 152,
     "is_weekend": true
   },
   {
-    "id": 512,
+    "id": 508,
     "cgm_id": "TM29",
     "direction": 151,
     "is_weekend": true
   },
   {
-    "id": 513,
+    "id": 509,
     "cgm_id": "TB1",
     "direction": 183,
     "is_weekend": false
   },
   {
-    "id": 514,
+    "id": 510,
     "cgm_id": "TB1",
     "direction": 184,
     "is_weekend": false
   },
   {
-    "id": 515,
+    "id": 511,
     "cgm_id": "TB1",
     "direction": 327,
     "is_weekend": false
   },
   {
-    "id": 516,
+    "id": 512,
     "cgm_id": "M3",
     "direction": 309,
     "is_weekend": true
   },
   {
-    "id": 517,
+    "id": 513,
     "cgm_id": "A56",
     "direction": 328,
     "is_weekend": false
   },
   {
-    "id": 518,
+    "id": 514,
     "cgm_id": "A56",
     "direction": 329,
     "is_weekend": false
   },
   {
-    "id": 522,
+    "id": 518,
     "cgm_id": "A9",
     "direction": 331,
     "is_weekend": false
   },
   {
-    "id": 525,
+    "id": 521,
     "cgm_id": "A104",
     "direction": 299,
     "is_weekend": true
   },
   {
-    "id": 526,
+    "id": 522,
     "cgm_id": "TB3",
     "direction": 94,
     "is_weekend": true
   },
   {
-    "id": 528,
+    "id": 524,
     "cgm_id": "TB3",
     "direction": 97,
     "is_weekend": true
   },
   {
-    "id": 529,
+    "id": 525,
     "cgm_id": "TB3",
     "direction": 93,
     "is_weekend": true
   },
   {
-    "id": 532,
+    "id": 528,
     "cgm_id": "A52",
     "direction": 334,
     "is_weekend": false
   },
   {
-    "id": 534,
+    "id": 530,
     "cgm_id": "A52",
     "direction": 335,
     "is_weekend": false
   },
   {
-    "id": 535,
+    "id": 531,
     "cgm_id": "A26",
     "direction": 339,
     "is_weekend": true
   },
   {
-    "id": 536,
+    "id": 532,
     "cgm_id": "A61",
     "direction": 59,
     "is_weekend": false
   },
   {
-    "id": 538,
+    "id": 534,
     "cgm_id": "A36",
     "direction": 342,
     "is_weekend": false
   },
   {
-    "id": 539,
+    "id": 535,
     "cgm_id": "A76",
     "direction": 343,
     "is_weekend": true
   },
   {
-    "id": 540,
+    "id": 536,
     "cgm_id": "A76",
     "direction": 344,
     "is_weekend": true
   },
   {
-    "id": 541,
+    "id": 537,
     "cgm_id": "A36",
     "direction": 345,
     "is_weekend": false
   },
   {
-    "id": 542,
+    "id": 538,
     "cgm_id": "A36",
     "direction": 346,
     "is_weekend": false
   },
   {
-    "id": 543,
+    "id": 539,
     "cgm_id": "A27",
     "direction": 347,
     "is_weekend": true
   },
   {
-    "id": 545,
+    "id": 541,
     "cgm_id": "A98",
     "direction": 220,
     "is_weekend": true
   },
   {
-    "id": 546,
+    "id": 542,
     "cgm_id": "A98",
     "direction": 221,
     "is_weekend": true
   },
   {
+    "id": 543,
+    "cgm_id": "A227",
+    "direction": 349,
+    "is_weekend": false
+  },
+  {
+    "id": 544,
+    "cgm_id": "A227",
+    "direction": 350,
+    "is_weekend": true
+  },
+  {
+    "id": 545,
+    "cgm_id": "A227",
+    "direction": 350,
+    "is_weekend": false
+  },
+  {
+    "id": 546,
+    "cgm_id": "A227",
+    "direction": 349,
+    "is_weekend": true
+  },
+  {
     "id": 547,
-    "cgm_id": "A227",
-    "direction": 349,
-    "is_weekend": false
-  },
-  {
-    "id": 548,
-    "cgm_id": "A227",
-    "direction": 350,
-    "is_weekend": true
-  },
-  {
-    "id": 549,
-    "cgm_id": "A227",
-    "direction": 350,
-    "is_weekend": false
-  },
-  {
-    "id": 550,
-    "cgm_id": "A227",
-    "direction": 349,
-    "is_weekend": true
-  },
-  {
-    "id": 551,
     "cgm_id": "A82",
     "direction": 131,
     "is_weekend": true
   },
   {
-    "id": 552,
+    "id": 548,
     "cgm_id": "A82",
     "direction": 133,
     "is_weekend": true
   },
   {
-    "id": 553,
+    "id": 549,
     "cgm_id": "A27",
     "direction": 348,
     "is_weekend": true
   },
   {
-    "id": 554,
+    "id": 550,
     "cgm_id": "A27",
     "direction": 352,
     "is_weekend": true
   },
   {
-    "id": 555,
+    "id": 551,
     "cgm_id": "A27",
     "direction": 353,
     "is_weekend": true
   },
   {
-    "id": 556,
+    "id": 552,
     "cgm_id": "A36",
     "direction": 342,
     "is_weekend": true
   },
   {
-    "id": 558,
+    "id": 554,
     "cgm_id": "A36",
     "direction": 346,
     "is_weekend": true
   },
   {
-    "id": 559,
+    "id": 555,
     "cgm_id": "A36",
     "direction": 345,
     "is_weekend": true
   },
   {
-    "id": 560,
+    "id": 556,
     "cgm_id": "A76",
     "direction": 343,
     "is_weekend": false
   },
   {
-    "id": 561,
+    "id": 557,
     "cgm_id": "A76",
     "direction": 344,
     "is_weekend": false
   },
   {
-    "id": 562,
+    "id": 558,
     "cgm_id": "A226",
     "direction": 354,
+    "is_weekend": true
+  },
+  {
+    "id": 561,
+    "cgm_id": "A226",
+    "direction": 354,
+    "is_weekend": false
+  },
+  {
+    "id": 562,
+    "cgm_id": "A226",
+    "direction": 355,
+    "is_weekend": true
+  },
+  {
+    "id": 563,
+    "cgm_id": "A226",
+    "direction": 355,
+    "is_weekend": false
+  },
+  {
+    "id": 564,
+    "cgm_id": "A52",
+    "direction": 334,
     "is_weekend": true
   },
   {
     "id": 565,
-    "cgm_id": "A226",
-    "direction": 354,
-    "is_weekend": false
-  },
-  {
-    "id": 566,
-    "cgm_id": "A226",
-    "direction": 355,
+    "cgm_id": "A37",
+    "direction": 356,
     "is_weekend": true
   },
   {
-    "id": 567,
-    "cgm_id": "A226",
-    "direction": 355,
-    "is_weekend": false
+    "id": 566,
+    "cgm_id": "A52",
+    "direction": 335,
+    "is_weekend": true
   },
   {
     "id": 568,
-    "cgm_id": "A52",
-    "direction": 334,
+    "cgm_id": "A37",
+    "direction": 357,
     "is_weekend": true
   },
   {
     "id": 569,
     "cgm_id": "A37",
     "direction": 356,
-    "is_weekend": true
-  },
-  {
-    "id": 570,
-    "cgm_id": "A52",
-    "direction": 335,
-    "is_weekend": true
-  },
-  {
-    "id": 572,
-    "cgm_id": "A37",
-    "direction": 357,
-    "is_weekend": true
-  },
-  {
-    "id": 573,
-    "cgm_id": "A37",
-    "direction": 356,
     "is_weekend": false
   },
   {
-    "id": 575,
+    "id": 571,
     "cgm_id": "A27",
     "direction": 353,
     "is_weekend": false
   },
   {
-    "id": 577,
+    "id": 573,
     "cgm_id": "A99",
     "direction": 235,
     "is_weekend": true
   },
   {
-    "id": 578,
+    "id": 574,
     "cgm_id": "A99",
     "direction": 234,
     "is_weekend": true
   },
   {
-    "id": 580,
+    "id": 576,
     "cgm_id": "A27",
     "direction": 347,
     "is_weekend": false
   },
   {
-    "id": 581,
+    "id": 577,
     "cgm_id": "A27",
     "direction": 348,
     "is_weekend": false
   },
   {
-    "id": 582,
+    "id": 578,
     "cgm_id": "A27",
     "direction": 352,
     "is_weekend": false
   },
   {
-    "id": 583,
+    "id": 579,
     "cgm_id": "A99",
     "direction": 278,
     "is_weekend": true
   },
   {
-    "id": 584,
+    "id": 580,
     "cgm_id": "A37",
     "direction": 357,
     "is_weekend": false
   },
   {
-    "id": 585,
+    "id": 581,
     "cgm_id": "A251",
     "direction": 360,
     "is_weekend": false
   },
   {
-    "id": 587,
+    "id": 583,
     "cgm_id": "A251",
     "direction": 361,
     "is_weekend": false
   },
   {
-    "id": 588,
+    "id": 584,
     "cgm_id": "A251",
     "direction": 363,
     "is_weekend": false
   },
   {
-    "id": 589,
+    "id": 585,
     "cgm_id": "A104",
     "direction": 364,
     "is_weekend": false
   },
   {
-    "id": 592,
+    "id": 588,
     "cgm_id": "A59",
     "direction": 252,
     "is_weekend": false
   },
   {
-    "id": 593,
+    "id": 589,
     "cgm_id": "A234",
     "direction": 238,
     "is_weekend": false
   },
   {
-    "id": 594,
+    "id": 590,
     "cgm_id": "A234",
     "direction": 239,
     "is_weekend": false
   },
   {
-    "id": 595,
+    "id": 591,
     "cgm_id": "A234",
     "direction": 365,
     "is_weekend": false
   },
   {
-    "id": 596,
+    "id": 592,
     "cgm_id": "A234",
     "direction": 366,
     "is_weekend": false
   },
   {
-    "id": 598,
+    "id": 594,
     "cgm_id": "A167",
     "direction": 367,
     "is_weekend": false
   },
   {
-    "id": 599,
+    "id": 595,
     "cgm_id": "A167",
     "direction": 369,
     "is_weekend": false
   },
   {
-    "id": 600,
+    "id": 596,
     "cgm_id": "A59",
     "direction": 256,
     "is_weekend": false
   },
   {
-    "id": 603,
+    "id": 599,
     "cgm_id": "A48",
     "direction": 370,
     "is_weekend": false
   },
   {
-    "id": 604,
+    "id": 600,
     "cgm_id": "A48",
     "direction": 370,
     "is_weekend": true
   },
   {
-    "id": 605,
+    "id": 601,
     "cgm_id": "A104",
     "direction": 364,
     "is_weekend": true
   },
   {
-    "id": 606,
+    "id": 602,
     "cgm_id": "A9",
     "direction": 330,
     "is_weekend": false
   },
   {
-    "id": 608,
+    "id": 604,
     "cgm_id": "A6",
     "direction": 242,
     "is_weekend": true
   },
   {
-    "id": 609,
+    "id": 605,
     "cgm_id": "A6",
     "direction": 241,
     "is_weekend": true
   },
   {
-    "id": 610,
+    "id": 606,
     "cgm_id": "A87",
     "direction": 374,
     "is_weekend": true
   },
   {
-    "id": 611,
+    "id": 607,
     "cgm_id": "A87",
     "direction": 375,
     "is_weekend": true
   },
   {
-    "id": 612,
+    "id": 608,
     "cgm_id": "A90",
     "direction": 164,
     "is_weekend": true
   },
   {
-    "id": 613,
+    "id": 609,
     "cgm_id": "A90",
     "direction": 165,
     "is_weekend": true
   },
   {
-    "id": 614,
+    "id": 610,
     "cgm_id": "TM32",
     "direction": 43,
     "is_weekend": false
   },
   {
-    "id": 615,
+    "id": 611,
     "cgm_id": "M2",
     "direction": 377,
     "is_weekend": false
   },
   {
-    "id": 616,
+    "id": 612,
     "cgm_id": "M2",
     "direction": 378,
     "is_weekend": false
   },
   {
+    "id": 613,
+    "cgm_id": "A45",
+    "direction": 379,
+    "is_weekend": false
+  },
+  {
+    "id": 614,
+    "cgm_id": "A45",
+    "direction": 380,
+    "is_weekend": false
+  },
+  {
+    "id": 615,
+    "cgm_id": "A45",
+    "direction": 380,
+    "is_weekend": true
+  },
+  {
+    "id": 616,
+    "cgm_id": "A45",
+    "direction": 379,
+    "is_weekend": true
+  },
+  {
     "id": 617,
-    "cgm_id": "A45",
-    "direction": 379,
-    "is_weekend": false
-  },
-  {
-    "id": 618,
-    "cgm_id": "A45",
-    "direction": 380,
-    "is_weekend": false
-  },
-  {
-    "id": 619,
-    "cgm_id": "A45",
-    "direction": 380,
-    "is_weekend": true
-  },
-  {
-    "id": 620,
-    "cgm_id": "A45",
-    "direction": 379,
-    "is_weekend": true
-  },
-  {
-    "id": 621,
     "cgm_id": "A42",
     "direction": 381,
     "is_weekend": true
   },
   {
-    "id": 622,
+    "id": 618,
     "cgm_id": "A42",
     "direction": 382,
     "is_weekend": true
   },
   {
-    "id": 623,
+    "id": 619,
     "cgm_id": "A8",
     "direction": 383,
     "is_weekend": true
   },
   {
-    "id": 624,
+    "id": 620,
     "cgm_id": "A8",
     "direction": 384,
     "is_weekend": true
   },
   {
-    "id": 632,
+    "id": 628,
     "cgm_id": "A12",
     "direction": 110,
     "is_weekend": false
   },
   {
-    "id": 633,
+    "id": 629,
     "cgm_id": "A32",
     "direction": 387,
     "is_weekend": false
   },
   {
-    "id": 636,
+    "id": 632,
     "cgm_id": "A12",
     "direction": 111,
     "is_weekend": false
   },
   {
-    "id": 637,
+    "id": 633,
     "cgm_id": "A32",
     "direction": 385,
     "is_weekend": false
   },
   {
-    "id": 638,
+    "id": 634,
     "cgm_id": "A32",
     "direction": 387,
     "is_weekend": true
   },
   {
-    "id": 639,
+    "id": 635,
     "cgm_id": "A32",
     "direction": 385,
     "is_weekend": true
   },
   {
-    "id": 640,
+    "id": 636,
     "cgm_id": "A44",
     "direction": 390,
     "is_weekend": false
   },
   {
-    "id": 641,
+    "id": 637,
     "cgm_id": "A44",
     "direction": 391,
     "is_weekend": false
   },
   {
-    "id": 644,
+    "id": 640,
     "cgm_id": "A264",
     "direction": 158,
     "is_weekend": false
   },
   {
-    "id": 646,
+    "id": 642,
     "cgm_id": "A264",
     "direction": 167,
     "is_weekend": false
   },
   {
-    "id": 647,
+    "id": 643,
     "cgm_id": "A80",
     "direction": 392,
     "is_weekend": false
   },
   {
-    "id": 648,
+    "id": 644,
     "cgm_id": "A80",
     "direction": 393,
     "is_weekend": false
   },
   {
-    "id": 649,
+    "id": 645,
     "cgm_id": "A253",
     "direction": 394,
     "is_weekend": false
   },
   {
-    "id": 650,
+    "id": 646,
     "cgm_id": "A274",
     "direction": 395,
     "is_weekend": false
   },
   {
-    "id": 653,
+    "id": 649,
     "cgm_id": "A53",
     "direction": 62,
     "is_weekend": true
   },
   {
-    "id": 654,
+    "id": 650,
     "cgm_id": "A53",
     "direction": 63,
     "is_weekend": true
   },
   {
-    "id": 656,
+    "id": 652,
     "cgm_id": "A108",
     "direction": 397,
     "is_weekend": false
   },
   {
-    "id": 657,
+    "id": 653,
     "cgm_id": "A108",
     "direction": 396,
     "is_weekend": false
   },
   {
-    "id": 658,
+    "id": 654,
     "cgm_id": "A255",
     "direction": 399,
     "is_weekend": false
   },
   {
-    "id": 659,
+    "id": 655,
     "cgm_id": "A255",
     "direction": 400,
     "is_weekend": false
   },
   {
-    "id": 661,
+    "id": 657,
     "cgm_id": "A44",
     "direction": 390,
     "is_weekend": true
   },
   {
-    "id": 662,
+    "id": 658,
     "cgm_id": "A44",
     "direction": 391,
     "is_weekend": true
   },
   {
-    "id": 665,
+    "id": 661,
     "cgm_id": "A8",
     "direction": 383,
     "is_weekend": false
   },
   {
-    "id": 666,
+    "id": 662,
     "cgm_id": "A8",
     "direction": 384,
     "is_weekend": false
   },
   {
-    "id": 668,
+    "id": 664,
     "cgm_id": "A9",
     "direction": 331,
     "is_weekend": true
   },
   {
-    "id": 669,
+    "id": 665,
     "cgm_id": "A9",
     "direction": 330,
     "is_weekend": true
   },
   {
-    "id": 670,
+    "id": 666,
     "cgm_id": "A26",
     "direction": 339,
     "is_weekend": false
   },
   {
-    "id": 671,
+    "id": 667,
     "cgm_id": "A26",
     "direction": 308,
     "is_weekend": false
   },
   {
-    "id": 675,
+    "id": 671,
     "cgm_id": "A1",
     "direction": 76,
     "is_weekend": false
   },
   {
-    "id": 676,
+    "id": 672,
     "cgm_id": "A1",
     "direction": 75,
     "is_weekend": false
   },
   {
-    "id": 677,
+    "id": 673,
     "cgm_id": "TB36",
     "direction": 401,
     "is_weekend": true
   },
   {
-    "id": 678,
+    "id": 674,
     "cgm_id": "TB36",
     "direction": 402,
     "is_weekend": true
   },
   {
-    "id": 679,
+    "id": 675,
     "cgm_id": "M4",
     "direction": 403,
     "is_weekend": false
   },
   {
-    "id": 680,
+    "id": 676,
     "cgm_id": "M4",
     "direction": 404,
     "is_weekend": false
   },
   {
-    "id": 681,
+    "id": 677,
     "cgm_id": "A84",
     "direction": 22,
     "is_weekend": false
   },
   {
-    "id": 683,
+    "id": 679,
     "cgm_id": "A55",
     "direction": 88,
     "is_weekend": true
   },
   {
-    "id": 684,
+    "id": 680,
     "cgm_id": "A2",
     "direction": 405,
     "is_weekend": false
   },
   {
-    "id": 685,
+    "id": 681,
     "cgm_id": "A2",
     "direction": 406,
     "is_weekend": false
   },
   {
-    "id": 688,
+    "id": 684,
     "cgm_id": "A75",
     "direction": 407,
     "is_weekend": false
   },
   {
-    "id": 689,
+    "id": 685,
     "cgm_id": "A75",
     "direction": 408,
     "is_weekend": false
   },
   {
-    "id": 690,
+    "id": 686,
     "cgm_id": "A101",
     "direction": 411,
     "is_weekend": true
   },
   {
-    "id": 691,
+    "id": 687,
     "cgm_id": "A101",
     "direction": 412,
     "is_weekend": true
   },
   {
-    "id": 692,
+    "id": 688,
     "cgm_id": "A56",
     "direction": 329,
     "is_weekend": true
   },
   {
-    "id": 693,
+    "id": 689,
     "cgm_id": "A56",
     "direction": 328,
     "is_weekend": true
   },
   {
-    "id": 696,
+    "id": 692,
     "cgm_id": "A84",
     "direction": 19,
     "is_weekend": false
   },
   {
-    "id": 697,
+    "id": 693,
     "cgm_id": "A24",
     "direction": 415,
     "is_weekend": false
   },
   {
-    "id": 698,
+    "id": 694,
     "cgm_id": "A24",
     "direction": 416,
     "is_weekend": false
   },
   {
-    "id": 699,
+    "id": 695,
     "cgm_id": "A108",
     "direction": 417,
     "is_weekend": false
   },
   {
-    "id": 700,
+    "id": 696,
     "cgm_id": "A100",
     "direction": 197,
     "is_weekend": true
   },
   {
-    "id": 701,
+    "id": 697,
     "cgm_id": "A100",
     "direction": 180,
     "is_weekend": true
   },
   {
-    "id": 704,
+    "id": 700,
     "cgm_id": "A24",
     "direction": 418,
     "is_weekend": false
   },
   {
-    "id": 705,
+    "id": 701,
     "cgm_id": "TB35",
     "direction": 205,
     "is_weekend": true
   },
   {
-    "id": 708,
+    "id": 704,
     "cgm_id": "A25",
     "direction": 420,
+    "is_weekend": false
+  },
+  {
+    "id": 705,
+    "cgm_id": "A25",
+    "direction": 421,
+    "is_weekend": false
+  },
+  {
+    "id": 706,
+    "cgm_id": "A25",
+    "direction": 422,
+    "is_weekend": false
+  },
+  {
+    "id": 708,
+    "cgm_id": "A25",
+    "direction": 424,
     "is_weekend": false
   },
   {
     "id": 709,
     "cgm_id": "A25",
-    "direction": 421,
-    "is_weekend": false
-  },
-  {
-    "id": 710,
-    "cgm_id": "A25",
-    "direction": 422,
-    "is_weekend": false
-  },
-  {
-    "id": 712,
-    "cgm_id": "A25",
-    "direction": 424,
-    "is_weekend": false
-  },
-  {
-    "id": 713,
-    "cgm_id": "A25",
     "direction": 425,
     "is_weekend": false
   },
   {
-    "id": 715,
+    "id": 711,
     "cgm_id": "A85",
     "direction": 427,
     "is_weekend": true
   },
   {
-    "id": 716,
+    "id": 712,
     "cgm_id": "TM55",
     "direction": 136,
     "is_weekend": false
   },
   {
-    "id": 717,
+    "id": 713,
     "cgm_id": "A85",
     "direction": 426,
     "is_weekend": true
   },
   {
-    "id": 718,
+    "id": 714,
     "cgm_id": "TB35",
     "direction": 206,
     "is_weekend": true
   },
   {
-    "id": 722,
+    "id": 718,
     "cgm_id": "TM55",
     "direction": 134,
     "is_weekend": false
   },
   {
-    "id": 723,
+    "id": 719,
     "cgm_id": "A25",
     "direction": 425,
     "is_weekend": true
   },
   {
-    "id": 724,
+    "id": 720,
     "cgm_id": "A63",
     "direction": 430,
     "is_weekend": true
   },
   {
-    "id": 725,
+    "id": 721,
     "cgm_id": "A25",
     "direction": 422,
     "is_weekend": true
   },
   {
-    "id": 727,
+    "id": 723,
     "cgm_id": "A25",
     "direction": 424,
     "is_weekend": true
   },
   {
-    "id": 729,
+    "id": 725,
     "cgm_id": "A108",
     "direction": 397,
     "is_weekend": true
   },
   {
-    "id": 730,
+    "id": 726,
     "cgm_id": "A108",
     "direction": 417,
     "is_weekend": true
   },
   {
-    "id": 731,
+    "id": 727,
     "cgm_id": "A108",
     "direction": 396,
     "is_weekend": true
   },
   {
-    "id": 734,
+    "id": 730,
     "cgm_id": "TM30",
     "direction": 100,
     "is_weekend": false
   },
   {
-    "id": 735,
+    "id": 731,
     "cgm_id": "A25",
     "direction": 421,
     "is_weekend": true
   },
   {
-    "id": 737,
+    "id": 733,
     "cgm_id": "A25",
     "direction": 420,
     "is_weekend": true
   },
   {
-    "id": 738,
+    "id": 734,
     "cgm_id": "A63",
     "direction": 432,
     "is_weekend": true
   },
   {
-    "id": 740,
+    "id": 736,
     "cgm_id": "A42",
     "direction": 381,
     "is_weekend": false
   },
   {
-    "id": 741,
+    "id": 737,
     "cgm_id": "A42",
     "direction": 382,
     "is_weekend": false
   },
   {
-    "id": 742,
+    "id": 738,
     "cgm_id": "A2",
     "direction": 405,
     "is_weekend": true
   },
   {
-    "id": 743,
+    "id": 739,
     "cgm_id": "A2",
     "direction": 406,
     "is_weekend": true
   },
   {
-    "id": 744,
+    "id": 740,
     "cgm_id": "TM30",
     "direction": 99,
     "is_weekend": false
   },
   {
-    "id": 745,
+    "id": 741,
     "cgm_id": "A54",
     "direction": 260,
     "is_weekend": false
   },
   {
-    "id": 747,
+    "id": 743,
     "cgm_id": "A54",
     "direction": 259,
     "is_weekend": false
   },
   {
-    "id": 750,
+    "id": 746,
     "cgm_id": "M1",
     "direction": 413,
     "is_weekend": false
   },
   {
-    "id": 751,
+    "id": 747,
     "cgm_id": "M1",
     "direction": 414,
     "is_weekend": false
   },
   {
-    "id": 753,
+    "id": 749,
     "cgm_id": "A7",
     "direction": 34,
     "is_weekend": false
   },
   {
-    "id": 754,
+    "id": 750,
     "cgm_id": "A7",
     "direction": 35,
     "is_weekend": false
   },
   {
-    "id": 756,
+    "id": 752,
     "cgm_id": "A101",
     "direction": 411,
     "is_weekend": false
   },
   {
-    "id": 758,
+    "id": 754,
     "cgm_id": "A101",
     "direction": 412,
     "is_weekend": false
   },
   {
-    "id": 762,
+    "id": 758,
     "cgm_id": "TB7",
     "direction": 441,
     "is_weekend": false
   },
   {
-    "id": 763,
+    "id": 759,
     "cgm_id": "TB41",
     "direction": 447,
     "is_weekend": false
+  },
+  {
+    "id": 760,
+    "cgm_id": "TB41",
+    "direction": 448,
+    "is_weekend": false
+  },
+  {
+    "id": 761,
+    "cgm_id": "TB41",
+    "direction": 448,
+    "is_weekend": true
+  },
+  {
+    "id": 762,
+    "cgm_id": "TB41",
+    "direction": 447,
+    "is_weekend": true
   },
   {
     "id": 764,
-    "cgm_id": "TB41",
-    "direction": 448,
-    "is_weekend": false
-  },
-  {
-    "id": 765,
-    "cgm_id": "TB41",
-    "direction": 448,
-    "is_weekend": true
-  },
-  {
-    "id": 766,
-    "cgm_id": "TB41",
-    "direction": 447,
-    "is_weekend": true
-  },
-  {
-    "id": 768,
     "cgm_id": "A61",
     "direction": 59,
     "is_weekend": true
   },
   {
-    "id": 769,
+    "id": 765,
     "cgm_id": "A61",
     "direction": 21,
     "is_weekend": true
   },
   {
-    "id": 770,
+    "id": 766,
     "cgm_id": "A61",
     "direction": 449,
     "is_weekend": true
   },
   {
-    "id": 771,
+    "id": 767,
     "cgm_id": "A63",
     "direction": 432,
     "is_weekend": false
   },
   {
-    "id": 772,
+    "id": 768,
     "cgm_id": "A63",
     "direction": 430,
     "is_weekend": false
   },
   {
-    "id": 773,
+    "id": 769,
     "cgm_id": "TB7",
     "direction": 443,
     "is_weekend": false
   },
   {
-    "id": 778,
+    "id": 774,
     "cgm_id": "TB7",
     "direction": 441,
     "is_weekend": true
   },
   {
-    "id": 779,
+    "id": 775,
     "cgm_id": "TB7",
     "direction": 443,
     "is_weekend": true
   },
   {
-    "id": 784,
+    "id": 780,
     "cgm_id": "A3",
     "direction": 451,
     "is_weekend": false
   },
   {
-    "id": 785,
+    "id": 781,
     "cgm_id": "A3",
     "direction": 456,
     "is_weekend": false
   },
   {
-    "id": 787,
+    "id": 783,
     "cgm_id": "TM23",
     "direction": 453,
+    "is_weekend": false
+  },
+  {
+    "id": 785,
+    "cgm_id": "TM23",
+    "direction": 454,
     "is_weekend": false
   },
   {
     "id": 789,
     "cgm_id": "TM23",
-    "direction": 454,
-    "is_weekend": false
-  },
-  {
-    "id": 793,
-    "cgm_id": "TM23",
     "direction": 453,
     "is_weekend": true
   },
   {
-    "id": 795,
+    "id": 791,
     "cgm_id": "TM23",
     "direction": 454,
     "is_weekend": true
   },
   {
-    "id": 796,
+    "id": 792,
     "cgm_id": "A3",
     "direction": 452,
     "is_weekend": false
   },
   {
-    "id": 797,
+    "id": 793,
     "cgm_id": "A3",
     "direction": 462,
     "is_weekend": false
   },
   {
-    "id": 800,
+    "id": 796,
     "cgm_id": "A3",
     "direction": 456,
     "is_weekend": true
   },
   {
-    "id": 801,
+    "id": 797,
     "cgm_id": "A3",
     "direction": 452,
     "is_weekend": true
   },
   {
-    "id": 802,
+    "id": 798,
     "cgm_id": "A3",
     "direction": 451,
     "is_weekend": true
   },
   {
-    "id": 804,
+    "id": 800,
     "cgm_id": "A85",
     "direction": 427,
     "is_weekend": false
   },
   {
-    "id": 805,
+    "id": 801,
     "cgm_id": "A85",
     "direction": 426,
     "is_weekend": false
   },
   {
-    "id": 807,
+    "id": 803,
     "cgm_id": "A254",
     "direction": 464,
     "is_weekend": false
   },
   {
-    "id": 808,
+    "id": 804,
     "cgm_id": "A254",
     "direction": 465,
     "is_weekend": false
   },
   {
-    "id": 809,
+    "id": 805,
     "cgm_id": "A254",
     "direction": 466,
     "is_weekend": false
   },
   {
-    "id": 810,
+    "id": 806,
     "cgm_id": "TB36",
     "direction": 402,
     "is_weekend": false
   },
   {
-    "id": 811,
+    "id": 807,
     "cgm_id": "TB36",
     "direction": 401,
     "is_weekend": false
   },
   {
-    "id": 812,
+    "id": 808,
     "cgm_id": "A3",
     "direction": 462,
     "is_weekend": true
   },
   {
-    "id": 815,
+    "id": 811,
     "cgm_id": "TM22",
     "direction": 467,
     "is_weekend": false
   },
   {
-    "id": 816,
+    "id": 812,
     "cgm_id": "TM22",
     "direction": 470,
     "is_weekend": false
   },
   {
-    "id": 817,
+    "id": 813,
     "cgm_id": "TM22",
     "direction": 471,
     "is_weekend": false
   },
   {
-    "id": 819,
+    "id": 815,
     "cgm_id": "A13",
     "direction": 188,
     "is_weekend": false
   },
   {
-    "id": 820,
+    "id": 816,
     "cgm_id": "A13",
     "direction": 189,
     "is_weekend": false
   },
   {
+    "id": 817,
+    "cgm_id": "A109",
+    "direction": 473,
+    "is_weekend": true
+  },
+  {
+    "id": 818,
+    "cgm_id": "A109",
+    "direction": 474,
+    "is_weekend": true
+  },
+  {
+    "id": 819,
+    "cgm_id": "A109",
+    "direction": 473,
+    "is_weekend": false
+  },
+  {
+    "id": 820,
+    "cgm_id": "A109",
+    "direction": 474,
+    "is_weekend": false
+  },
+  {
     "id": 821,
-    "cgm_id": "A109",
-    "direction": 473,
-    "is_weekend": true
-  },
-  {
-    "id": 822,
-    "cgm_id": "A109",
-    "direction": 474,
-    "is_weekend": true
-  },
-  {
-    "id": 823,
-    "cgm_id": "A109",
-    "direction": 473,
-    "is_weekend": false
-  },
-  {
-    "id": 824,
-    "cgm_id": "A109",
-    "direction": 474,
-    "is_weekend": false
-  },
-  {
-    "id": 825,
     "cgm_id": "TB43",
     "direction": 70,
     "is_weekend": false
   },
   {
-    "id": 826,
+    "id": 822,
     "cgm_id": "TB43",
     "direction": 71,
     "is_weekend": false
   },
   {
-    "id": 827,
+    "id": 823,
     "cgm_id": "A87",
     "direction": 374,
     "is_weekend": false
   },
   {
-    "id": 828,
+    "id": 824,
     "cgm_id": "A87",
     "direction": 375,
     "is_weekend": false
   },
   {
-    "id": 832,
+    "id": 828,
     "cgm_id": "A77",
     "direction": 476,
     "is_weekend": true
   },
   {
-    "id": 834,
+    "id": 830,
     "cgm_id": "A77",
     "direction": 475,
     "is_weekend": true
   },
   {
-    "id": 835,
+    "id": 831,
     "cgm_id": "TM56",
     "direction": 481,
     "is_weekend": false
   },
   {
-    "id": 836,
+    "id": 832,
     "cgm_id": "TM56",
     "direction": 482,
     "is_weekend": false
   },
   {
-    "id": 837,
+    "id": 833,
     "cgm_id": "TM20",
     "direction": 483,
     "is_weekend": false
   },
   {
-    "id": 838,
+    "id": 834,
     "cgm_id": "TM20",
     "direction": 484,
     "is_weekend": false
   },
   {
-    "id": 839,
+    "id": 835,
     "cgm_id": "TM56",
     "direction": 485,
     "is_weekend": false
   },
   {
-    "id": 840,
+    "id": 836,
     "cgm_id": "TM56",
     "direction": 486,
     "is_weekend": false
   },
   {
-    "id": 841,
+    "id": 837,
     "cgm_id": "M2",
     "direction": 377,
     "is_weekend": true
   },
   {
-    "id": 842,
+    "id": 838,
     "cgm_id": "M2",
     "direction": 378,
     "is_weekend": true
   },
   {
-    "id": 845,
+    "id": 841,
     "cgm_id": "TM28",
     "direction": 224,
     "is_weekend": true
   },
   {
-    "id": 848,
+    "id": 844,
     "cgm_id": "TM28",
     "direction": 225,
     "is_weekend": true
   },
   {
-    "id": 849,
+    "id": 845,
     "cgm_id": "TM27",
     "direction": 140,
     "is_weekend": true
   },
   {
-    "id": 851,
+    "id": 847,
     "cgm_id": "TM27",
     "direction": 139,
     "is_weekend": true
   },
   {
-    "id": 852,
+    "id": 848,
     "cgm_id": "M4",
     "direction": 404,
     "is_weekend": true
   },
   {
-    "id": 853,
+    "id": 849,
     "cgm_id": "M4",
     "direction": 403,
     "is_weekend": true
   },
   {
-    "id": 855,
+    "id": 851,
     "cgm_id": "M1",
     "direction": 413,
     "is_weekend": true
   },
   {
-    "id": 859,
+    "id": 855,
     "cgm_id": "M1",
     "direction": 414,
     "is_weekend": true
   },
   {
-    "id": 864,
+    "id": 860,
     "cgm_id": "TM22",
     "direction": 468,
     "is_weekend": true
   },
   {
-    "id": 865,
+    "id": 861,
     "cgm_id": "TM22",
     "direction": 470,
     "is_weekend": true
   },
   {
-    "id": 868,
+    "id": 864,
     "cgm_id": "A28",
     "direction": 489,
     "is_weekend": false
   },
   {
-    "id": 869,
+    "id": 865,
     "cgm_id": "A28",
     "direction": 492,
     "is_weekend": false
   },
   {
-    "id": 870,
+    "id": 866,
     "cgm_id": "A200",
     "direction": 493,
     "is_weekend": true
   },
   {
-    "id": 871,
+    "id": 867,
     "cgm_id": "A200",
     "direction": 494,
     "is_weekend": true
   },
   {
-    "id": 872,
+    "id": 868,
     "cgm_id": "A193",
     "direction": 244,
     "is_weekend": true
   },
   {
-    "id": 873,
+    "id": 869,
     "cgm_id": "A193",
     "direction": 245,
     "is_weekend": true
   },
   {
-    "id": 874,
+    "id": 870,
     "cgm_id": "A79",
     "direction": 495,
     "is_weekend": false
   },
   {
-    "id": 875,
+    "id": 871,
     "cgm_id": "A79",
     "direction": 496,
     "is_weekend": true
   },
   {
-    "id": 876,
+    "id": 872,
     "cgm_id": "A79",
     "direction": 497,
     "is_weekend": true
   },
   {
-    "id": 877,
+    "id": 873,
     "cgm_id": "A79",
     "direction": 495,
     "is_weekend": true
   },
   {
-    "id": 878,
+    "id": 874,
     "cgm_id": "A79",
     "direction": 496,
     "is_weekend": false
   },
   {
-    "id": 879,
+    "id": 875,
     "cgm_id": "A195",
     "direction": 254,
     "is_weekend": true
   },
   {
-    "id": 880,
+    "id": 876,
     "cgm_id": "A195",
     "direction": 253,
     "is_weekend": true
   },
   {
-    "id": 881,
+    "id": 877,
     "cgm_id": "A79",
     "direction": 497,
     "is_weekend": false
   },
   {
-    "id": 883,
+    "id": 879,
     "cgm_id": "A78",
     "direction": 28,
     "is_weekend": true
   },
   {
-    "id": 888,
+    "id": 884,
     "cgm_id": "A78",
     "direction": 501,
     "is_weekend": false
   },
   {
-    "id": 889,
+    "id": 885,
     "cgm_id": "A78",
     "direction": 501,
     "is_weekend": true
+  },
+  {
+    "id": 886,
+    "cgm_id": "A78",
+    "direction": 498,
+    "is_weekend": false
+  },
+  {
+    "id": 888,
+    "cgm_id": "A78",
+    "direction": 503,
+    "is_weekend": true
+  },
+  {
+    "id": 889,
+    "cgm_id": "A78",
+    "direction": 503,
+    "is_weekend": false
   },
   {
     "id": 890,
     "cgm_id": "A78",
     "direction": 498,
-    "is_weekend": false
-  },
-  {
-    "id": 892,
-    "cgm_id": "A78",
-    "direction": 503,
     "is_weekend": true
-  },
-  {
-    "id": 893,
-    "cgm_id": "A78",
-    "direction": 503,
-    "is_weekend": false
   },
   {
     "id": 894,
-    "cgm_id": "A78",
-    "direction": 498,
-    "is_weekend": true
-  },
-  {
-    "id": 898,
     "cgm_id": "A77",
     "direction": 475,
     "is_weekend": false
   },
   {
-    "id": 899,
+    "id": 895,
     "cgm_id": "A77",
     "direction": 476,
     "is_weekend": false
   },
   {
-    "id": 901,
+    "id": 897,
     "cgm_id": "A28",
     "direction": 489,
     "is_weekend": true
   },
   {
-    "id": 903,
+    "id": 899,
     "cgm_id": "A28",
     "direction": 492,
     "is_weekend": true
   },
   {
-    "id": 904,
+    "id": 900,
     "cgm_id": "A200",
     "direction": 493,
     "is_weekend": false
   },
   {
-    "id": 906,
+    "id": 902,
     "cgm_id": "A200",
     "direction": 494,
     "is_weekend": false
   },
   {
-    "id": 909,
+    "id": 905,
     "cgm_id": "A75",
     "direction": 408,
     "is_weekend": true
   },
   {
-    "id": 910,
+    "id": 906,
     "cgm_id": "A58",
     "direction": 264,
     "is_weekend": true
   },
   {
-    "id": 911,
+    "id": 907,
     "cgm_id": "A58",
     "direction": 268,
     "is_weekend": true
   },
   {
-    "id": 912,
+    "id": 908,
     "cgm_id": "A58",
     "direction": 277,
     "is_weekend": true
   },
   {
-    "id": 913,
+    "id": 909,
     "cgm_id": "A75",
     "direction": 407,
     "is_weekend": true
   },
   {
-    "id": 914,
+    "id": 910,
     "cgm_id": "TM22",
     "direction": 467,
     "is_weekend": true
   },
   {
-    "id": 915,
+    "id": 911,
     "cgm_id": "TM22",
     "direction": 471,
     "is_weekend": true
   },
   {
-    "id": 916,
+    "id": 912,
     "cgm_id": "TM22",
     "direction": 506,
     "is_weekend": true
   },
   {
-    "id": 917,
+    "id": 913,
     "cgm_id": "TM22",
     "direction": 507,
     "is_weekend": true
   },
   {
-    "id": 918,
+    "id": 914,
     "cgm_id": "TM22",
     "direction": 468,
     "is_weekend": false
   },
   {
-    "id": 919,
+    "id": 915,
     "cgm_id": "TM22",
     "direction": 506,
     "is_weekend": false
   },
   {
-    "id": 920,
+    "id": 916,
     "cgm_id": "TM20",
     "direction": 484,
     "is_weekend": true
   },
   {
-    "id": 921,
+    "id": 917,
     "cgm_id": "TM20",
     "direction": 483,
     "is_weekend": true
   },
   {
-    "id": 922,
+    "id": 918,
     "cgm_id": "A225",
     "direction": 508,
     "is_weekend": false
   },
   {
-    "id": 923,
+    "id": 919,
     "cgm_id": "A225",
     "direction": 508,
     "is_weekend": true
