@@ -5891,9 +5891,11 @@
       23.3577
     ],
     "names": {
-      "bg": "ул. Васил Кънчев",
-      "en": "Vasil Kanchev Str."
-    }
+      "bg": "метростанция Стадион Георги Аспарухов",
+      "en": "Georgi Asparuhov Stadium metro station"
+    },
+    "local_ref": "4",
+    "metro_ref": "B"
   },
   {
     "code": "1754",
@@ -5902,9 +5904,11 @@
       23.36932
     ],
     "names": {
-      "bg": "ул. Витиня",
-      "en": "Vitinya Str."
-    }
+      "bg": "метростанция Бесарабия",
+      "en": "Besarabia metro station"
+    },
+    "local_ref": "4",
+    "metro_ref": "B"
   },
   {
     "code": "1103",
@@ -10111,9 +10115,11 @@
       23.36005
     ],
     "names": {
-      "bg": "ул. Васил Кънчев",
-      "en": "Vasil Kanchev Str."
-    }
+      "bg": "метростанция Стадион Георги Аспарухов",
+      "en": "Georgi Asparuhov Stadium metro station"
+    },
+    "local_ref": "3",
+    "metro_ref": "A"
   },
   {
     "code": "2107",
@@ -10134,9 +10140,11 @@
       23.36963
     ],
     "names": {
-      "bg": "ул. Витиня",
-      "en": "Vitinya Str."
-    }
+      "bg": "метростанция Бесарабия",
+      "en": "Besarabia metro station"
+    },
+    "local_ref": "3",
+    "metro_ref": "A"
   },
   {
     "code": "2125",
@@ -10168,8 +10176,10 @@
     ],
     "names": {
       "bg": "метростанция Генерал Владимир Вазов",
-      "en": "metrostantsiya General Vladimir Vazov"
-    }
+      "en": "General Vladimir Vazov metro station"
+    },
+    "local_ref": "4",
+    "metro_ref": "B"
   },
   {
     "code": "0126",
@@ -10190,8 +10200,10 @@
     ],
     "names": {
       "bg": "метростанция Генерал Владимир Вазов",
-      "en": "metrostantsiya General Vladimir Vazov"
-    }
+      "en": "General Vladimir Vazov metro station"
+    },
+    "local_ref": "3",
+    "metro_ref": "A"
   },
   {
     "code": "0127",
@@ -14811,17 +14823,6 @@
     "names": {
       "bg": "ул. Бяло море",
       "en": "Byalo more Str."
-    }
-  },
-  {
-    "code": "2182",
-    "coords": [
-      42.71025,
-      23.38601
-    ],
-    "names": {
-      "bg": "метростанция Генерал Владимир Вазов",
-      "en": "metrostantsiya General Vladimir Vazov"
     }
   },
   {
@@ -23364,9 +23365,11 @@
       23.358
     ],
     "names": {
-      "bg": "ул. Ангел Войвода",
-      "en": "ul. Angel Voyvoda"
-    }
+      "bg": "метростанция Стадион Георги Аспарухов",
+      "en": "Georgi Asparuhov Stadium metro station"
+    },
+    "local_ref": "1",
+    "metro_ref": "D"
   },
   {
     "code": "2161",
@@ -24292,9 +24295,11 @@
       23.36898
     ],
     "names": {
-      "bg": "ул. Витиня",
-      "en": "ul. Vitinya"
-    }
+      "bg": "метростанция Бесарабия",
+      "en": "Besarabia metro station"
+    },
+    "local_ref": "1",
+    "metro_ref": "D"
   },
   {
     "code": "0882",
@@ -27161,8 +27166,8 @@
       23.32748
     ],
     "names": {
-      "bg": "Св. Патриарх Евтимий",
-      "en": "St. Patriarch Evtimiy"
+      "bg": "Патриарх Евтимий",
+      "en": "Patriarh Evtimiy"
     }
   },
   {
@@ -28856,8 +28861,8 @@
       23.28435
     ],
     "names": {
-      "bg": "бул. Цар Борис III / Красно село",
-      "en": "Tsar Boris III Blvd. / Krasno selo"
+      "bg": "Цар Борис III",
+      "en": "Tsar Boris III"
     }
   },
   {
@@ -30018,9 +30023,11 @@
       23.3585
     ],
     "names": {
-      "bg": "ул. Брезник",
-      "en": "Breznik St."
-    }
+      "bg": "метростанция Стадион Георги Аспарухов",
+      "en": "Georgi Asparuhov Stadium metro station"
+    },
+    "local_ref": "2",
+    "metro_ref": "C"
   },
   {
     "code": "6575",
@@ -30166,8 +30173,10 @@
     ],
     "names": {
       "bg": "метростанция Генерал Владимир Вазов",
-      "en": "metrostantsiya General Vladimir Vazov"
-    }
+      "en": "General Vladimir Vazov metro station"
+    },
+    "local_ref": "1",
+    "metro_ref": "C"
   },
   {
     "code": "2566",
@@ -30874,7 +30883,7 @@
     ],
     "names": {
       "bg": "Бесарабия",
-      "en": "Besarabiya"
+      "en": "Besarabia"
     }
   },
   {
@@ -31974,17 +31983,6 @@
     }
   },
   {
-    "code": "1531",
-    "coords": [
-      42.53521,
-      23.36538
-    ],
-    "names": {
-      "bg": "СЕЛО ЖЕЛЕЗНИЦА",
-      "en": "SELO ZHELEZNITSA"
-    }
-  },
-  {
     "code": "6698",
     "coords": [
       42.73219,
@@ -31993,17 +31991,6 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
-    }
-  },
-  {
-    "code": "1956",
-    "coords": [
-      42.53272,
-      23.36487
-    ],
-    "names": {
-      "bg": "УЛ. ЛЮЛЯК",
-      "en": "UL. LYULYAK"
     }
   },
   {
