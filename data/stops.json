@@ -12190,7 +12190,7 @@
       "bg": "градина Родина",
       "en": "Rodina garden"
     },
-    "metro_ref": "H"
+    "metro_ref": "G"
   },
   {
     "code": "2118",
@@ -12257,7 +12257,8 @@
     "names": {
       "bg": "ул. Бесарабия",
       "en": "ul. Besarabiya"
-    }
+    },
+    "metro_ref": "E"
   },
   {
     "code": "1840",
@@ -12268,7 +12269,8 @@
     "names": {
       "bg": "ул. Бесарабия",
       "en": "ul. Besarabiya"
-    }
+    },
+    "metro_ref": "F"
   },
   {
     "code": "2123",
