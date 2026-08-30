@@ -228,6 +228,19 @@
     "metro_ref": "H"
   },
   {
+    "code": "1255",
+    "coords": [
+      42.71368,
+      23.31441
+    ],
+    "names": {
+      "bg": "Пета градска болница",
+      "en": "Fifth Municipal Hospital"
+    },
+    "local_ref": "1",
+    "metro_ref": "E"
+  },
+  {
     "code": "0060",
     "coords": [
       42.74216,
@@ -4579,7 +4592,7 @@
   {
     "code": "1269",
     "coords": [
-      42.69732,
+      42.69733,
       23.31469
     ],
     "names": {
@@ -4678,7 +4691,7 @@
   {
     "code": "1271",
     "coords": [
-      42.69814,
+      42.69815,
       23.3151
     ],
     "names": {
@@ -4770,6 +4783,19 @@
     },
     "local_ref": "3",
     "metro_ref": "G"
+  },
+  {
+    "code": "1254",
+    "coords": [
+      42.71345,
+      23.31487
+    ],
+    "names": {
+      "bg": "Пета градска болница",
+      "en": "Fifth Municipal Hospital"
+    },
+    "local_ref": "2",
+    "metro_ref": "F"
   },
   {
     "code": "0359",
@@ -6071,6 +6097,17 @@
     }
   },
   {
+    "code": "0180",
+    "coords": [
+      42.71332,
+      23.38503
+    ],
+    "names": {
+      "bg": "бл. 28 ж.к. Левски Г",
+      "en": "bl. 28 zh.k. Levski G"
+    }
+  },
+  {
     "code": "0179",
     "coords": [
       42.71269,
@@ -6090,6 +6127,17 @@
     "names": {
       "bg": "бл. 28 ж.к. Левски Г",
       "en": "bl. 28 zh.k. Levski G"
+    }
+  },
+  {
+    "code": "0646",
+    "coords": [
+      42.71215,
+      23.38811
+    ],
+    "names": {
+      "bg": "ж.к. Левски Г",
+      "en": "Levski G"
     }
   },
   {
@@ -14828,6 +14876,30 @@
     }
   },
   {
+    "code": "2128",
+    "coords": [
+      42.71046,
+      23.38146
+    ],
+    "names": {
+      "bg": "ул. Поп Груйо",
+      "en": "Pope Gruyo Str."
+    }
+  },
+  {
+    "code": "2182",
+    "coords": [
+      42.71025,
+      23.38601
+    ],
+    "names": {
+      "bg": "метростанция Генерал Владимир Вазов",
+      "en": "General Vladimir Vazov metro station"
+    },
+    "local_ref": "2",
+    "metro_ref": "D"
+  },
+  {
     "code": "0692",
     "coords": [
       42.71026,
@@ -20215,6 +20287,17 @@
       "en": "Institut Pushkarov"
     },
     "request_stop": true
+  },
+  {
+    "code": "2524",
+    "coords": [
+      42.71156,
+      23.14093
+    ],
+    "names": {
+      "bg": "78-мо СОУ Банкя",
+      "en": "78-mo SOU Bankya"
+    }
   },
   {
     "code": "1943",
