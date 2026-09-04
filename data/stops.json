@@ -2675,7 +2675,7 @@
     ],
     "names": {
       "bg": "метростанция Витоша",
-      "en": "VItosha metro station"
+      "en": "Vitosha metro station"
     },
     "local_ref": "4",
     "metro_ref": "E"
@@ -3071,8 +3071,8 @@
   {
     "code": "0349",
     "coords": [
-      42.66537,
-      23.26082
+      42.66536,
+      23.26079
     ],
     "names": {
       "bg": "бул. Никола Петков",
@@ -16419,8 +16419,8 @@
       23.45972
     ],
     "names": {
-      "bg": "Гара Казичене",
-      "en": "Gara Kazichene"
+      "bg": "ул. Витоша",
+      "en": "Vitosha St"
     }
   },
   {
@@ -16452,8 +16452,8 @@
       23.45963
     ],
     "names": {
-      "bg": "Гара Казичене",
-      "en": "Gara Kazichene"
+      "bg": "ул. Витоша",
+      "en": "Vitosha St"
     }
   },
   {
@@ -16496,8 +16496,8 @@
       23.46487
     ],
     "names": {
-      "bg": "ул. Цар Борис ІІІ",
-      "en": "Tsar Boris III St."
+      "bg": "Царска гара",
+      "en": "Tsarska gara"
     }
   },
   {
@@ -16507,8 +16507,8 @@
       23.46471
     ],
     "names": {
-      "bg": "ул. Цар Борис ІІІ",
-      "en": "Tsar Boris III St."
+      "bg": "Царска гара",
+      "en": "Tsarska gara"
     }
   },
   {
@@ -26421,7 +26421,7 @@
   {
     "code": "0348",
     "coords": [
-      42.66519,
+      42.66518,
       23.26022
     ],
     "names": {
@@ -28911,7 +28911,7 @@
     ],
     "names": {
       "bg": "метростанция Витоша",
-      "en": "VItosha metro station"
+      "en": "Vitosha metro station"
     },
     "local_ref": "3",
     "metro_ref": "F"
@@ -32013,6 +32013,28 @@
     }
   },
   {
+    "code": "2924",
+    "coords": [
+      42.65269,
+      23.46987
+    ],
+    "names": {
+      "bg": "гара Казичене",
+      "en": "gara Kazichene"
+    }
+  },
+  {
+    "code": "2925",
+    "coords": [
+      42.65266,
+      23.47001
+    ],
+    "names": {
+      "bg": "гара Казичене",
+      "en": "gara Kazichene"
+    }
+  },
+  {
     "code": "2887",
     "coords": [
       42.7324,
@@ -32021,6 +32043,83 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
+    }
+  },
+  {
+    "code": "2926",
+    "coords": [
+      42.62154,
+      23.42156
+    ],
+    "names": {
+      "bg": "РАЗКЛОНА ЗА С. ГЕРМАН - ПО ЖЕЛАНИЕ",
+      "en": "RAZKLONA ZA S. GERMAN - PO ZHELANIE"
+    }
+  },
+  {
+    "code": "2932",
+    "coords": [
+      42.62287,
+      23.44116
+    ],
+    "names": {
+      "bg": "ПРОМИШЛЕНА ЗОНА ЛОЗЕН - СОП - ПО ЖЕЛАНИЕ",
+      "en": "PROMISHLENA ZONA LOZEN - SOP - PO ZHELANIE"
+    }
+  },
+  {
+    "code": "2928",
+    "coords": [
+      42.62173,
+      23.42862
+    ],
+    "names": {
+      "bg": "ПРОМИШЛЕНА ЗОНА ГЕРМАН - СОП - ПО ЖЕЛАНИЕ",
+      "en": "PROMISHLENA ZONA GERMAN - SOP - PO ZHELANIE"
+    }
+  },
+  {
+    "code": "2929",
+    "coords": [
+      42.62111,
+      23.43562
+    ],
+    "names": {
+      "bg": "УЛ. ПАНОРАМА ЛОЗЕН - ПО ЖЕЛАНИЕ",
+      "en": "UL. PANORAMA LOZEN - PO ZHELANIE"
+    }
+  },
+  {
+    "code": "2931",
+    "coords": [
+      42.62332,
+      23.44294
+    ],
+    "names": {
+      "bg": "ПРОМИШЛЕНА ЗОНА ЛОЗЕН - СОП - ПО ЖЕЛАНИЕ",
+      "en": "PROMISHLENA ZONA LOZEN - SOP - PO ZHELANIE"
+    }
+  },
+  {
+    "code": "2930",
+    "coords": [
+      42.62153,
+      23.43501
+    ],
+    "names": {
+      "bg": "УЛ. ПАНОРАМА ЛОЗЕН - ПО ЖЕЛАНИЕ",
+      "en": "UL. PANORAMA LOZEN - PO ZHELANIE"
+    }
+  },
+  {
+    "code": "2927",
+    "coords": [
+      42.62131,
+      23.42856
+    ],
+    "names": {
+      "bg": "ПРОМИШЛЕНА ЗОНА ГЕРМАН - СОП - ПО ЖЕЛАНИЕ",
+      "en": "PROMISHLENA ZONA GERMAN - SOP - PO ZHELANIE"
     }
   },
   {
