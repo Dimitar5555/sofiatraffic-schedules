@@ -483,19 +483,6 @@
     }
   },
   {
-    "code": "1330",
-    "coords": [
-      42.71092,
-      23.31895
-    ],
-    "names": {
-      "bg": "Централна гара",
-      "en": "Central Railway Station"
-    },
-    "local_ref": "7",
-    "metro_ref": "D"
-  },
-  {
     "code": "0443",
     "coords": [
       42.68601,
@@ -4689,17 +4676,6 @@
     }
   },
   {
-    "code": "1271",
-    "coords": [
-      42.69815,
-      23.3151
-    ],
-    "names": {
-      "bg": "пл. Възраждане",
-      "en": "Vazrazhdane Sq"
-    }
-  },
-  {
     "code": "1280",
     "coords": [
       42.69428,
@@ -4757,19 +4733,6 @@
     },
     "local_ref": "3",
     "metro_ref": "G"
-  },
-  {
-    "code": "1331",
-    "coords": [
-      42.71059,
-      23.31868
-    ],
-    "names": {
-      "bg": "Централна гара",
-      "en": "Central Railway Station"
-    },
-    "local_ref": "8",
-    "metro_ref": "E"
   },
   {
     "code": "1329",
@@ -4854,17 +4817,6 @@
     }
   },
   {
-    "code": "1993",
-    "coords": [
-      42.70812,
-      23.3181
-    ],
-    "names": {
-      "bg": "ул. Клокотница",
-      "en": "Klokotnitsa Str"
-    }
-  },
-  {
     "code": "1074",
     "coords": [
       42.69856,
@@ -4941,6 +4893,28 @@
     "coords": [
       42.7195,
       23.30996
+    ],
+    "names": {
+      "bg": "кв. Триъгълника",
+      "en": "Triagalnika"
+    }
+  },
+  {
+    "code": "1778",
+    "coords": [
+      42.71952,
+      23.30915
+    ],
+    "names": {
+      "bg": "кв. Триъгълника",
+      "en": "Triagalnika"
+    }
+  },
+  {
+    "code": "1777",
+    "coords": [
+      42.71967,
+      23.30923
     ],
     "names": {
       "bg": "кв. Триъгълника",
@@ -6097,17 +6071,6 @@
     }
   },
   {
-    "code": "0180",
-    "coords": [
-      42.71332,
-      23.38503
-    ],
-    "names": {
-      "bg": "бл. 28 ж.к. Левски Г",
-      "en": "bl. 28 zh.k. Levski G"
-    }
-  },
-  {
     "code": "0179",
     "coords": [
       42.71269,
@@ -6127,17 +6090,6 @@
     "names": {
       "bg": "бл. 28 ж.к. Левски Г",
       "en": "bl. 28 zh.k. Levski G"
-    }
-  },
-  {
-    "code": "0646",
-    "coords": [
-      42.71215,
-      23.38811
-    ],
-    "names": {
-      "bg": "ж.к. Левски Г",
-      "en": "Levski G"
     }
   },
   {
@@ -14874,30 +14826,6 @@
       "bg": "ул. Бяло море",
       "en": "Byalo more Str."
     }
-  },
-  {
-    "code": "2128",
-    "coords": [
-      42.71046,
-      23.38146
-    ],
-    "names": {
-      "bg": "ул. Поп Груйо",
-      "en": "Pope Gruyo Str."
-    }
-  },
-  {
-    "code": "2182",
-    "coords": [
-      42.71025,
-      23.38601
-    ],
-    "names": {
-      "bg": "метростанция Генерал Владимир Вазов",
-      "en": "General Vladimir Vazov metro station"
-    },
-    "local_ref": "2",
-    "metro_ref": "D"
   },
   {
     "code": "0692",
@@ -28098,6 +28026,30 @@
     }
   },
   {
+    "code": "2477",
+    "coords": [
+      42.72173,
+      23.30762
+    ],
+    "names": {
+      "bg": "метростанция Хан Кубрат",
+      "en": "Han Kubrat metro station"
+    },
+    "local_ref": "2",
+    "metro_ref": "C"
+  },
+  {
+    "code": "2663",
+    "coords": [
+      42.72196,
+      23.30724
+    ],
+    "names": {
+      "bg": "Метростанция Хан Кубрат",
+      "en": "Han Kubrat Metro Station"
+    }
+  },
+  {
     "code": "1838",
     "coords": [
       42.73317,
@@ -28862,6 +28814,17 @@
     "names": {
       "bg": "ул. Ген. Йосиф Гурко",
       "en": "General Iosif Gurko St"
+    }
+  },
+  {
+    "code": "0375",
+    "coords": [
+      42.72678,
+      23.31314
+    ],
+    "names": {
+      "bg": "Модна къща Агресия",
+      "en": "Fashion House Agresia"
     }
   },
   {
@@ -29879,8 +29842,8 @@
   {
     "code": "2791",
     "coords": [
-      42.6245,
-      23.34948
+      42.62473,
+      23.34969
     ],
     "names": {
       "bg": "Разклона за лифт Симеоново",
@@ -30148,6 +30111,78 @@
     }
   },
   {
+    "code": "2929",
+    "coords": [
+      42.62109,
+      23.43579
+    ],
+    "names": {
+      "bg": "ул. Панорама Лозен",
+      "en": "ul. Panorama Lozen"
+    },
+    "request_stop": true
+  },
+  {
+    "code": "2930",
+    "coords": [
+      42.62152,
+      23.43488
+    ],
+    "names": {
+      "bg": "ул. Панорама Лозен",
+      "en": "ul. Panorama Lozen"
+    },
+    "request_stop": true
+  },
+  {
+    "code": "2931",
+    "coords": [
+      42.62337,
+      23.44306
+    ],
+    "names": {
+      "bg": "Промишлена зона Лозен - СОП",
+      "en": "Promishlena zona Lozen - SOP"
+    },
+    "request_stop": true
+  },
+  {
+    "code": "2932",
+    "coords": [
+      42.62277,
+      23.44096
+    ],
+    "names": {
+      "bg": "Промишлена зона Лозен - СОП",
+      "en": "Promishlena zona Lozen - SOP"
+    },
+    "request_stop": true
+  },
+  {
+    "code": "2928",
+    "coords": [
+      42.62174,
+      23.42823
+    ],
+    "names": {
+      "bg": "Промишлена зона Герман - СОП",
+      "en": "Promishlena zona German - SOP"
+    },
+    "request_stop": true
+  },
+  {
+    "code": "2927",
+    "coords": [
+      42.62128,
+      23.42862
+    ],
+    "names": {
+      "bg": "Промишлена зона Герман - СОП",
+      "en": "Promishlena zona German - SOP"
+    },
+    "request_stop": true
+  },
+  {
     "code": "2831",
     "coords": [
       42.58336,
@@ -30262,6 +30297,18 @@
     },
     "local_ref": "1",
     "metro_ref": "C"
+  },
+  {
+    "code": "2926",
+    "coords": [
+      42.62154,
+      23.42176
+    ],
+    "names": {
+      "bg": "Разклона за с. Герман",
+      "en": "Razklona za s. German"
+    },
+    "request_stop": true
   },
   {
     "code": "2566",
@@ -31405,6 +31452,28 @@
     }
   },
   {
+    "code": "6085",
+    "coords": [
+      42.6995,
+      23.31576
+    ],
+    "names": {
+      "bg": "32 СУ Св. Климент Охридски",
+      "en": "32 SU Sv. Kliment Ohridski"
+    }
+  },
+  {
+    "code": "6086",
+    "coords": [
+      42.7009,
+      23.31188
+    ],
+    "names": {
+      "bg": "18 СУ Уилям Гладстон",
+      "en": "18 SU Uilyam Gladston"
+    }
+  },
+  {
     "code": "6411",
     "coords": [
       42.68904,
@@ -31440,6 +31509,39 @@
     }
   },
   {
+    "code": "6659",
+    "coords": [
+      42.6973,
+      23.28772
+    ],
+    "names": {
+      "bg": "бул. Вардар",
+      "en": "bul. Vardar"
+    }
+  },
+  {
+    "code": "6660",
+    "coords": [
+      42.69915,
+      23.29043
+    ],
+    "names": {
+      "bg": "Първа АГ болница Света София",
+      "en": "Parva AG bolnitsa Sveta Sofiya"
+    }
+  },
+  {
+    "code": "6608",
+    "coords": [
+      42.70138,
+      23.2919
+    ],
+    "names": {
+      "bg": "10-ти ДКЦ",
+      "en": "10-ti DKTS"
+    }
+  },
+  {
     "code": "6569",
     "coords": [
       42.64594,
@@ -31450,6 +31552,17 @@
       "en": "Byalata cheshma Str."
     },
     "request_stop": true
+  },
+  {
+    "code": "6668",
+    "coords": [
+      42.70148,
+      23.30844
+    ],
+    "names": {
+      "bg": "134 СУ Димчо Дебелянов",
+      "en": "134 SU Dimcho Debelyanov"
+    }
   },
   {
     "code": "6643",
@@ -31509,6 +31622,39 @@
     "metro_ref": "B"
   },
   {
+    "code": "0374",
+    "coords": [
+      42.72671,
+      23.31341
+    ],
+    "names": {
+      "bg": "Модна къща Агресия",
+      "en": "Fashion House Agresia"
+    }
+  },
+  {
+    "code": "0477",
+    "coords": [
+      42.72645,
+      23.31536
+    ],
+    "names": {
+      "bg": "гара София Север",
+      "en": "Sofa Sever Train Station"
+    }
+  },
+  {
+    "code": "0476",
+    "coords": [
+      42.72685,
+      23.31499
+    ],
+    "names": {
+      "bg": "гара София Север",
+      "en": "Sofa Sever Train Station"
+    }
+  },
+  {
     "code": "6719",
     "coords": [
       42.64737,
@@ -31550,6 +31696,28 @@
     "names": {
       "bg": "гара София Север",
       "en": "Sofa Sever Train Station"
+    }
+  },
+  {
+    "code": "6670",
+    "coords": [
+      42.70261,
+      23.31672
+    ],
+    "names": {
+      "bg": "46-то ОУ Константин Фотинов",
+      "en": "46-to OU Konstantin Fotinov"
+    }
+  },
+  {
+    "code": "6669",
+    "coords": [
+      42.71312,
+      23.30786
+    ],
+    "names": {
+      "bg": "Надлез Надежда",
+      "en": "Nadlez Nadezhda"
     }
   },
   {
@@ -32043,83 +32211,6 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
-    }
-  },
-  {
-    "code": "2926",
-    "coords": [
-      42.62154,
-      23.42156
-    ],
-    "names": {
-      "bg": "РАЗКЛОНА ЗА С. ГЕРМАН - ПО ЖЕЛАНИЕ",
-      "en": "RAZKLONA ZA S. GERMAN - PO ZHELANIE"
-    }
-  },
-  {
-    "code": "2932",
-    "coords": [
-      42.62287,
-      23.44116
-    ],
-    "names": {
-      "bg": "ПРОМИШЛЕНА ЗОНА ЛОЗЕН - СОП - ПО ЖЕЛАНИЕ",
-      "en": "PROMISHLENA ZONA LOZEN - SOP - PO ZHELANIE"
-    }
-  },
-  {
-    "code": "2928",
-    "coords": [
-      42.62173,
-      23.42862
-    ],
-    "names": {
-      "bg": "ПРОМИШЛЕНА ЗОНА ГЕРМАН - СОП - ПО ЖЕЛАНИЕ",
-      "en": "PROMISHLENA ZONA GERMAN - SOP - PO ZHELANIE"
-    }
-  },
-  {
-    "code": "2929",
-    "coords": [
-      42.62111,
-      23.43562
-    ],
-    "names": {
-      "bg": "УЛ. ПАНОРАМА ЛОЗЕН - ПО ЖЕЛАНИЕ",
-      "en": "UL. PANORAMA LOZEN - PO ZHELANIE"
-    }
-  },
-  {
-    "code": "2931",
-    "coords": [
-      42.62332,
-      23.44294
-    ],
-    "names": {
-      "bg": "ПРОМИШЛЕНА ЗОНА ЛОЗЕН - СОП - ПО ЖЕЛАНИЕ",
-      "en": "PROMISHLENA ZONA LOZEN - SOP - PO ZHELANIE"
-    }
-  },
-  {
-    "code": "2930",
-    "coords": [
-      42.62153,
-      23.43501
-    ],
-    "names": {
-      "bg": "УЛ. ПАНОРАМА ЛОЗЕН - ПО ЖЕЛАНИЕ",
-      "en": "UL. PANORAMA LOZEN - PO ZHELANIE"
-    }
-  },
-  {
-    "code": "2927",
-    "coords": [
-      42.62131,
-      23.42856
-    ],
-    "names": {
-      "bg": "ПРОМИШЛЕНА ЗОНА ГЕРМАН - СОП - ПО ЖЕЛАНИЕ",
-      "en": "PROMISHLENA ZONA GERMAN - SOP - PO ZHELANIE"
     }
   },
   {
