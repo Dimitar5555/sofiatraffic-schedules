@@ -56,11 +56,10 @@ async function fetch_osm_stops() {
     const query = '[out:json][timeout:25];'
     + `(${elements});`
     + 'out geom;';
-    const req = await fetch("https://overpass-api.de/api/interpreter", {
+    const req = await fetch("https://maps.mail.ru/osm/tools/overpass/api/interpreter", {
 		"body": `data=${encodeURIComponent(query)}`,
 		"method": "POST",
 		"headers": {
-			"Referer": "https://overpass-turbo.eu/",
 			"User-Agent": "github/Dimitar5555/sofiatraffic-schedules"
 		}
 	})
