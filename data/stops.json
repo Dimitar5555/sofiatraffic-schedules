@@ -483,6 +483,19 @@
     }
   },
   {
+    "code": "1330",
+    "coords": [
+      42.71092,
+      23.31895
+    ],
+    "names": {
+      "bg": "Централна гара",
+      "en": "Central Railway Station"
+    },
+    "local_ref": "7",
+    "metro_ref": "D"
+  },
+  {
     "code": "0443",
     "coords": [
       42.68601,
@@ -4676,6 +4689,17 @@
     }
   },
   {
+    "code": "1271",
+    "coords": [
+      42.69815,
+      23.3151
+    ],
+    "names": {
+      "bg": "пл. Възраждане",
+      "en": "Vazrazhdane Sq"
+    }
+  },
+  {
     "code": "1280",
     "coords": [
       42.69428,
@@ -4733,6 +4757,19 @@
     },
     "local_ref": "3",
     "metro_ref": "G"
+  },
+  {
+    "code": "1331",
+    "coords": [
+      42.71059,
+      23.31868
+    ],
+    "names": {
+      "bg": "Централна гара",
+      "en": "Central Railway Station"
+    },
+    "local_ref": "8",
+    "metro_ref": "E"
   },
   {
     "code": "1329",
@@ -4814,6 +4851,17 @@
     "names": {
       "bg": "ул. Козлодуй",
       "en": "Kozloduy Str"
+    }
+  },
+  {
+    "code": "1993",
+    "coords": [
+      42.70812,
+      23.3181
+    ],
+    "names": {
+      "bg": "ул. Клокотница",
+      "en": "Klokotnitsa Str"
     }
   },
   {
@@ -32266,17 +32314,6 @@
     "names": {
       "bg": "МЕТРОСТАНЦИЯ ОБЕЛЯ",
       "en": "METROSTANTSIYA OBELYA"
-    }
-  },
-  {
-    "code": "6116",
-    "coords": [
-      42.67201,
-      23.39318
-    ],
-    "names": {
-      "bg": "РАЗКЛОНА ЗА ЛЕТИЩЕТО",
-      "en": "RAZKLONA ZA LETISHTETO"
     }
   },
   {
