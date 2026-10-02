@@ -24652,6 +24652,28 @@
     "request_stop": true
   },
   {
+    "code": "0056",
+    "coords": [
+      42.70362,
+      23.38694
+    ],
+    "names": {
+      "bg": "Автостанция Изток",
+      "en": "Iztok Bus Station"
+    }
+  },
+  {
+    "code": "0057",
+    "coords": [
+      42.70399,
+      23.38694
+    ],
+    "names": {
+      "bg": "Автостанция Изток",
+      "en": "Iztok Bus Station"
+    }
+  },
+  {
     "code": "1441",
     "coords": [
       42.70983,
@@ -28093,8 +28115,8 @@
       23.30724
     ],
     "names": {
-      "bg": "Метростанция Хан Кубрат",
-      "en": "Han Kubrat Metro Station"
+      "bg": "метростанция Хан Кубрат",
+      "en": "Han Kubrat metro station"
     }
   },
   {
@@ -28485,8 +28507,8 @@
   {
     "code": "0644",
     "coords": [
-      42.68509,
-      23.29683
+      42.68506,
+      23.29678
     ],
     "names": {
       "bg": "ж.к. Лагера",
@@ -28883,7 +28905,7 @@
     ],
     "names": {
       "bg": "метростанция Княгиня Мария Луиза",
-      "en": "Knyginya Maria Luiza metro station"
+      "en": "Knyaginya Maria Luisa metro station"
     },
     "local_ref": "5",
     "metro_ref": "B"
@@ -30844,8 +30866,8 @@
   {
     "code": "2845",
     "coords": [
-      42.66038,
-      23.29727
+      42.66039,
+      23.29728
     ],
     "names": {
       "bg": "ж.к. Гоце Делчев",
