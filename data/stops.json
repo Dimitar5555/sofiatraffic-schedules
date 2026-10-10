@@ -24652,28 +24652,6 @@
     "request_stop": true
   },
   {
-    "code": "0056",
-    "coords": [
-      42.70362,
-      23.38694
-    ],
-    "names": {
-      "bg": "Автостанция Изток",
-      "en": "Iztok Bus Station"
-    }
-  },
-  {
-    "code": "0057",
-    "coords": [
-      42.70399,
-      23.38694
-    ],
-    "names": {
-      "bg": "Автостанция Изток",
-      "en": "Iztok Bus Station"
-    }
-  },
-  {
     "code": "1441",
     "coords": [
       42.70983,
