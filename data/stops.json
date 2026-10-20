@@ -854,6 +854,30 @@
     }
   },
   {
+    "code": "1332",
+    "coords": [
+      42.71124,
+      23.31971
+    ],
+    "names": {
+      "bg": "Централна гара",
+      "en": "Central Railway Station"
+    },
+    "local_ref": "4",
+    "metro_ref": "F"
+  },
+  {
+    "code": "2002",
+    "coords": [
+      42.70735,
+      23.32322
+    ],
+    "names": {
+      "bg": "ул. Козлодуй",
+      "en": "Kozloduy Str"
+    }
+  },
+  {
     "code": "1879",
     "coords": [
       42.67843,
@@ -4555,6 +4579,17 @@
     }
   },
   {
+    "code": "1272",
+    "coords": [
+      42.69833,
+      23.31409
+    ],
+    "names": {
+      "bg": "пл. Възраждане",
+      "en": "Vazrazhdane Sq"
+    }
+  },
+  {
     "code": "1269",
     "coords": [
       42.69733,
@@ -4735,6 +4770,19 @@
     },
     "local_ref": "8",
     "metro_ref": "E"
+  },
+  {
+    "code": "1329",
+    "coords": [
+      42.71099,
+      23.32031
+    ],
+    "names": {
+      "bg": "Централна гара",
+      "en": "Central Railway Station"
+    },
+    "local_ref": "3",
+    "metro_ref": "G"
   },
   {
     "code": "1254",
