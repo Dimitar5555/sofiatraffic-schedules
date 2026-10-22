@@ -130,7 +130,7 @@
     ],
     "names": {
       "bg": "бул. Христофор Колумб",
-      "en": "Christopher Columbus Blvd."
+      "en": "Christopher Columbus Blvd"
     }
   },
   {
@@ -141,7 +141,7 @@
     ],
     "names": {
       "bg": "бул. Христофор Колумб",
-      "en": "Christopher Columbus Blvd."
+      "en": "Christopher Columbus Blvd"
     }
   },
   {
@@ -152,7 +152,7 @@
     ],
     "names": {
       "bg": "бул. Христофор Колумб",
-      "en": "bul. Hristofor Kolumb"
+      "en": "Christophorus Columbus Blvd"
     }
   },
   {
@@ -163,7 +163,7 @@
     ],
     "names": {
       "bg": "бул. Христофор Колумб",
-      "en": "bul. Hristofor Kolumb"
+      "en": "Christophorus Columbus Blvd"
     }
   },
   {
@@ -375,7 +375,7 @@
     ],
     "names": {
       "bg": "ул. Хан Кубрат",
-      "en": "ul. Han Kubrat"
+      "en": "Han Kubrat St"
     }
   },
   {
@@ -515,7 +515,7 @@
     ],
     "names": {
       "bg": "бул. Витоша",
-      "en": "Vitosha Blvd."
+      "en": "Vitosha Blvd"
     }
   },
   {
@@ -526,7 +526,7 @@
     ],
     "names": {
       "bg": "бул. Черни връх",
-      "en": "Cherni vrah Blvd."
+      "en": "Cherni vrah Blvd"
     }
   },
   {
@@ -537,7 +537,7 @@
     ],
     "names": {
       "bg": "ул. Христо Ботев",
-      "en": "ul. Hristo Botev"
+      "en": "Hristo Botev St"
     }
   },
   {
@@ -548,7 +548,7 @@
     ],
     "names": {
       "bg": "ул. Христо Ботев",
-      "en": "ul. Hristo Botev"
+      "en": "Hristo Botev St"
     }
   },
   {
@@ -558,8 +558,8 @@
       23.20556
     ],
     "names": {
-      "bg": "ул. Г. Бенковски",
-      "en": "ul. G. Benkovski"
+      "bg": "ул. Георги Бенковски",
+      "en": "Georgi Benkovski St"
     }
   },
   {
@@ -569,8 +569,8 @@
       23.20502
     ],
     "names": {
-      "bg": "ул. Г. Бенковски",
-      "en": "ul. G. Benkovski"
+      "bg": "ул. Георги Бенковски",
+      "en": "Georgi Benkovski St"
     }
   },
   {
@@ -658,7 +658,7 @@
     ],
     "names": {
       "bg": "пл. Руски паметник",
-      "en": "Ruski pametnik Sq."
+      "en": "Ruski pametnik Sq"
     }
   },
   {
@@ -727,8 +727,8 @@
       23.332
     ],
     "names": {
-      "bg": "ул. Ген. Йосиф Гурко",
-      "en": "General Iosif Gurko St"
+      "bg": "ул. Ген. Гурко",
+      "en": "General Gurko St"
     },
     "metro_ref": "A"
   },
@@ -784,7 +784,7 @@
     ],
     "names": {
       "bg": "ул. Хан Кубрат",
-      "en": "ul. Han Kubrat"
+      "en": "Han Kubrat St"
     }
   },
   {
@@ -839,7 +839,7 @@
     ],
     "names": {
       "bg": "бул. Ломско шосе",
-      "en": "bul. Lomsko shose"
+      "en": "Lomsko shose Blvd"
     }
   },
   {
@@ -918,7 +918,7 @@
     ],
     "names": {
       "bg": "ул. Калиманци",
-      "en": "ul. Kalimantsi"
+      "en": "Kalimantsi St"
     }
   },
   {
@@ -955,7 +955,7 @@
     ],
     "names": {
       "bg": "пл. Руски паметник",
-      "en": "Ruski pametnik Sq."
+      "en": "Ruski pametnik Sq"
     }
   },
   {
@@ -966,7 +966,7 @@
     ],
     "names": {
       "bg": "ул. Надежда",
-      "en": "ul. Nadezhda"
+      "en": "Nadezhda St"
     }
   },
   {
@@ -1045,7 +1045,7 @@
     ],
     "names": {
       "bg": "ул. Луи Айер",
-      "en": "Louis Eyer Str."
+      "en": "Louis Eyer St"
     }
   },
   {
@@ -1056,7 +1056,7 @@
     ],
     "names": {
       "bg": "ул. Димитър Пешев",
-      "en": "Dimitar Peshev Str."
+      "en": "Dimitar Peshev St"
     }
   },
   {
@@ -1145,8 +1145,8 @@
       23.25919
     ],
     "names": {
-      "bg": "ул. Проф. Ал. Станишев",
-      "en": "ul. Prof. Al. Stanishev"
+      "bg": "ул. Проф. Александър Станишев",
+      "en": "Prof. Aleksandar Stanishev St"
     }
   },
   {
@@ -1192,7 +1192,7 @@
     ],
     "names": {
       "bg": "ул. Луи Пастьор",
-      "en": "ul. Lui Pastaor"
+      "en": "Louis Pasteur St"
     }
   },
   {
@@ -1203,7 +1203,7 @@
     ],
     "names": {
       "bg": "ул. Орион",
-      "en": "Orion Str."
+      "en": "Orion St"
     }
   },
   {
@@ -1324,7 +1324,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Никола Генев",
-      "en": "Gen. Nikola Genev Str."
+      "en": "Gen. Nikola Genev St"
     }
   },
   {
@@ -1334,8 +1334,8 @@
       23.27414
     ],
     "names": {
-      "bg": "ул. Ген. Вл. Динчев",
-      "en": "Gen. Vl. Dinchev Str."
+      "bg": "ул. Ген. Владимир Динчев",
+      "en": "Gen. Vladimir Dinchev St"
     }
   },
   {
@@ -1357,7 +1357,7 @@
     ],
     "names": {
       "bg": "ул. Търново",
-      "en": "Tarnovo Str."
+      "en": "Tarnovo Str"
     }
   },
   {
@@ -1368,7 +1368,7 @@
     ],
     "names": {
       "bg": "бул. Панчо Владигеров",
-      "en": "Pancho Vladigerov Blvd."
+      "en": "Pancho Vladigerov Blvd"
     }
   },
   {
@@ -1379,7 +1379,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Асен Николов",
-      "en": "Gen. Asen Nikolov Str."
+      "en": "Gen. Asen Nikolov St"
     }
   },
   {
@@ -1423,7 +1423,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Асен Николов",
-      "en": "ul. Gen. Asen Nikolov"
+      "en": "Gen. Asen Nikolov St"
     }
   },
   {
@@ -1434,7 +1434,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Никола Генев",
-      "en": "ul. Gen. Nikola Genev"
+      "en": "Gen. Nikola Genev St"
     }
   },
   {
@@ -1592,7 +1592,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Никола Генев",
-      "en": "ul. Gen. Nikola Genev"
+      "en": "Gen. Nikola Genev St"
     }
   },
   {
@@ -1603,7 +1603,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Асен Николов",
-      "en": "Gen. Asen Nikolov Str."
+      "en": "Gen. Asen Nikolov St"
     }
   },
   {
@@ -1682,7 +1682,7 @@
     ],
     "names": {
       "bg": "ул. Индира Ганди",
-      "en": "ul. Indira Gandi"
+      "en": "Indira Gandi St"
     }
   },
   {
@@ -1717,7 +1717,7 @@
     ],
     "names": {
       "bg": "ул. Гоце Делчев",
-      "en": "ul. Gotse Delchev"
+      "en": "Gotse Delchev St"
     }
   },
   {
@@ -1739,7 +1739,7 @@
     ],
     "names": {
       "bg": "ул. Орион",
-      "en": "Orion Str."
+      "en": "Orion St"
     }
   },
   {
@@ -1761,7 +1761,7 @@
     ],
     "names": {
       "bg": "ул. Гоце Делчев",
-      "en": "ul. Gotse Delchev"
+      "en": "Gotse Delchev St"
     }
   },
   {
@@ -1783,7 +1783,7 @@
     ],
     "names": {
       "bg": "ул. Индира Ганди",
-      "en": "ul. Indira Gandi"
+      "en": "Indira Gandi St"
     }
   },
   {
@@ -1849,7 +1849,7 @@
     ],
     "names": {
       "bg": "ул. Орион",
-      "en": "Orion Str."
+      "en": "Orion St"
     }
   },
   {
@@ -1860,7 +1860,7 @@
     ],
     "names": {
       "bg": "ул. Луи Пастьор",
-      "en": "ul. Lui Pastaor"
+      "en": "Louis Pasteur St"
     }
   },
   {
@@ -1893,7 +1893,7 @@
     ],
     "names": {
       "bg": "бул. Панчо Владигеров",
-      "en": "Pancho Vladigerov Blvd."
+      "en": "Pancho Vladigerov Blvd"
     }
   },
   {
@@ -2025,7 +2025,7 @@
     ],
     "names": {
       "bg": "ул. Търново",
-      "en": "Tarnovo Str."
+      "en": "Tarnovo St"
     }
   },
   {
@@ -2046,8 +2046,8 @@
       23.27322
     ],
     "names": {
-      "bg": "ул. Ген. Вл. Динчев",
-      "en": "Gen. Vl. Dinchev Str."
+      "bg": "ул. Ген. Владимир Динчев",
+      "en": "Gen. Vladimir Dinchev St"
     }
   },
   {
@@ -2258,7 +2258,7 @@
     ],
     "names": {
       "bg": "ул. Константин Бодин",
-      "en": "ul. Konstantin Bodin"
+      "en": "Konstantin Bodin St"
     }
   },
   {
@@ -2302,7 +2302,7 @@
     ],
     "names": {
       "bg": "ул. Хан Кубрат",
-      "en": "ul. Han Kubrat"
+      "en": "Han Kubrat St"
     }
   },
   {
@@ -2313,7 +2313,7 @@
     ],
     "names": {
       "bg": "ул. Константин Бодин",
-      "en": "ul. Konstantin Bodin"
+      "en": "Konstantin Bodin St"
     }
   },
   {
@@ -2787,7 +2787,7 @@
     ],
     "names": {
       "bg": "ул. Сребърна",
-      "en": "Srebarna Str."
+      "en": "Srebarna St"
     }
   },
   {
@@ -2809,7 +2809,7 @@
     ],
     "names": {
       "bg": "ул. Сребърна",
-      "en": "Srebarna Str."
+      "en": "Srebarna St"
     }
   },
   {
@@ -2953,7 +2953,7 @@
     ],
     "names": {
       "bg": "ул. Охрид",
-      "en": "Ohrid Str."
+      "en": "Ohrid St"
     }
   },
   {
@@ -2986,7 +2986,7 @@
     ],
     "names": {
       "bg": "ул. Вишовград",
-      "en": "ul. Vishovgrad"
+      "en": "Vishovgrad St"
     }
   },
   {
@@ -3213,7 +3213,7 @@
     ],
     "names": {
       "bg": "НИМ",
-      "en": "NIM"
+      "en": "National History Museum"
     }
   },
   {
@@ -3237,7 +3237,7 @@
     ],
     "names": {
       "bg": "бул. Братя Бъкстон",
-      "en": "Bratya Buxton Blvd."
+      "en": "Bratya Buxton Blvd"
     }
   },
   {
@@ -3296,7 +3296,7 @@
     ],
     "names": {
       "bg": "ул. Вихрен",
-      "en": "Vihren Str."
+      "en": "Vihren St"
     }
   },
   {
@@ -3319,7 +3319,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -3397,8 +3397,8 @@
       23.33076
     ],
     "names": {
-      "bg": "ул. Ген. Йосиф Гурко",
-      "en": "General Iosif Gurko St"
+      "bg": "ул. Ген. Гурко",
+      "en": "Gen. Gurko St"
     },
     "metro_ref": "B"
   },
@@ -3688,7 +3688,7 @@
     ],
     "names": {
       "bg": "кв. Овча купел",
-      "en": "kv. Ovcha kupel"
+      "en": "Ovcha kupel"
     }
   },
   {
@@ -3699,7 +3699,7 @@
     ],
     "names": {
       "bg": "кв. Овча купел",
-      "en": "kv. Ovcha kupel"
+      "en": "Ovcha kupel"
     }
   },
   {
@@ -3743,7 +3743,7 @@
     ],
     "names": {
       "bg": "пл. Биримирци",
-      "en": "pl. Birimirtsi"
+      "en": "Birimirtsi Sq"
     }
   },
   {
@@ -3787,7 +3787,7 @@
     ],
     "names": {
       "bg": "ул. Възрожденска",
-      "en": "ul. Vazrozhdenska"
+      "en": "Vazrozhdenska St"
     }
   },
   {
@@ -3798,7 +3798,7 @@
     ],
     "names": {
       "bg": "ул. Възрожденска",
-      "en": "ul. Vazrozhdenska"
+      "en": "Vazrozhdenska St"
     }
   },
   {
@@ -3809,7 +3809,7 @@
     ],
     "names": {
       "bg": "ул. 6-ти септември",
-      "en": "September 6th Str."
+      "en": "September 6th St"
     }
   },
   {
@@ -3875,7 +3875,7 @@
     ],
     "names": {
       "bg": "ул. Байкал",
-      "en": "ul. Baykal"
+      "en": "Baykal St"
     }
   },
   {
@@ -3985,7 +3985,7 @@
     ],
     "names": {
       "bg": "бул. Никола Вапцаров",
-      "en": "bul. Nikola Vaptsarov"
+      "en": "Nikola Vaptsarov Blvd"
     }
   },
   {
@@ -4018,7 +4018,7 @@
     ],
     "names": {
       "bg": "бул. Ломско шосе",
-      "en": "bul. Lomsko shose"
+      "en": "Lomsko shose Blvd"
     }
   },
   {
@@ -4096,7 +4096,7 @@
     ],
     "names": {
       "bg": "ул. Гео Милев",
-      "en": "ul. Geo Milev"
+      "en": "Geo Milev St"
     }
   },
   {
@@ -4217,7 +4217,7 @@
     ],
     "names": {
       "bg": "бул. Шипченски проход",
-      "en": "bul. SHipchenski prohod"
+      "en": "Shipchenski prohod Blvd"
     }
   },
   {
@@ -4250,7 +4250,7 @@
     ],
     "names": {
       "bg": "бул. Шипченски проход",
-      "en": "bul. SHipchenski prohod"
+      "en": "Shipchenski prohod Blvd"
     }
   },
   {
@@ -4294,7 +4294,7 @@
     ],
     "names": {
       "bg": "Площад на авиацията",
-      "en": "Aviation Sq."
+      "en": "Aviation Sq"
     }
   },
   {
@@ -4329,7 +4329,7 @@
     ],
     "names": {
       "bg": "Площад на авиацията",
-      "en": "Aviation Sq."
+      "en": "Aviation Sq"
     }
   },
   {
@@ -5326,7 +5326,7 @@
     ],
     "names": {
       "bg": "пл. Александър Невски",
-      "en": "St. Alexander Nevski Sq."
+      "en": "St. Alexander Nevski Sq"
     }
   },
   {
@@ -5337,7 +5337,7 @@
     ],
     "names": {
       "bg": "пл. Александър Невски",
-      "en": "St. Alexander Nevski Sq."
+      "en": "St. Alexander Nevski Sq"
     }
   },
   {
@@ -5537,7 +5537,7 @@
     ],
     "names": {
       "bg": "ул. Хан Крум кв. Максим Горки",
-      "en": "ul. Han Krum kv. Maksim Gorki"
+      "en": "Han Krum St, Maksim Gorki"
     }
   },
   {
@@ -5548,7 +5548,7 @@
     ],
     "names": {
       "bg": "ул. Хан Крум кв. Максим Горки",
-      "en": "ul. Han Krum kv. Maksim Gorki"
+      "en": "Han Krum St, Maksim Gorki"
     }
   },
   {
@@ -5559,7 +5559,7 @@
     ],
     "names": {
       "bg": "ул. Хан Тервел кв. Максим Горки",
-      "en": "ul. Han Tervel kv. Maksim Gorki"
+      "en": "Han Tervel St, Maksim Gorki"
     }
   },
   {
@@ -5570,7 +5570,7 @@
     ],
     "names": {
       "bg": "ул. Хан Тервел кв. Максим Горки",
-      "en": "ul. Han Tervel kv. Maksim Gorki"
+      "en": "Han Tervel St, Maksim Gorki"
     }
   },
   {
@@ -5581,7 +5581,7 @@
     ],
     "names": {
       "bg": "ул. Искър Божурище",
-      "en": "ul. Iskar Bozhurishte"
+      "en": "Iskar St, Bozhurishte"
     }
   },
   {
@@ -5592,7 +5592,7 @@
     ],
     "names": {
       "bg": "ул. Искър Божурище",
-      "en": "ul. Iskar Bozhurishte"
+      "en": "Iskar St, Bozhurishte"
     }
   },
   {
@@ -5873,7 +5873,7 @@
     ],
     "names": {
       "bg": "ул. Монтевидео",
-      "en": "ul. Montevideo"
+      "en": "Montevideo St"
     }
   },
   {
@@ -5884,7 +5884,7 @@
     ],
     "names": {
       "bg": "бул. Никола Петков",
-      "en": "bul. Nikola Petkov"
+      "en": "Nikola Petkov Blvd"
     }
   },
   {
@@ -5895,7 +5895,7 @@
     ],
     "names": {
       "bg": "ул. Дамяница",
-      "en": "ul. Damyanitsa"
+      "en": "Damyanitsa St"
     }
   },
   {
@@ -5929,7 +5929,7 @@
     ],
     "names": {
       "bg": "ул. Бяло море",
-      "en": "Byalo more Str."
+      "en": "Byalo more St"
     }
   },
   {
@@ -5977,7 +5977,7 @@
     ],
     "names": {
       "bg": "ул. Поп Груйо",
-      "en": "Pope Gruyo Str."
+      "en": "Pop Gruyo St"
     }
   },
   {
@@ -6036,7 +6036,7 @@
     ],
     "names": {
       "bg": "пл. Руски паметник",
-      "en": "Ruski pametnik Sq."
+      "en": "Ruski pametnik Sq"
     }
   },
   {
@@ -6159,7 +6159,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -6275,7 +6275,7 @@
     ],
     "names": {
       "bg": "ул. Равнец",
-      "en": "ul. Ravnets"
+      "en": "Ravnet St"
     },
     "request_stop": true
   },
@@ -6287,7 +6287,7 @@
     ],
     "names": {
       "bg": "ул. Равнец",
-      "en": "ul. Ravnets"
+      "en": "Ravnet St"
     },
     "request_stop": true
   },
@@ -6508,7 +6508,7 @@
     ],
     "names": {
       "bg": "ул. Атанас Узунов",
-      "en": "ul. Atanas Uzunov"
+      "en": "Atanas Uzunov St"
     }
   },
   {
@@ -6565,7 +6565,7 @@
     ],
     "names": {
       "bg": "ул. Драва",
-      "en": "Drava Str."
+      "en": "Drava St"
     }
   },
   {
@@ -6598,7 +6598,7 @@
     ],
     "names": {
       "bg": "ул. Орион",
-      "en": "Orion Str."
+      "en": "Orion St"
     }
   },
   {
@@ -6609,7 +6609,7 @@
     ],
     "names": {
       "bg": "ул. Проф. Вайганд",
-      "en": "ul. Prof. Vaygand"
+      "en": "Prof. Weigand St"
     }
   },
   {
@@ -6620,7 +6620,7 @@
     ],
     "names": {
       "bg": "ул. Проф. Вайганд",
-      "en": "ul. Prof. Vaygand"
+      "en": "Prof. Weigand St"
     }
   },
   {
@@ -6676,7 +6676,7 @@
     ],
     "names": {
       "bg": "бул. Пейо Яворов",
-      "en": "Peyo Yavorov Blvd."
+      "en": "Peyo Yavorov Blvd"
     }
   },
   {
@@ -6687,7 +6687,7 @@
     ],
     "names": {
       "bg": "бул. Пейо Яворов",
-      "en": "Peyo Yavorov Blvd."
+      "en": "Peyo Yavorov Blvd"
     }
   },
   {
@@ -6764,8 +6764,8 @@
       23.25763
     ],
     "names": {
-      "bg": "ул. Проф. Ал. Станишев",
-      "en": "ul. Prof. Al. Stanishev"
+      "bg": "ул. Проф. Александър Станишев",
+      "en": "Prof. Aleksandar Stanishev St"
     }
   },
   {
@@ -6811,7 +6811,7 @@
     ],
     "names": {
       "bg": "ул. Промишлена",
-      "en": "ul. Promishlena"
+      "en": "Promishlena Str"
     }
   },
   {
@@ -6905,7 +6905,7 @@
     ],
     "names": {
       "bg": "бул. Черни връх",
-      "en": "Cherni vrah Blvd."
+      "en": "Cherni vrah Blvd"
     }
   },
   {
@@ -6927,7 +6927,7 @@
     ],
     "names": {
       "bg": "ул. Оборище",
-      "en": "ul. Oborishte"
+      "en": "Oborishte St"
     }
   },
   {
@@ -6949,7 +6949,7 @@
     ],
     "names": {
       "bg": "ул. Велчо Атанасов",
-      "en": "ul. Velcho Atanasov"
+      "en": "Velcho Atanasof St"
     }
   },
   {
@@ -6960,7 +6960,7 @@
     ],
     "names": {
       "bg": "ул. Велчо Атанасов",
-      "en": "ul. Velcho Atanasov"
+      "en": "Velcho Atanasof St"
     }
   },
   {
@@ -6971,7 +6971,7 @@
     ],
     "names": {
       "bg": "ул. Боян Магесник",
-      "en": "ul. Boyan Magesnik"
+      "en": "Boyan Magisnik St"
     }
   },
   {
@@ -6982,7 +6982,7 @@
     ],
     "names": {
       "bg": "ул. Боян Магесник",
-      "en": "ul. Boyan Magesnik"
+      "en": "Boyan Magisnik St"
     }
   },
   {
@@ -6993,7 +6993,7 @@
     ],
     "names": {
       "bg": "ул. Атанас Узунов",
-      "en": "ul. Atanas Uzunov"
+      "en": "Atanas Uzunov St"
     }
   },
   {
@@ -7015,7 +7015,7 @@
     ],
     "names": {
       "bg": "ул. Калиманци",
-      "en": "ul. Kalimantsi"
+      "en": "Kalimantsi St"
     }
   },
   {
@@ -7070,7 +7070,7 @@
     ],
     "names": {
       "bg": "ул. Витиня",
-      "en": "ul. Vitinya"
+      "en": "Vitinya St"
     }
   },
   {
@@ -7081,7 +7081,7 @@
     ],
     "names": {
       "bg": "ул. Витиня",
-      "en": "ul. Vitinya"
+      "en": "Vitinya St"
     }
   },
   {
@@ -7185,7 +7185,7 @@
     ],
     "names": {
       "bg": "бул. Витоша",
-      "en": "Vitosha Blvd."
+      "en": "Vitosha Blvd"
     }
   },
   {
@@ -7274,7 +7274,7 @@
     ],
     "names": {
       "bg": "ул. Обиколна",
-      "en": "ul. Obikolna"
+      "en": "Obikolna St"
     }
   },
   {
@@ -7307,7 +7307,7 @@
     ],
     "names": {
       "bg": "ул. Асен Йорданов",
-      "en": "ul. Asen Yordanov"
+      "en": "Asen Yordanov St"
     }
   },
   {
@@ -7318,7 +7318,7 @@
     ],
     "names": {
       "bg": "ул. Асен Йорданов",
-      "en": "ul. Asen Yordanov"
+      "en": "Asen Yordanov St"
     }
   },
   {
@@ -7395,7 +7395,7 @@
     ],
     "names": {
       "bg": "ул. Маестро Атанасов",
-      "en": "ul. Maestro Atanasov"
+      "en": "Maestro Atanasov St"
     },
     "request_stop": true
   },
@@ -7407,7 +7407,7 @@
     ],
     "names": {
       "bg": "ул. Маестро Атанасов",
-      "en": "ul. Maestro Atanasov"
+      "en": "Maestro Atanasov St"
     },
     "request_stop": true
   },
@@ -7535,8 +7535,8 @@
       23.26182
     ],
     "names": {
-      "bg": "66-то СОУ",
-      "en": "66-to SOU"
+      "bg": "66-то СУ",
+      "en": "66th Secondary School"
     }
   },
   {
@@ -7557,8 +7557,8 @@
       23.26217
     ],
     "names": {
-      "bg": "66-то СОУ",
-      "en": "66-to SOU"
+      "bg": "66-то СУ",
+      "en": "66th Secondary School"
     }
   },
   {
@@ -7569,7 +7569,7 @@
     ],
     "names": {
       "bg": "ул. Калояново",
-      "en": "Kaloyanovo Str."
+      "en": "Kaloyanovo St"
     }
   },
   {
@@ -7580,7 +7580,7 @@
     ],
     "names": {
       "bg": "ул. Калояново",
-      "en": "Kaloyanovo Str."
+      "en": "Kaloyanovo St"
     }
   },
   {
@@ -7591,7 +7591,7 @@
     ],
     "names": {
       "bg": "бул. Никола Петков",
-      "en": "bul. Nikola Petkov"
+      "en": "Nikola Petkov Blvd"
     }
   },
   {
@@ -7602,7 +7602,7 @@
     ],
     "names": {
       "bg": "бул. Никола Петков",
-      "en": "bul. Nikola Petkov"
+      "en": "Nikola Petkov Blvd"
     }
   },
   {
@@ -7613,7 +7613,7 @@
     ],
     "names": {
       "bg": "ул. Монтевидео",
-      "en": "ul. Montevideo"
+      "en": "Montevideo St"
     }
   },
   {
@@ -7701,7 +7701,7 @@
     ],
     "names": {
       "bg": "ул. Обзор",
-      "en": "ul. Obzor"
+      "en": "Obzor St"
     }
   },
   {
@@ -7849,7 +7849,7 @@
     ],
     "names": {
       "bg": "ул. Рачо Петков-Казанджията",
-      "en": "ul. Racho Petkov-Kazandzhiyata"
+      "en": "Racho Petkov-Kazandzhiyata St"
     }
   },
   {
@@ -8180,7 +8180,7 @@
     ],
     "names": {
       "bg": "бул. Гоце Делчев",
-      "en": "Gotse Delchev Blvd."
+      "en": "Gotse Delchev Blvd"
     }
   },
   {
@@ -8213,7 +8213,7 @@
     ],
     "names": {
       "bg": "ул. Иван Андонов",
-      "en": "Ivan Andonov Str."
+      "en": "Ivan Andonov St"
     }
   },
   {
@@ -8224,7 +8224,7 @@
     ],
     "names": {
       "bg": "ул. Иван Андонов",
-      "en": "Ivan Andonov Str."
+      "en": "Ivan Andonov St"
     }
   },
   {
@@ -8248,7 +8248,7 @@
     ],
     "names": {
       "bg": "пл. Ручей",
-      "en": "Ruchey Sq."
+      "en": "Ruchey Sq"
     }
   },
   {
@@ -8259,7 +8259,7 @@
     ],
     "names": {
       "bg": "пл. Ручей",
-      "en": "pl. Ruchey"
+      "en": "Ruchey Sq"
     }
   },
   {
@@ -8270,7 +8270,7 @@
     ],
     "names": {
       "bg": "бул. Гоце Делчев",
-      "en": "Gotse Delchev Blvd."
+      "en": "Gotse Delchev Blvd"
     }
   },
   {
@@ -8337,7 +8337,7 @@
     ],
     "names": {
       "bg": "ул. Промишлена",
-      "en": "ul. Promishlena"
+      "en": "Promishlena St"
     }
   },
   {
@@ -8392,7 +8392,7 @@
     ],
     "names": {
       "bg": "ОЦ Овча купел",
-      "en": "OTS Ovcha kupel"
+      "en": "Ovcha kupel Heating Plant"
     }
   },
   {
@@ -8403,7 +8403,7 @@
     ],
     "names": {
       "bg": "ОЦ Овча купел",
-      "en": "OTS Ovcha kupel"
+      "en": "Ovcha kupel Heating Plant"
     }
   },
   {
@@ -8414,7 +8414,7 @@
     ],
     "names": {
       "bg": "ул. Лиляче",
-      "en": "ul. Lilyache"
+      "en": "Lilyache St"
     }
   },
   {
@@ -8425,7 +8425,7 @@
     ],
     "names": {
       "bg": "ул. Лиляче",
-      "en": "ul. Lilyache"
+      "en": "Lilyache St"
     }
   },
   {
@@ -8506,7 +8506,7 @@
     ],
     "names": {
       "bg": "ул. Добротич",
-      "en": "ul. Dobrotich"
+      "en": "Dobrotich St"
     }
   },
   {
@@ -8517,7 +8517,7 @@
     ],
     "names": {
       "bg": "ул. Добротич",
-      "en": "ul. Dobrotich"
+      "en": "Dobrotich St"
     }
   },
   {
@@ -8528,7 +8528,7 @@
     ],
     "names": {
       "bg": "бул. Вардар",
-      "en": "bul. Vardar"
+      "en": "Vardar Blvd"
     }
   },
   {
@@ -8539,7 +8539,7 @@
     ],
     "names": {
       "bg": "бул. Вардар",
-      "en": "bul. Vardar"
+      "en": "Vardar Blvd"
     }
   },
   {
@@ -8550,7 +8550,7 @@
     ],
     "names": {
       "bg": "бул. Възкресение",
-      "en": "bul. Vazkresenie"
+      "en": "Vazkresenie Blvd"
     }
   },
   {
@@ -8561,7 +8561,7 @@
     ],
     "names": {
       "bg": "ул. Опълченска",
-      "en": "Opalchenska Str."
+      "en": "Opalchenska St"
     }
   },
   {
@@ -8572,7 +8572,7 @@
     ],
     "names": {
       "bg": "ул. Опълченска",
-      "en": "Opalchenska Str."
+      "en": "Opalchenska St"
     }
   },
   {
@@ -8583,7 +8583,7 @@
     ],
     "names": {
       "bg": "бул. Христо Ботев",
-      "en": "Hristo Botev Blvd."
+      "en": "Hristo Botev Blvd"
     }
   },
   {
@@ -8594,7 +8594,7 @@
     ],
     "names": {
       "bg": "бул. Христо Ботев",
-      "en": "Hristo Botev Blvd."
+      "en": "Hristo Botev Blvd"
     }
   },
   {
@@ -8629,7 +8629,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -8640,7 +8640,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -8651,7 +8651,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -8662,7 +8662,7 @@
     ],
     "names": {
       "bg": "ул. Бяло море",
-      "en": "ul. Byalo more"
+      "en": "Byalo more St"
     }
   },
   {
@@ -8673,7 +8673,7 @@
     ],
     "names": {
       "bg": "ул. Бяло море",
-      "en": "ul. Byalo more"
+      "en": "Byalo more St"
     }
   },
   {
@@ -8721,7 +8721,7 @@
     ],
     "names": {
       "bg": "ул. Велчо Атанасов",
-      "en": "ul. Velcho Atanasov"
+      "en": "Velcho Atanasof St"
     }
   },
   {
@@ -8824,7 +8824,7 @@
     ],
     "names": {
       "bg": "ул. Боряна",
-      "en": "ul. Boryana"
+      "en": "Boryana St"
     }
   },
   {
@@ -8835,7 +8835,7 @@
     ],
     "names": {
       "bg": "ул. Боряна",
-      "en": "ul. Boryana"
+      "en": "Boryana St"
     }
   },
   {
@@ -8846,7 +8846,7 @@
     ],
     "names": {
       "bg": "ул. Народен герой",
-      "en": "ul. Naroden geroy"
+      "en": "Naroden geroy St"
     }
   },
   {
@@ -8857,7 +8857,7 @@
     ],
     "names": {
       "bg": "ул. Народен герой",
-      "en": "ul. Naroden geroy"
+      "en": "Naroden geroy St"
     }
   },
   {
@@ -8912,7 +8912,7 @@
     ],
     "names": {
       "bg": "ул. Народно хоро",
-      "en": "ul. Narodno horo"
+      "en": "Narodno horo St"
     }
   },
   {
@@ -8934,7 +8934,7 @@
     ],
     "names": {
       "bg": "ул. Народно хоро",
-      "en": "ul. Narodno horo"
+      "en": "Narodno horo St"
     }
   },
   {
@@ -8945,7 +8945,7 @@
     ],
     "names": {
       "bg": "бул. Вардар",
-      "en": "bul. Vardar"
+      "en": "Varda Blvd"
     }
   },
   {
@@ -8955,8 +8955,8 @@
       23.28536
     ],
     "names": {
-      "bg": "бул. Ал. Стамболийски",
-      "en": "bul. Al. Stamboliyski"
+      "bg": "бул. Александър Стамболийски",
+      "en": "Aleksandar Stamboliyski Blvd"
     }
   },
   {
@@ -9033,7 +9033,7 @@
     ],
     "names": {
       "bg": "ул. Александър Жендов",
-      "en": "Alexander Zhendov Str."
+      "en": "Alexander Zhendov St"
     }
   },
   {
@@ -9044,7 +9044,7 @@
     ],
     "names": {
       "bg": "ул. Александър Жендов",
-      "en": "Alexander Zhendov Str."
+      "en": "Alexander Zhendov St"
     }
   },
   {
@@ -9154,7 +9154,7 @@
     ],
     "names": {
       "bg": "ул. Връх Манчо",
-      "en": "ul. Vrah Mancho"
+      "en": "Vrah Mancho St"
     }
   },
   {
@@ -9165,7 +9165,7 @@
     ],
     "names": {
       "bg": "ул. Връх Манчо",
-      "en": "ul. Vrah Mancho"
+      "en": "Vrah Mancho St"
     }
   },
   {
@@ -9176,7 +9176,7 @@
     ],
     "names": {
       "bg": "ул. Надежда",
-      "en": "ul. Nadezhda"
+      "en": "Nadezhda St"
     }
   },
   {
@@ -9246,7 +9246,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -9257,7 +9257,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -9279,7 +9279,7 @@
     ],
     "names": {
       "bg": "ул. Костенски водопад",
-      "en": "Kostenski vodopad Str."
+      "en": "Kostenski vodopad St"
     }
   },
   {
@@ -9290,7 +9290,7 @@
     ],
     "names": {
       "bg": "ул. Костенски водопад",
-      "en": "Kostenski vodopad Str."
+      "en": "Kostenski vodopad St"
     }
   },
   {
@@ -9301,7 +9301,7 @@
     ],
     "names": {
       "bg": "бул. Гоце Делчев",
-      "en": "Gotse Delchev Blvd."
+      "en": "Gotse Delchev Blvd"
     }
   },
   {
@@ -9312,7 +9312,7 @@
     ],
     "names": {
       "bg": "ул. Нишава",
-      "en": "Nishava Str."
+      "en": "Nishava St"
     }
   },
   {
@@ -9323,7 +9323,7 @@
     ],
     "names": {
       "bg": "ул. Нишава",
-      "en": "Nishava Str."
+      "en": "Nishava St"
     }
   },
   {
@@ -9613,7 +9613,7 @@
     ],
     "names": {
       "bg": "ул. Локомотив",
-      "en": "ul. Lokomotiv"
+      "en": "Lokomotiv St"
     }
   },
   {
@@ -9624,7 +9624,7 @@
     ],
     "names": {
       "bg": "ул. Локомотив",
-      "en": "ul. Lokomotiv"
+      "en": "Lokomotiv St"
     }
   },
   {
@@ -9635,7 +9635,7 @@
     ],
     "names": {
       "bg": "ул. Просвета",
-      "en": "ul. Prosveta"
+      "en": "Prosveta St"
     }
   },
   {
@@ -9646,7 +9646,7 @@
     ],
     "names": {
       "bg": "ул. Просвета",
-      "en": "ul. Prosveta"
+      "en": "Prosveta St"
     }
   },
   {
@@ -9668,7 +9668,7 @@
     ],
     "names": {
       "bg": "ул. Клокотница",
-      "en": "ul. Klokotnitsa"
+      "en": "Klokotnitsa St"
     }
   },
   {
@@ -9679,7 +9679,7 @@
     ],
     "names": {
       "bg": "ул. Опълченска",
-      "en": "Opalchenska Str."
+      "en": "Opalchenska St"
     }
   },
   {
@@ -9690,7 +9690,7 @@
     ],
     "names": {
       "bg": "ул. Охрид",
-      "en": "Ohrid Str."
+      "en": "Ohrid St"
     }
   },
   {
@@ -9727,7 +9727,7 @@
     ],
     "names": {
       "bg": "ул. Камен Андреев",
-      "en": "ul. Kamen Andreev"
+      "en": "Kamen Andreev St"
     }
   },
   {
@@ -9737,8 +9737,8 @@
       23.30311
     ],
     "names": {
-      "bg": "бул. Ал. Стамболийски",
-      "en": "bul. Al. Stamboliyski"
+      "bg": "бул. Александър Стамболийски",
+      "en": "Aleksandar Stamboliyski Blvd"
     }
   },
   {
@@ -9785,8 +9785,8 @@
       23.30387
     ],
     "names": {
-      "bg": "бул. Ал. Стамболийски",
-      "en": "bul. Al. Stamboliyski"
+      "bg": "бул. Александър Стамболийски",
+      "en": "Aleksandar Stamboliyski Blvd"
     }
   },
   {
@@ -9797,7 +9797,7 @@
     ],
     "names": {
       "bg": "ул. Камен Андреев",
-      "en": "ul. Kamen Andreev"
+      "en": "Kamen Andreev St"
     }
   },
   {
@@ -9841,7 +9841,7 @@
     ],
     "names": {
       "bg": "ул. Луи Айер",
-      "en": "ul. Lui Ayer"
+      "en": "Louis Eyer St"
     }
   },
   {
@@ -9852,7 +9852,7 @@
     ],
     "names": {
       "bg": "ул. Луи Айер",
-      "en": "ul. Lui Ayer"
+      "en": "Louis Eyer St"
     }
   },
   {
@@ -9911,7 +9911,7 @@
     ],
     "names": {
       "bg": "ул. Иван Щерев",
-      "en": "ul. Ivan SHTerev"
+      "en": "Ivan Shterev St"
     }
   },
   {
@@ -10012,7 +10012,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -10068,7 +10068,7 @@
     ],
     "names": {
       "bg": "бул. Владимир Вазов",
-      "en": "bul. Vladimir Vazov"
+      "en": "Vladimir Vazov Blvd"
     },
     "request_stop": true
   },
@@ -10080,7 +10080,7 @@
     ],
     "names": {
       "bg": "бул. Владимир Вазов",
-      "en": "bul. Vladimir Vazov"
+      "en": "Vladimir Vazov Blvd"
     },
     "request_stop": true
   },
@@ -10092,7 +10092,7 @@
     ],
     "names": {
       "bg": "ул. Витиня",
-      "en": "ul. Vitinya"
+      "en": "Vitinya St"
     },
     "request_stop": true
   },
@@ -10104,7 +10104,7 @@
     ],
     "names": {
       "bg": "ул. Витиня",
-      "en": "ul. Vitinya"
+      "en": "Vitinya St"
     },
     "request_stop": true
   },
@@ -10271,8 +10271,8 @@
       23.38338
     ],
     "names": {
-      "bg": "ул. Ст. Доспевски",
-      "en": "ul. St. Dospevski"
+      "bg": "ул. Станислав Доспевски",
+      "en": "Stanislav Dospevski St"
     }
   },
   {
@@ -10282,8 +10282,8 @@
       23.38275
     ],
     "names": {
-      "bg": "ул. Ст. Доспевски",
-      "en": "ul. St. Dospevski"
+      "bg": "ул. Станислав Доспевски",
+      "en": "Stanislav Dospevski St"
     }
   },
   {
@@ -10492,7 +10492,7 @@
     ],
     "names": {
       "bg": "ул. Обиколна",
-      "en": "ul. Obikolna"
+      "en": "Obikolna St"
     }
   },
   {
@@ -10627,7 +10627,7 @@
     ],
     "names": {
       "bg": "бул. България",
-      "en": "Bulgaria Blvd."
+      "en": "Bulgaria Blvd"
     }
   },
   {
@@ -10638,7 +10638,7 @@
     ],
     "names": {
       "bg": "пл. Ручей",
-      "en": "pl. Ruchey"
+      "en": "Ruchey Sq"
     }
   },
   {
@@ -10671,7 +10671,7 @@
     ],
     "names": {
       "bg": "ул. Димитър Пешев",
-      "en": "Dimitar Peshev Str."
+      "en": "Dimitar Peshev St"
     }
   },
   {
@@ -10906,7 +10906,7 @@
     ],
     "names": {
       "bg": "бул. К. Величков",
-      "en": "K. Velichkov Blvd."
+      "en": "K. Velichkov Blvd"
     }
   },
   {
@@ -10917,7 +10917,7 @@
     ],
     "names": {
       "bg": "ул. Оряхово",
-      "en": "Oryahovo Str."
+      "en": "Oryahovo St"
     }
   },
   {
@@ -10928,7 +10928,7 @@
     ],
     "names": {
       "bg": "бул. К. Величков",
-      "en": "K. Velichkov Blvd."
+      "en": "K. Velichkov Blvd"
     }
   },
   {
@@ -10939,7 +10939,7 @@
     ],
     "names": {
       "bg": "ул. Оряхово",
-      "en": "Oryahovo Str."
+      "en": "Oryahovo St"
     }
   },
   {
@@ -10974,7 +10974,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -10985,7 +10985,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -10996,7 +10996,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -11051,7 +11051,7 @@
     ],
     "names": {
       "bg": "бул. История славянобългарска",
-      "en": "bul. Istoriya slavyanobalgarska"
+      "en": "Istoriya slavyanobylgarska Blvd"
     }
   },
   {
@@ -11062,7 +11062,7 @@
     ],
     "names": {
       "bg": "бул. История славянобългарска",
-      "en": "bul. Istoriya slavyanobalgarska"
+      "en": "Istoriya slavyanobylgarska Blvd"
     }
   },
   {
@@ -11139,7 +11139,7 @@
     ],
     "names": {
       "bg": "ул. Оборище",
-      "en": "ul. Oborishte"
+      "en": "Oborishte St"
     }
   },
   {
@@ -11441,7 +11441,7 @@
     ],
     "names": {
       "bg": "ул. Тодорини кукли",
-      "en": "Todorini kukli Str."
+      "en": "Todorini kukli St"
     }
   },
   {
@@ -11452,7 +11452,7 @@
     ],
     "names": {
       "bg": "ул. Тодорини кукли",
-      "en": "Todorini kukli Str."
+      "en": "Todorini kukli St"
     }
   },
   {
@@ -11463,7 +11463,7 @@
     ],
     "names": {
       "bg": "пл. Пирдоп",
-      "en": "pl. Pirdop"
+      "en": "Pirdop Sq"
     }
   },
   {
@@ -11474,7 +11474,7 @@
     ],
     "names": {
       "bg": "пл. Пирдоп",
-      "en": "pl. Pirdop"
+      "en": "Pirdop Sq"
     }
   },
   {
@@ -11509,7 +11509,7 @@
     ],
     "names": {
       "bg": "ул. Бесарабия",
-      "en": "ul. Besarabiya"
+      "en": "Besarabiya St"
     }
   },
   {
@@ -11520,7 +11520,7 @@
     ],
     "names": {
       "bg": "ул. Бесарабия",
-      "en": "ul. Besarabiya"
+      "en": "Besarabiya St"
     }
   },
   {
@@ -11608,7 +11608,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Никола Жеков",
-      "en": "ul. Gen. Nikola ZHekov"
+      "en": "Gen. Nikola Zhekov St"
     }
   },
   {
@@ -11619,7 +11619,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Никола Жеков",
-      "en": "ul. Gen. Nikola ZHekov"
+      "en": "Gen. Nikola Zhekov St"
     }
   },
   {
@@ -11630,7 +11630,7 @@
     ],
     "names": {
       "bg": "ул. Христо Силянов",
-      "en": "ul. Hristo Silyanov"
+      "en": "Hristo Silyanov St"
     }
   },
   {
@@ -11641,7 +11641,7 @@
     ],
     "names": {
       "bg": "ул. Сава Филаретов",
-      "en": "ul. Sava Filaretov"
+      "en": "Sava Filaretov St"
     }
   },
   {
@@ -11652,7 +11652,7 @@
     ],
     "names": {
       "bg": "ул. Сава Филаретов",
-      "en": "ul. Sava Filaretov"
+      "en": "Sava Filaretov St"
     }
   },
   {
@@ -11687,7 +11687,7 @@
     ],
     "names": {
       "bg": "ул. Хан Кубрат",
-      "en": "ul. Han Kubrat"
+      "en": "Han Kubrat St"
     }
   },
   {
@@ -11698,7 +11698,7 @@
     ],
     "names": {
       "bg": "ул. Хан Кубрат",
-      "en": "ul. Han Kubrat"
+      "en": "Han Kubrat St"
     }
   },
   {
@@ -11735,7 +11735,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "pl. Stochna gara"
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -11768,7 +11768,7 @@
     ],
     "names": {
       "bg": "ул. Ресенска поляна",
-      "en": "ul. Resenska polyana"
+      "en": "Resenska polyana St"
     }
   },
   {
@@ -11779,7 +11779,7 @@
     ],
     "names": {
       "bg": "ул. Ресенска поляна",
-      "en": "ul. Resenska polyana"
+      "en": "Resenska polyana St"
     }
   },
   {
@@ -11812,7 +11812,7 @@
     ],
     "names": {
       "bg": "ул. Васил Кънчев",
-      "en": "ul. Vasil Kanchev"
+      "en": "Vasil Kanchev St"
     }
   },
   {
@@ -11823,7 +11823,7 @@
     ],
     "names": {
       "bg": "ул. Васил Кънчев",
-      "en": "ul. Vasil Kanchev"
+      "en": "Vasil Kanchev St"
     }
   },
   {
@@ -11879,7 +11879,7 @@
     ],
     "names": {
       "bg": "ул. Лиляче",
-      "en": "ul. Lilyache"
+      "en": "Lilyache St"
     }
   },
   {
@@ -11890,7 +11890,7 @@
     ],
     "names": {
       "bg": "ул. Лиляче",
-      "en": "ul. Lilyache"
+      "en": "Lilyache St"
     }
   },
   {
@@ -12126,7 +12126,7 @@
     ],
     "names": {
       "bg": "бул. Никола Вапцаров",
-      "en": "bul. Nikola Vaptsarov"
+      "en": "Nikola Vaptsarov Blvd"
     }
   },
   {
@@ -12159,7 +12159,7 @@
     ],
     "names": {
       "bg": "ул. Стоян Михайловски",
-      "en": "Stoyan Mihaylovski Str."
+      "en": "Stoyan Mihaylovski St"
     }
   },
   {
@@ -12170,7 +12170,7 @@
     ],
     "names": {
       "bg": "ул. Стоян Михайловски",
-      "en": "Stoyan Mihaylovski Str."
+      "en": "Stoyan Mihaylovski St"
     }
   },
   {
@@ -12192,7 +12192,7 @@
     ],
     "names": {
       "bg": "ул. Султан тепе",
-      "en": "Sultan tepe Str."
+      "en": "Sultan tepe St"
     }
   },
   {
@@ -12203,7 +12203,7 @@
     ],
     "names": {
       "bg": "ул. Султан тепе",
-      "en": "Sultan tepe Str."
+      "en": "Sultan tepe St"
     }
   },
   {
@@ -12214,7 +12214,7 @@
     ],
     "names": {
       "bg": "бул. Мадрид",
-      "en": "bul. Madrid"
+      "en": "Madrid Blvd"
     }
   },
   {
@@ -12225,7 +12225,7 @@
     ],
     "names": {
       "bg": "бул. Мадрид",
-      "en": "bul. Madrid"
+      "en": "Madrid Blvd"
     }
   },
   {
@@ -12260,7 +12260,7 @@
     ],
     "names": {
       "bg": "ул. Тодорини кукли",
-      "en": "Todorini kukli Str."
+      "en": "Todorini kukli St"
     }
   },
   {
@@ -12271,7 +12271,7 @@
     ],
     "names": {
       "bg": "ул. Тодорини кукли",
-      "en": "Todorini kukli Str."
+      "en": "Todorini kukli St"
     }
   },
   {
@@ -12304,7 +12304,7 @@
     ],
     "names": {
       "bg": "ул. Бесарабия",
-      "en": "ul. Besarabiya"
+      "en": "Besarabiya St"
     },
     "metro_ref": "E"
   },
@@ -12316,7 +12316,7 @@
     ],
     "names": {
       "bg": "ул. Бесарабия",
-      "en": "ul. Besarabiya"
+      "en": "Besarabiya St"
     },
     "metro_ref": "F"
   },
@@ -12361,7 +12361,7 @@
     ],
     "names": {
       "bg": "пл. Руски паметник",
-      "en": "Ruski pametnik Sq."
+      "en": "Ruski pametnik Sq"
     }
   },
   {
@@ -12372,7 +12372,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -12383,7 +12383,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -12418,7 +12418,7 @@
     ],
     "names": {
       "bg": "кв. Павлово",
-      "en": "kv. Pavlovo"
+      "en": "Pavlovo"
     }
   },
   {
@@ -12429,7 +12429,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -12440,7 +12440,7 @@
     ],
     "names": {
       "bg": "бул. Никола Петков",
-      "en": "bul. Nikola Petkov"
+      "en": "Nikola Petkov Blvd"
     }
   },
   {
@@ -12462,7 +12462,7 @@
     ],
     "names": {
       "bg": "ул. Урал",
-      "en": "ul. Ural"
+      "en": "Ural St"
     }
   },
   {
@@ -12587,7 +12587,7 @@
     ],
     "names": {
       "bg": "ул. Христо Силянов",
-      "en": "ul. Hristo Silyanov"
+      "en": "Hristo Silyanov St"
     }
   },
   {
@@ -12598,7 +12598,7 @@
     ],
     "names": {
       "bg": "ул. Христо Силянов",
-      "en": "ul. Hristo Silyanov"
+      "en": "Hristo Silyanov St"
     }
   },
   {
@@ -12609,7 +12609,7 @@
     ],
     "names": {
       "bg": "ул. Царевец",
-      "en": "ul. TSarevets"
+      "en": "Tsarevets St"
     }
   },
   {
@@ -12620,7 +12620,7 @@
     ],
     "names": {
       "bg": "ул. Република",
-      "en": "ul. Republika"
+      "en": "Republika St"
     }
   },
   {
@@ -12631,7 +12631,7 @@
     ],
     "names": {
       "bg": "ул. Васил Петлешков",
-      "en": "ul. Vasil Petleshkov"
+      "en": "Vasil Petleshkov St"
     }
   },
   {
@@ -12642,7 +12642,7 @@
     ],
     "names": {
       "bg": "ул. Видини кули",
-      "en": "ul. Vidini kuli"
+      "en": "Vidini kuli St"
     }
   },
   {
@@ -12653,7 +12653,7 @@
     ],
     "names": {
       "bg": "ул. Уошбърн",
-      "en": "Washburn St."
+      "en": "Washburn St"
     }
   },
   {
@@ -12675,7 +12675,7 @@
     ],
     "names": {
       "bg": "ул. Макгахан",
-      "en": "MacGahan Str."
+      "en": "MacGahan St"
     }
   },
   {
@@ -12686,7 +12686,7 @@
     ],
     "names": {
       "bg": "ул. Златица",
-      "en": "ul. Zlatitsa"
+      "en": "Zlatitsa St"
     }
   },
   {
@@ -12697,7 +12697,7 @@
     ],
     "names": {
       "bg": "ул. Златица",
-      "en": "ul. Zlatitsa"
+      "en": "Zlatitsa St"
     }
   },
   {
@@ -12719,7 +12719,7 @@
     ],
     "names": {
       "bg": "ул. Теофил Ганев",
-      "en": "ul. Teofil Ganev"
+      "en": "Teofil Ganev St"
     }
   },
   {
@@ -12752,7 +12752,7 @@
     ],
     "names": {
       "bg": "ул. Калиманци",
-      "en": "ul. Kalimantsi"
+      "en": "Kalimantsi St"
     }
   },
   {
@@ -12763,7 +12763,7 @@
     ],
     "names": {
       "bg": "ул. Калиманци",
-      "en": "ul. Kalimantsi"
+      "en": "Kalimantsi St"
     }
   },
   {
@@ -12906,7 +12906,7 @@
     ],
     "names": {
       "bg": "ул. Гео Милев",
-      "en": "ul. Geo Milev"
+      "en": "Geo Milev St"
     }
   },
   {
@@ -12917,7 +12917,7 @@
     ],
     "names": {
       "bg": "ул. Георги Минчев",
-      "en": "ul. Georgi Minchev"
+      "en": "Georgi Minchev St"
     }
   },
   {
@@ -12950,7 +12950,7 @@
     ],
     "names": {
       "bg": "ул. Черковна",
-      "en": "ul. CHerkovna"
+      "en": "Cherkovna St"
     }
   },
   {
@@ -12961,7 +12961,7 @@
     ],
     "names": {
       "bg": "ул. Черковна",
-      "en": "ul. CHerkovna"
+      "en": "Cherkovna St"
     }
   },
   {
@@ -12994,7 +12994,7 @@
     ],
     "names": {
       "bg": "бул. Черни връх",
-      "en": "Cherni vrah Blvd."
+      "en": "Cherni vrah Blvd"
     }
   },
   {
@@ -13041,7 +13041,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -13085,7 +13085,7 @@
     ],
     "names": {
       "bg": "ж.к. Западен парк",
-      "en": "zh.k. Zapaden park"
+      "en": "Zapaden park"
     }
   },
   {
@@ -13153,7 +13153,7 @@
     ],
     "names": {
       "bg": "бул. България",
-      "en": "Bulgaria Blvd."
+      "en": "Bulgaria Blvd"
     }
   },
   {
@@ -13164,7 +13164,7 @@
     ],
     "names": {
       "bg": "ул. Орехова гора",
-      "en": "Orehova gora Str."
+      "en": "Orehova gora St"
     }
   },
   {
@@ -13175,7 +13175,7 @@
     ],
     "names": {
       "bg": "ул. Орехова гора",
-      "en": "Orehova gora Str."
+      "en": "Orehova gora St"
     }
   },
   {
@@ -13186,7 +13186,7 @@
     ],
     "names": {
       "bg": "ул. Костенски водопад",
-      "en": "Kostenski vodopad Str."
+      "en": "Kostenski vodopad St"
     }
   },
   {
@@ -13208,7 +13208,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -13240,8 +13240,8 @@
       23.28584
     ],
     "names": {
-      "bg": "бул. Ал. Стамболийски",
-      "en": "bul. Al. Stamboliyski"
+      "bg": "бул. Александър Стамболийски",
+      "en": "Aleksandar Stamboliyski Blvd"
     }
   },
   {
@@ -13278,7 +13278,7 @@
     ],
     "names": {
       "bg": "ул. Хайдут Сидер",
-      "en": "ul. Haydut Sider"
+      "en": "Haydut Sider St"
     }
   },
   {
@@ -13289,7 +13289,7 @@
     ],
     "names": {
       "bg": "ул. Хайдут Сидер",
-      "en": "ul. Haydut Sider"
+      "en": "Haydut Sider St"
     }
   },
   {
@@ -13322,7 +13322,7 @@
     ],
     "names": {
       "bg": "ул. Крум Стоянов",
-      "en": "ul. Krum Stoyanov"
+      "en": "Krum Stoyanov St"
     }
   },
   {
@@ -13333,7 +13333,7 @@
     ],
     "names": {
       "bg": "ул. Крум Стоянов",
-      "en": "ul. Krum Stoyanov"
+      "en": "Krum Stoyanov St"
     }
   },
   {
@@ -13377,7 +13377,7 @@
     ],
     "names": {
       "bg": "ул. Иван Йосифов",
-      "en": "ul. Ivan Yosifov"
+      "en": "Ivan Yosifov St"
     }
   },
   {
@@ -13388,7 +13388,7 @@
     ],
     "names": {
       "bg": "ул. Иван Йосифов",
-      "en": "ul. Ivan Yosifov"
+      "en": "Ivan Yosifov St"
     }
   },
   {
@@ -13564,7 +13564,7 @@
     ],
     "names": {
       "bg": "ул. Луи Айер",
-      "en": "Louis Eyer Str."
+      "en": "Louis Eyer St"
     }
   },
   {
@@ -13575,7 +13575,7 @@
     ],
     "names": {
       "bg": "ул. Костенски водопад",
-      "en": "Kostenski vodopad Str."
+      "en": "Kostenski vodopad St"
     }
   },
   {
@@ -13967,7 +13967,7 @@
     ],
     "names": {
       "bg": "ул. Стоян Михайловски",
-      "en": "Stoyan Mihaylovski Str."
+      "en": "Stoyan Mihaylovski St"
     }
   },
   {
@@ -14278,8 +14278,8 @@
       23.23257
     ],
     "names": {
-      "bg": "ул. Н. Хрелков",
-      "en": "N. Hrelkov Str."
+      "bg": "ул. Никола Хрелков",
+      "en": "Nikola Hrelkov St"
     }
   },
   {
@@ -14289,8 +14289,8 @@
       23.23218
     ],
     "names": {
-      "bg": "ул. Н. Хрелков",
-      "en": "N. Hrelkov Str."
+      "bg": "ул. Никола Хрелков",
+      "en": "Nikola Hrelkov St"
     }
   },
   {
@@ -14345,7 +14345,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -14355,8 +14355,8 @@
       23.26464
     ],
     "names": {
-      "bg": "бул. Ал. Пушкин",
-      "en": "bul. Al. Pushkin"
+      "bg": "бул. Александър Пушкин",
+      "en": "Aleksander Pushkin Str"
     }
   },
   {
@@ -14366,8 +14366,8 @@
       23.26554
     ],
     "names": {
-      "bg": "бул. Ал. Пушкин",
-      "en": "bul. Al. Pushkin"
+      "bg": "бул. Александър Пушкин",
+      "en": "Aleksander Pushkin Str"
     }
   },
   {
@@ -14378,7 +14378,7 @@
     ],
     "names": {
       "bg": "НИМ",
-      "en": "NIM"
+      "en": "National History Museum"
     }
   },
   {
@@ -14531,8 +14531,8 @@
       23.38202
     ],
     "names": {
-      "bg": "бул. Проф. Цв. Лазаров",
-      "en": "bul. Prof. TSv. Lazarov"
+      "bg": "бул. Проф. Цветан Лазаров",
+      "en": "Prof. Tsvetan Lazarov Blvd"
     }
   },
   {
@@ -14542,8 +14542,8 @@
       23.3812
     ],
     "names": {
-      "bg": "бул. Проф. Цв. Лазаров",
-      "en": "bul. Prof. TSv. Lazarov"
+      "bg": "бул. Проф. Цветан Лазаров",
+      "en": "Prof. Tsvetan Lazarov Blvd"
     }
   },
   {
@@ -14752,7 +14752,7 @@
     ],
     "names": {
       "bg": "бул. Цар Борис ІІІ",
-      "en": "bul. TSar Boris ІІІ"
+      "en": "Tsar Boris III Blvd"
     }
   },
   {
@@ -14861,7 +14861,7 @@
     ],
     "names": {
       "bg": "ул. Кракра",
-      "en": "Krakra Str."
+      "en": "Krakra St"
     }
   },
   {
@@ -14872,7 +14872,7 @@
     ],
     "names": {
       "bg": "ул. Бяло море",
-      "en": "Byalo more Str."
+      "en": "Byalo more St"
     }
   },
   {
@@ -14894,7 +14894,7 @@
     ],
     "names": {
       "bg": "ул. Панайот Хитов",
-      "en": "Panayot Hitov Str."
+      "en": "Panayot Hitov St"
     }
   },
   {
@@ -14905,7 +14905,7 @@
     ],
     "names": {
       "bg": "ул. Уошбърн",
-      "en": "Washburn St."
+      "en": "Washburn St"
     }
   },
   {
@@ -14953,7 +14953,7 @@
     ],
     "names": {
       "bg": "пл. Ручей",
-      "en": "Ruchey Sq."
+      "en": "Ruchey Sq"
     }
   },
   {
@@ -14964,7 +14964,7 @@
     ],
     "names": {
       "bg": "ул. Дойран",
-      "en": "Doyran Str."
+      "en": "Doyran St"
     }
   },
   {
@@ -14975,7 +14975,7 @@
     ],
     "names": {
       "bg": "ул. Дойран",
-      "en": "Doyran Str."
+      "en": "Doyran St"
     }
   },
   {
@@ -14999,7 +14999,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -15010,7 +15010,7 @@
     ],
     "names": {
       "bg": "ул. Вихрен",
-      "en": "Vihren Str."
+      "en": "Vihren St"
     }
   },
   {
@@ -15065,7 +15065,7 @@
     ],
     "names": {
       "bg": "Площад на авиацията",
-      "en": "Aviation Sq."
+      "en": "Aviation Sq"
     }
   },
   {
@@ -15097,8 +15097,8 @@
       23.38054
     ],
     "names": {
-      "bg": "бул. Проф. Цв. Лазаров",
-      "en": "bul. Prof. TSv. Lazarov"
+      "bg": "бул. Проф. Цветан Лазаров",
+      "en": "Prof. Tsvetan Lazarov Blvd"
     }
   },
   {
@@ -15131,7 +15131,7 @@
     ],
     "names": {
       "bg": "ул. Ген. Никола Генев",
-      "en": "Gen. Nikola Genev Str."
+      "en": "Gen. Nikola Genev St"
     }
   },
   {
@@ -15219,7 +15219,7 @@
     ],
     "names": {
       "bg": "ул. Георги Раковски",
-      "en": "Georgi Rakovski Str."
+      "en": "Georgi Rakovski St"
     }
   },
   {
@@ -15241,7 +15241,7 @@
     ],
     "names": {
       "bg": "ул. Искър",
-      "en": "Iskar Str."
+      "en": "Iskar St"
     }
   },
   {
@@ -15252,7 +15252,7 @@
     ],
     "names": {
       "bg": "ул. Искър",
-      "en": "Iskar Str."
+      "en": "Iskar St"
     }
   },
   {
@@ -15263,7 +15263,7 @@
     ],
     "names": {
       "bg": "ул. Поп Богомил",
-      "en": "Pope Bogomil Str."
+      "en": "Pop Bogomil St"
     }
   },
   {
@@ -15274,7 +15274,7 @@
     ],
     "names": {
       "bg": "ул. Поп Богомил",
-      "en": "Pope Bogomil Str."
+      "en": "Pop Bogomil St"
     }
   },
   {
@@ -15285,7 +15285,7 @@
     ],
     "names": {
       "bg": "ул. Тимок",
-      "en": "Timok Str."
+      "en": "Timok St"
     }
   },
   {
@@ -15296,7 +15296,7 @@
     ],
     "names": {
       "bg": "пл. Сточна гара",
-      "en": "Stochna gara Sq."
+      "en": "Stochna gara Sq"
     }
   },
   {
@@ -15317,8 +15317,8 @@
       23.38259
     ],
     "names": {
-      "bg": "бул. Проф. Цв. Лазаров",
-      "en": "bul. Prof. TSv. Lazarov"
+      "bg": "бул. Проф. Цветан Лазаров",
+      "en": "Prof. Tsvetan Lazarov Blvd"
     }
   },
   {
@@ -16572,7 +16572,7 @@
     ],
     "names": {
       "bg": "ул. Люляк",
-      "en": "ul. Lyulyak"
+      "en": "Lyulyak St"
     }
   },
   {
@@ -16594,7 +16594,7 @@
     ],
     "names": {
       "bg": "ул. Люляк",
-      "en": "ul. Lyulyak"
+      "en": "Lyulyak St"
     }
   },
   {
@@ -16737,7 +16737,7 @@
     ],
     "names": {
       "bg": "ул. Синчец",
-      "en": "ul. Sinchets"
+      "en": "Sinchets St"
     }
   },
   {
@@ -16748,7 +16748,7 @@
     ],
     "names": {
       "bg": "ул. Синчец",
-      "en": "ul. Sinchets"
+      "en": "Sinchets St"
     }
   },
   {
@@ -16759,7 +16759,7 @@
     ],
     "names": {
       "bg": "ул. Ралица",
-      "en": "ul. Ralitsa"
+      "en": "Ralitsa St"
     }
   },
   {
@@ -16770,7 +16770,7 @@
     ],
     "names": {
       "bg": "ул. Ралица",
-      "en": "ul. Ralitsa"
+      "en": "Ralitsa St"
     }
   },
   {
@@ -16847,7 +16847,7 @@
     ],
     "names": {
       "bg": "ул. Васил Левски",
-      "en": "ul. Vasil Levski"
+      "en": "Vasi Levski St"
     }
   },
   {
@@ -16858,7 +16858,7 @@
     ],
     "names": {
       "bg": "ул. Васил Левски",
-      "en": "ul. Vasil Levski"
+      "en": "Vasi Levski St"
     }
   },
   {
@@ -17789,7 +17789,7 @@
     ],
     "names": {
       "bg": "пл. Витоша",
-      "en": "pl. Vitosha"
+      "en": "Vitosha Sq"
     }
   },
   {
@@ -17800,7 +17800,7 @@
     ],
     "names": {
       "bg": "пл. Витоша",
-      "en": "pl. Vitosha"
+      "en": "Vitosha Sq"
     }
   },
   {
@@ -18229,7 +18229,7 @@
     ],
     "names": {
       "bg": "пл. Биримирци",
-      "en": "pl. Birimirtsi"
+      "en": "Birimirtsi Sq"
     }
   },
   {
@@ -18486,7 +18486,7 @@
     ],
     "names": {
       "bg": "ул. Младост",
-      "en": "ul. Mladost"
+      "en": "Mladost St"
     },
     "request_stop": true
   },
@@ -18498,7 +18498,7 @@
     ],
     "names": {
       "bg": "ул. Младост",
-      "en": "ul. Mladost"
+      "en": "Mladost St"
     },
     "request_stop": true
   },
@@ -18898,7 +18898,7 @@
     ],
     "names": {
       "bg": "ул. Вишновска",
-      "en": "Vishnovska St."
+      "en": "Vishnovska St"
     },
     "request_stop": true
   },
@@ -19326,7 +19326,7 @@
     ],
     "names": {
       "bg": "пл. Мегдана",
-      "en": "pl. Megdana"
+      "en": "Megdana Sq"
     }
   },
   {
@@ -19337,7 +19337,7 @@
     ],
     "names": {
       "bg": "пл. Мегдана",
-      "en": "pl. Megdana"
+      "en": "Megdana Sq"
     }
   },
   {
@@ -19800,7 +19800,7 @@
     ],
     "names": {
       "bg": "ул. Детелина",
-      "en": "Detelina Str."
+      "en": "Detelina St"
     }
   },
   {
@@ -19811,7 +19811,7 @@
     ],
     "names": {
       "bg": "ул. Детелина",
-      "en": "Detelina Str."
+      "en": "Detelina St"
     }
   },
   {
@@ -19822,7 +19822,7 @@
     ],
     "names": {
       "bg": "ул. Български воин",
-      "en": "Balgarski voyn St."
+      "en": "Balgarski voyn St"
     }
   },
   {
@@ -19833,7 +19833,7 @@
     ],
     "names": {
       "bg": "ул. Български воин",
-      "en": "Balgarski voyn St."
+      "en": "Balgarski voyn St"
     }
   },
   {
@@ -19844,7 +19844,7 @@
     ],
     "names": {
       "bg": "ул. Суходолски път",
-      "en": "Suhodolski pat Str."
+      "en": "Suhodolski pat St"
     },
     "request_stop": true
   },
@@ -19856,7 +19856,7 @@
     ],
     "names": {
       "bg": "ул. Суходолски път",
-      "en": "Suhodolski pat Str."
+      "en": "Suhodolski pat St"
     },
     "request_stop": true
   },
@@ -21939,7 +21939,7 @@
     ],
     "names": {
       "bg": "ул. Феликс Каниц",
-      "en": "ul. Feliks Kanits"
+      "en": "Felix Kanitz St"
     }
   },
   {
@@ -21950,7 +21950,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -21961,7 +21961,7 @@
     ],
     "names": {
       "bg": "бул. Братя Бъкстон",
-      "en": "Bratya Buxton Blvd."
+      "en": "Bratya Buxton Blvd"
     }
   },
   {
@@ -22150,7 +22150,7 @@
     ],
     "names": {
       "bg": "ул. Бялата чешма",
-      "en": "Byalata cheshma Str."
+      "en": "Byalata cheshma St"
     }
   },
   {
@@ -22185,7 +22185,7 @@
     ],
     "names": {
       "bg": "бул. Гоце Делчев",
-      "en": "Gotse Delchev Blvd."
+      "en": "Gotse Delchev Blvd"
     }
   },
   {
@@ -22196,7 +22196,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -22207,7 +22207,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -22262,7 +22262,7 @@
     ],
     "names": {
       "bg": "ул. Брезите",
-      "en": "Brezite Str."
+      "en": "Brezite St"
     }
   },
   {
@@ -22273,7 +22273,7 @@
     ],
     "names": {
       "bg": "ул. Брезите",
-      "en": "Brezite Str."
+      "en": "Brezite St"
     }
   },
   {
@@ -23302,7 +23302,7 @@
     ],
     "names": {
       "bg": "ул. Драва",
-      "en": "Drava Str."
+      "en": "Drava St"
     }
   },
   {
@@ -23464,7 +23464,7 @@
     ],
     "names": {
       "bg": "ул. Поп Груйо",
-      "en": "Pop Gruyo street"
+      "en": "Pop Gruyo St"
     },
     "request_stop": true
   },
@@ -23476,7 +23476,7 @@
     ],
     "names": {
       "bg": "ул. Поп Груйо",
-      "en": "Pop Gruyo street"
+      "en": "Pop Gruyo St"
     },
     "request_stop": true
   },
@@ -23821,7 +23821,7 @@
     ],
     "names": {
       "bg": "ул. Лагадина",
-      "en": "Lagadina Str."
+      "en": "Lagadina St"
     }
   },
   {
@@ -23832,7 +23832,7 @@
     ],
     "names": {
       "bg": "ул. Лагадина",
-      "en": "Lagadina Str."
+      "en": "Lagadina St"
     }
   },
   {
@@ -24038,7 +24038,7 @@
     ],
     "names": {
       "bg": "пл. Биримирци",
-      "en": "pl. Birimirtsi"
+      "en": "Birimirtsi Sq"
     }
   },
   {
@@ -24302,7 +24302,7 @@
     ],
     "names": {
       "bg": "ул. Каменоделска",
-      "en": "ul. Kamenodelska"
+      "en": "Kamenodelska St"
     }
   },
   {
@@ -24335,7 +24335,7 @@
     ],
     "names": {
       "bg": "ул. Макгахан",
-      "en": "MacGahan Str."
+      "en": "MacGahan St"
     }
   },
   {
@@ -24370,7 +24370,7 @@
     ],
     "names": {
       "bg": "кв. Овча купел",
-      "en": "kv. Ovcha kupel"
+      "en": "Ovcha kupel"
     }
   },
   {
@@ -24392,7 +24392,7 @@
     ],
     "names": {
       "bg": "ул. Лазарополе",
-      "en": "ul. Lazaropole"
+      "en": "Lazarpole St"
     }
   },
   {
@@ -24403,7 +24403,7 @@
     ],
     "names": {
       "bg": "ул. Лазарополе",
-      "en": "ul. Lazaropole"
+      "en": "Lazarpole St"
     }
   },
   {
@@ -24414,7 +24414,7 @@
     ],
     "names": {
       "bg": "пл. Сред село",
-      "en": "pl. Sred selo"
+      "en": "Sred selo Sq"
     }
   },
   {
@@ -24425,7 +24425,7 @@
     ],
     "names": {
       "bg": "пл. Сред село",
-      "en": "pl. Sred selo"
+      "en": "Sred selo Sq"
     }
   },
   {
@@ -24480,7 +24480,7 @@
     ],
     "names": {
       "bg": "ул. Буря",
-      "en": "Burya Str."
+      "en": "Burya St"
     }
   },
   {
@@ -24491,7 +24491,7 @@
     ],
     "names": {
       "bg": "ул. Буря",
-      "en": "Burya Str."
+      "en": "Burya St"
     }
   },
   {
@@ -24534,8 +24534,8 @@
       23.26575
     ],
     "names": {
-      "bg": "бул. Ал. Пушкин",
-      "en": "bul. Al. Pushkin"
+      "bg": "бул. Александър Пушкин",
+      "en": "Aleksandar Pushkin Blvd"
     }
   },
   {
@@ -24545,8 +24545,8 @@
       23.26543
     ],
     "names": {
-      "bg": "бул. Ал. Пушкин",
-      "en": "bul. Al. Pushkin"
+      "bg": "бул. Александър Пушкин",
+      "en": "Aleksandar Pushkin Blvd"
     }
   },
   {
@@ -24557,7 +24557,7 @@
     ],
     "names": {
       "bg": "Околовръстен път",
-      "en": "Okolovrasten pat"
+      "en": "Ring Road"
     }
   },
   {
@@ -24568,7 +24568,7 @@
     ],
     "names": {
       "bg": "Околовръстен път",
-      "en": "Okolovrasten pat"
+      "en": "Ring Road"
     }
   },
   {
@@ -26648,7 +26648,7 @@
     ],
     "names": {
       "bg": "ул. Родопски извор",
-      "en": "Rodopski izvor Str."
+      "en": "Rodopski izvor St"
     }
   },
   {
@@ -26659,7 +26659,7 @@
     ],
     "names": {
       "bg": "ул. Родопски извор",
-      "en": "Rodopski izvor Str."
+      "en": "Rodopski izvor St"
     }
   },
   {
@@ -26729,7 +26729,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -26740,7 +26740,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -26853,7 +26853,7 @@
     ],
     "names": {
       "bg": "ул. Първа българска армия",
-      "en": "Parva Balgarska Armiya St."
+      "en": "Parva Balgarska Armiya St"
     }
   },
   {
@@ -27149,7 +27149,7 @@
     ],
     "names": {
       "bg": "ул. Захари Зограф",
-      "en": "ul. Zahari Zograf"
+      "en": "Zahari Zograf St"
     }
   },
   {
@@ -27160,7 +27160,7 @@
     ],
     "names": {
       "bg": "ул. Захари Зограф",
-      "en": "ul. Zahari Zograf"
+      "en": "Zahari Zograf St"
     }
   },
   {
@@ -28015,7 +28015,7 @@
     ],
     "names": {
       "bg": "ул. Хайдут Сидер",
-      "en": "Haidut Sider Str"
+      "en": "Haydut Sider Str"
     }
   },
   {
@@ -28026,7 +28026,7 @@
     ],
     "names": {
       "bg": "ул. Хайдут Сидер",
-      "en": "Haidut Sider Str"
+      "en": "Haydut Sider Str"
     }
   },
   {
@@ -28705,7 +28705,7 @@
     ],
     "names": {
       "bg": "бул. България",
-      "en": "Bulgaria Blvd."
+      "en": "Bulgaria Blvd"
     }
   },
   {
@@ -28716,7 +28716,7 @@
     ],
     "names": {
       "bg": "бул. България",
-      "en": "Bulgaria Blvd."
+      "en": "Bulgaria Blvd"
     }
   },
   {
@@ -28761,8 +28761,8 @@
       23.29231
     ],
     "names": {
-      "bg": "ул. Г. Измирлиев",
-      "en": "G. Izmirliev Str."
+      "bg": "ул. Георги Измирлиев",
+      "en": "Georgi Izmirliev St"
     }
   },
   {
@@ -28772,8 +28772,8 @@
       23.29172
     ],
     "names": {
-      "bg": "ул. Г. Измирлиев",
-      "en": "G. Izmirliev Str."
+      "bg": "ул. Георги Измирлиев",
+      "en": "Geogi Izmirliev St"
     }
   },
   {
@@ -28806,7 +28806,7 @@
     ],
     "names": {
       "bg": "ул. Костенски водопад",
-      "en": "Kostenski vodopad Str."
+      "en": "Kostenski vodopad St"
     }
   },
   {
@@ -28817,7 +28817,7 @@
     ],
     "names": {
       "bg": "ул. Костенски водопад",
-      "en": "Kostenski vodopad Str."
+      "en": "Kostenski vodopad St"
     }
   },
   {
@@ -28860,8 +28860,8 @@
       23.33216
     ],
     "names": {
-      "bg": "ул. Ген. Йосиф Гурко",
-      "en": "General Iosif Gurko St"
+      "bg": "ул. Ген. Гурко",
+      "en": "Gen. Gurko St"
     }
   },
   {
@@ -29105,7 +29105,7 @@
     ],
     "names": {
       "bg": "бул. Възкресение",
-      "en": "bul. Vazkresenie"
+      "en": "Vazkresenie Blvd"
     }
   },
   {
@@ -29225,7 +29225,7 @@
     ],
     "names": {
       "bg": "ул. 6-ти септември",
-      "en": "ul. 6-ti septemvri"
+      "en": "September 6th St"
     }
   },
   {
@@ -29236,7 +29236,7 @@
     ],
     "names": {
       "bg": "ул. 6-ти септември",
-      "en": "ul. 6-ti septemvri"
+      "en": "September 6th St"
     }
   },
   {
@@ -29337,7 +29337,7 @@
     ],
     "names": {
       "bg": "пл. Св. Александър Невски",
-      "en": "Alexander Nevski Sq."
+      "en": "Alexander Nevski Sq"
     }
   },
   {
@@ -29538,7 +29538,7 @@
     ],
     "names": {
       "bg": "ул. Бялата чешма",
-      "en": "Byalata cheshma Str."
+      "en": "Byalata cheshma St"
     },
     "request_stop": true
   },
@@ -29666,7 +29666,7 @@
     ],
     "names": {
       "bg": "Площад на авиацията",
-      "en": "Aviation Sq."
+      "en": "Aviation Sq"
     }
   },
   {
@@ -29710,7 +29710,7 @@
     ],
     "names": {
       "bg": "НИМ",
-      "en": "NIM"
+      "en": "National History Museum"
     }
   },
   {
@@ -29734,7 +29734,7 @@
     ],
     "names": {
       "bg": "ул. Тодор Каблешков",
-      "en": "Todor Kableshkov Str."
+      "en": "Todor Kableshkov St"
     }
   },
   {
@@ -29963,7 +29963,7 @@
     ],
     "names": {
       "bg": "ул. Вишновска",
-      "en": "Vishnovska St."
+      "en": "Vishnovska St"
     },
     "request_stop": true
   },
@@ -30010,7 +30010,7 @@
     ],
     "names": {
       "bg": "ул. Бесарабия",
-      "en": "Bessarabia St."
+      "en": "Bessarabia St"
     }
   },
   {
@@ -30021,7 +30021,7 @@
     ],
     "names": {
       "bg": "ул. Димитър Ашов",
-      "en": "Dimitar Ashov St."
+      "en": "Dimitar Ashov St"
     }
   },
   {
@@ -30032,7 +30032,7 @@
     ],
     "names": {
       "bg": "ул. Димитър Ашов",
-      "en": "Dimitar Ashov St."
+      "en": "Dimitar Ashov St"
     }
   },
   {
@@ -30087,7 +30087,7 @@
     ],
     "names": {
       "bg": "ул. Връплина",
-      "en": "Vraplina St."
+      "en": "Vraplina St"
     }
   },
   {
@@ -30133,7 +30133,7 @@
     ],
     "names": {
       "bg": "ул. Първа българска армия",
-      "en": "Parva Balgarska Armiya St."
+      "en": "Parva Balgarska Armiya St"
     }
   },
   {
@@ -30144,7 +30144,7 @@
     ],
     "names": {
       "bg": "ул. Бистришко шосе",
-      "en": "Bistrishko shose Str."
+      "en": "Bistrishko shose St"
     }
   },
   {
@@ -30155,7 +30155,7 @@
     ],
     "names": {
       "bg": "ул. Бистришко шосе",
-      "en": "Bistrishko shose Str."
+      "en": "Bistrishko shose St"
     }
   },
   {
@@ -30695,7 +30695,7 @@
     ],
     "names": {
       "bg": "ул. Княжевска",
-      "en": "Knyazhevska Str."
+      "en": "Knyazhevska Str"
     }
   },
   {
@@ -30706,7 +30706,7 @@
     ],
     "names": {
       "bg": "ул. Княжевска",
-      "en": "Knyazhevska Str."
+      "en": "Knyazhevska Str"
     }
   },
   {
@@ -30717,7 +30717,7 @@
     ],
     "names": {
       "bg": "ул. Буря",
-      "en": "Burya Str."
+      "en": "Burya Str"
     }
   },
   {
@@ -30860,7 +30860,7 @@
     ],
     "names": {
       "bg": "ул. Спас Соколов",
-      "en": "Spas Sokolov str."
+      "en": "Spas Sokolov St"
     }
   },
   {
@@ -30871,7 +30871,7 @@
     ],
     "names": {
       "bg": "ул. Спас Соколов",
-      "en": "Spas Sokolov str."
+      "en": "Spas Sokolov St"
     }
   },
   {
@@ -30982,7 +30982,7 @@
     ],
     "names": {
       "bg": "ул. Луи Пастьор",
-      "en": "ul. Lui Pastaor"
+      "en": "Louis Pasteur St"
     }
   },
   {
@@ -31006,7 +31006,7 @@
     ],
     "names": {
       "bg": "бул. Христо Ботев",
-      "en": "bul. Hristo Botev"
+      "en": "Hristo Botev Blvd"
     }
   },
   {
@@ -31120,7 +31120,7 @@
     ],
     "names": {
       "bg": "пл. Сред село",
-      "en": "pl. Sred selo"
+      "en": "Sred selo Sq"
     }
   },
   {
@@ -31164,7 +31164,7 @@
     ],
     "names": {
       "bg": "ул. Марин Тодоров",
-      "en": "ul. Marin Todorov"
+      "en": "Marin Todorov St"
     }
   },
   {
@@ -31175,7 +31175,7 @@
     ],
     "names": {
       "bg": "ул. Чавдар Мутафов",
-      "en": "ul. CHavdar Mutafov"
+      "en": "Chavdat Mutafov St"
     }
   },
   {
@@ -31186,7 +31186,7 @@
     ],
     "names": {
       "bg": "ул. Чавдар Мутафов",
-      "en": "ul. CHavdar Mutafov"
+      "en": "Chavdat Mutafov St"
     }
   },
   {
@@ -31309,7 +31309,7 @@
     ],
     "names": {
       "bg": "бул. Христо Ботев",
-      "en": "bul. Hristo Botev"
+      "en": "Hristo Botev Blvd"
     }
   },
   {
@@ -31382,7 +31382,7 @@
     ],
     "names": {
       "bg": "пл. Св. Александър Невски",
-      "en": "Alexander Nevski Sq."
+      "en": "Alexander Nevski Sq"
     }
   },
   {
@@ -31439,7 +31439,7 @@
     ],
     "names": {
       "bg": "кв. Овча купел",
-      "en": "kv. Ovcha kupel"
+      "en": "Ovcha kupel"
     }
   },
   {
@@ -31463,7 +31463,7 @@
     ],
     "names": {
       "bg": "ул. Луи Пастьор",
-      "en": "ul. Lui Pastaor"
+      "en": "Louis Pasteur St"
     }
   },
   {
@@ -31542,7 +31542,7 @@
     ],
     "names": {
       "bg": "пл. Възраждане",
-      "en": "Vazrazhdane Sq."
+      "en": "Vazrazhdane Sq"
     }
   },
   {
@@ -31553,7 +31553,7 @@
     ],
     "names": {
       "bg": "пл. Възраждане",
-      "en": "Vazrazhdane Sq."
+      "en": "Vazrazhdane Sq"
     }
   },
   {
@@ -31564,7 +31564,7 @@
     ],
     "names": {
       "bg": "бул. Вардар",
-      "en": "bul. Vardar"
+      "en": "Varda Blvd"
     }
   },
   {
@@ -31586,7 +31586,7 @@
     ],
     "names": {
       "bg": "10-ти ДКЦ",
-      "en": "10-ti DKTS"
+      "en": "10th Polyclinic"
     }
   },
   {
@@ -31597,7 +31597,7 @@
     ],
     "names": {
       "bg": "ул. Бялата чешма",
-      "en": "Byalata cheshma Str."
+      "en": "Byalata cheshma St"
     },
     "request_stop": true
   },
@@ -32078,7 +32078,7 @@
     ],
     "names": {
       "bg": "кв. Павлово",
-      "en": "kv. Pavlovo"
+      "en": "Pavlovo"
     }
   },
   {
@@ -32089,7 +32089,7 @@
     ],
     "names": {
       "bg": "кв. Овча купел",
-      "en": "kv. Ovcha kupel"
+      "en": "Ovcha kupel"
     }
   },
   {
@@ -32284,6 +32284,17 @@
     }
   },
   {
+    "code": "6004",
+    "coords": [
+      42.70709,
+      23.30249
+    ],
+    "names": {
+      "bg": "УЛ. ДИМИТЪР ПЕТКОВ",
+      "en": "UL. DIMITAR PETKOV"
+    }
+  },
+  {
     "code": "6698",
     "coords": [
       42.73219,
@@ -32325,6 +32336,17 @@
     "names": {
       "bg": "АВТОСТАНЦИЯ ГЕО МИЛЕВ",
       "en": "AVTOSTANTSIYA GEO MILEV"
+    }
+  },
+  {
+    "code": "6006",
+    "coords": [
+      42.70892,
+      23.30557
+    ],
+    "names": {
+      "bg": "УЛ. ШУМЕН",
+      "en": "UL. SHUMEN"
     }
   }
 ]
