@@ -341,8 +341,8 @@
       23.24553
     ],
     "names": {
-      "bg": "бул. Петър Дертлиев",
-      "en": "Petar Dertliev Blvd"
+      "bg": "бул. Д-р Петър Дертлиев",
+      "en": "Dr. Petar Dertliev Blvd"
     }
   },
   {
@@ -5470,8 +5470,8 @@
       23.24445
     ],
     "names": {
-      "bg": "бул. Петър Дертлиев",
-      "en": "Petar Dertliev Blvd"
+      "bg": "бул. Д-р Петър Дертлиев",
+      "en": "Dr. Petar Dertliev Blvd"
     }
   },
   {
@@ -14211,7 +14211,7 @@
     ],
     "names": {
       "bg": "бул. Д-р Петър Дертлиев",
-      "en": "bul. D-r Petar Dertliev"
+      "en": "Dr. Petar Dertliev Blvd"
     }
   },
   {
@@ -14433,7 +14433,7 @@
     ],
     "names": {
       "bg": "ул. Бистришко шосе",
-      "en": "ul. Bistrishko shose"
+      "en": "Bistrishko shose St"
     }
   },
   {
@@ -14444,7 +14444,7 @@
     ],
     "names": {
       "bg": "ул. Бистришко шосе",
-      "en": "ul. Bistrishko shose"
+      "en": "Bistrishko shose St"
     }
   },
   {
@@ -28556,7 +28556,7 @@
     ],
     "names": {
       "bg": "бул. Д-р Петър Дертлиев",
-      "en": "bul. D-r Petar Dertliev"
+      "en": "Dr. Petar Dertliev Blvd"
     }
   },
   {
@@ -30761,7 +30761,7 @@
     ],
     "names": {
       "bg": "ул. Чавдар Мутафов",
-      "en": "ul. CHavdar Mutafov"
+      "en": "Chavdar Mutafov St"
     }
   },
   {
@@ -30772,7 +30772,7 @@
     ],
     "names": {
       "bg": "ул. Чавдар Мутафов",
-      "en": "ul. CHavdar Mutafov"
+      "en": "Chavdar Mutafov St"
     }
   },
   {
@@ -31142,7 +31142,7 @@
     ],
     "names": {
       "bg": "ул. Могилата",
-      "en": "ul. Mogilata"
+      "en": "Mogilata St"
     }
   },
   {
@@ -31197,7 +31197,7 @@
     ],
     "names": {
       "bg": "ул. Емануил Попдимитров",
-      "en": "ul. Emanuil Popdimitrov"
+      "en": "Emanuil Popdimitrov St"
     }
   },
   {
@@ -31230,7 +31230,7 @@
     ],
     "names": {
       "bg": "ул. Боян Боянов",
-      "en": "ul. Boyan Boyanov"
+      "en": "Boyan Boyanov St"
     }
   },
   {
@@ -31241,7 +31241,7 @@
     ],
     "names": {
       "bg": "ул. Боян Боянов",
-      "en": "ul. Boyan Boyanov"
+      "en": "Boyan Boyanov St"
     }
   },
   {
@@ -31417,7 +31417,7 @@
     ],
     "names": {
       "bg": "ул. Могилата",
-      "en": "ul. Mogilata"
+      "en": "Mogilata St"
     }
   },
   {
@@ -31721,7 +31721,7 @@
     ],
     "names": {
       "bg": "ул. Атанас Манчев",
-      "en": "ul. Atanas Manchev"
+      "en": "Atanas Manchev St"
     }
   },
   {
@@ -32270,6 +32270,17 @@
     "names": {
       "bg": "МЕТРОСТАНЦИЯ ОБЕЛЯ",
       "en": "METROSTANTSIYA OBELYA"
+    }
+  },
+  {
+    "code": "6798",
+    "coords": [
+      42.69498,
+      23.1059
+    ],
+    "names": {
+      "bg": "НОВАТА ГОРА - БАНКЯ",
+      "en": "NOVATA GORA - BANKYA"
     }
   },
   {
