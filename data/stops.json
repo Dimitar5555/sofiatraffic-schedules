@@ -2135,7 +2135,7 @@
     ],
     "names": {
       "bg": "бул. Д-р Г. М. Димитров",
-      "en": "bul. D-r G. M. Dimitrov"
+      "en": "Dr. G. M. Dimitrov Blvd"
     }
   },
   {
@@ -2146,7 +2146,7 @@
     ],
     "names": {
       "bg": "бул. Д-р Г. М. Димитров",
-      "en": "bul. D-r G. M. Dimitrov"
+      "en": "Dr. G. M. Dimitrov Blvd"
     }
   },
   {
@@ -2214,7 +2214,7 @@
     ],
     "names": {
       "bg": "бул. Д-р Г. М. Димитров",
-      "en": "bul. D-r G. M. Dimitrov"
+      "en": "Dr. G. M. Dimitrov Blvd"
     }
   },
   {
@@ -2383,7 +2383,7 @@
     ],
     "names": {
       "bg": "бул. Д-р Г. М. Димитров",
-      "en": "bul. D-r G. M. Dimitrov"
+      "en": "Dr. G. M. Dimitrov Blvd"
     }
   },
   {
@@ -2963,8 +2963,8 @@
       23.31016
     ],
     "names": {
-      "bg": "бул. Ген. Н. Столетов",
-      "en": "bul. Gen. N. Stoletov"
+      "bg": "бул. Ген. Николай Столетов",
+      "en": "Gen. Nikolay Stoletov Blvd"
     }
   },
   {
@@ -2974,8 +2974,8 @@
       23.30944
     ],
     "names": {
-      "bg": "бул. Ген. Н. Столетов",
-      "en": "bul. Gen. N. Stoletov"
+      "bg": "бул. Ген. Николай Столетов",
+      "en": "Gen. Nikolay Stoletov Blvd"
     }
   },
   {
@@ -12407,7 +12407,7 @@
     ],
     "names": {
       "bg": "кв. Павлово",
-      "en": "kv. Pavlovo"
+      "en": "Pavlovo"
     }
   },
   {
@@ -14587,7 +14587,7 @@
     ],
     "names": {
       "bg": "бул. Брюксел",
-      "en": "bul. Bryuksel"
+      "en": "Brussels Blvd"
     }
   },
   {
@@ -14598,7 +14598,7 @@
     ],
     "names": {
       "bg": "бул. Брюксел",
-      "en": "bul. Bryuksel"
+      "en": "Brussels Blvd"
     }
   },
   {
@@ -22218,7 +22218,7 @@
     ],
     "names": {
       "bg": "кв. Манастирски ливади",
-      "en": "kv. Manastirski livadi"
+      "en": "Manastirski livadi"
     }
   },
   {
@@ -22229,7 +22229,7 @@
     ],
     "names": {
       "bg": "кв. Манастирски ливади",
-      "en": "kv. Manastirski livadi"
+      "en": "Manastirski livadi"
     }
   },
   {
@@ -24513,7 +24513,7 @@
     ],
     "names": {
       "bg": "кв. Павлово",
-      "en": "kv. Pavlovo"
+      "en": "Pavlovo"
     }
   },
   {
@@ -24524,7 +24524,7 @@
     ],
     "names": {
       "bg": "кв. Павлово",
-      "en": "kv. Pavlovo"
+      "en": "Pavlovo"
     }
   },
   {
@@ -26505,7 +26505,7 @@
     ],
     "names": {
       "bg": "ж.к. Бокар",
-      "en": "zh.k. Bokar"
+      "en": "Bokar"
     }
   },
   {
@@ -26516,7 +26516,7 @@
     ],
     "names": {
       "bg": "ж.к. Бокар",
-      "en": "zh.k. Bokar"
+      "en": "Bokar"
     }
   },
   {
@@ -30904,7 +30904,7 @@
     ],
     "names": {
       "bg": "ул. Иван Кирков",
-      "en": "ul. Ivan Kirkov"
+      "en": "Ivan Kirkov St"
     }
   },
   {
@@ -30915,7 +30915,7 @@
     ],
     "names": {
       "bg": "кв. Манастирски ливади",
-      "en": "kv. Manastirski livadi"
+      "en": "Manastirski livadi"
     }
   },
   {
@@ -30938,7 +30938,7 @@
     ],
     "names": {
       "bg": "ул. Иван Кирков",
-      "en": "ul. Ivan Kirkov"
+      "en": "Ivan Kirkov St"
     }
   },
   {
@@ -31485,7 +31485,7 @@
     ],
     "names": {
       "bg": "бул. Шипченски проход",
-      "en": "bul. SHipchenski prohod"
+      "en": "Shipchenski prohod Blvd"
     }
   },
   {
@@ -32328,6 +32328,17 @@
     }
   },
   {
+    "code": "6157",
+    "coords": [
+      42.70559,
+      23.28282
+    ],
+    "names": {
+      "bg": "МЕТРОСТАНЦИЯ ВАРДАР",
+      "en": "METROSTANTSIYA VARDAR"
+    }
+  },
+  {
     "code": "6710",
     "coords": [
       42.67796,
@@ -32358,6 +32369,17 @@
     "names": {
       "bg": "УЛ. ШУМЕН",
       "en": "UL. SHUMEN"
+    }
+  },
+  {
+    "code": "6160",
+    "coords": [
+      42.7155,
+      23.2505
+    ],
+    "names": {
+      "bg": "ОБЩИНА ЛЮЛИН",
+      "en": "OBSHTINA LYULIN"
     }
   }
 ]
