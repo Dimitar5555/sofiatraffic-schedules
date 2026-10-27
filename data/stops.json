@@ -235,7 +235,7 @@
     ],
     "names": {
       "bg": "Пета градска болница",
-      "en": "Fifth Municipal Hospital"
+      "en": "Fifth City Hospital"
     },
     "local_ref": "1",
     "metro_ref": "E"
@@ -4792,7 +4792,7 @@
     ],
     "names": {
       "bg": "Пета градска болница",
-      "en": "Fifth Municipal Hospital"
+      "en": "Fifth City Hospital"
     },
     "local_ref": "2",
     "metro_ref": "F"
@@ -6119,6 +6119,17 @@
     }
   },
   {
+    "code": "0180",
+    "coords": [
+      42.71332,
+      23.38503
+    ],
+    "names": {
+      "bg": "бл. 28 ж.к. Левски Г",
+      "en": "bl. 28 zh.k. Levski G"
+    }
+  },
+  {
     "code": "0179",
     "coords": [
       42.71269,
@@ -6138,6 +6149,17 @@
     "names": {
       "bg": "бл. 28 ж.к. Левски Г",
       "en": "bl. 28 zh.k. Levski G"
+    }
+  },
+  {
+    "code": "0646",
+    "coords": [
+      42.71215,
+      23.38811
+    ],
+    "names": {
+      "bg": "ж.к. Левски Г",
+      "en": "Levski G"
     }
   },
   {
@@ -14874,6 +14896,30 @@
       "bg": "ул. Бяло море",
       "en": "Byalo more St"
     }
+  },
+  {
+    "code": "2128",
+    "coords": [
+      42.71046,
+      23.38146
+    ],
+    "names": {
+      "bg": "ул. Поп Груйо",
+      "en": "Pop Gruyo St"
+    }
+  },
+  {
+    "code": "2182",
+    "coords": [
+      42.71025,
+      23.38601
+    ],
+    "names": {
+      "bg": "метростанция Генерал Владимир Вазов",
+      "en": "General Vladimir Vazov metro station"
+    },
+    "local_ref": "2",
+    "metro_ref": "D"
   },
   {
     "code": "0692",
@@ -26413,7 +26459,7 @@
     ],
     "names": {
       "bg": "ул. Димитър Петков",
-      "en": "Dimitat Petkov St"
+      "en": "Dimitar Petkov St"
     },
     "metro_ref": "H"
   },
@@ -28171,7 +28217,7 @@
     ],
     "names": {
       "bg": "102-ро ОУ",
-      "en": "102nd School"
+      "en": "102nd Primary School"
     }
   },
   {
@@ -28182,7 +28228,7 @@
     ],
     "names": {
       "bg": "102-ро ОУ",
-      "en": "102nd School"
+      "en": "102nd Primary School"
     }
   },
   {
@@ -28390,7 +28436,7 @@
       23.27484
     ],
     "names": {
-      "bg": "140-то СОУ",
+      "bg": "140-то СУ",
       "en": "140th School"
     }
   },
@@ -28401,8 +28447,8 @@
       23.2748
     ],
     "names": {
-      "bg": "140-то СОУ",
-      "en": "140th School"
+      "bg": "140-то СУ",
+      "en": "140th Secondary School"
     }
   },
   {
