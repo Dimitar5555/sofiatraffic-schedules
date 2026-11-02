@@ -1,11 +1,11 @@
 {
   "app_version": "2026-05-15",
-  "retrieval_date": "2026-11-01",
+  "retrieval_date": "2026-11-02",
   "hashes": {
-    "directions": "b042e9f502fb4c3df6c758a77e49942ff2f7ec21ee169afc89dbcb203879cf90",
-    "routes": "27d69efa430c712b56ccf4a5491ade59b76445139d8f7019b30df85262ab4afb",
+    "directions": "70573701720ba8408057b9fdb7c08d4a83290114337a3140159e300391f9c462",
+    "routes": "8954b8d7a4d5c76d8e995a93de59568bc86ac34b12b045820899e429bb2b3922",
     "stops": "fb254d8dbc703ed9ad102d5d21f2ea6a7e4b4648c905ede4cf6f8ff2dde04f57",
-    "stop_times": "978e1ec3d6473e6d5f25cb0fd1b33cc3caa895ab8333b1cc48dd34e31afa5997",
-    "trips": "7d2b0dfd28dd04f347bb591364d040d73aa02e34e1949c857dd07381bf7f4576"
+    "stop_times": "3c69111712594f70d5fd762eb5394689bc490ee3ebae42719df559394afdd8d9",
+    "trips": "e0fb41b7a8107d7daee01ed9a41c6e2e80105ddb1238e69fa5b723b8ccf47987"
   }
 }
