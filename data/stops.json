@@ -5689,7 +5689,7 @@
     ],
     "names": {
       "bg": "Акад. Александър Теодоров-Балан",
-      "en": "Akad. Aleksandar Teodorov-Balan"
+      "en": "Acad. Aleksandar Teodorov-Balan"
     }
   },
   {
@@ -32214,6 +32214,28 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
+    }
+  },
+  {
+    "code": "2935",
+    "coords": [
+      42.72316,
+      23.16498
+    ],
+    "names": {
+      "bg": "НОВ ГРОБИЩЕН ПАРК БАНКЯ",
+      "en": "NOV GROBISHTEN PARK BANKYA"
+    }
+  },
+  {
+    "code": "2936",
+    "coords": [
+      42.72311,
+      23.16496
+    ],
+    "names": {
+      "bg": "НОВ ГРОБИЩЕН ПАРК БАНКЯ",
+      "en": "NOV GROBISHTEN PARK BANKYA"
     }
   },
   {
