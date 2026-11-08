@@ -24629,28 +24629,6 @@
     "request_stop": true
   },
   {
-    "code": "0056",
-    "coords": [
-      42.70362,
-      23.38694
-    ],
-    "names": {
-      "bg": "Автостанция Изток",
-      "en": "Iztok Bus Station"
-    }
-  },
-  {
-    "code": "0057",
-    "coords": [
-      42.70399,
-      23.38694
-    ],
-    "names": {
-      "bg": "Автостанция Изток",
-      "en": "Iztok Bus Station"
-    }
-  },
-  {
     "code": "1441",
     "coords": [
       42.70983,
@@ -32247,28 +32225,6 @@
     "names": {
       "bg": "БУЛ. РОЖЕН",
       "en": "BUL. ROZHEN"
-    }
-  },
-  {
-    "code": "2935",
-    "coords": [
-      42.72316,
-      23.16498
-    ],
-    "names": {
-      "bg": "НОВ ГРОБИЩЕН ПАРК БАНКЯ",
-      "en": "NOV GROBISHTEN PARK BANKYA"
-    }
-  },
-  {
-    "code": "2936",
-    "coords": [
-      42.72311,
-      23.16496
-    ],
-    "names": {
-      "bg": "НОВ ГРОБИЩЕН ПАРК БАНКЯ",
-      "en": "NOV GROBISHTEN PARK BANKYA"
     }
   },
   {
