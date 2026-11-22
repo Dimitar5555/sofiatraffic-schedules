@@ -377,6 +377,19 @@
     }
   },
   {
+    "code": "1113",
+    "coords": [
+      42.71463,
+      23.31099
+    ],
+    "names": {
+      "bg": "метростанция Княгиня Мария Луиза",
+      "en": "Knyginya Maria Luiza metro station"
+    },
+    "local_ref": "6",
+    "metro_ref": "C"
+  },
+  {
     "code": "0567",
     "coords": [
       42.68557,
@@ -849,30 +862,6 @@
     "names": {
       "bg": "Надлез Надежда",
       "en": "Nadezhda Overpass"
-    }
-  },
-  {
-    "code": "1332",
-    "coords": [
-      42.71124,
-      23.31971
-    ],
-    "names": {
-      "bg": "Централна гара",
-      "en": "Central Railway Station"
-    },
-    "local_ref": "4",
-    "metro_ref": "F"
-  },
-  {
-    "code": "2002",
-    "coords": [
-      42.70735,
-      23.32322
-    ],
-    "names": {
-      "bg": "ул. Козлодуй",
-      "en": "Kozloduy St"
     }
   },
   {
@@ -4766,19 +4755,6 @@
     "metro_ref": "E"
   },
   {
-    "code": "1329",
-    "coords": [
-      42.71099,
-      23.32031
-    ],
-    "names": {
-      "bg": "Централна гара",
-      "en": "Central Railway Station"
-    },
-    "local_ref": "3",
-    "metro_ref": "G"
-  },
-  {
     "code": "1254",
     "coords": [
       42.71343,
@@ -4801,18 +4777,6 @@
       "bg": "Надлез Надежда",
       "en": "Nadezhda Overpass"
     }
-  },
-  {
-    "code": "2665",
-    "coords": [
-      42.70948,
-      23.32201
-    ],
-    "names": {
-      "bg": "Централна автогара",
-      "en": "Central Bus Station"
-    },
-    "metro_ref": "K"
   },
   {
     "code": "0377",
@@ -32298,6 +32262,17 @@
     }
   },
   {
+    "code": "6841",
+    "coords": [
+      42.71195,
+      23.31754
+    ],
+    "names": {
+      "bg": "БУЛ. КН. МАРИЯ ЛУИЗА",
+      "en": "BUL. KN. MARIYA LUIZA"
+    }
+  },
+  {
     "code": "6698",
     "coords": [
       42.73219,
@@ -32339,6 +32314,50 @@
     "names": {
       "bg": "АВТОСТАНЦИЯ ГЕО МИЛЕВ",
       "en": "AVTOSTANTSIYA GEO MILEV"
+    }
+  },
+  {
+    "code": "6712",
+    "coords": [
+      42.70054,
+      23.29625
+    ],
+    "names": {
+      "bg": "БУЛ. КОНСТАНТИН ВЕЛИЧКОВ - ВРЕМЕННА",
+      "en": "BUL. KONSTANTIN VELICHKOV - VREMENNA"
+    }
+  },
+  {
+    "code": "6610",
+    "coords": [
+      42.70201,
+      23.28662
+    ],
+    "names": {
+      "bg": "БУЛ. ВАРДАР - ВРЕМЕННА",
+      "en": "BUL. VARDAR - VREMENNA"
+    }
+  },
+  {
+    "code": "6711",
+    "coords": [
+      42.70073,
+      23.29613
+    ],
+    "names": {
+      "bg": "БУЛ. КОНСТАНТИН ВЕЛИЧКОВ - ВРЕМЕННА",
+      "en": "BUL. KONSTANTIN VELICHKOV - VREMENNA"
+    }
+  },
+  {
+    "code": "6609",
+    "coords": [
+      42.70218,
+      23.28675
+    ],
+    "names": {
+      "bg": "БУЛ. ВАРДАР - ВРЕМЕННА",
+      "en": "BUL. VARDAR - VREMENNA"
     }
   }
 ]
